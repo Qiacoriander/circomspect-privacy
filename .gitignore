@@ -1,0 +1,6 @@
+.vscode
+/target
+.qoder
+.idea
+temp_docs
+test_fixtures
