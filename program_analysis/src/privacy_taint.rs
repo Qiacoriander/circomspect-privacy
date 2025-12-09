@@ -243,9 +243,24 @@ fn eval_access_level(var: &VariableName, access: &[AccessType], env: &PrivacyTai
                 }
             }
             AccessType::ComponentAccess(port) => {
-                // 输出端口处理：如果链接了目标 CFG，优先使用自定义模板递归
-                // TODO 临时用out测试基本功能
-                if port == "out" || port == "bit" {
+                // 检查被访问的端口是否是输出信号
+                // 需要查询组件类型对应的子 CFG，检查该端口是否为输出信号
+                let is_output_port = if let Some(weak) = env.component_cfg(var) {
+                    if let Some(rc) = weak.upgrade() {
+                        // 先收集所有输出信号名称，然后释放借用
+                        let output_names: Vec<String> = {
+                            let child_cfg = rc.borrow();
+                            child_cfg.output_signals().map(|n| n.name().to_string()).collect()
+                        };
+                        output_names.iter().any(|name| name == port)
+                    } else {
+                        false
+                    }
+                } else {
+                    false
+                };
+
+                if is_output_port {
                     // 优先使用基于类型的映射
                     let mapped = map_component_output_taint(env.component_type(var), result);
                     result = mapped;
@@ -254,12 +269,15 @@ fn eval_access_level(var: &VariableName, access: &[AccessType], env: &PrivacyTai
                             let child_cfg = rc.borrow();
                             let seed_level = env.component_input_level(var);
                             let mut seed = HashMap::new();
-                            // TODO 临时用in测试基本功能
-                            let in_port_level = env.component_port_level(var, "in");
+                            // 为每个输入信号准备初始污点等级
                             for in_name in child_cfg.input_signals() {
-                                let level = if in_name.name() == "in" && !matches!(in_port_level, TaintLevel::Clean) {
-                                    in_port_level
+                                // 尝试从组件端口级别记录中获取精确等级
+                                let port_level = env.component_port_level(var, in_name.name());
+                                let level = if !matches!(port_level, TaintLevel::Clean) {
+                                    // 有端口级精确记录，优先使用
+                                    port_level
                                 } else {
+                                    // 回退到聚合输入等级
                                     seed_level
                                 };
                                 seed.insert(in_name.clone(), level);
