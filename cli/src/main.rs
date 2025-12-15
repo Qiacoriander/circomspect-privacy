@@ -43,6 +43,11 @@ struct Cli {
     /// Set curve (BN254, BLS12_381, or GOLDILOCKS)
     #[clap(short = 'c', long = "curve", name = "NAME", default_value = config::DEFAULT_CURVE)]
     curve: Curve,
+
+    /// Analysis mode: 'all' analyzes all templates/functions (all inputs are private),
+    /// 'main' starts from main component and respects public input declarations
+    #[clap(short = 'm', long = "mode", name = "MODE", default_value = "all")]
+    analysis_mode: String,
 }
 
 /// Styles the help output for the [`Cli`].
@@ -84,6 +89,13 @@ fn main() -> ExitCode {
         }
     }
 
+    // 验证分析模式参数
+    let analysis_mode = options.analysis_mode.to_lowercase();
+    if analysis_mode != "all" && analysis_mode != "main" {
+        eprintln!("Error: Invalid analysis mode '{}'. Must be 'all' or 'main'.", options.analysis_mode);
+        return ExitCode::FAILURE;
+    }
+
     // Set up analysis runner.
     // 解析阶段
     let (mut runner, reports) = AnalysisRunner::new(options.curve)
@@ -100,9 +112,15 @@ fn main() -> ExitCode {
     stdout_writer.write_reports(&reports, runner.file_library());
 
     // Analyze functions and templates in user provided input files.
-    /// 分析入口
-    runner.analyze_functions(&mut stdout_writer, true);
-    runner.analyze_templates(&mut stdout_writer, true);
+    // 分析入口
+    if analysis_mode == "main" {
+        // 模式 2：从 main 开始递归分析（需要 public 列表）
+        runner.analyze_from_main(&mut stdout_writer);
+    } else {
+        // 模式 1：分析所有模板和函数（默认模式）
+        runner.analyze_functions(&mut stdout_writer, true);
+        runner.analyze_templates(&mut stdout_writer, true);
+    }
 
     // If a Sarif file is passed to the program we write the reports to it.
     if let Some(sarif_file) = options.sarif_file {

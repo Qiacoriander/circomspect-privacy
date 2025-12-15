@@ -45,6 +45,17 @@ pub struct AnalysisRunner {
     template_reports: ReportCache,
     /// Reports created during CFG generation.
     function_reports: ReportCache,
+    /// Main component information (if the program has a main component)
+    main_component: Option<MainComponentInfo>,
+}
+
+/// Information about the main component, including public inputs and the template name
+#[derive(Clone, Debug)]
+struct MainComponentInfo {
+    /// The name of the main template
+    template_name: String,
+    /// Public input signal names declared in main component
+    public_inputs: Vec<String>,
 }
 
 impl AnalysisRunner {
@@ -62,6 +73,13 @@ impl AnalysisRunner {
         let reports =
             match parser::parse_files(input_files, &self.libraries, &config::COMPILER_VERSION) { // 解析出来可以是完成的程序(有且只有一个main)，其余情况视作库(Library)
                 ParseResult::Program(program, warnings) => {
+                    // 提取 main component 信息
+                    if let program_structure::ast::Expression::Call { id, .. } = program.main_expression() {
+                        self.main_component = Some(MainComponentInfo {
+                            template_name: id.clone(),
+                            public_inputs: program.public_inputs.clone(),
+                        });
+                    }
                     self.template_asts = program.templates;
                     self.function_asts = program.functions;
                     self.file_library = program.file_library;
@@ -161,6 +179,48 @@ impl AnalysisRunner {
         for name in self.template_names(user_input_only) {
             self.analyze_template(&name, writer);
         }
+    }
+
+    /// 从 main component 开始递归分析（模式 2）
+    /// 
+    /// 这种模式会：
+    /// 1. 检查是否存在 main component
+    /// 2. 根据 main 的 public 列表调整信号的 private 属性
+    /// 3. 从 main template 开始递归分析（通过 CFG 中的引用自动递归）
+    pub fn analyze_from_main<W: LogWriter + ReportWriter>(&mut self, writer: &mut W) {
+        let main_info = if let Some(ref info) = self.main_component {
+            info.clone()
+        } else {
+            writer.write_message("错误：没有找到 main component。请确保输入文件包含一个 main component声明。");
+            writer.write_message("如果你想分析库组件，请使用 --mode all 模式。");
+            return;
+        };
+
+        writer.write_message(&format!(
+            "从 main component '{}' 开始分析，公开输入：{:?}",
+            main_info.template_name, main_info.public_inputs
+        ));
+
+        // 分析 main template
+        let mut reports = self.take_template_reports(&main_info.template_name);
+        if let Ok(cfg) = self.take_template(&main_info.template_name) {
+            // 使用支持 public 列表的隐私污点分析
+            reports.append(&mut crate::privacy_taint::find_privacy_taint_leaks_for_main(&cfg, &main_info.public_inputs));
+            
+            // 运行其他分析过程（跳过隐私污点分析，因为已经手动运行了）
+            for analysis_pass in get_analysis_passes().into_iter().skip(1) {
+                reports.append(&mut analysis_pass(self, &cfg));
+            }
+            
+            // 重新插入 CFG
+            if self.replace_template(&main_info.template_name, cfg) {
+                debug!("template `{}` CFG was regenerated during analysis", main_info.template_name);
+            }
+        }
+        writer.write_reports(&reports, &self.file_library);
+
+        // 注：其他被 main 调用的 template 会通过 CFG 中的引用自动分析
+        // 因为隠私污点分析会递归地访问子 CFG
     }
 
     fn analyze_function<W: LogWriter + ReportWriter>(&mut self, name: &str, writer: &mut W) {

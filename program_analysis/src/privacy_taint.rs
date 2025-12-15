@@ -770,6 +770,100 @@ pub fn run_privacy_taint_with_seed(cfg: &Cfg, seed: &HashMap<VariableName, Taint
     env
 }
 
+/// 为 main component 运行隠私污点分析，支持 public 列表
+/// 
+/// 参数：
+/// - cfg: main template 的 CFG
+/// - public_inputs: 在 main component 中声明为 public 的信号名列表
+pub fn run_privacy_taint_for_main(cfg: &Cfg, public_inputs: &[String]) -> PrivacyTaint {
+    debug!("running privacy taint analysis for main component with public inputs: {:?}", public_inputs);
+    let mut env = PrivacyTaint::new();
+
+    // 1) 初始化污点源：
+    //    - 所有 input 信号默认为 private (Tainted)
+    //    - 但在 public_inputs 列表中的信号除外 (Clean)
+    for name in cfg.private_input_signals() {
+        if public_inputs.contains(&name.to_string()) {
+            // 在 public 列表中，标记为 Clean
+            trace!("标记公开输入 `{:?}` 为 Clean", name);
+            env.set_level(name, TaintLevel::Clean);
+        } else {
+            // 不在 public 列表中，标记为 Tainted
+            trace!("标记私有输入 `{:?}` 为污染", name);
+            env.set_level(name, TaintLevel::Tainted);
+            env.init_leakage_tracker(name, 254); // 默认 254 比特熵
+        }
+    }
+
+    // 1.5) 预扫描组件类型与子CFG，并链接到子CFG（CfgManager）
+    for bb in cfg.iter() {
+        for stmt in bb.iter() {
+            if let Statement::Substitution { meta, var, rhe, .. } = stmt {
+                if let Some(vtype) = meta.type_knowledge().variable_type() {
+                    if matches!(vtype, program_structure::ir::VariableType::Component | program_structure::ir::VariableType::AnonymousComponent) {
+                        if let Expression::Call { name, target_cfg, .. } = rhe {
+                            env.set_component_type(var, name);
+                            if let Some(weak) = target_cfg { env.set_component_cfg(var, weak); }
+                        }
+                    }
+                }
+                // 聚合组件输入：识别 `update(var, access, expr)` 且 access 含 `ComponentAccess("in")`
+                if let Expression::Update { var: uvar, access, rhe: inner, .. } = rhe {
+                    if uvar == var && access.iter().any(|a| matches!(a, AccessType::ComponentAccess(p) if p == "in")) {
+                        let level = eval_expr_level(inner, &env);
+                        env.add_component_input(var, level);
+                        env.add_component_port_level(var, "in", level);
+                    }
+                }
+            }
+        }
+    }
+
+    // 2) 迭代传播
+    let mut changed = true;
+    let mut iter = 0usize;
+    while changed && iter < 256 {
+        changed = false;
+        iter += 1;
+        for bb in cfg.iter() {
+            for stmt in bb.iter() {
+                use Statement::*;
+                match stmt {
+                    Substitution { var, rhe, .. } => {
+                        let rhs_level = eval_expr_level(rhe, &env);
+                        // 检测是否是组件输出访问（如 component.out）
+                        let is_component_output_access = matches!(rhe, Expression::Access { access, .. } 
+                            if access.iter().any(|a| matches!(a, AccessType::ComponentAccess(_))));
+                        
+                        // 对于组件输出访问，使用直接设置而非 join，以保留精确的污点等级
+                        if is_component_output_access {
+                            changed = env.set_level_direct(var, rhs_level) || changed;
+                        } else {
+                            changed = env.set_level(var, rhs_level) || changed;
+                        }
+                    }
+                    Declaration { names, dimensions, .. } => {
+                        let dim_level = dimensions.iter().fold(TaintLevel::Clean, |acc, e| acc.join(eval_expr_level(e, &env)));
+                        for name in names {
+                            changed = env.set_level(name, dim_level) || changed;
+                        }
+                    }
+                    IfThenElse { cond, .. } => {
+                        let c = eval_expr_level(cond, &env);
+                        if matches!(c, TaintLevel::Tainted | TaintLevel::PartialLeak) {
+                            for sink in bb.variables_written() {
+                                changed = env.set_level(sink.name(), TaintLevel::Tainted) || changed;
+                            }
+                        }
+                    }
+                    ConstraintEquality { .. } | Return { .. } | LogCall { .. } | Assert { .. } => {}
+                }
+            }
+        }
+    }
+    env
+}
+
 /// 隐私污点泄露警告：私有污染的输出信号
 pub struct PrivateTaintedOutputWarning {
     signal_name: VariableName,
@@ -998,6 +1092,119 @@ pub fn find_privacy_taint_leaks(cfg: &Cfg) -> ReportCollection {
     }
     
     debug!("privacy taint analysis generated {} reports", reports.len());
+    reports
+}
+
+/// 为 main component 运行隐私污点分析带泄露检测和报告
+/// 
+/// 使用 public 列表来确定哪些输入信号是公开的
+pub fn find_privacy_taint_leaks_for_main(cfg: &Cfg, public_inputs: &[String]) -> ReportCollection {
+    debug!("running privacy taint leak detection analysis for main component");
+    
+    let mut env = run_privacy_taint_for_main(cfg, public_inputs);
+    let mut reports = ReportCollection::new();
+    
+    // 在输出赋值和约束中跟踪泄露操作
+    for bb in cfg.iter() {
+        for stmt in bb.iter() {
+            match stmt {
+                Statement::Substitution { var, rhe, .. } => {
+                    // 如果这是输出信号赋值，跟踪泄露
+                    if cfg.output_signals().any(|s| s == var) {
+                        track_expr_leakage(rhe, &mut env);
+                    }
+                    // 同时检查 rhe 是否是 Update 表达式（数组赋值）
+                    if let Expression::Update { var: update_var, rhe: update_rhe, .. } = rhe {
+                        if cfg.output_signals().any(|s| s == update_var) {
+                            track_expr_leakage(update_rhe, &mut env);
+                        }
+                    }
+                }
+                Statement::ConstraintEquality { lhe, rhe, .. } => {
+                    // 约束暴露关系，跟踪泄露
+                    track_expr_leakage(lhe, &mut env);
+                    track_expr_leakage(rhe, &mut env);
+                }
+                _ => {}
+            }
+        }
+    }
+    
+    // 1. 检测输出信号的污点泄露
+    for signal_name in cfg.output_signals() {
+        let level = env.level(signal_name);
+        // 只报告 Tainted 和 PartialLeak 的输出信号
+        if matches!(level, TaintLevel::Tainted | TaintLevel::PartialLeak) {
+            if let Some(declaration) = cfg.get_declaration(signal_name) {
+                reports.push(
+                    PrivateTaintedOutputWarning {
+                        signal_name: signal_name.clone(),
+                        taint_level: level,
+                        file_id: declaration.file_id(),
+                        primary_location: declaration.file_location(),
+                    }
+                    .into_report(),
+                );
+            }
+        }
+    }
+    
+    // 2. 检测约束中的污点泄露
+    for bb in cfg.iter() {
+        for stmt in bb.iter() {
+            if let Statement::ConstraintEquality { meta, lhe, rhe } = stmt {
+                // 收集约束中使用的所有变量及其污点等级
+                let mut tainted_vars = Vec::new();
+                
+                // 检查左侧表达式
+                collect_tainted_vars(lhe, &env, &mut tainted_vars);
+                // 检查右侧表达式
+                collect_tainted_vars(rhe, &env, &mut tainted_vars);
+                
+                // 如果有完全污染（Tainted）的变量出现在约束中，生成警告
+                if !tainted_vars.is_empty() {
+                    reports.push(
+                        PrivateTaintedConstraintWarning {
+                            constraint_location: meta.file_location(),
+                            file_id: meta.file_id(),
+                            tainted_vars,
+                        }
+                        .into_report(),
+                    );
+                }
+            }
+        }
+    }
+    
+    // 3. 检查量化的部分泄露（PartialLeak 评估）
+    for signal_name in cfg.private_input_signals() {
+        // 跳过 public 列表中的信号
+        if public_inputs.contains(&signal_name.to_string()) {
+            continue;
+        }
+        
+        if let Some(severity) = env.get_leakage_severity(signal_name) {
+            if let Some((leaked_bits, entropy, threshold)) = env.get_leakage_info(signal_name) {
+                // 生成量化泄露报告
+                if let Some(declaration) = cfg.get_declaration(signal_name) {
+                    reports.push(
+                        QuantifiedLeakageWarning {
+                            signal_name: signal_name.clone(),
+                            severity,
+                            leaked_bits,
+                            entropy_bits: entropy,
+                            threshold_bits: threshold,
+                            file_id: declaration.file_id(),
+                            primary_location: declaration.file_location(),
+                        }
+                        .into_report(),
+                    );
+                }
+            }
+        }
+    }
+    
+    debug!("privacy taint analysis for main generated {} reports", reports.len());
     reports
 }
 
