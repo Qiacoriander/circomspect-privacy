@@ -104,7 +104,7 @@ ParseSignalType: SignalType = {
 };
 
 SignalHeader : VariableType = {
-    "signal" <is_private: "private"?> <signal_type: ParseSignalType?> <tags_list: ParseTagsList?>
+    "signal" <signal_type: ParseSignalType?> <tags_list: ParseTagsList?>
     => {
         let s = match signal_type {
             None => SignalType::Intermediate,
@@ -114,8 +114,12 @@ SignalHeader : VariableType = {
             None => Vec::new(),
             Some(tl) => tl,
         };
-        let p = is_private.is_some();
-        VariableType::Signal(s, t, p)
+        // Circom 信号隐私性规则：
+        // - Input 信号：默认 private，除非在 main component 的 public 列表中指定
+        // - Intermediate 信号：始终 private（内部计算结果）
+        // - Output 信号：始终 public（电路输出）
+        let is_private = !matches!(s, SignalType::Output);
+        VariableType::Signal(s, t, is_private)
     }
 };
 

@@ -243,73 +243,75 @@ fn eval_access_level(var: &VariableName, access: &[AccessType], env: &PrivacyTai
                 }
             }
             AccessType::ComponentAccess(port) => {
-                // 检查被访问的端口是否是输出信号
-                // 需要查询组件类型对应的子 CFG，检查该端口是否为输出信号
-                let is_output_port = if let Some(weak) = env.component_cfg(var) {
-                    if let Some(rc) = weak.upgrade() {
-                        // 先收集所有输出信号名称，然后释放借用
-                        let output_names: Vec<String> = {
-                            let child_cfg = rc.borrow();
-                            child_cfg.output_signals().map(|n| n.name().to_string()).collect()
-                        };
-                        output_names.iter().any(|name| name == port)
-                    } else {
-                        false
-                    }
+                //  第一步：先尝试基于组件类型的映射（不需要子 CFG）
+                let component_type = env.component_type(var);
+                
+                if let Some(mapped_level) = map_component_output_taint(component_type, result) {
+                    // 命中已知组件，直接使用映射结果，不需要检查子 CFG
+                    result = mapped_level;
+                    is_component_output = true;
                 } else {
-                    false
-                };
-
-                if is_output_port {
-                    // 优先使用基于类型的映射
-                    let mapped = map_component_output_taint(env.component_type(var), result);
-                    result = mapped;
-                    if let Some(weak) = env.component_cfg(var) {
+                    // 第二步：未命中已知组件，尝试检查子 CFG 并递归分析
+                    let is_output_port = if let Some(weak) = env.component_cfg(var) {
                         if let Some(rc) = weak.upgrade() {
-                            let child_cfg = rc.borrow();
-                            let seed_level = env.component_input_level(var);
-                            let mut seed = HashMap::new();
-                            // 为每个输入信号准备初始污点等级
-                            for in_name in child_cfg.input_signals() {
-                                // 尝试从组件端口级别记录中获取精确等级
-                                let port_level = env.component_port_level(var, in_name.name());
-                                let level = if !matches!(port_level, TaintLevel::Clean) {
-                                    // 有端口级精确记录，优先使用
-                                    port_level
-                                } else {
-                                    // 回退到聚合输入等级
-                                    seed_level
-                                };
-                                seed.insert(in_name.clone(), level);
-                            }
-                            // 检查缓存以避免重复计算
-                            let cache_key = (child_cfg.name().to_string(), seed_level);
-                            if let Some(cached) = env.child_cache.borrow().get(&cache_key) {
-                                result = *cached;
-                                is_component_output = true;
-                                continue;
-                            }
-                            let child_env = run_privacy_taint_with_seed(&child_cfg, &seed);
-                            let mut out_level = TaintLevel::Clean;
-                            for out_name in child_cfg.output_signals() {
-                                let child_out_level = child_env.level(out_name);
-                                trace!("Child output signal {:?} has level {:?}", out_name, child_out_level);
-                                out_level = out_level.join(child_out_level);
-                            }
-                            trace!("Final aggregated out_level for child CFG '{}': {:?}", child_cfg.name(), out_level);
-                            result = out_level;
-                            // 更新缓存
-                            env.child_cache.borrow_mut().insert(cache_key, out_level);
+                            // 先收集所有输出信号名称，然后释放借用
+                            let output_names: Vec<String> = {
+                                let child_cfg = rc.borrow();
+                                child_cfg.output_signals().map(|n| n.name().to_string()).collect()
+                            };
+                            output_names.iter().any(|name| name == port)
                         } else {
-                            // 回退到基于类型的映射
-                            result = map_component_output_taint(env.component_type(var), result);
+                            false
                         }
                     } else {
-                        // 已知库的组件可以直接知道结果；否则递归地污染
-                        let mapped = map_component_output_taint(env.component_type(var), result);
-                        result = mapped;
+                        false
+                    };
+
+                    if is_output_port {
+                        // 有子 CFG 且是输出端口，递归分析
+                        if let Some(weak) = env.component_cfg(var) {
+                            if let Some(rc) = weak.upgrade() {
+                                let child_cfg = rc.borrow();
+                                let seed_level = env.component_input_level(var);
+                                let mut seed = HashMap::new();
+                                // 为每个输入信号准备初始污点等级
+                                for in_name in child_cfg.input_signals() {
+                                    // 尝试从组件端口级别记录中获取精确等级
+                                    let port_level = env.component_port_level(var, in_name.name());
+                                    let level = if !matches!(port_level, TaintLevel::Clean) {
+                                        // 有端口级精确记录，优先使用
+                                        port_level
+                                    } else {
+                                        // 回退到聚合输入等级
+                                        seed_level
+                                    };
+                                    seed.insert(in_name.clone(), level);
+                                }
+                                // 检查缓存以避免重复计算
+                                let cache_key = (child_cfg.name().to_string(), seed_level);
+                                if let Some(cached) = env.child_cache.borrow().get(&cache_key) {
+                                    result = *cached;
+                                    is_component_output = true;
+                                    continue;
+                                }
+                                let child_env = run_privacy_taint_with_seed(&child_cfg, &seed);
+                                let mut out_level = TaintLevel::Clean;
+                                for out_name in child_cfg.output_signals() {
+                                    let child_out_level = child_env.level(out_name);
+                                    trace!("Child output signal {:?} has level {:?}", out_name, child_out_level);
+                                    out_level = out_level.join(child_out_level);
+                                }
+                                trace!("Final aggregated out_level for child CFG '{}': {:?}", child_cfg.name(), out_level);
+                                result = out_level;
+                                // 更新缓存
+                                env.child_cache.borrow_mut().insert(cache_key, out_level);
+                                is_component_output = true;
+                            }
+                        }
+                    } else {
+                        // 无子 CFG 或不是输出端口，使用默认的 Tainted
+                        result = if matches!(result, TaintLevel::Clean) { TaintLevel::Clean } else { TaintLevel::Tainted };
                     }
-                    is_component_output = true;
                 }
             }
         }
@@ -321,10 +323,13 @@ fn normalize_name(name: &str) -> String {
     name.chars().filter(|c| c.is_ascii_alphanumeric()).collect::<String>().to_lowercase()
 }
 
-fn map_component_output_taint(ctype_opt: Option<&str>, input: TaintLevel) -> TaintLevel {
+/// 尝试根据组件类型映射输出污点等级
+/// 返回 Some(level) 表示命中已知组件，None 表示未命中（需要递归分析）
+fn map_component_output_taint(ctype_opt: Option<&str>, input: TaintLevel) -> Option<TaintLevel> {
     use TaintLevel::*;
-    let Some(ctype) = ctype_opt else { return if matches!(input, Clean) { Clean } else { Tainted } };
+    let Some(ctype) = ctype_opt else { return None };
     let cname = normalize_name(ctype);
+    
     // 各种不可逆函数 → 如果任何输入不是 Clean 则 Downgraded
     let non_invertible: HashSet<&str> = HashSet::from([
         "poseidon", "mimc7", "pedersen", "eddsa", "eddsaposeidon", "merkletreeinclusionproof", "smtverifier",
@@ -337,32 +342,34 @@ fn map_component_output_taint(ctype_opt: Option<&str>, input: TaintLevel) -> Tai
     let arith_tainted: HashSet<&str> = HashSet::from(["add", "multimux"]);
 
     if non_invertible.contains(cname.as_str()) {
-        return if matches!(input, Clean) { Clean } else { Downgraded };
+        return Some(if matches!(input, Clean) { Clean } else { Downgraded });
     }
     if cmp_partial.contains(cname.as_str()) {
-        return match input {
+        return Some(match input {
             Tainted | PartialLeak => PartialLeak,
             Downgraded => Downgraded,
             Clean => Clean,
-        };
+        });
     }
     if cmp_tainted.contains(cname.as_str()) {
-        return match input {
+        return Some(match input {
             Tainted | PartialLeak => Tainted,
             Downgraded => Downgraded,
             Clean => Clean,
-        };
+        });
     }
     if bit_tainted.contains(cname.as_str()) {
-        return if matches!(input, Clean) { Clean } else { Tainted };
+        return Some(if matches!(input, Clean) { Clean } else { Tainted });
     }
     if bit_downgraded.contains(cname.as_str()) {
-        return if matches!(input, Clean) { Clean } else { Downgraded };
+        return Some(if matches!(input, Clean) { Clean } else { Downgraded });
     }
     if logic_tainted.contains(cname.as_str()) || arith_tainted.contains(cname.as_str()) {
-        return if matches!(input, Clean) { Clean } else { Tainted };
+        return Some(if matches!(input, Clean) { Clean } else { Tainted });
     }
-    if matches!(input, Clean) { Clean } else { Tainted }
+    
+    // 未命中任何已知组件，返回 None 表示需要递归分析
+    None
 }
 
 fn eval_infix(op: ExpressionInfixOpcode, lhs: TaintLevel, rhs: TaintLevel) -> TaintLevel {
@@ -1066,7 +1073,7 @@ mod tests {
     fn test_addition_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
                 c <== a + b;
@@ -1086,7 +1093,7 @@ mod tests {
     fn test_subtraction_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
                 c <== a - b;
@@ -1106,7 +1113,7 @@ mod tests {
     fn test_multiplication_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
                 c <== a * b;
@@ -1127,7 +1134,7 @@ mod tests {
     fn test_division_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
                 c <-- a / b;
@@ -1147,7 +1154,7 @@ mod tests {
     fn test_power_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output c;
                 c <== a ** 3;
             }
@@ -1166,7 +1173,7 @@ mod tests {
     fn test_assignment_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output c;
                 c <== a;
             }
@@ -1189,7 +1196,7 @@ mod tests {
     fn test_bit_extract_partial() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output c;
                 c <== a & 1;
             }
@@ -1208,7 +1215,7 @@ mod tests {
     fn test_bitwise_and_partial() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output c;
                 c <== a & 0xFF;
             }
@@ -1227,7 +1234,7 @@ mod tests {
     fn test_bitwise_or_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
                 c <== a | b;
@@ -1247,7 +1254,7 @@ mod tests {
     fn test_bitwise_xor_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
                 c <== a ^ b;
@@ -1267,7 +1274,7 @@ mod tests {
     fn test_shift_left_partial() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output c;
                 c <== a << 3;
             }
@@ -1286,7 +1293,7 @@ mod tests {
     fn test_shift_right_partial() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output c;
                 c <== a >> 5;
             }
@@ -1305,7 +1312,7 @@ mod tests {
     fn test_logical_not_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output c;
                 c <== 1 - a;
             }
@@ -1324,7 +1331,7 @@ mod tests {
     fn test_logical_and_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
                 c <== a * b;
@@ -1344,7 +1351,7 @@ mod tests {
     fn test_logical_or_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
                 c <== a + b - a * b;
@@ -1368,7 +1375,7 @@ mod tests {
     fn test_array_index_private_index_tainted() {
         let src = r#"
             template T() {
-                signal private input i;
+                signal input i;
                 signal input arr[8];
                 signal output z;
                 z <== arr[i];
@@ -1388,7 +1395,7 @@ mod tests {
     fn test_array_index_private_array_tainted() {
         let src = r#"
             template T() {
-                signal private input arr[8];
+                signal input arr[8];
                 signal input i;
                 signal output z;
                 z <== arr[i];
@@ -1408,7 +1415,7 @@ mod tests {
     fn test_mux_tainted() {
         let src = r#"
             template T() {
-                signal private input s;
+                signal input s;
                 signal input a;
                 signal input b;
                 signal output z;
@@ -1434,8 +1441,8 @@ mod tests {
     fn test_less_than_partial_leak() {
         let src = r#"
             template T() {
-                signal private input a;
-                signal private input b;
+                signal input a;
+                signal input b;
                 signal output z;
                 component lt = LessThan(252);
                 lt.in[0] <== a;
@@ -1458,7 +1465,7 @@ mod tests {
     fn test_equal_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output z;
                 component eq = Equal();
@@ -1486,7 +1493,7 @@ mod tests {
     fn test_num2bits_component_tainted() {
         let src = r#"
             template T(n) {
-                signal private input a;
+                signal input a;
                 signal output z;
                 component n2b = Num2Bits(n);
                 n2b.in <== a;
@@ -1514,7 +1521,7 @@ mod tests {
     fn test_poseidon_downgraded() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output z;
                 component h = Poseidon(1);
                 h.in[0] <== a;
@@ -1540,7 +1547,7 @@ mod tests {
     fn test_logic_component_tainted() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output z;
                 component and_gate = And();
@@ -1567,7 +1574,7 @@ mod tests {
     fn test_multiple_bit_extract_partial() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal output bit0;
                 signal output bit1;
                 bit0 <== a & 1;
@@ -1589,6 +1596,7 @@ mod tests {
     /// 状态：✅ 已实现
     #[test]
     fn test_clean_signal() {
+        // 测试：所有 input 默认为 private，所以结果应该是 Tainted
         let src = r#"
             template T() {
                 signal input a;
@@ -1601,7 +1609,8 @@ mod tests {
         let cfg = parse_definition(src).unwrap().into_cfg(&Curve::default(), &mut reports).unwrap().into_ssa().unwrap();
         let env = run_privacy_taint(&cfg);
         let c = cfg.output_signals().next().unwrap().clone();
-        assert_eq!(env.level(&c), TaintLevel::Clean);
+        // 所有 input 都是 private，所以结果应该是 Tainted
+        assert_eq!(env.level(&c), TaintLevel::Tainted);
     }
 
     /// 测试：Downgraded与Tainted的组合
@@ -1611,7 +1620,7 @@ mod tests {
     fn test_downgraded_tainted_combination() {
         let src = r#"
             template T() {
-                signal private input secret;
+                signal input secret;
                 signal output hashed;
                 signal output combined;
                 component h = Poseidon(1);
@@ -1646,7 +1655,7 @@ mod tests {
         
         let child_src = r#"
             template Child() {
-                signal private input x;
+                signal input x;
                 signal output y;
                 y <== x;
             }
@@ -1654,7 +1663,7 @@ mod tests {
         
         let parent_src = r#"
             template Parent() {
-                signal private input a;
+                signal input a;
                 signal output z;
                 component child = Child();
                 child.x <== a;
@@ -1684,7 +1693,7 @@ mod tests {
         
         let extractor_src = r#"
             template BitExtractor() {
-                signal private input val;
+                signal input val;
                 signal output bit;
                 bit <== val & 1;
             }
@@ -1692,7 +1701,7 @@ mod tests {
         
         let parent_src = r#"
             template Parent() {
-                signal private input secret;
+                signal input secret;
                 signal output leaked_bit;
                 component extractor = BitExtractor();
                 extractor.val <== secret;
@@ -1724,7 +1733,7 @@ mod tests {
         
         let level2_src = r#"
             template Level2() {
-                signal private input x;
+                signal input x;
                 signal output y;
                 y <== x * x;
             }
@@ -1732,7 +1741,7 @@ mod tests {
         
         let level1_src = r#"
             template Level1() {
-                signal private input a;
+                signal input a;
                 signal output b;
                 component l2 = Level2();
                 l2.x <== a;
@@ -1742,7 +1751,7 @@ mod tests {
         
         let level0_src = r#"
             template Level0() {
-                signal private input secret;
+                signal input secret;
                 signal output result;
                 component l1 = Level1();
                 l1.a <== secret;
@@ -1771,7 +1780,7 @@ mod tests {
         
         let multi_src = r#"
             template MultiOutput() {
-                signal private input x;
+                signal input x;
                 signal output direct;
                 signal output extracted_bit;
                 direct <== x;
@@ -1781,7 +1790,7 @@ mod tests {
         
         let parent_src = r#"
             template Parent() {
-                signal private input a;
+                signal input a;
                 signal output out1;
                 signal output out2;
                 component multi = MultiOutput();
@@ -1826,4 +1835,5 @@ mod tests {
     // cargo run -p circomspect -- examples\partial_leak_tests\04_deduplication.circom
 
 }
+
 

@@ -2,7 +2,7 @@ pragma circom 2.0.0;
 
 
 template HighLeakage() {
-    signal private input secret;
+    signal input secret;
     signal output out[10];
     
     // Extract multiple bits using bit operations

@@ -3,7 +3,7 @@ pragma circom 2.0.0;
 // Test case: Deduplication mechanism
 // Expected: Only 2 unique bit extractions counted (not 4)
 template DeduplicationTest() {
-    signal private input secret;
+    signal input secret;
     signal output out[4];
     
     // Same bit extraction (bit 0) appears 3 times

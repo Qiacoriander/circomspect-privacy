@@ -3,7 +3,7 @@ pragma circom 2.0.0;
 // Test case: Shift operation leakage
 // Expected: PartialLeak taint, moderate leakage (4 bits from shift)
 template ShiftLeak() {
-    signal private input secret;
+    signal input secret;
     signal output shifted_out;
     signal output bit_out;
     

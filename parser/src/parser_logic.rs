@@ -195,10 +195,10 @@ mod tests {
     }
 
     #[test]
-    fn test_parse_private_signal_ast() {
+    fn test_parse_input_signals_ast() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
             }
@@ -208,35 +208,25 @@ mod tests {
             Definition::Template { body, .. } => {
                 match body {
                     Statement::Block { stmts, .. } => {
-                        let mut has_a = false;
-                        let mut has_b = false;
-                        let mut has_c = false;
+                        let mut input_count = 0;
+                        let mut output_count = 0;
                         for stmt in stmts {
                             if let Statement::InitializationBlock { xtype, initializations, .. } = stmt {
                                 match xtype {
-                                    VariableType::Signal(SignalType::Input, _, true) => {
-                                        has_a = initializations.iter().any(|s| match s {
-                                            Statement::Declaration { name, .. } => name == "a",
-                                            _ => false,
-                                        });
+                                    VariableType::Signal(SignalType::Input, _, is_private) => {
+                                        assert!(is_private, "input signals should be private by default");
+                                        input_count += initializations.len();
                                     }
-                                    VariableType::Signal(SignalType::Input, _, false) => {
-                                        has_b = initializations.iter().any(|s| match s {
-                                            Statement::Declaration { name, .. } => name == "b",
-                                            _ => false,
-                                        });
-                                    }
-                                    VariableType::Signal(SignalType::Output, _, false) => {
-                                        has_c = initializations.iter().any(|s| match s {
-                                            Statement::Declaration { name, .. } => name == "c",
-                                            _ => false,
-                                        });
+                                    VariableType::Signal(SignalType::Output, _, is_private) => {
+                                        assert!(!is_private, "output signals should not be private");
+                                        output_count += initializations.len();
                                     }
                                     _ => {}
                                 }
                             }
                         }
-                        assert!(has_a && has_b && has_c);
+                        assert_eq!(input_count, 2, "should have 2 input signals");
+                        assert_eq!(output_count, 1, "should have 1 output signal");
                     }
                     _ => panic!("expected block body"),
                 }
@@ -246,10 +236,10 @@ mod tests {
     }
 
     #[test]
-    fn test_cfg_private_public_iterators() {
+    fn test_cfg_public_private_iterators() {
         let src = r#"
             template T() {
-                signal private input a;
+                signal input a;
                 signal input b;
                 signal output c;
             }
@@ -264,10 +254,45 @@ mod tests {
         let pub_inputs: Vec<String> = cfg.public_input_signals().map(|n| n.to_string()).collect();
         let all_inputs: Vec<String> = cfg.input_signals().map(|n| n.to_string()).collect();
 
-        assert_eq!(priv_inputs, vec!["a"]);
-        assert_eq!(pub_inputs, vec!["b"]);
+        // 默认所有 input 都是 private
+        assert_eq!(priv_inputs.len(), 2);
+        assert!(priv_inputs.contains(&"a".to_string()));
+        assert!(priv_inputs.contains(&"b".to_string()));
+        assert_eq!(pub_inputs.len(), 0);
         assert_eq!(all_inputs.len(), 2);
-        assert!(all_inputs.contains(&"a".to_string()));
-        assert!(all_inputs.contains(&"b".to_string()));
+    }
+
+    #[test]
+    fn test_intermediate_signal_is_private() {
+        let src = r#"
+            template T() {
+                signal input a;
+                signal intermediate;
+                signal output b;
+                intermediate <== a * 2;
+                b <== intermediate;
+            }
+        "#;
+        let def = parse_definition(src).expect("definition parsed");
+        match def {
+            Definition::Template { body, .. } => {
+                match body {
+                    Statement::Block { stmts, .. } => {
+                        let mut found_intermediate = false;
+                        for stmt in stmts {
+                            if let Statement::InitializationBlock { xtype, initializations, .. } = stmt {
+                                if let VariableType::Signal(SignalType::Intermediate, _, is_private) = xtype {
+                                    assert!(is_private, "intermediate signals should always be private");
+                                    found_intermediate = true;
+                                }
+                            }
+                        }
+                        assert!(found_intermediate, "should have found intermediate signal");
+                    }
+                    _ => panic!("expected block body"),
+                }
+            }
+            _ => panic!("expected template definition"),
+        }
     }
 }

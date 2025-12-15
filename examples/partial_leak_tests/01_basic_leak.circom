@@ -3,7 +3,7 @@ pragma circom 2.0.0;
 // Test case: Basic information leakage through bit operations
 // Expected: PartialLeak taint level, but below threshold (no quantified report)
 template BasicLeak() {
-    signal private input secret;
+    signal input secret;
     signal output bit_out;
     signal output comparison_out;
     

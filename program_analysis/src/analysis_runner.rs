@@ -537,7 +537,8 @@ mod tests {
         use std::path::Path;
         
         // 使用项目目录下的测试文件夹
-        let project_root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
+        let project_root = Path::new(env
+        !("CARGO_MANIFEST_DIR")).parent().unwrap();
         let test_dir = project_root.join("examples2");
         
         // 确保测试目录存在
