@@ -1,0 +1,24 @@
+使用说明
+========
+
+目录结构：
+  benchmarks/
+  ├── projects/          # 存放待测试的 Circom 项目
+  ├── tools/             # 评估工具脚本
+  └── benchmark_*.csv    # 生成的结果文件（输出在 benchmarks 根目录）
+
+快速开始：
+
+1. 将待测试项目放入 projects/ 目录
+
+2. 运行评估（Windows）：
+   cd tools
+   python run_benchmark.py --mode both --output ../results.csv
+
+3. 查看结果：
+   - CSV: benchmark_*_results.csv
+   - HTML: benchmark_*_report.html
+
+参数：
+  --mode: all（全量分析）| main（从main开始）| both（两种都运行）
+  --verbose: 显示详细输出
