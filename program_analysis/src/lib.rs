@@ -14,7 +14,7 @@ pub mod cfg_manager;
 pub mod config;
 
 // Intra-process analysis passes.
-mod bitwise_complement;
+pub mod bitwise_complement;
 mod bn254_specific_circuit;
 mod constant_conditional;
 mod definition_complexity;
@@ -25,7 +25,7 @@ mod under_constrained_signals;
 mod unconstrained_less_than;
 mod unconstrained_division;
 mod side_effect_analysis;
-mod signal_assignments;
+pub mod signal_assignments;
 
 // Inter-process analysis passes.
 mod unused_output_signal;
@@ -39,7 +39,14 @@ type AnalysisPass = dyn Fn(&mut dyn AnalysisContext, &Cfg) -> ReportCollection;
 pub fn get_analysis_passes() -> Vec<Box<AnalysisPass>> {
     vec![
         // Privacy taint analysis (with leak detection and reports)
-        Box::new(|_, cfg| privacy_taint::find_privacy_taint_leaks(cfg)),
+        Box::new(|ctx, cfg| {
+            privacy_taint::find_privacy_taint_leaks(
+                cfg,
+                Some(ctx),
+                ctx.leak_threshold(),
+                ctx.min_leak_severity(),
+            )
+        }),
         // Intra-process analysis passes.进程内 分析器
         Box::new(|_, cfg| bitwise_complement::find_bitwise_complement(cfg)), // 分析按位取反操作(~x)可能导致的问题
         Box::new(|_, cfg| signal_assignments::find_signal_assignments(cfg)), // 分析信号赋值操作(<--)可能导致的问题

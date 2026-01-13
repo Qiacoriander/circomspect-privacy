@@ -9,8 +9,8 @@ use super::template_data::{TemplateData, TemplateInfo};
 #[derive(Default)]
 pub struct Merger {
     fresh_id: usize,
-    function_info: FunctionInfo,  // 实际上是 HashMap<String, FunctionData>， key为function name
-    template_info: TemplateInfo,  // 实际上是 HashMap<String, TemplateData>， key为template name
+    function_info: FunctionInfo, // 实际上是 HashMap<String, FunctionData>， key为function name
+    template_info: TemplateInfo, // 实际上是 HashMap<String, TemplateData>， key为template name
 }
 
 impl Merger {

@@ -99,8 +99,10 @@ pub fn find_under_constrained_signals(cfg: &Cfg) -> ReportCollection {
         .variables()
         .filter_map(|name| {
             // 收集中间信号
-            if matches!(cfg.get_type(name), Some(VariableType::Signal(SignalType::Intermediate, _, _)))
-            {
+            if matches!(
+                cfg.get_type(name),
+                Some(VariableType::Signal(SignalType::Intermediate, _, _))
+            ) {
                 Some((name.clone(), Vec::new()))
             } else {
                 None

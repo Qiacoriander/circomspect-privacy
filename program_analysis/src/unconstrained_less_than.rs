@@ -125,7 +125,7 @@ pub fn find_unconstrained_less_than(cfg: &Cfg) -> ReportCollection {
     let mut inputs = Vec::new();
     for basic_block in cfg.iter() {
         for stmt in basic_block.iter() {
-            update_inputs(stmt, &components, &mut inputs);  // 收集所有`LessThan`和`Num2Bits`的输入Expression到inputs
+            update_inputs(stmt, &components, &mut inputs); // 收集所有`LessThan`和`Num2Bits`的输入Expression到inputs
         }
     }
 
@@ -156,9 +156,9 @@ pub fn find_unconstrained_less_than(cfg: &Cfg) -> ReportCollection {
     // not constrained to be positive using `Num2Bits`.
     let mut reports = ReportCollection::new();
     let max_value = BigInt::from(cfg.constants().prime_size() - 1); // 计算字段的最大值
-    // 遍历收集到的约束，检查：
-    // 1. 是否作为LessThan的输入
-    // 2. 是否被Num2Bits约束为正数(即位大小小于最大字段值)
+                                                                    // 遍历收集到的约束，检查：
+                                                                    // 1. 是否作为LessThan的输入
+                                                                    // 2. 是否被Num2Bits约束为正数(即位大小小于最大字段值)
     for (value, data) in constraints {
         // Check if the the value is used as input for `LessThan`.
         if data.less_than.is_empty() {
@@ -247,7 +247,8 @@ fn update_inputs(
         let mut component_access = access.clone();
         let signal_access = component_access.pop(); // access的最后一个元素，应该是信号名称(如in)
         let component = VariableAccess::new(var, &component_access);
-        if let Some(Component::Num2Bits { bit_size, .. }) = components.get(&component) { // 尝试从组件映射中获取与当前变量访问相关联的Num2Bits组件
+        if let Some(Component::Num2Bits { bit_size, .. }) = components.get(&component) {
+            // 尝试从组件映射中获取与当前变量访问相关联的Num2Bits组件
             let Some(ComponentAccess(signal_name)) = signal_access else {
                 return;
             };

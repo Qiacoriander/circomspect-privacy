@@ -27,10 +27,10 @@ pub fn build_include(meta: Meta, path: String) -> Include {
 
 #[derive(Clone)]
 pub struct Meta {
-    pub elem_id: usize,                      // 元素唯一标识符
-    pub start: usize,                        // 源代码中的起始位置
-    pub end: usize,                          // 源代码中的结束位置
-    pub location: FileLocation,              // 文件中的位置范围（start..end）
+    pub elem_id: usize,         // 元素唯一标识符
+    pub start: usize,           // 源代码中的起始位置
+    pub end: usize,             // 源代码中的结束位置
+    pub location: FileLocation, // 文件中的位置范围（start..end）
     pub file_id: Option<usize>,
     pub component_inference: Option<String>, // 组件推断信息
     type_knowledge: TypeKnowledge,
@@ -88,13 +88,13 @@ impl Meta {
 
 #[derive(Clone)]
 pub struct AST {
-    pub meta: Meta,                             // 元数据信息
-    pub compiler_version: Option<Version>,      // 编译器版本
-    pub custom_gates: bool,                     // 是否使用自定义门
-    pub custom_gates_declared: bool,            // 是否声明了自定义门
-    pub includes: Vec<Include>,                 // 包含的其他文件
-    pub definitions: Vec<Definition>,           // 定义（函数和模板）【重点】
-    pub main_component: Option<MainComponent>,  // 主组件main
+    pub meta: Meta,                            // 元数据信息
+    pub compiler_version: Option<Version>,     // 编译器版本
+    pub custom_gates: bool,                    // 是否使用自定义门
+    pub custom_gates_declared: bool,           // 是否声明了自定义门
+    pub includes: Vec<Include>,                // 包含的其他文件
+    pub definitions: Vec<Definition>,          // 定义（函数和模板）【重点】
+    pub main_component: Option<MainComponent>, // 主组件main
 }
 impl AST {
     pub fn new(
@@ -127,7 +127,7 @@ pub enum Definition {
         name: String,
         args: Vec<String>,
         arg_location: FileLocation,
-        body: Statement,            // 重点
+        body: Statement, // 重点
         parallel: bool,
         is_custom_gate: bool,
     },
@@ -136,7 +136,7 @@ pub enum Definition {
         name: String,
         args: Vec<String>,
         arg_location: FileLocation,
-        body: Statement,            // 重点
+        body: Statement, // 重点
     },
 }
 pub fn build_template(

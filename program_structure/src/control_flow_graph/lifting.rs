@@ -161,8 +161,8 @@ fn try_lift_impl(
 
     // 2. Convert template AST to CFG and compute dominator tree.
     let mut env = LiftingEnvironment::from(&parameters);
-    let basic_blocks = build_basic_blocks(&body, &mut env, reports)?;   // 生成基本块
-    let dominator_tree = DominatorTree::new(&basic_blocks);   // 
+    let basic_blocks = build_basic_blocks(&body, &mut env, reports)?; // 生成基本块
+    let dominator_tree = DominatorTree::new(&basic_blocks); //
     let declarations = Declarations::from(env);
     let mut cfg = Cfg::new(
         name,

@@ -193,9 +193,9 @@ pub enum Expression {
     /// A constant field element.
     Number(Meta, BigInt),
     /// A function call node.
-    Call { 
-        meta: Meta, 
-        name: String, 
+    Call {
+        meta: Meta,
+        name: String,
         args: Vec<Expression>,
         /// Reference to the called function/template CFG (weak reference to avoid cycles)
         target_cfg: Option<WeakCfgRef>,

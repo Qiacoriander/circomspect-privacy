@@ -80,15 +80,17 @@ pub fn preprocess(expr: &str, file_id: FileID) -> Result<String, Box<Report>> {
 pub fn parse_file(src: &str, file_id: FileID) -> Result<AST, Box<Report>> {
     use lalrpop_util::ParseError::*;
     lang::ParseAstParser::new()
-        .parse(&preprocess(src, file_id)?)    // 解析获得AST
-        .map(|mut ast| {                                                // 增强调试能力，给所有#include引入的文件设置当前文件ID，方便报错时精确指出是哪个include出现的问题
+        .parse(&preprocess(src, file_id)?) // 解析获得AST
+        .map(|mut ast| {
+            // 增强调试能力，给所有#include引入的文件设置当前文件ID，方便报错时精确指出是哪个include出现的问题
             // Set file ID for better error reporting.
             for include in &mut ast.includes {
                 include.meta.set_file_id(file_id);
             }
             ast
         })
-        .map_err(|parse_error| match parse_error {              // 错误转换，将LALRPOP解析错误转换为自定义错误
+        .map_err(|parse_error| match parse_error {
+            // 错误转换，将LALRPOP解析错误转换为自定义错误
             InvalidToken { location } => ParsingError {
                 file_id,
                 message: "Invalid token found.".to_string(),
@@ -205,32 +207,34 @@ mod tests {
         "#;
         let def = parse_definition(src).expect("definition parsed");
         match def {
-            Definition::Template { body, .. } => {
-                match body {
-                    Statement::Block { stmts, .. } => {
-                        let mut input_count = 0;
-                        let mut output_count = 0;
-                        for stmt in stmts {
-                            if let Statement::InitializationBlock { xtype, initializations, .. } = stmt {
-                                match xtype {
-                                    VariableType::Signal(SignalType::Input, _, is_private) => {
-                                        assert!(is_private, "input signals should be private by default");
-                                        input_count += initializations.len();
-                                    }
-                                    VariableType::Signal(SignalType::Output, _, is_private) => {
-                                        assert!(!is_private, "output signals should not be private");
-                                        output_count += initializations.len();
-                                    }
-                                    _ => {}
+            Definition::Template { body, .. } => match body {
+                Statement::Block { stmts, .. } => {
+                    let mut input_count = 0;
+                    let mut output_count = 0;
+                    for stmt in stmts {
+                        if let Statement::InitializationBlock { xtype, initializations, .. } = stmt
+                        {
+                            match xtype {
+                                VariableType::Signal(SignalType::Input, _, is_private) => {
+                                    assert!(
+                                        is_private,
+                                        "input signals should be private by default"
+                                    );
+                                    input_count += initializations.len();
                                 }
+                                VariableType::Signal(SignalType::Output, _, is_private) => {
+                                    assert!(!is_private, "output signals should not be private");
+                                    output_count += initializations.len();
+                                }
+                                _ => {}
                             }
                         }
-                        assert_eq!(input_count, 2, "should have 2 input signals");
-                        assert_eq!(output_count, 1, "should have 1 output signal");
                     }
-                    _ => panic!("expected block body"),
+                    assert_eq!(input_count, 2, "should have 2 input signals");
+                    assert_eq!(output_count, 1, "should have 1 output signal");
                 }
-            }
+                _ => panic!("expected block body"),
+            },
             _ => panic!("expected template definition"),
         }
     }
@@ -246,9 +250,7 @@ mod tests {
         "#;
         let def = parse_definition(src).expect("definition parsed");
         let mut reports = ReportCollection::new();
-        let cfg = def
-            .into_cfg(&Curve::default(), &mut reports)
-            .expect("cfg built");
+        let cfg = def.into_cfg(&Curve::default(), &mut reports).expect("cfg built");
 
         let priv_inputs: Vec<String> = cfg.private_input_signals().map(|n| n.to_string()).collect();
         let pub_inputs: Vec<String> = cfg.public_input_signals().map(|n| n.to_string()).collect();
@@ -275,23 +277,27 @@ mod tests {
         "#;
         let def = parse_definition(src).expect("definition parsed");
         match def {
-            Definition::Template { body, .. } => {
-                match body {
-                    Statement::Block { stmts, .. } => {
-                        let mut found_intermediate = false;
-                        for stmt in stmts {
-                            if let Statement::InitializationBlock { xtype, initializations, .. } = stmt {
-                                if let VariableType::Signal(SignalType::Intermediate, _, is_private) = xtype {
-                                    assert!(is_private, "intermediate signals should always be private");
-                                    found_intermediate = true;
-                                }
+            Definition::Template { body, .. } => match body {
+                Statement::Block { stmts, .. } => {
+                    let mut found_intermediate = false;
+                    for stmt in stmts {
+                        if let Statement::InitializationBlock { xtype, initializations, .. } = stmt
+                        {
+                            if let VariableType::Signal(SignalType::Intermediate, _, is_private) =
+                                xtype
+                            {
+                                assert!(
+                                    is_private,
+                                    "intermediate signals should always be private"
+                                );
+                                found_intermediate = true;
                             }
                         }
-                        assert!(found_intermediate, "should have found intermediate signal");
                     }
-                    _ => panic!("expected block body"),
+                    assert!(found_intermediate, "should have found intermediate signal");
                 }
-            }
+                _ => panic!("expected block body"),
+            },
             _ => panic!("expected template definition"),
         }
     }

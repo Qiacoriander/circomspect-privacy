@@ -117,7 +117,7 @@ impl Hash for Expression {
                 args.hash(state);
                 // Note: We intentionally don't hash target_cfg to maintain semantic equality
                 // Two calls with the same name and args should be considered equal regardless of target_cfg
-            },
+            }
             InlineArray { values, .. } => {
                 values.hash(state);
             }

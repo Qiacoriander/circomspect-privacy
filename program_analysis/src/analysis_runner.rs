@@ -20,6 +20,7 @@ use program_structure::template_library::TemplateLibrary;
 use crate::{
     analysis_context::{AnalysisContext, AnalysisError},
     get_analysis_passes, config,
+    privacy_taint::LeakSeverity,
 };
 
 type CfgCache = HashMap<String, Cfg>;
@@ -30,6 +31,8 @@ type ReportCache = HashMap<String, ReportCollection>;
 #[derive(Default)]
 pub struct AnalysisRunner {
     curve: Curve,
+    leak_threshold: usize,
+    min_leak_severity: LeakSeverity,
     libraries: Vec<PathBuf>,
     /// The corresponding file library including file includes.
     file_library: FileLibrary,
@@ -51,16 +54,31 @@ pub struct AnalysisRunner {
 
 /// Information about the main component, including public inputs and the template name
 #[derive(Clone, Debug)]
-struct MainComponentInfo {
+pub struct MainComponentInfo {
     /// The name of the main template
-    template_name: String,
+    pub template_name: String,
     /// Public input signal names declared in main component
-    public_inputs: Vec<String>,
+    pub public_inputs: Vec<String>,
 }
 
 impl AnalysisRunner {
     pub fn new(curve: Curve) -> Self {
-        AnalysisRunner { curve, ..Default::default() }
+        AnalysisRunner {
+            curve,
+            leak_threshold: 8,                     // 默认值为 8
+            min_leak_severity: LeakSeverity::High, // 默认 High
+            ..Default::default()
+        }
+    }
+
+    pub fn with_leak_threshold(mut self, threshold: usize) -> Self {
+        self.leak_threshold = threshold;
+        self
+    }
+
+    pub fn with_min_leak_severity(mut self, severity: LeakSeverity) -> Self {
+        self.min_leak_severity = severity;
+        self
     }
 
     pub fn with_libraries(mut self, libraries: &[PathBuf]) -> Self {
@@ -71,10 +89,13 @@ impl AnalysisRunner {
     /// 指定了输入文件后，会在这一环节进行解析
     pub fn with_files(mut self, input_files: &[PathBuf]) -> (Self, ReportCollection) {
         let reports =
-            match parser::parse_files(input_files, &self.libraries, &config::COMPILER_VERSION) { // 解析出来可以是完成的程序(有且只有一个main)，其余情况视作库(Library)
+            match parser::parse_files(input_files, &self.libraries, &config::COMPILER_VERSION) {
+                // 解析出来可以是完成的程序(有且只有一个main)，其余情况视作库(Library)
                 ParseResult::Program(program, warnings) => {
                     // 提取 main component 信息
-                    if let program_structure::ast::Expression::Call { id, .. } = program.main_expression() {
+                    if let program_structure::ast::Expression::Call { id, .. } =
+                        program.main_expression()
+                    {
                         self.main_component = Some(MainComponentInfo {
                             template_name: id.clone(),
                             public_inputs: program.public_inputs.clone(),
@@ -120,12 +141,17 @@ impl AnalysisRunner {
         &self.file_library
     }
 
+    pub fn main_component(&self) -> Option<&MainComponentInfo> {
+        self.main_component.as_ref()
+    }
+
     pub fn template_names(&self, user_input_only: bool) -> Vec<String> {
         // Clone template names to avoid holding multiple references to `self`.
         self.template_asts
             .iter()
             .filter_map(|(name, ast)| {
-                if !user_input_only || self.file_library.is_user_input(ast.get_file_id()) { // 不在指定的库的set中，则就是用户输入文件
+                if !user_input_only || self.file_library.is_user_input(ast.get_file_id()) {
+                    // 不在指定的库的set中，则就是用户输入文件
                     Some(name)
                 } else {
                     None
@@ -134,7 +160,6 @@ impl AnalysisRunner {
             .cloned()
             .collect()
     }
-
 
     pub fn function_names(&self, user_input_only: bool) -> Vec<String> {
         // Clone function names to avoid holding multiple references to `self`.
@@ -182,7 +207,7 @@ impl AnalysisRunner {
     }
 
     /// 从 main component 开始递归分析（模式 2）
-    /// 
+    ///
     /// 这种模式会：
     /// 1. 检查是否存在 main component
     /// 2. 根据 main 的 public 列表调整信号的 private 属性
@@ -191,7 +216,9 @@ impl AnalysisRunner {
         let main_info = if let Some(ref info) = self.main_component {
             info.clone()
         } else {
-            writer.write_message("错误：没有找到 main component。请确保输入文件包含一个 main component声明。");
+            writer.write_message(
+                "错误：没有找到 main component。请确保输入文件包含一个 main component声明。",
+            );
             writer.write_message("如果你想分析库组件，请使用 --mode all 模式。");
             return;
         };
@@ -205,16 +232,24 @@ impl AnalysisRunner {
         let mut reports = self.take_template_reports(&main_info.template_name);
         if let Ok(cfg) = self.take_template(&main_info.template_name) {
             // 使用支持 public 列表的隐私污点分析
-            reports.append(&mut crate::privacy_taint::find_privacy_taint_leaks_for_main(&cfg, &main_info.public_inputs));
-            
+            reports.append(&mut crate::privacy_taint::find_privacy_taint_leaks_for_main(
+                &cfg,
+                &main_info.public_inputs,
+                self.leak_threshold,
+                self.min_leak_severity,
+            ));
+
             // 运行其他分析过程（跳过隐私污点分析，因为已经手动运行了）
             for analysis_pass in get_analysis_passes().into_iter().skip(1) {
                 reports.append(&mut analysis_pass(self, &cfg));
             }
-            
+
             // 重新插入 CFG
             if self.replace_template(&main_info.template_name, cfg) {
-                debug!("template `{}` CFG was regenerated during analysis", main_info.template_name);
+                debug!(
+                    "template `{}` CFG was regenerated during analysis",
+                    main_info.template_name
+                );
             }
         }
         writer.write_reports(&reports, &self.file_library);
@@ -230,13 +265,16 @@ impl AnalysisRunner {
         // here to avoid holding multiple mutable and immutable references to
         // `self`. This may lead to the CFG being regenerated during analysis if
         // the function is invoked recursively. If it is then ¯\_(ツ)_/¯.
-        let mut reports = self.take_function_reports(name);   // 获取与该函数相关的任何先前生成的报告
-        if let Ok(cfg) = self.take_function(name) {                     // 获取cfg，如果获取到了，则执行大括号下的内容
-            for analysis_pass in get_analysis_passes() {            // 遍历所有已注册的【分析过程】（分析器），分析结果追加到reports中
+        let mut reports = self.take_function_reports(name); // 获取与该函数相关的任何先前生成的报告
+        if let Ok(cfg) = self.take_function(name) {
+            // 获取cfg，如果获取到了，则执行大括号下的内容
+            for analysis_pass in get_analysis_passes() {
+                // 遍历所有已注册的【分析过程】（分析器），分析结果追加到reports中
                 reports.append(&mut analysis_pass(self, &cfg));
             }
             // Re-insert the CFG into the hash map.
-            if self.replace_function(name, cfg) {                            // 分析完成后，将分析结果（cfg）重新插入到哈希映射中，如果返回true，说明cfg在过程中被重复生成
+            if self.replace_function(name, cfg) {
+                // 分析完成后，将分析结果（cfg）重新插入到哈希映射中，如果返回true，说明cfg在过程中被重复生成
                 debug!("function `{name}` CFG was regenerated during analysis");
             }
         }
@@ -352,7 +390,7 @@ impl AnalysisRunner {
     /// 批量生成所有模板和函数的 CFG
     pub fn generate_all_cfgs(&mut self) -> ReportCollection {
         let mut all_reports = ReportCollection::new();
-        
+
         // 生成所有模板的 CFG
         let template_names: Vec<String> = self.template_asts.keys().cloned().collect();
         for name in template_names {
@@ -360,7 +398,7 @@ impl AnalysisRunner {
                 debug!("Failed to generate CFG for template '{}'", name);
             }
         }
-        
+
         // 生成所有函数的 CFG
         let function_names: Vec<String> = self.function_asts.keys().cloned().collect();
         for name in function_names {
@@ -368,7 +406,7 @@ impl AnalysisRunner {
                 debug!("Failed to generate CFG for function '{}'", name);
             }
         }
-        
+
         // 收集所有生成过程中的报告
         for (_, reports) in &self.template_reports {
             all_reports.append(&mut reports.clone());
@@ -376,35 +414,35 @@ impl AnalysisRunner {
         for (_, reports) in &self.function_reports {
             all_reports.append(&mut reports.clone());
         }
-        
+
         all_reports
     }
 
     /// 使用 CfgManager 统一连接所有 CFG 引用
-    /// 
+    ///
     /// 注意：此方法会将 runner 中的 CFG 移动到返回的 CfgManager 中。
     /// 这是因为 Cfg 不支持 Clone，无法同时在两个地方保存。
     /// 如需要继续使用 runner 的原始功能，在调用此方法前完成相关操作。
     pub fn link_all_cfg_references(&mut self) -> crate::cfg_manager::CfgManager {
         use crate::cfg_manager::CfgManager;
-        
+
         let mut cfg_manager = CfgManager::new();
-        
+
         // 将所有模板 CFG 移动到管理器
         let template_cfgs = std::mem::take(&mut self.template_cfgs);
         for (name, cfg) in template_cfgs {
             cfg_manager.add_template_cfg(name, cfg);
         }
-        
+
         // 将所有函数 CFG 移动到管理器
         let function_cfgs = std::mem::take(&mut self.function_cfgs);
         for (name, cfg) in function_cfgs {
             cfg_manager.add_function_cfg(name, cfg);
         }
-        
+
         // 统一链接所有调用引用
         cfg_manager.link_call_references();
-        
+
         cfg_manager
     }
 }
@@ -442,6 +480,14 @@ impl AnalysisContext for AnalysisRunner {
                 file_location: file_location.clone(),
             })
         }
+    }
+
+    fn leak_threshold(&self) -> usize {
+        self.leak_threshold
+    }
+
+    fn min_leak_severity(&self) -> LeakSeverity {
+        self.min_leak_severity
     }
 }
 
@@ -562,20 +608,19 @@ mod tests {
     #[test]
     fn test_with_files() {
         use std::path::Path;
-        
+
         // 使用项目目录下的测试文件
         let project_root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
         let test_file = project_root.join("examples").join("instantiation.circom");
         let test_file = project_root.join("examples").join("instantiation.circom");
 
         // let test_file = project_root.join("test_fixtures").join("template.circom");
-        
+
         // 确保测试文件存在
         assert!(test_file.exists(), "Test file should exist: {:?}", test_file);
-        
-        let (mut runner, reports) = AnalysisRunner::new(Curve::Bn254)
-            .with_files(&[test_file]);
-        
+
+        let (mut runner, reports) = AnalysisRunner::new(Curve::Bn254).with_files(&[test_file]);
+
         // 验证解析成功
         //assert!(reports.is_empty() || reports.iter().all(|r| !r.is_error()));
         //assert!(runner.is_template("TestTemplate"));
@@ -595,15 +640,14 @@ mod tests {
     fn test_with_directory() {
         use std::fs;
         use std::path::Path;
-        
+
         // 使用项目目录下的测试文件夹
-        let project_root = Path::new(env
-        !("CARGO_MANIFEST_DIR")).parent().unwrap();
+        let project_root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
         let test_dir = project_root.join("examples2");
-        
+
         // 确保测试目录存在
         assert!(test_dir.exists(), "Test directory should exist: {:?}", test_dir);
-        
+
         // 收集目录中的所有.circom文件
         let circom_files: Vec<PathBuf> = fs::read_dir(&test_dir)
             .unwrap()
@@ -617,15 +661,15 @@ mod tests {
                 }
             })
             .collect();
-        
+
         assert!(!circom_files.is_empty(), "Should find at least one .circom file");
-        
-        let (mut runner, reports) = AnalysisRunner::new(Curve::Goldilocks)
-            .with_files(&circom_files);
-        
+
+        let (mut runner, reports) =
+            AnalysisRunner::new(Curve::Goldilocks).with_files(&circom_files);
+
         // 验证解析成功
         // assert!(reports.is_empty() || reports.iter().all(|r| !r.is_error()));
-        
+
         // 验证从不同文件解析出的模板和函数
         // assert!(runner.is_template("MultiplyAdd"));
         // assert!(runner.is_template("TestTemplate"));
@@ -635,11 +679,11 @@ mod tests {
         // assert!(runner.is_function("min"));
         // assert!(runner.is_function("factorial"));
         // assert!(runner.is_function("power"));
-        
+
         // 测试分析功能
         let template_names = runner.template_names(true);
         let function_names = runner.function_names(true);
-        
+
         println!("Found templates: {:?}", template_names);
         println!("Found functions: {:?}", function_names);
     }
@@ -649,9 +693,12 @@ mod tests {
         use std::fs;
         use std::path::Path;
         use program_structure::ir::{Expression, Statement};
-        
+
         // 辅助函数：在语句中递归查找指定名称的调用表达式
-        fn find_call_expression_in_statement<'a>(stmt: &'a Statement, target_name: &str) -> Option<&'a Expression> {
+        fn find_call_expression_in_statement<'a>(
+            stmt: &'a Statement,
+            target_name: &str,
+        ) -> Option<&'a Expression> {
             use Statement::*;
             match stmt {
                 Substitution { rhe, .. } => find_call_expression_in_expr(rhe, target_name),
@@ -673,9 +720,12 @@ mod tests {
                 LogCall { .. } => None, // 简化处理
             }
         }
-        
+
         // 辅助函数：在表达式中递归查找指定名称的调用表达式
-        fn find_call_expression_in_expr<'a>(expr: &'a Expression, target_name: &str) -> Option<&'a Expression> {
+        fn find_call_expression_in_expr<'a>(
+            expr: &'a Expression,
+            target_name: &str,
+        ) -> Option<&'a Expression> {
             use Expression::*;
             match expr {
                 Call { name, .. } if name == target_name => Some(expr),
@@ -687,10 +737,8 @@ mod tests {
                     }
                     None
                 }
-                InfixOp { lhe, rhe, .. } => {
-                    find_call_expression_in_expr(lhe, target_name)
-                        .or_else(|| find_call_expression_in_expr(rhe, target_name))
-                }
+                InfixOp { lhe, rhe, .. } => find_call_expression_in_expr(lhe, target_name)
+                    .or_else(|| find_call_expression_in_expr(rhe, target_name)),
                 PrefixOp { rhe, .. } => find_call_expression_in_expr(rhe, target_name),
                 SwitchOp { cond, if_true, if_false, .. } => {
                     find_call_expression_in_expr(cond, target_name)
@@ -709,14 +757,14 @@ mod tests {
                 _ => None,
             }
         }
-        
+
         // 使用项目目录下的 examples2 测试文件夹
         let project_root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
         let test_dir = project_root.join("examples2");
-        
+
         // 确保测试目录存在
         assert!(test_dir.exists(), "Test directory should exist: {:?}", test_dir);
-        
+
         // 收集目录中的所有.circom文件
         let circom_files: Vec<PathBuf> = fs::read_dir(&test_dir)
             .unwrap()
@@ -730,37 +778,40 @@ mod tests {
                 }
             })
             .collect();
-        
+
         assert!(!circom_files.is_empty(), "Should find at least one .circom file");
-        
-        let (mut runner, _reports) = AnalysisRunner::new(Curve::Goldilocks)
-            .with_files(&circom_files);
-        
+
+        let (mut runner, _reports) =
+            AnalysisRunner::new(Curve::Goldilocks).with_files(&circom_files);
+
         // 第一阶段：批量生成所有 CFG
         println!("Phase 1: Generating all CFGs...");
         let generation_reports = runner.generate_all_cfgs();
         println!("CFG generation completed with {} reports", generation_reports.len());
-        
+
         // 验证 CFG 已生成
         assert!(runner.is_template("Foo"), "Template 'Foo' should be available");
         assert!(runner.is_function("isNegative"), "Function 'isNegative' should be available");
-        
+
         // 第二阶段：统一连接所有 CFG 引用
         println!("Phase 2: Linking all CFG references...");
         let cfg_manager = runner.link_all_cfg_references();
-        
+
         // 验证 CFG 管理器包含预期的模板和函数
         assert!(cfg_manager.has_template("Foo"), "CfgManager should contain template 'Foo'");
-        assert!(cfg_manager.has_function("isNegative"), "CfgManager should contain function 'isNegative'");
-        
+        assert!(
+            cfg_manager.has_function("isNegative"),
+            "CfgManager should contain function 'isNegative'"
+        );
+
         // 第三阶段：验证调用引用已正确链接
         println!("Phase 3: Verifying call reference linking...");
-        
+
         // 获取 Foo 模板的 CFG 来检查调用链接
         if let Some(foo_cfg_ref) = cfg_manager.get_template_cfg_ref("Foo") {
             let foo_cfg = foo_cfg_ref.borrow();
             let mut found_linked_call = false;
-            
+
             // 遍历 CFG 中的所有语句，查找对 isNegative 函数的调用
             for block in foo_cfg.iter() {
                 for stmt in block.iter() {
@@ -769,19 +820,25 @@ mod tests {
                             // 验证弱引用可以成功升级为强引用
                             if let Some(target_cfg) = weak_ref.upgrade() {
                                 let target = target_cfg.borrow();
-                                println!("Successfully found linked call to '{}' in template 'Foo'", target.name());
+                                println!(
+                                    "Successfully found linked call to '{}' in template 'Foo'",
+                                    target.name()
+                                );
                                 found_linked_call = true;
                             }
                         }
                     }
                 }
             }
-            
-            assert!(found_linked_call, "Should find at least one linked call to 'isNegative' function");
+
+            assert!(
+                found_linked_call,
+                "Should find at least one linked call to 'isNegative' function"
+            );
         } else {
             panic!("Failed to get CFG reference for template 'Foo'");
         }
-        
+
         println!("CFG reference linking test completed successfully!");
     }
 }

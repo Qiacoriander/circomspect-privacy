@@ -49,7 +49,8 @@ impl ProgramArchive {
         let (public_inputs, mut initial_template_call) = main_component.clone();
         initial_template_call.fill(file_id_main, &mut fresh_id);
         if reports.is_empty() {
-            Ok(ProgramArchive {             // 创建成功，输入的多个文件整体是个完整的程序，上层调用处会将其包装为一个ParseResult::Program
+            Ok(ProgramArchive {
+                // 创建成功，输入的多个文件整体是个完整的程序，上层调用处会将其包装为一个ParseResult::Program
                 id_max: fresh_id,
                 file_id_main,
                 file_library,
@@ -62,7 +63,7 @@ impl ProgramArchive {
                 custom_gates,
             })
         } else {
-            Err((file_library, reports))    // 创建失败，返回file_library，在上层会退而取其次创建一个TemplateLibrary（模板库）
+            Err((file_library, reports)) // 创建失败，返回file_library，在上层会退而取其次创建一个TemplateLibrary（模板库）
         }
     }
     //file_id_main

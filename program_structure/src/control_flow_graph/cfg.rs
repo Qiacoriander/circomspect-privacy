@@ -44,11 +44,11 @@ impl fmt::Display for DefinitionType {
 
 /// 控制流图
 pub struct Cfg {
-    name: String,                   // 函数or模板名
-    constants: UsefulConstants,     // 有用的常量
-    parameters: Parameters,         // 参数
-    declarations: Declarations,     // 变量声明
-    basic_blocks: Vec<BasicBlock>,  // 基本块
+    name: String,                  // 函数or模板名
+    constants: UsefulConstants,    // 有用的常量
+    parameters: Parameters,        // 参数
+    declarations: Declarations,    // 变量声明
+    basic_blocks: Vec<BasicBlock>, // 基本块
     definition_type: DefinitionType,
     dominator_tree: DominatorTree<BasicBlock>,
 }

@@ -117,7 +117,8 @@ impl FileStack {
         // at this point any absolute path has been handled by the push in add_include
         let pathos = OsString::from(include.path.clone());
         for lib in &self.libraries {
-            if lib.dir { // 库目录项
+            if lib.dir {
+                // 库目录项
                 // only match relative paths that do not start with .
                 // 只处理相对路径，且不以.开头的（例如 lib.circom 、 dir/lib.circom ）
                 if include.path.find('.') == Some(0) {
@@ -132,7 +133,8 @@ impl FileStack {
                     self.stack.push(libpath);
                     return Ok(());
                 }
-            } else { // 库文件项
+            } else {
+                // 库文件项
                 // only match include paths with a single component i.e. lib.circom and not dir/lib.circom or
                 // ./lib.circom
                 if include.path.find(std::path::MAIN_SEPARATOR).is_none() {

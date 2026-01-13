@@ -25,8 +25,8 @@ impl FileLibrary {
     }
     pub fn add_file(
         &mut self,
-        file_name: FilePath,        // 文件路径String，但是别名
-        file_source: FileSource,    // 文件内容String，但是别名
+        file_name: FilePath,     // 文件路径String，但是别名
+        file_source: FileSource, // 文件内容String，但是别名
         is_user_input: bool,
     ) -> FileID {
         let file_id = self.get_mut_files().add(file_name, file_source);

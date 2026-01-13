@@ -44,17 +44,18 @@ pub fn parse_files(
     libraries: &[PathBuf],
     compiler_version: &Version,
 ) -> ParseResult {
-    let mut reports = ReportCollection::new();                              // 存储警告和错误信息
-    let mut file_stack = FileStack::new(file_paths, libraries, &mut reports);   // 管理待处理文件
-    let mut file_library = FileLibrary::new();                                 // 存储所有已读取的文件内容
-    let mut definitions = HashMap::new();                  // 存储每个文件中定义的 AST 节点
-    let mut main_components = Vec::new();                                      // 记录【主组件】信息
-    // 遍历解析文件
+    let mut reports = ReportCollection::new(); // 存储警告和错误信息
+    let mut file_stack = FileStack::new(file_paths, libraries, &mut reports); // 管理待处理文件
+    let mut file_library = FileLibrary::new(); // 存储所有已读取的文件内容
+    let mut definitions = HashMap::new(); // 存储每个文件中定义的 AST 节点
+    let mut main_components = Vec::new(); // 记录【主组件】信息
+                                          // 遍历解析文件
     while let Some(file_path) = FileStack::take_next(&mut file_stack) {
         match parse_file(&file_path, &mut file_stack, &mut file_library, compiler_version) {
             Ok((file_id, program, mut warnings)) => {
                 if let Some(main_component) = program.main_component {
-                    main_components.push((file_id, main_component, program.custom_gates)); // 如果这个文件中有main则记录下来
+                    main_components.push((file_id, main_component, program.custom_gates));
+                    // 如果这个文件中有main则记录下来
                 }
                 debug!(
                     "adding {} definitions from `{}`",
@@ -69,22 +70,24 @@ pub fn parse_files(
             }
         }
     }
-    // 构建解析结果 
-    let mut result = match &main_components[..] { // 根据找到的main决定如何构建最终的ParseResult
+    // 构建解析结果
+    let mut result = match &main_components[..] {
+        // 根据找到的main决定如何构建最终的ParseResult
         // 成功构建了完整程序（恰好只有一个main）
         [(main_id, main_component, custom_gates)] => {
             // TODO: This calls FillMeta::fill a second time.
-            match ProgramArchive::new( // 构建ProgramArchive，这是Circom程序的完整表示（一组指定文件的所有template、function）
+            match ProgramArchive::new(
+                // 构建ProgramArchive，这是Circom程序的完整表示（一组指定文件的所有template、function）
                 file_library,
                 *main_id, // 出现了main的file_id
                 main_component,
                 &definitions,
                 *custom_gates,
             ) {
-                Ok(program_archive) => ParseResult::Program(Box::new(program_archive), reports),                   // 成功构建了ProgramArchive，将其包装为ParseResult::Program
+                Ok(program_archive) => ParseResult::Program(Box::new(program_archive), reports), // 成功构建了ProgramArchive，将其包装为ParseResult::Program
                 Err((file_library, mut errors)) => {
                     reports.append(&mut errors);
-                    let template_library = TemplateLibrary::new(definitions, file_library);     // 创建失败，退而取其次构建为TemplateLibrary，包装为ParseResult::Library
+                    let template_library = TemplateLibrary::new(definitions, file_library); // 创建失败，退而取其次构建为TemplateLibrary，包装为ParseResult::Library
                     ParseResult::Library(Box::new(template_library), reports)
                 }
             }
@@ -92,13 +95,13 @@ pub fn parse_files(
         // 没有主组件main
         [] => {
             // TODO: Maybe use a flag to ensure that a main component must be present.
-            let template_library = TemplateLibrary::new(definitions, file_library);             // 没有主组件main，构建为TemplateLibrary，包装为ParseResult::Library
+            let template_library = TemplateLibrary::new(definitions, file_library); // 没有主组件main，构建为TemplateLibrary，包装为ParseResult::Library
             ParseResult::Library(Box::new(template_library), reports)
         }
         // 多个主组件main，报错
         _ => {
             reports.push(errors::MultipleMainError::produce_report());
-            let template_library = TemplateLibrary::new(definitions, file_library);             // 多个主组件main，报告错误，构建为TemplateLibrary，包装为ParseResult::Library
+            let template_library = TemplateLibrary::new(definitions, file_library); // 多个主组件main，报告错误，构建为TemplateLibrary，包装为ParseResult::Library
             ParseResult::Library(Box::new(template_library), reports)
         }
     };
@@ -145,23 +148,25 @@ pub fn parse_files(
 pub fn parse_file(
     file_path: &PathBuf,
     file_stack: &mut FileStack,
-    file_library: &mut FileLibrary,                                                                      // 已经读取的文件存储在这个里面，本质是一个HashMap，key是文件路径，value是文件ID
+    file_library: &mut FileLibrary, // 已经读取的文件存储在这个里面，本质是一个HashMap，key是文件路径，value是文件ID
     compiler_version: &Version,
 ) -> Result<(FileID, AST, ReportCollection), Box<Report>> {
-    let mut reports = ReportCollection::new();                                              // 收集解析过程中的所有错误和警告
+    let mut reports = ReportCollection::new(); // 收集解析过程中的所有错误和警告
 
     debug!("reading file `{}`", file_path.display());
     let (path_str, file_content) = open_file(file_path)?;
-    let is_user_input = file_stack.is_user_input(file_path);                                        // 判断文件是否为用户输入文件（而非include）
-    let file_id = file_library.add_file(path_str, file_content.clone(), is_user_input);    // 向FileLibrary添加文件，得到唯一的fileID
+    let is_user_input = file_stack.is_user_input(file_path); // 判断文件是否为用户输入文件（而非include）
+    let file_id = file_library.add_file(path_str, file_content.clone(), is_user_input); // 向FileLibrary添加文件，得到唯一的fileID
 
     debug!("parsing file `{}`", file_path.display());
-    let program = parser_logic::parse_file(&file_content, file_id)?;                                // 解析文件内容，得到AST
-    match check_compiler_version(file_path, program.compiler_version, compiler_version) {                 // 检查编译器版本是否兼容
+    let program = parser_logic::parse_file(&file_content, file_id)?; // 解析文件内容，得到AST
+    match check_compiler_version(file_path, program.compiler_version, compiler_version) {
+        // 检查编译器版本是否兼容
         Ok(warnings) => reports.extend(warnings),
         Err(error) => reports.push(*error),
     }
-    for include in &program.includes {                                                          // 处理文件中的include语句，遍历AST中所有的include语句，加入待处理队列后续处理
+    for include in &program.includes {
+        // 处理文件中的include语句，遍历AST中所有的include语句，加入待处理队列后续处理
         if let Err(report) = file_stack.add_include(include) {
             reports.push(*report);
         }
