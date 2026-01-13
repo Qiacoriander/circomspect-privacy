@@ -134,38 +134,35 @@ benchmarks/
 └── projects/                # 待测试项目
     ├── aes-circom/
     ├── circom-ml/
-    ├── internal/
     └── ...
 ```
 
 ### 基本用法
 
-#### 1. 运行 ALL 模式测试
+#### 1. 运行自动模式测试 (推荐)
 
 ```bash
 cd path_to_project\circomspect\benchmarks\tools
-python run_benchmark.py --mode all --output ../results_all.csv --verbose
+python run_benchmark.py --mode auto --output ../results_auto.csv
 ```
 
-#### 2. 运行 MAIN 模式测试
+- **auto 模式**：脚本会分析文件内容。如果包含 `component main`，则使用 `main` 模式；否则使用 `library` 模式（对应 Rust 的 `all`）。
+
+#### 2. 运行 Library 模式测试
 
 ```bash
-cd path_to_project\circomspect\benchmarks\tools
-python run_benchmark.py --mode main --output ../results_main.csv --verbose
+python run_benchmark.py --mode library --output ../results_lib.csv
 ```
 
-**注意：**
-- 只会成功分析包含 `component main` 的文件
-- 没有 main component 的文件会报错（正常现象）
+- 强制分析每个文件中的所有 Template（适用于库代码）。
 
-#### 3. 运行双模式测试
+#### 3. 运行 Main 模式测试
 
 ```bash
-cd path_to_project\circomspect\benchmarks\tools
-python run_benchmark.py --mode both --output ../results.csv --verbose
+python run_benchmark.py --mode main --output ../results_main.csv
 ```
 
-对每个文件分别运行 ALL 和 MAIN 两种模式
+- 仅分析包含 `component main` 的文件。
 
 ### 脚本参数说明
 
@@ -173,11 +170,26 @@ python run_benchmark.py --mode both --output ../results.csv --verbose
 python run_benchmark.py [选项]
 
 选项：
-  --mode {all,main,both}    分析模式（默认：both）
-  --output PATH             输出文件路径（默认：benchmark_results.csv）
-  --circomspect PATH        circomspect 可执行文件路径（默认使用 cargo run）
-  -v, --verbose             显示详细输出
+  --mode {auto,main,library}  分析模式（默认：auto）
+  --output PATH               输出文件路径（默认：benchmark_results.csv）
+  --circomspect PATH          circomspect 可执行文件路径（默认使用 cargo run）
+  --leak-threshold BITS       量化泄露阈值（默认：8 bits）。低于此值的泄露将被标记为 Low 严重程度。
+  --min-severity {Low,Medium,High,Critical} 
+                              最小报告严重程度（默认：Low）。低于此级别的泄露将不会被报告为 Warning。
+  -v, --verbose               显示详细输出
 ```
+
+### 参数详解
+
+#### `leak_threshold` (泄露阈值)
+- **作用**: 定义“多少比特的泄露是严重的可关注问题”。
+- **影响**: 超过此阈值的泄露通常会被评级为 `High` 或 `Critical`，低于此阈值为 `Low` 或 `Medium`。
+
+#### `min_severity` (最小报告严重程度)
+- **作用**: 过滤报告噪音。
+- **影响**:
+    - **Low (默认)**: 报告所有发现的泄露。
+    - **High**: 仅报告严重泄露（High/Critical），忽略轻微泄露（Low/Medium）。
 
 ### 使用已编译的可执行文件（更快）
 
@@ -204,9 +216,14 @@ python run_benchmark.py --mode both --circomspect ../../target/release/circomspe
 |--------|------|------|
 | `project_name` | 字符串 | 项目名称 |
 | `file_path` | 字符串 | 文件相对路径 |
-| `mode` | 字符串 | 分析模式（all/main） |
-| `has_privacy_leak` | 布尔 | 是否存在隐私泄露 |
-| `has_quantified_leak` | 布尔 | 是否存在可量化的部分泄露 |
+| `mode` | 字符串 | 分析模式（main/library） |
+| `has_privacy_leak` | 布尔 | 是否存在隐私泄露（输出信号直接被污染） |
+| `has_quantified_partial_leak` | 布尔 | 是否存在可量化的部分隐私泄露（CS0021） |
+| `leak_count` | 整数 | 泄露发生的总次数（基于警告数量） |
+| `severity_low` | 整数 | Low 级别的泄露数量 |
+| `severity_medium` | 整数 | Medium 级别的泄露数量 |
+| `severity_high` | 整数 | High 级别的泄露数量 |
+| `severity_critical` | 整数 | Critical 级别的泄露数量 |
 | `analysis_time` | 浮点 | 分析用时（秒） |
-| `success` | 布尔 | 是否成功分析 |
-| `error_message` | 字符串 | 错误信息（如有） |
+| `success` | 布尔 | 是否成功分析（包含发现泄露的情况） |
+| `error_message` | 字符串 | 错误信息（如有失败） |

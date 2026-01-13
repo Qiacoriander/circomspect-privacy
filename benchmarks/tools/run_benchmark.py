@@ -269,7 +269,14 @@ class CircomspectBenchmark:
             # 解析输出
             detection_result = self.parse_circomspect_output(output)
             
-            is_success = (result.returncode == 0)
+            # 判定运行是否成功：
+            # 1. 退出码为 0 (无问题)
+            # 2. 退出码非 0 但检测到了泄露 (因为工具发现问题时会返回非0)
+            # 3. 输出中包含 "issues found." 总结 (表示分析已完成)
+            
+            issues_found_msg = re.search(r'\d+ issues? found\.', output)
+            is_success = (result.returncode == 0) or (detection_result['leak_count'] > 0) or (issues_found_msg is not None)
+            
             error_msg = None
             if not is_success:
                 # 尝试提取最后几行作为错误信息
@@ -347,10 +354,10 @@ class CircomspectBenchmark:
         
         print(f"找到 {len(project_dirs)} 个项目")
         
-        for project_dir in project_dirs:
+        for i, project_dir in enumerate(project_dirs, 1):
             project_name = project_dir.name
             print(f"\n{'='*60}")
-            print(f"项目: {project_name}")
+            print(f"项目 ({i}/{len(project_dirs)}): {project_name}")
             print(f"{'='*60}")
             
             # 查找所有 .circom 文件
@@ -469,8 +476,11 @@ class CircomspectBenchmark:
         lines.append(f"  模式分布: Main={main_mode_count}, Library={library_mode_count}")
         lines.append(f"  运行状况: 成功={successful}, 失败={failed}")
         lines.append(f"  总用时: {total_time:.2f} 秒")
-        lines.append(f"  有隐私泄露风险的文件数: {files_with_privacy_leak} ({files_with_privacy_leak/total_files*100:.1f}%)")
-        lines.append(f"  含可量化部分泄露问题(Quantified Partial Leak)的文件数: {files_with_quantified_partial_leak}")
+        
+        unique_issues_total = sum(1 for r in results if r.has_privacy_leak or r.has_quantified_partial_leak)
+        lines.append(f"  存在输出污点(隐私信号可能直接泄露)的文件数: {files_with_privacy_leak}")
+        lines.append(f"  存在量化隐私泄露的文件数: {files_with_quantified_partial_leak}")
+        lines.append(f"  总风险文件数(去重): {unique_issues_total} ({unique_issues_total/total_files*100:.1f}%)")
         
         total_leak_instances = sum(r.leak_count for r in results)
         total_severity = {'Low': 0, 'Medium': 0, 'High': 0, 'Critical': 0}
@@ -480,7 +490,7 @@ class CircomspectBenchmark:
             total_severity['High'] += r.severity_high
             total_severity['Critical'] += r.severity_critical
 
-        lines.append(f"  有隐私泄露风险的信号总数: {total_leak_instances} ( 可量化的部分泄露按级别计数——Low: {total_severity['Low']}, Medium: {total_severity['Medium']}, High: {total_severity['High']}, Critical: {total_severity['Critical']})")
+        lines.append(f"  风险信号总数: {total_leak_instances} ( 可量化的部分泄露统计——Low: {total_severity['Low']}, Medium: {total_severity['Medium']}, High: {total_severity['High']}, Critical: {total_severity['Critical']})")
             
         # 按项目统计
         lines.append("\n【按项目统计】")
@@ -517,21 +527,33 @@ class CircomspectBenchmark:
                 sev_high = sum(r.severity_high for r in results if r.project_name == project_name)
                 sev_critical = sum(r.severity_critical for r in results if r.project_name == project_name)
                 
-                leak_info = f"有隐私泄露风险的文件数: {stats['privacy_leak_files']}"
-                if stats['quantified_partial_leak_files'] > 0:
-                    leak_info += f"（含可量化部分泄露问题的文件: {stats['quantified_partial_leak_files']}）"
-
-                leak_info += f", 有隐私泄露风险的信号总数: {stats['total_leak_count']} ( 可量化的部分泄露按级别计数——Low: {sev_low}, Medium: {sev_medium}, High: {sev_high}, Critical: {sev_critical})"
+                # 计算两者的并集（去重后的风险文件数）
+                # 注意：由于 project_stats 只是简单的计数器，没有保存文件集合，这里只能展示独立统计
+                # 若要准确计算并集，需要在遍历 results 时记录
+                unique_issues_count = sum(1 for r in results if r.project_name == project_name and (r.has_privacy_leak or r.has_quantified_partial_leak))
+                
+                leak_info = f"存在输出信号直接污点（Tainted）的文件: {stats['privacy_leak_files']}, 存在量化隐私泄露的文件: {stats['quantified_partial_leak_files']}, 总风险文件数(去重): {unique_issues_count}"
+                leak_info += f", 风险信号总数: {stats['total_leak_count']} ( 可量化隐私泄露——Low: {sev_low}, Medium: {sev_medium}, High: {sev_high}, Critical: {sev_critical})"
                 
                 lines.append(f"  - {project_name}: {stats['files']} 文件, {leak_info}")
         
-        # 隐私泄露文件列表 (TOP 20)
-        lines.append("\n【存在隐私泄露的文件详情 (前30)】")
+        # 隐私泄露文件列表 (风险最高 TOP 30)
+        lines.append("\n【存在隐私泄露的文件详情 (风险最高前30)】")
         
-        if privacy_leaks:
-            for i, r in enumerate(privacy_leaks[:30], 1):
+        # 筛选出所有有问题的文件
+        all_leaking_files = [r for r in results if r.has_privacy_leak or r.has_quantified_partial_leak]
+        
+        # 排序：按严重程度 Crit > High > Medium > Low > 总数 降序排列
+        all_leaking_files.sort(
+            key=lambda r: (r.severity_critical, r.severity_high, r.severity_medium, r.severity_low, r.leak_count), 
+            reverse=True
+        )
+        
+        if all_leaking_files:
+            for i, r in enumerate(all_leaking_files[:30], 1):
                 lines.append(f"  {i}. {r.file_path}")
                 lines.append(f"     项目: {r.project_name} | 模式: {r.mode}")
+                lines.append(f"     严重程度: Crit={r.severity_critical}, High={r.severity_high}, Med={r.severity_medium}, Low={r.severity_low} (总信号: {r.leak_count})")
         else:
             lines.append("  未检测到隐私泄露")
         
