@@ -1,0 +1,1053 @@
+project_name,file_path,mode,has_privacy_leak,has_quantified_partial_leak,leak_count,severity_low,severity_medium,severity_high,severity_critical,analysis_time,success,error_message
+aes-circom-0784f74,aes-circom-0784f74\circuits\aes_256_ctr.circom,library,True,False,1,0,0,0,0,0.409710168838501,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_256_ctr.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_256_ctr.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\aes_256_encrypt.circom,library,True,False,1,0,0,0,0,0.36623454093933105,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_256_encrypt.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_256_encrypt.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\aes_256_key_expansion.circom,library,True,False,1,0,0,0,0,0.34955596923828125,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_256_key_expansion.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_256_key_expansion.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\aes_emulation.circom,library,True,False,2,0,0,0,0,0.2670433521270752,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_emulation.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_emulation.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\aes_emulation_tables.circom,library,False,False,0,0,0,0,0,0.2632474899291992,True,
+aes-circom-0784f74,aes-circom-0784f74\circuits\gcm_siv_dec_2_keys.circom,library,True,False,2,0,0,0,0,0.5885772705078125,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_dec_2_keys.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_dec_2_keys.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom,library,True,False,1,0,0,0,0,0.7292132377624512,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\gfmul_int.circom,library,True,False,1,0,0,0,0,0.3534708023071289,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gfmul_int.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gfmul_int.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\helper_functions.circom,library,True,True,12,0,0,0,2,0.2926299571990967,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\helper_functions.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\helper_functions.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\mul.circom,library,True,False,1,0,0,0,0,0.31042933464050293,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\mul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\mul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\polyval.circom,library,True,False,1,0,0,0,0,0.3666670322418213,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\polyval.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\polyval.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\circuits\vclmul_emulator.circom,library,True,False,1,0,0,0,0,0.3162343502044678,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\vclmul_emulator.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\vclmul_emulator.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+aes-circom-0784f74,aes-circom-0784f74\test\circuits\aes_256_ctr_test.circom,main,False,False,0,0,0,0,0,0.34712696075439453,True,
+aes-circom-0784f74,aes-circom-0784f74\test\circuits\aes_256_encrypt_test.circom,main,False,False,0,0,0,0,0,0.3469736576080322,True,
+aes-circom-0784f74,aes-circom-0784f74\test\circuits\aes_256_key_expansion_test.circom,main,False,False,0,0,0,0,0,0.3473522663116455,True,
+aes-circom-0784f74,aes-circom-0784f74\test\circuits\gcm_siv_dec_2_keys_test.circom,main,False,False,0,0,0,0,0,0.5330078601837158,True,
+aes-circom-0784f74,aes-circom-0784f74\test\circuits\gcm_siv_enc_2_keys_test.circom,main,False,False,0,0,0,0,0,0.6607394218444824,True,
+aes-circom-0784f74,aes-circom-0784f74\test\circuits\gfmul_int_test.circom,main,False,False,0,0,0,0,0,0.35275816917419434,True,
+aes-circom-0784f74,aes-circom-0784f74\test\circuits\mul_test.circom,main,False,False,0,0,0,0,0,0.3027951717376709,True,
+aes-circom-0784f74,aes-circom-0784f74\test\circuits\polyval_test.circom,main,False,False,0,0,0,0,0,0.3474161624908447,True,
+circom-ecdsa,circom-ecdsa\circuits\bigint.circom,library,True,True,30,1,0,0,17,0.4102916717529297,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\bigint.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\bigint.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\circuits\bigint_4x64_mult.circom,library,True,False,4,0,0,0,0,0.4170849323272705,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\bigint_4x64_mult.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\bigint_4x64_mult.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\circuits\bigint_func.circom,library,False,False,0,0,0,0,0,0.29438185691833496,True,
+circom-ecdsa,circom-ecdsa\circuits\ecdsa.circom,library,True,True,2,1,0,0,0,27.227492094039917,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\ecdsa.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\ecdsa.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\circuits\ecdsa_func.circom,library,False,False,0,0,0,0,0,25.391774654388428,True,
+circom-ecdsa,circom-ecdsa\circuits\eth_addr.circom,library,True,False,1,0,0,0,0,26.14404606819153,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\eth_addr.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\eth_addr.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\circuits\secp256k1.circom,library,True,False,3,0,0,0,0,0.6012659072875977,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\secp256k1.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\secp256k1.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\circuits\secp256k1_func.circom,library,False,False,0,0,0,0,0,0.2657191753387451,True,
+circom-ecdsa,circom-ecdsa\circuits\secp256k1_utils.circom,library,True,False,2,0,0,0,0,0.32170915603637695,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\secp256k1_utils.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\secp256k1_utils.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigadd_15.circom,library,False,False,0,0,0,0,0,0.3897976875305176,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigadd_23.circom,library,False,False,0,0,0,0,0,0.39629077911376953,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_biglessthan_23.circom,library,False,False,0,0,0,0,0,0.39046669006347656,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigmod_22.circom,library,False,False,0,0,0,0,0,0.391310453414917,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigmod_32.circom,library,False,False,0,0,0,0,0,0.3996450901031494,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigmult_21.circom,library,False,False,0,0,0,0,0,0.3885231018066406,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigmult_22.circom,library,False,False,0,0,0,0,0,0.3991739749908447,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigmult_23.circom,library,False,False,0,0,0,0,0,0.39038991928100586,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigsubmodp_32.circom,library,False,False,0,0,0,0,0,0.3935997486114502,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigsub_15.circom,library,False,False,0,0,0,0,0,0.401885986328125,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_bigsub_23.circom,library,False,False,0,0,0,0,0,0.39252328872680664,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_ecdsa.circom,library,False,False,0,0,0,0,0,25.85303497314453,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_ecdsa_verify.circom,library,False,False,0,0,0,0,0,25.85616159439087,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_secp256k1_add.circom,library,False,False,0,0,0,0,0,0.5874912738800049,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_secp256k1_double.circom,library,False,False,0,0,0,0,0,0.6028714179992676,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_secp256k1_poc.circom,library,False,False,0,0,0,0,0,0.5865893363952637,True,
+circom-ecdsa,circom-ecdsa\test\circuits\test_secp256k1_scalarmult.circom,library,False,False,0,0,0,0,0,0.5927581787109375,True,
+circom-ecdsa,circom-ecdsa\scripts\eth_addr\eth_addr.circom,library,False,False,0,0,0,0,0,26.213322162628174,True,
+circom-ecdsa,circom-ecdsa\scripts\groupsig\groupsig.circom,library,True,False,1,0,0,0,0,26.27119016647339,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\scripts\groupsig\groupsig.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\scripts\groupsig\groupsig.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\scripts\pubkeygen\pubkeygen.circom,library,False,False,0,0,0,0,0,25.825894355773926,True,
+circom-ecdsa,circom-ecdsa\scripts\verify\verify.circom,library,False,False,0,0,0,0,0,25.89440083503723,True,
+circom-ecdsa,circom-ecdsa\circuits\vocdoni-keccak\keccak.circom,library,True,False,7,0,0,0,0,0.6025562286376953,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\vocdoni-keccak\keccak.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\vocdoni-keccak\keccak.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\circuits\vocdoni-keccak\permutations.circom,library,True,False,8,0,0,0,0,0.5642504692077637,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\vocdoni-keccak\permutations.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\vocdoni-keccak\permutations.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\circuits\vocdoni-keccak\utils.circom,library,True,False,6,0,0,0,0,0.2780444622039795,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\vocdoni-keccak\utils.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\vocdoni-keccak\utils.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-ecdsa,circom-ecdsa\circuits\zk-identity\eth.circom,library,True,False,2,0,0,0,0,0.6488661766052246,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bigint.circom,library,True,True,38,1,0,0,20,0.5376608371734619,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bigint.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bigint.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bigint_func.circom,library,False,False,0,0,0,0,0,0.314502477645874,True,
+circom-pairing,circom-pairing\circuits\bls12_381_func.circom,library,False,False,0,0,0,0,0,7.037694215774536,True,
+circom-pairing,circom-pairing\circuits\bls12_381_hash_to_G2.circom,library,True,True,9,0,0,0,1,8.048800945281982,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bls12_381_hash_to_G2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bls12_381_hash_to_G2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bls_signature.circom,library,True,False,1,0,0,0,0,9.53219485282898,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bls_signature.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bls_signature.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\curve.circom,library,True,True,7,0,5,0,0,0.7709033489227295,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\curve.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\curve.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\curve_fp2.circom,library,True,True,8,0,5,0,0,11.964656829833984,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\curve_fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\curve_fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\extra_curve.circom,library,True,True,5,0,0,0,5,9.02160096168518,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\extra_curve.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\extra_curve.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\extra_field_circuits.circom,library,True,True,7,0,0,0,3,8.114898920059204,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\extra_field_circuits.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\extra_field_circuits.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\field_elements_func.circom,library,False,False,0,0,0,0,0,0.3511204719543457,True,
+circom-pairing,circom-pairing\circuits\final_exp.circom,library,True,False,8,0,0,0,0,7.875912427902222,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\final_exp.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\final_exp.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\fp.circom,library,True,True,10,0,0,0,4,0.5643560886383057,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\fp.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\fp.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\fp12.circom,library,True,False,17,0,0,0,0,7.575533390045166,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\fp12.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\fp12.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\fp12_func.circom,library,False,False,0,0,0,0,0,0.3996620178222656,True,
+circom-pairing,circom-pairing\circuits\fp2.circom,library,True,True,20,1,0,0,3,0.638155460357666,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\pairing.circom,library,True,False,18,0,0,0,0,8.742447137832642,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\pairing.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\pairing.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\test\circuits\test_bls12-381_add.circom,library,False,False,0,0,0,0,0,0.7719154357910156,True,
+circom-pairing,circom-pairing\test\circuits\test_bls12-381_double.circom,library,False,False,0,0,0,0,0,0.7790629863739014,True,
+circom-pairing,circom-pairing\test\circuits\test_fp12_add_22.circom,library,False,False,0,0,0,0,0,7.554214954376221,True,
+circom-pairing,circom-pairing\test\circuits\test_fp12_compression_32.circom,library,True,False,1,0,0,0,0,7.815430641174316,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\test\circuits\test_fp12_compression_32.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\test\circuits\test_fp12_compression_32.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\test\circuits\test_fp12_cyclotomicExp_32.circom,library,False,False,0,0,0,0,0,7.827862977981567,True,
+circom-pairing,circom-pairing\test\circuits\test_fp12_cyclotomicSquare_32.circom,library,False,False,0,0,0,0,0,7.894415616989136,True,
+circom-pairing,circom-pairing\test\circuits\test_fp12_invert_42.circom,library,False,False,0,0,0,0,0,7.6124749183654785,True,
+circom-pairing,circom-pairing\test\circuits\test_fp12_multiply2_32.circom,library,False,False,0,0,0,0,0,7.767101049423218,True,
+circom-pairing,circom-pairing\test\circuits\test_fp12_multiply_32.circom,library,False,False,0,0,0,0,0,7.660735368728638,True,
+circom-pairing,circom-pairing\test\circuits\test_fp12_pow4_32.circom,library,False,False,0,0,0,0,0,7.785884618759155,True,
+circom-pairing,circom-pairing\test\circuits\test_fp2_add_22.circom,library,False,False,0,0,0,0,0,0.650439977645874,True,
+circom-pairing,circom-pairing\test\circuits\test_fp2_invert_42.circom,library,False,False,0,0,0,0,0,0.6499099731445312,True,
+circom-pairing,circom-pairing\test\circuits\test_fp2_multiply_42.circom,library,False,False,0,0,0,0,0,0.6454458236694336,True,
+circom-pairing,circom-pairing\test\circuits\test_linefunc_equal_32.circom,library,False,False,0,0,0,0,0,0.7914376258850098,True,
+circom-pairing,circom-pairing\test\circuits\test_linefunc_unequal_32.circom,library,False,False,0,0,0,0,0,0.7561907768249512,True,
+circom-pairing,circom-pairing\test\circuits\test_multiply_linefunc_equal_32.circom,library,False,False,0,0,0,0,0,0.7638561725616455,True,
+circom-pairing,circom-pairing\test\circuits\test_multiply_linefunc_unequal_32.circom,library,False,False,0,0,0,0,0,0.7650752067565918,True,
+circom-pairing,circom-pairing\test\circuits\test_secp256k1_add.circom,library,False,False,0,0,0,0,0,0.7614660263061523,True,
+circom-pairing,circom-pairing\scripts\addfp2\addfp2.circom,main,False,False,0,0,0,0,0,7.621414422988892,True,
+circom-pairing,circom-pairing\scripts\dev\dev.circom,main,False,False,0,0,0,0,0,5.200119733810425,True,
+circom-pairing,circom-pairing\scripts\dev\fp12carrymodp.circom,main,False,False,0,0,0,0,0,7.503064393997192,True,
+circom-pairing,circom-pairing\scripts\finalexp\finalexp.circom,main,False,False,0,0,0,0,0,7.752099514007568,True,
+circom-pairing,circom-pairing\scripts\fp12multiply\fp12multiply.circom,main,False,False,0,0,0,0,0,7.452693939208984,True,
+circom-pairing,circom-pairing\scripts\fp12multiply\fp12multiplynocarry.circom,main,False,False,0,0,0,0,0,7.491471290588379,True,
+circom-pairing,circom-pairing\scripts\fp12multiply\fp12multiply_55_7.circom,main,False,False,0,0,0,0,0,7.505650997161865,True,
+circom-pairing,circom-pairing\scripts\linefunctionequal\input_linefunctionequal_35_11.circom,library,False,False,0,0,0,0,0,0.268585205078125,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\scripts\linefunctionequal\input_linefunctionequal_35_11.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\scripts\linefunctionequal\input_linefunctionequal_35_11.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\scripts\linefunctionequal\linefunctionequal.circom,main,False,False,0,0,0,0,0,0.6890382766723633,True,
+circom-pairing,circom-pairing\scripts\linefunctionequal\linefunctionequal_35_11.circom,main,False,False,0,0,0,0,0,0.6989090442657471,True,
+circom-pairing,circom-pairing\scripts\maptoG2\maptoG2.circom,library,False,False,0,0,0,0,0,7.995726823806763,True,
+circom-pairing,circom-pairing\scripts\millerloop\millerloop.circom,main,False,False,0,0,0,0,0,7.323990345001221,True,
+circom-pairing,circom-pairing\scripts\millerloop\millerloop_35_11.circom,main,False,False,0,0,0,0,0,0.6946525573730469,True,
+circom-pairing,circom-pairing\scripts\millerloop\millerloop_55_7.circom,main,False,False,0,0,0,0,0,0.6793639659881592,True,
+circom-pairing,circom-pairing\scripts\millerloopfp2\millerloopfp2.circom,main,False,False,0,0,0,0,0,7.674224853515625,True,
+circom-pairing,circom-pairing\scripts\optimalate\optimalate.circom,main,False,False,0,0,0,0,0,8.292017936706543,True,
+circom-pairing,circom-pairing\scripts\signature\signature.circom,library,False,False,0,0,0,0,0,9.135267972946167,True,
+circom-pairing,circom-pairing\scripts\subgroupcheckG1\subgroupcheckG1.circom,library,False,False,0,0,0,0,0,7.99314284324646,True,
+circom-pairing,circom-pairing\scripts\subgroupcheckG2\subgroupcheckG2.circom,library,False,False,0,0,0,0,0,8.00891661643982,True,
+circom-pairing,circom-pairing\scripts\tatepairing\tatepairing.circom,main,False,False,0,0,0,0,0,8.441904306411743,True,
+circom-pairing,circom-pairing\circuits\bn254\bn254_func.circom,library,False,False,0,0,0,0,0,3.346632957458496,True,
+circom-pairing,circom-pairing\circuits\bn254\curve.circom,library,True,True,2,0,0,0,1,0.7729904651641846,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\curve.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\curve.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bn254\curve_fp2.circom,library,True,True,8,0,5,0,0,0.8317656517028809,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\curve_fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\curve_fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bn254\final_exp.circom,library,True,False,8,0,0,0,0,4.226467132568359,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\final_exp.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\final_exp.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bn254\fp12.circom,library,True,False,19,0,0,0,0,3.925506830215454,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\fp12.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\fp12.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bn254\fp12_func.circom,library,False,False,0,0,0,0,0,0.3553609848022461,True,
+circom-pairing,circom-pairing\circuits\bn254\groth16.circom,library,True,False,1,0,0,0,0,5.864948034286499,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\groth16.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\groth16.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bn254\pairing.circom,library,True,False,12,0,0,0,0,5.534938335418701,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\pairing.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\pairing.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circom-pairing,circom-pairing\circuits\bn254\subgroup_check.circom,library,True,False,1,0,0,0,0,3.9864251613616943,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\subgroup_check.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\subgroup_check.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\aliascheck.circom,library,False,False,0,0,0,0,0,0.27945613861083984,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\aliascheck.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\aliascheck.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\babyjub.circom,library,True,True,6,0,0,0,1,0.3402106761932373,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\babyjub.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\babyjub.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\binsub.circom,library,True,False,1,0,0,0,0,0.26323556900024414,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\binsub.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\binsub.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\binsum.circom,library,True,False,1,0,0,0,0,0.265594482421875,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\binsum.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\binsum.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\bitify.circom,library,True,True,5,1,0,0,2,0.2784128189086914,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\bitify.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\bitify.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\comparators.circom,library,True,True,7,3,0,0,4,0.2733616828918457,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\comparators.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\comparators.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\compconstant.circom,library,True,False,1,0,0,0,0,0.2698371410369873,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\compconstant.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\compconstant.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\eddsa.circom,library,False,False,0,0,0,0,0,0.40445685386657715,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\eddsa.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\eddsa.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\eddsamimc.circom,library,False,True,1,0,0,0,1,0.3923499584197998,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\eddsamimc.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\eddsamimc.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\eddsamimcsponge.circom,library,False,True,1,0,0,0,1,0.3899412155151367,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\eddsamimcsponge.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\eddsamimcsponge.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\eddsaposeidon.circom,library,False,True,1,0,0,0,1,2.6104319095611572,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\eddsaposeidon.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\eddsaposeidon.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\escalarmul.circom,library,True,False,2,0,0,0,0,0.42444682121276855,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\escalarmul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\escalarmul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\escalarmulany.circom,library,True,True,6,1,0,0,0,0.3808269500732422,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\escalarmulany.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\escalarmulany.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\escalarmulfix.circom,library,True,False,5,0,0,0,0,0.3385128974914551,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\escalarmulfix.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\escalarmulfix.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\escalarmulw4table.circom,library,False,False,0,0,0,0,0,0.2628641128540039,True,
+circomlib,circomlib\circuits\gates.circom,library,True,False,7,0,0,0,0,0.2624366283416748,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\gates.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\gates.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\mimc.circom,library,True,False,2,0,0,0,0,0.26157546043395996,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mimc.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mimc.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\mimcsponge.circom,library,True,False,3,0,0,0,0,0.2768704891204834,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mimcsponge.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mimcsponge.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\montgomery.circom,library,True,False,4,0,0,0,0,0.2664496898651123,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\montgomery.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\montgomery.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\multiplexer.circom,library,True,True,4,2,0,0,0,0.2685966491699219,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\multiplexer.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\multiplexer.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\mux1.circom,library,True,False,2,0,0,0,0,0.2560749053955078,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mux1.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mux1.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\mux2.circom,library,True,False,2,0,0,0,0,0.2581808567047119,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mux2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mux2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\mux3.circom,library,True,False,2,0,0,0,0,0.28038883209228516,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mux3.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mux3.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\mux4.circom,library,True,False,2,0,0,0,0,0.32923078536987305,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mux4.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\mux4.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\pedersen.circom,library,True,False,4,0,0,0,0,0.36012792587280273,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pedersen.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pedersen.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\pedersen_old.circom,library,True,False,1,0,0,0,0,0.4173760414123535,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pedersen_old.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pedersen_old.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\pointbits.circom,library,True,True,2,0,0,0,1,0.3520395755767822,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\poseidon.circom,library,True,False,7,0,0,0,0,2.512106418609619,False,"    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\poseidon.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\poseidon.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\poseidon_constants.circom,library,False,False,0,0,0,0,0,2.5497782230377197,True,
+circomlib,circomlib\circuits\poseidon_constants_old.circom,library,False,False,0,0,0,0,0,1.0842950344085693,True,
+circomlib,circomlib\circuits\poseidon_old.circom,library,True,False,4,0,0,0,0,2.5226335525512695,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\poseidon_old.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\poseidon_old.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sign.circom,library,True,False,1,0,0,0,0,0.2745788097381592,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sign.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sign.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\switcher.circom,library,True,False,2,0,0,0,0,0.25945210456848145,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\switcher.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\switcher.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\aliascheck_test.circom,main,False,False,0,0,0,0,0,0.2717714309692383,True,
+circomlib,circomlib\test\circuits\babyadd_tester.circom,main,False,False,0,0,0,0,0,0.3206017017364502,True,
+circomlib,circomlib\test\circuits\babycheck_test.circom,main,False,False,0,0,0,0,0,0.30965590476989746,True,
+circomlib,circomlib\test\circuits\babypbk_test.circom,main,False,False,0,0,0,0,0,0.31688427925109863,True,
+circomlib,circomlib\test\circuits\binsub_test.circom,main,True,True,2,0,0,0,2,0.2738823890686035,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\binsub_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\binsub_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\constants_test.circom,library,False,False,0,0,0,0,0,0.26003551483154297,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\constants_test.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\constants_test.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\eddsamimc_test.circom,main,False,False,0,0,0,0,0,0.3552122116088867,True,
+circomlib,circomlib\test\circuits\eddsaposeidon_test.circom,main,False,False,0,0,0,0,0,2.693931818008423,True,
+circomlib,circomlib\test\circuits\eddsa_test.circom,main,False,False,0,0,0,0,0,0.3829617500305176,True,
+circomlib,circomlib\test\circuits\edwards2montgomery.circom,main,False,False,0,0,0,0,0,0.2711305618286133,True,
+circomlib,circomlib\test\circuits\escalarmulany_test.circom,main,True,True,2,1,0,0,1,0.3363606929779053,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmulany_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmulany_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\escalarmulfix_test.circom,main,True,True,1,0,0,0,1,0.3216421604156494,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmulfix_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmulfix_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\escalarmulw4table.circom,main,False,False,0,0,0,0,0,0.26383471488952637,True,
+circomlib,circomlib\test\circuits\escalarmulw4table_test.circom,main,True,False,1,0,0,0,0,0.2634744644165039,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmulw4table_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmulw4table_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\escalarmulw4table_test3.circom,main,True,False,1,0,0,0,0,0.2630040645599365,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmulw4table_test3.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmulw4table_test3.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\escalarmul_min_test.circom,main,True,False,1,0,0,0,0,0.36784815788269043,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmul_min_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmul_min_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\escalarmul_test.circom,main,True,True,1,0,0,0,1,0.37752366065979004,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmul_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmul_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\escalarmul_test_min.circom,main,True,False,1,0,0,0,0,0.36998605728149414,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmul_test_min.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\escalarmul_test_min.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\greatereqthan.circom,main,False,False,0,0,0,0,0,0.2800025939941406,True,
+circomlib,circomlib\test\circuits\greaterthan.circom,main,False,False,0,0,0,0,0,0.27755045890808105,True,
+circomlib,circomlib\test\circuits\isequal.circom,main,False,False,0,0,0,0,0,0.2710537910461426,True,
+circomlib,circomlib\test\circuits\iszero.circom,main,False,False,0,0,0,0,0,0.2680683135986328,True,
+circomlib,circomlib\test\circuits\lesseqthan.circom,main,False,False,0,0,0,0,0,0.27693891525268555,True,
+circomlib,circomlib\test\circuits\lessthan.circom,main,False,False,0,0,0,0,0,0.26963376998901367,True,
+circomlib,circomlib\test\circuits\mimc_sponge_hash_test.circom,main,False,False,0,0,0,0,0,0.26293063163757324,True,
+circomlib,circomlib\test\circuits\mimc_sponge_test.circom,main,False,False,0,0,0,0,0,0.26340413093566895,True,
+circomlib,circomlib\test\circuits\mimc_test.circom,main,False,False,0,0,0,0,0,0.2589609622955322,True,
+circomlib,circomlib\test\circuits\montgomery2edwards.circom,main,False,False,0,0,0,0,0,0.26286768913269043,True,
+circomlib,circomlib\test\circuits\montgomeryadd.circom,main,False,False,0,0,0,0,0,0.26371312141418457,True,
+circomlib,circomlib\test\circuits\montgomerydouble.circom,main,False,False,0,0,0,0,0,0.26297664642333984,True,
+circomlib,circomlib\test\circuits\mux1_1.circom,main,True,True,1,0,0,0,1,0.2771799564361572,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\mux1_1.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\mux1_1.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\mux2_1.circom,main,True,True,1,0,0,0,1,0.2764585018157959,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\mux2_1.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\mux2_1.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\mux3_1.circom,main,True,True,1,0,0,0,1,0.2961845397949219,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\mux3_1.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\mux3_1.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\mux4_1.circom,main,True,True,1,0,0,0,1,0.32158875465393066,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\mux4_1.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\mux4_1.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\pedersen2_test.circom,main,False,True,1,0,0,0,1,0.33880138397216797,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\pedersen2_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\pedersen2_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\pedersen_test.circom,main,False,False,0,0,0,0,0,0.3883249759674072,True,
+circomlib,circomlib\test\circuits\pointbits_loopback.circom,main,False,True,1,0,0,0,1,0.33275556564331055,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\pointbits_loopback.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\pointbits_loopback.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\poseidon3_test.circom,main,False,False,0,0,0,0,0,2.4773900508880615,True,
+circomlib,circomlib\test\circuits\poseidon6_test.circom,main,False,False,0,0,0,0,0,2.4900548458099365,True,
+circomlib,circomlib\test\circuits\poseidonex_test.circom,main,False,False,0,0,0,0,0,2.5579333305358887,True,
+circomlib,circomlib\test\circuits\sha256_2_test.circom,main,True,False,1,0,0,0,0,0.3591275215148926,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\sha256_2_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\sha256_2_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\test\circuits\sha256_test448.circom,main,False,False,0,0,0,0,0,0.3570718765258789,True,
+circomlib,circomlib\test\circuits\sha256_test512.circom,main,False,False,0,0,0,0,0,0.36185503005981445,True,
+circomlib,circomlib\test\circuits\sign_test.circom,main,False,False,0,0,0,0,0,0.2760016918182373,True,
+circomlib,circomlib\test\circuits\smtprocessor10_test.circom,main,False,False,0,0,0,0,0,2.520608901977539,True,
+circomlib,circomlib\test\circuits\smtverifier10_test.circom,main,False,False,0,0,0,0,0,2.5403223037719727,True,
+circomlib,circomlib\test\circuits\sum_test.circom,main,True,True,2,0,0,0,2,0.278897762298584,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\sum_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\sum_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\ch.circom,library,True,False,1,0,0,0,0,0.26670241355895996,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\ch.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\ch.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\constants.circom,library,True,False,2,0,0,0,0,0.25565433502197266,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\constants.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\constants.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\main.circom,main,True,False,1,0,0,0,0,0.3566246032714844,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\main.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\main.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\maj.circom,library,True,False,1,0,0,0,0,0.2609081268310547,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\maj.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\maj.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\rotate.circom,library,True,False,1,0,0,0,0,0.2558915615081787,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\rotate.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\rotate.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\sha256.circom,library,True,False,1,0,0,0,0,0.38050270080566406,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sha256.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sha256.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\sha256compression.circom,library,True,False,1,0,0,0,0,0.3589046001434326,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sha256compression.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sha256compression.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\sha256compression_function.circom,library,False,False,0,0,0,0,0,0.2656545639038086,True,
+circomlib,circomlib\circuits\sha256\sha256_2.circom,library,True,False,1,0,0,0,0,0.3837435245513916,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sha256_2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sha256_2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\shift.circom,library,True,False,1,0,0,0,0,0.261432409286499,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\shift.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\shift.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\sigma.circom,library,True,False,2,0,0,0,0,0.28021764755249023,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sigma.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sigma.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\sigmaplus.circom,library,True,False,1,0,0,0,0,0.2737720012664795,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sigmaplus.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\sigmaplus.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\t1.circom,library,True,False,1,0,0,0,0,0.2817702293395996,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\t1.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\t1.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\t2.circom,library,True,False,1,0,0,0,0,0.27622509002685547,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\t2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\t2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\sha256\xor3.circom,library,True,False,1,0,0,0,0,0.26355624198913574,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\xor3.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\sha256\xor3.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\smt\smthash_mimc.circom,library,True,False,2,0,0,0,0,0.26122283935546875,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smthash_mimc.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smthash_mimc.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\smt\smthash_poseidon.circom,library,False,False,0,0,0,0,0,2.582779884338379,True,
+circomlib,circomlib\circuits\smt\smtlevins.circom,library,True,False,1,0,0,0,0,0.2672874927520752,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtlevins.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtlevins.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\smt\smtprocessor.circom,library,True,True,2,0,0,0,2,2.6940083503723145,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtprocessor.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtprocessor.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\smt\smtprocessorlevel.circom,library,True,False,2,0,0,0,0,0.2644650936126709,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtprocessorlevel.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtprocessorlevel.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\smt\smtprocessorsm.circom,library,True,False,6,0,0,0,0,0.2652459144592285,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtprocessorsm.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtprocessorsm.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\smt\smtverifier.circom,library,False,True,3,1,0,0,2,2.617116689682007,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifier.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifier.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\smt\smtverifierlevel.circom,library,True,False,1,0,0,0,0,0.2601287364959717,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifierlevel.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifierlevel.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib,circomlib\circuits\smt\smtverifiersm.circom,library,True,False,5,0,0,0,0,0.27327847480773926,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matAdd.circom,library,True,False,1,0,0,0,0,0.2531704902648926,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matAdd.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matAdd.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matElemMul.circom,library,True,False,1,0,0,0,0,0.26004767417907715,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matElemMul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matElemMul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matElemPow.circom,library,True,False,1,0,0,0,0,0.2602958679199219,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matElemPow.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matElemPow.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matElemSum.circom,library,True,False,1,0,0,0,0,0.2588329315185547,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matElemSum.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matElemSum.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matMul.circom,library,True,False,1,0,0,0,0,0.2637667655944824,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matMul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matMul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matPow.circom,library,True,False,1,0,0,0,0,0.2767179012298584,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matPow.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matPow.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matScalarAdd.circom,library,True,False,1,0,0,0,0,0.25794434547424316,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matScalarAdd.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matScalarAdd.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matScalarMul.circom,library,True,False,1,0,0,0,0,0.26778125762939453,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matScalarMul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matScalarMul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matScalarSub.circom,library,True,False,1,0,0,0,0,0.26311445236206055,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matScalarSub.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matScalarSub.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\matSub.circom,library,True,False,1,0,0,0,0,0.2594618797302246,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matSub.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\matSub.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\outer.circom,library,True,False,1,0,0,0,0,0.26106953620910645,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\outer.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\outer.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\power.circom,library,True,False,1,0,0,0,0,0.2532925605773926,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\power.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\power.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\trace.circom,library,True,False,1,0,0,0,0,0.26161694526672363,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\trace.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\trace.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\circuits\transpose.circom,library,True,False,1,0,0,0,0,0.26450347900390625,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\transpose.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\transpose.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-matrix,circomlib-matrix\test\circuits\matAdd_test.circom,main,False,False,0,0,0,0,0,0.2605125904083252,True,
+circomlib-matrix,circomlib-matrix\test\circuits\matElemMul_test.circom,main,False,False,0,0,0,0,0,0.2579481601715088,True,
+circomlib-matrix,circomlib-matrix\test\circuits\matElemPow_test.circom,main,False,False,0,0,0,0,0,0.2566676139831543,True,
+circomlib-matrix,circomlib-matrix\test\circuits\matMul_test.circom,main,False,False,0,0,0,0,0,0.2676703929901123,True,
+circomlib-matrix,circomlib-matrix\test\circuits\matPow_test.circom,main,False,False,0,0,0,0,0,0.27706313133239746,True,
+circomlib-matrix,circomlib-matrix\test\circuits\matScalarAdd_test.circom,main,False,False,0,0,0,0,0,0.2606956958770752,True,
+circomlib-matrix,circomlib-matrix\test\circuits\matScalarMul_test.circom,main,False,False,0,0,0,0,0,0.2687811851501465,True,
+circomlib-matrix,circomlib-matrix\test\circuits\matScalarSub_test.circom,main,False,False,0,0,0,0,0,0.2675662040710449,True,
+circomlib-matrix,circomlib-matrix\test\circuits\matSub_test.circom,main,False,False,0,0,0,0,0,0.261319637298584,True,
+circomlib-matrix,circomlib-matrix\test\circuits\outer_test.circom,main,False,False,0,0,0,0,0,0.2699089050292969,True,
+circomlib-matrix,circomlib-matrix\test\circuits\trace_test.circom,main,False,False,0,0,0,0,0,0.2618744373321533,True,
+circomlib-matrix,circomlib-matrix\test\circuits\tranpose_test.circom,main,False,False,0,0,0,0,0,0.2723817825317383,True,
+circomlib-ml,circomlib-ml\circuits\ArgMax.circom,library,True,False,1,0,0,0,0,0.2945213317871094,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\ArgMax.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\ArgMax.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\AveragePooling2D.circom,library,True,False,1,0,0,0,0,0.3024008274078369,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\AveragePooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\AveragePooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\BatchNormalization2D.circom,library,True,False,1,0,0,0,0,0.2651698589324951,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\BatchNormalization2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\BatchNormalization2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\Conv1D.circom,library,True,False,1,0,0,0,0,0.30883264541625977,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Conv1D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Conv1D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\Conv2D.circom,library,True,False,1,0,0,0,0,0.3045198917388916,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Conv2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Conv2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\Dense.circom,library,True,False,1,0,0,0,0,0.2821950912475586,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Dense.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Dense.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\Flatten2D.circom,library,True,False,1,0,0,0,0,0.2661094665527344,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Flatten2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Flatten2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\GlobalAveragePooling2D.circom,library,True,False,1,0,0,0,0,0.29091715812683105,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\GlobalAveragePooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\GlobalAveragePooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\GlobalMaxPooling2D.circom,library,True,False,1,0,0,0,0,0.2921171188354492,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\GlobalMaxPooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\GlobalMaxPooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\GlobalSumPooling2D.circom,library,True,False,1,0,0,0,0,0.29485273361206055,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\GlobalSumPooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\GlobalSumPooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\MaxPooling2D.circom,library,True,False,1,0,0,0,0,0.2954702377319336,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\MaxPooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\MaxPooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\Poly.circom,library,True,False,1,0,0,0,0,0.258197546005249,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Poly.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\Poly.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\ReLU.circom,library,True,True,1,0,0,0,1,0.28261804580688477,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\ReLU.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\ReLU.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\SumPooling2D.circom,library,True,False,1,0,0,0,0,0.29141688346862793,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\SumPooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\SumPooling2D.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\util.circom,library,True,True,4,0,0,0,2,0.28602147102355957,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\util.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\util.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\AveragePooling2D_stride_test.circom,main,False,False,0,0,0,0,0,0.3020656108856201,True,
+circomlib-ml,circomlib-ml\test\circuits\AveragePooling2D_test.circom,main,False,False,0,0,0,0,0,0.29401421546936035,True,
+circomlib-ml,circomlib-ml\test\circuits\BatchNormalization_test.circom,main,False,False,0,0,0,0,0,0.2655909061431885,True,
+circomlib-ml,circomlib-ml\test\circuits\Conv1D_test.circom,main,False,False,0,0,0,0,0,0.2890336513519287,True,
+circomlib-ml,circomlib-ml\test\circuits\Conv2D_stride_test.circom,main,False,False,0,0,0,0,0,0.3172590732574463,True,
+circomlib-ml,circomlib-ml\test\circuits\Conv2D_test.circom,main,False,False,0,0,0,0,0,0.3058440685272217,True,
+circomlib-ml,circomlib-ml\test\circuits\decryptMultiple_test.circom,main,False,False,0,0,0,0,0,0.2698993682861328,True,
+circomlib-ml,circomlib-ml\test\circuits\decrypt_test.circom,main,False,False,0,0,0,0,0,0.27264904975891113,True,
+circomlib-ml,circomlib-ml\test\circuits\Dense_test.circom,main,False,False,0,0,0,0,0,0.28376173973083496,True,
+circomlib-ml,circomlib-ml\test\circuits\ecdh_test.circom,main,False,False,0,0,0,0,0,0.3507108688354492,True,
+circomlib-ml,circomlib-ml\test\circuits\encryptDecrypt_test.circom,main,False,True,2,0,0,0,2,0.3547391891479492,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\encryptDecrypt_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\encryptDecrypt_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\encrypted_mnist_latest_test.circom,main,True,True,2,0,0,0,2,0.46860361099243164,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\encrypted_mnist_latest_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\encrypted_mnist_latest_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\encryptMultiple_test.circom,main,False,False,0,0,0,0,0,0.27573132514953613,True,
+circomlib-ml,circomlib-ml\test\circuits\encrypt_test.circom,main,False,False,0,0,0,0,0,0.27237796783447266,True,
+circomlib-ml,circomlib-ml\test\circuits\Flatten2D_test.circom,main,False,False,0,0,0,0,0,0.26036620140075684,True,
+circomlib-ml,circomlib-ml\test\circuits\GlobalAveragePooling2D_test.circom,main,False,False,0,0,0,0,0,0.3044755458831787,True,
+circomlib-ml,circomlib-ml\test\circuits\GlobalMaxPooling2D_test.circom,main,False,False,0,0,0,0,0,0.2995426654815674,True,
+circomlib-ml,circomlib-ml\test\circuits\IsNegative_test.circom,main,False,False,0,0,0,0,0,0.2808847427368164,True,
+circomlib-ml,circomlib-ml\test\circuits\IsPositive_test.circom,main,False,False,0,0,0,0,0,0.2890603542327881,True,
+circomlib-ml,circomlib-ml\test\circuits\MaxPooling2D_stride_test.circom,main,False,False,0,0,0,0,0,0.287921667098999,True,
+circomlib-ml,circomlib-ml\test\circuits\MaxPooling2D_test.circom,main,False,False,0,0,0,0,0,0.2884068489074707,True,
+circomlib-ml,circomlib-ml\test\circuits\Max_test.circom,main,False,False,0,0,0,0,0,0.2829904556274414,True,
+circomlib-ml,circomlib-ml\test\circuits\mnist_convnet_test.circom,main,True,False,2,0,0,0,0,0.33812761306762695,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\mnist_convnet_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\mnist_convnet_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\mnist_latest_precision_test.circom,main,True,False,2,0,0,0,0,0.3536183834075928,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\mnist_latest_precision_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\mnist_latest_precision_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\mnist_latest_test.circom,main,True,False,2,0,0,0,0,0.36399316787719727,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\mnist_latest_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\mnist_latest_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\mnist_test.circom,main,True,False,2,0,0,0,0,0.32401561737060547,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\mnist_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\mnist_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\model1_test.circom,main,True,False,1,0,0,0,0,0.30168986320495605,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\model1_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\model1_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\publicKey_test.circom,main,False,False,0,0,0,0,0,0.32614755630493164,True,
+circomlib-ml,circomlib-ml\test\circuits\ReLU_test.circom,main,True,False,1,0,0,0,0,0.2910771369934082,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\ReLU_test.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\ReLU_test.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\test\circuits\SumPooling2D_stride_test.circom,main,False,False,0,0,0,0,0,0.2901935577392578,True,
+circomlib-ml,circomlib-ml\test\circuits\SumPooling2D_test.circom,main,False,False,0,0,0,0,0,0.2967844009399414,True,
+circomlib-ml,circomlib-ml\circuits\circomlib\aliascheck.circom,library,False,False,0,0,0,0,0,0.2789485454559326,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\aliascheck.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\aliascheck.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\babyjub.circom,library,True,True,6,0,0,0,1,0.33737850189208984,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\babyjub.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\babyjub.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\binsum.circom,library,True,False,1,0,0,0,0,0.25901174545288086,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\binsum.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\binsum.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\bitify.circom,library,True,True,5,1,0,0,2,0.2766427993774414,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\bitify.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\bitify.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\comparators.circom,library,True,True,7,3,0,0,4,0.2825491428375244,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\compconstant.circom,library,True,False,1,0,0,0,0,0.27089691162109375,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\compconstant.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\compconstant.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\escalarmulany.circom,library,True,True,6,1,0,0,0,0.36718297004699707,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\escalarmulany.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\escalarmulany.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\escalarmulfix.circom,library,True,False,5,0,0,0,0,0.3530912399291992,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\escalarmulfix.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\escalarmulfix.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\mimc.circom,library,True,False,2,0,0,0,0,0.27353715896606445,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\mimc.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\mimc.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\montgomery.circom,library,True,False,4,0,0,0,0,0.26664066314697266,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\montgomery.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\montgomery.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\mux3.circom,library,True,False,2,0,0,0,0,0.2867412567138672,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\mux3.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\mux3.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\sign.circom,library,True,False,1,0,0,0,0,0.27890634536743164,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\sign.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\sign.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib\switcher.circom,library,True,False,2,0,0,0,0,0.2781343460083008,False,"    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\switcher.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\switcher.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib-matrix\matElemMul.circom,library,True,False,1,0,0,0,0,0.2673614025115967,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemMul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemMul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib-matrix\matElemSum.circom,library,True,False,1,0,0,0,0,0.26314353942871094,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemSum.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemSum.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\circomlib-matrix\matMul.circom,library,True,False,1,0,0,0,0,0.27997326850891113,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matMul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matMul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\crypto\ecdh.circom,library,True,True,2,1,0,0,1,0.41571784019470215,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\ecdh.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\ecdh.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\crypto\encrypt.circom,library,True,False,4,0,0,0,0,0.2911553382873535,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+circomlib-ml,circomlib-ml\circuits\crypto\publickey_derivation.circom,library,True,True,1,0,0,0,1,0.37038660049438477,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\publickey_derivation.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\publickey_derivation.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\biomebase.circom,library,True,True,2,0,0,0,1,0.3933393955230713,False,"    Finished `release` profile [optimized] target(s) in 0.17s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\biomebase.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\biomebase.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\CalculateTotal.circom,library,True,False,1,0,0,0,0,0.3055887222290039,False,"    Finished `release` profile [optimized] target(s) in 0.18s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\CalculateTotal.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\CalculateTotal.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\init.circom,library,True,True,2,0,0,0,2,0.38533759117126465,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\init.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\init.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\move.circom,library,True,True,5,0,0,0,5,0.3764152526855469,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\perlin.circom,library,True,True,21,0,0,0,8,0.3833608627319336,False,"    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\QuinSelector.circom,library,True,False,1,0,0,0,0,0.2862250804901123,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\QuinSelector.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\QuinSelector.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\range_proof.circom,library,False,True,3,0,0,0,3,0.2936735153198242,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\range_proof.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\range_proof.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\reveal.circom,library,True,True,2,0,0,0,2,0.36704516410827637,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\reveal.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\reveal.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+darkforest-eth-9033eaf,darkforest-eth-9033eaf\whitelist.circom,library,True,False,1,0,0,0,0,0.2882096767425537,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\whitelist.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\whitelist.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\batchverify.circom,library,False,False,0,0,0,0,0,1.1807324886322021,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\batchverify.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\binadd.circom,library,True,False,6,0,0,0,0,0.27541446685791016,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\binadd.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\binadd.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\binmul.circom,library,True,False,1,0,0,0,0,0.2769443988800049,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\binmul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\binmul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\binsub.circom,library,True,False,1,0,0,0,0,0.2789876461029053,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\binsub.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\binsub.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\chunkedadd.circom,library,True,False,2,0,0,0,0,0.29763197898864746,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\chunkedmul.circom,library,True,False,2,0,0,0,0,0.3140735626220703,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedmul.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedmul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\chunkedsub.circom,library,True,True,6,0,2,0,0,0.2896599769592285,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedsub.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedsub.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\chunkify.circom,library,True,False,1,0,0,0,0,0.28086137771606445,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkify.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkify.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\inversemodulo.circom,library,False,False,0,0,0,0,0,0.9051299095153809,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\inversemodulo.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\lt.circom,library,True,True,2,1,1,0,0,0.2793588638305664,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\lt.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\lt.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\modinv.circom,library,False,False,0,0,0,0,0,0.8709230422973633,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\modinv.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\modulus.circom,library,True,False,1,0,0,0,0,0.8394672870635986,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\modulus.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\point-addition.circom,library,False,False,0,0,0,0,0,0.8385207653045654,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\point-addition.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\pointcompress.circom,library,False,False,0,0,0,0,0,0.8524670600891113,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\pointcompress.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\scalarmul.circom,library,False,False,0,0,0,0,0,0.9169459342956543,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\scalarmul.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\utils.circom,library,False,False,0,0,0,0,0,0.31739258766174316,True,
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\verify.circom,library,False,False,0,0,0,0,0,1.2058184146881104,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\verify.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\ch.circom,library,True,False,1,0,0,0,0,0.3441200256347656,False,"    Finished `release` profile [optimized] target(s) in 0.19s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\ch.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\ch.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\constants.circom,library,True,False,2,0,0,0,0,0.31200337409973145,False,"    Finished `release` profile [optimized] target(s) in 0.18s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\constants.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\constants.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\maj.circom,library,True,False,1,0,0,0,0,0.3047659397125244,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\maj.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\maj.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\rotate.circom,library,True,False,1,0,0,0,0,0.29311156272888184,False,"    Finished `release` profile [optimized] target(s) in 0.17s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\rotate.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\rotate.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\sha512.circom,library,True,False,1,0,0,0,0,0.41138482093811035,False,"    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\sha512.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\sha512.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\sha512compression.circom,library,True,False,1,0,0,0,0,0.3502843379974365,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\sha512compression.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\sha512compression.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\shift.circom,library,True,False,1,0,0,0,0,0.263763427734375,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\shift.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\shift.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\sigma.circom,library,True,False,2,0,0,0,0,0.2679879665374756,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\sigma.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\sigma.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\sigmaplus.circom,library,True,False,1,0,0,0,0,0.28184962272644043,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\sigmaplus.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\sigmaplus.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\t1.circom,library,True,False,1,0,0,0,0,0.2992844581604004,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\t1.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\t1.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\t2.circom,library,True,False,1,0,0,0,0,0.2774317264556885,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\t2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\t2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+ed25519-099d19c-fixed,ed25519-099d19c-fixed\sha512-0562652\xor3.circom,library,True,False,1,0,0,0,0,0.2589437961578369,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\xor3.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\xor3.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\balance-updater.circom,library,True,True,5,0,0,0,2,0.35807323455810547,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\balance-updater.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\balance-updater.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\compute-fee.circom,library,True,True,1,0,0,0,1,0.3528172969818115,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\compute-fee.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\compute-fee.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\decode-tx.circom,library,True,True,11,0,0,0,7,0.4198262691497803,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\fee-accumulator.circom,library,True,True,3,1,0,0,0,0.35373353958129883,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\fee-accumulator.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\fee-accumulator.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\fee-tx.circom,library,True,True,2,1,0,0,1,0.4890706539154053,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\fee-tx.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\fee-tx.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\hash-inputs.circom,library,True,True,7,0,0,0,7,0.5255851745605469,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\rollup-main.circom,library,False,False,0,0,0,0,0,0.25798511505126953,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-main.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-main.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\rollup-tx-states.circom,library,True,True,15,7,0,0,0,0.37815189361572266,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\rollup-tx.circom,library,True,True,14,7,3,0,4,0.6827559471130371,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\rq-tx-verifier.circom,library,False,True,1,0,0,0,1,0.31174159049987793,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rq-tx-verifier.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rq-tx-verifier.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\withdraw.circom,library,False,False,0,0,0,0,0,0.2569870948791504,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\withdraw.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\withdraw.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\lib\decode-float.circom,library,True,True,2,0,0,0,1,0.282883882522583,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\lib\decode-float.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\lib\decode-float.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\lib\hash-state.circom,library,False,False,0,0,0,0,0,0.34174680709838867,True,
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\lib\mux256.circom,library,True,False,1,0,0,0,0,0.3529331684112549,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\lib\mux256.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\lib\mux256.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hermez-network-9a696e3-fixed,hermez-network-9a696e3-fixed\src\lib\utils-bjj.circom,library,True,True,3,0,0,0,1,0.2888157367706299,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\lib\utils-bjj.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\lib\utils-bjj.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hydra-2010a65,hydra-2010a65\hydra-s1.circom,library,False,True,4,0,0,0,4,2.7260618209838867,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hydra-2010a65\hydra-s1.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hydra-2010a65\hydra-s1.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hydra-2010a65,hydra-2010a65\common\verify-hydra-commitment.circom,library,False,True,1,0,0,0,1,2.726649761199951,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hydra-2010a65\common\verify-hydra-commitment.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hydra-2010a65\common\verify-hydra-commitment.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+hydra-2010a65,hydra-2010a65\common\verify-merkle-path.circom,library,True,False,1,0,0,0,0,2.544194459915161,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hydra-2010a65\common\verify-merkle-path.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hydra-2010a65\common\verify-merkle-path.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\authentication.circom,library,False,True,2,0,0,0,2,2.797504186630249,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\authentication.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\authentication.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\authenticationWithRelay.circom,library,False,True,3,0,0,0,3,2.7908852100372314,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\authenticationWithRelay.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\authenticationWithRelay.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\idOwnershipBySignature.circom,library,False,True,2,0,0,0,2,2.8187952041625977,False,"    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\idOwnershipBySignature.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\idOwnershipBySignature.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\idOwnershipBySignatureWithRelay.circom,library,False,True,3,0,0,0,3,2.6935160160064697,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\idOwnershipBySignatureWithRelay.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\idOwnershipBySignatureWithRelay.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\stateTransition.circom,library,False,True,5,0,1,0,4,2.833948850631714,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\stateTransition.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\stateTransition.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\query\comparators.circom,library,True,False,1,0,0,0,0,0.2783653736114502,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\comparators.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\comparators.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\query\credentialAtomicQueryMTP.circom,library,False,True,6,0,0,0,6,2.8034536838531494,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\credentialAtomicQueryMTP.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\credentialAtomicQueryMTP.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\query\credentialAtomicQueryMTPWithRelay.circom,library,False,True,7,0,0,0,7,2.723046064376831,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\credentialAtomicQueryMTPWithRelay.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\credentialAtomicQueryMTPWithRelay.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\query\credentialAtomicQuerySig.circom,library,False,True,8,0,0,0,8,2.787842273712158,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\credentialAtomicQuerySig.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\credentialAtomicQuerySig.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\query\query.circom,library,True,True,2,0,0,0,2,0.3109917640686035,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\utils\claimUtils.circom,library,True,True,12,0,0,0,11,2.87176775932312,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\utils\claimUtils.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\utils\claimUtils.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+iden3-core-56a08f9,iden3-core-56a08f9\utils\treeUtils.circom,library,True,True,2,0,0,0,2,2.7086379528045654,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\utils\treeUtils.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\utils\treeUtils.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+keccak256-circom-af3e898,keccak256-circom-af3e898\keccak.circom,library,True,False,7,0,0,0,0,0.5992076396942139,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\keccak.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\keccak.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+keccak256-circom-af3e898,keccak256-circom-af3e898\permutations.circom,library,True,False,8,0,0,0,0,0.5975329875946045,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+keccak256-circom-af3e898,keccak256-circom-af3e898\utils.circom,library,True,False,6,0,0,0,0,0.28866028785705566,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\utils.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\utils.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\batchUpdateStateTree.circom,library,False,True,1,0,0,0,1,2.923821210861206,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\batchUpdateStateTree.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\batchUpdateStateTree.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\decrypt.circom,library,True,False,1,0,0,0,0,0.3852956295013428,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\decrypt.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\decrypt.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\ecdh.circom,library,True,True,2,1,0,0,1,0.391646146774292,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\ecdh.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\ecdh.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\hasherPoseidon.circom,library,False,False,0,0,0,0,0,2.6669328212738037,True,
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\publickey_derivation.circom,library,True,True,1,0,0,0,1,0.3627967834472656,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\publickey_derivation.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\publickey_derivation.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\quadVoteTally.circom,library,True,True,2,1,0,0,1,2.7996578216552734,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\quadVoteTally.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\quadVoteTally.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\updateStateTree.circom,library,True,True,16,10,0,0,6,2.8787946701049805,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\verify_signature.circom,library,True,True,2,0,0,0,2,2.7825424671173096,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\verify_signature.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\verify_signature.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\poseidon\poseidonHashT3.circom,library,False,False,0,0,0,0,0,2.6814637184143066,True,
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\poseidon\poseidonHashT6.circom,library,False,False,0,0,0,0,0,2.5563132762908936,True,
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\trees\calculateTotal.circom,library,True,False,1,0,0,0,0,0.26807212829589844,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\trees\calculateTotal.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\trees\calculateTotal.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\trees\checkRoot.circom,library,True,False,1,0,0,0,0,2.588590621948242,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\trees\checkRoot.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\trees\checkRoot.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\trees\incrementalMerkleTree.circom,library,True,False,2,0,0,0,0,2.6035284996032715,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\trees\incrementalMerkleTree.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\trees\incrementalMerkleTree.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+maci-9b1b1a6-fixed,maci-9b1b1a6-fixed\trees\incrementalQuinTree.circom,library,True,False,4,0,0,0,0,2.739351272583008,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\trees\incrementalQuinTree.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\trees\incrementalQuinTree.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\sdk\src\circuits\poseidon_sync_committee.circom,library,True,False,1,0,0,0,0,2.600109100341797,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\sdk\src\circuits\poseidon_sync_committee.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\sdk\src\circuits\poseidon_sync_committee.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\bls.circom,library,True,True,6,0,2,0,0,9.72303295135498,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\bls.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\bls.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\constants.circom,library,False,False,0,0,0,0,0,0.27055811882019043,True,
+telepathy,telepathy\circuits\circuits\hash_to_field.circom,library,True,False,4,0,0,0,0,0.46674561500549316,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\hash_to_field.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\hash_to_field.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\inputs.circom,library,True,True,2,0,0,0,2,0.432476282119751,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\inputs.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\inputs.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\poseidon.circom,library,True,False,2,0,0,0,0,2.637040138244629,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\poseidon.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\poseidon.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\rotate.circom,library,False,False,0,0,0,0,0,12.289737224578857,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\rotate.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\rotate.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256.circom,library,True,False,2,0,0,0,0,0.42720913887023926,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\ssz.circom,library,True,False,6,0,0,0,0,0.4540863037109375,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\ssz.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\ssz.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\step.circom,library,False,True,3,0,0,0,3,12.416480779647827,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\step.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\step.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sync_committee.circom,library,True,False,1,0,0,0,0,9.81933045387268,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sync_committee.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sync_committee.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_aggregate_bls_add_4.circom,library,False,False,0,0,0,0,0,0.2678854465484619,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_aggregate_bls_add_4.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_aggregate_bls_add_4.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_aggregate_bls_add_512.circom,library,False,False,0,0,0,0,0,0.2679250240325928,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_aggregate_bls_add_512.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_aggregate_bls_add_512.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_aggregate_bls_verify_512.circom,library,False,False,0,0,0,0,0,0.26457929611206055,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_aggregate_bls_verify_512.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_aggregate_bls_verify_512.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_assert_valid_signed_header.circom,library,False,False,0,0,0,0,0,0.26810336112976074,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_assert_valid_signed_header.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_assert_valid_signed_header.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_expand_message_xmd.circom,library,False,False,0,0,0,0,0,0.2614014148712158,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_expand_message_xmd.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_expand_message_xmd.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_hash_to_field.circom,library,False,False,0,0,0,0,0,0.2698392868041992,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_hash_to_field.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_hash_to_field.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_i2osp_1.circom,library,False,False,0,0,0,0,0,0.2621300220489502,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_i2osp_1.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_i2osp_1.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_i2osp_2.circom,library,False,False,0,0,0,0,0,0.262432336807251,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_i2osp_2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_i2osp_2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_poseidon_committment.circom,library,False,False,0,0,0,0,0,0.27136898040771484,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_poseidon_committment.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_poseidon_committment.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_pubkey_bytes_to_big_int.circom,library,False,False,0,0,0,0,0,0.2654445171356201,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_pubkey_bytes_to_big_int.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_pubkey_bytes_to_big_int.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_reborn.circom,main,False,False,0,0,0,0,0,0.2586984634399414,False,"     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_reborn.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+Error: Main component template 'BeaconLightClientHelper' not found in CFG.
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_reborn.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_sha_bytes_constraint_cost.circom,library,True,False,1,0,0,0,0,0.4121878147125244,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_sha_bytes_constraint_cost.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_sha_bytes_constraint_cost.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_ssz_array_4.circom,library,False,False,0,0,0,0,0,0.26108813285827637,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_ssz_array_4.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_ssz_array_4.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_sync_committee_committments.circom,main,False,False,0,0,0,0,0,0.2726151943206787,False,"     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_sync_committee_committments.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+Error: Main component template 'SyncCommitteeCommittments' not found in CFG.
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_sync_committee_committments.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\test\circuits\test_template_assert_valid_signed_header.circom,library,True,False,1,0,0,0,0,0.2641263008117676,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_template_assert_valid_signed_header.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_template_assert_valid_signed_header.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\bigint.circom,library,True,True,38,1,0,0,20,0.5177323818206787,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\bigint.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\bigint.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\bigint_func.circom,library,False,False,0,0,0,0,0,0.33057498931884766,True,
+telepathy,telepathy\circuits\circuits\pairing\bls12_381_func.circom,library,False,False,0,0,0,0,0,7.165659189224243,True,
+telepathy,telepathy\circuits\circuits\pairing\bls12_381_hash_to_G2.circom,library,True,True,9,0,0,0,1,8.257957220077515,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\bls12_381_hash_to_G2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\bls12_381_hash_to_G2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\bls_signature.circom,library,True,True,1,0,0,0,1,9.529792785644531,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\bls_signature.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\bls_signature.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\curve.circom,library,True,True,7,0,5,0,0,0.7682030200958252,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\curve.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\curve.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\curve_fp2.circom,library,True,True,8,0,5,0,0,8.031183958053589,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\curve_fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\curve_fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\extra_curve.circom,library,True,True,5,0,0,0,5,8.088828563690186,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_curve.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_curve.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\extra_field_circuits.circom,library,True,True,8,2,0,0,3,10.571950674057007,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\field_elements_func.circom,library,False,False,0,0,0,0,0,0.95046067237854,True,
+telepathy,telepathy\circuits\circuits\pairing\final_exp.circom,library,True,False,8,0,0,0,0,11.656959056854248,False,"    Finished `release` profile [optimized] target(s) in 0.78s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\final_exp.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\final_exp.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\fp.circom,library,True,True,10,0,0,0,4,0.6249394416809082,False,"    Finished `release` profile [optimized] target(s) in 0.21s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\fp.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\fp.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\fp12.circom,library,True,False,17,0,0,0,0,8.23533296585083,False,"    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\fp12.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\fp12.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\fp12_func.circom,library,False,False,0,0,0,0,0,0.33408355712890625,True,
+telepathy,telepathy\circuits\circuits\pairing\fp2.circom,library,True,True,20,1,0,0,3,0.6325182914733887,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\fp2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\pairing\pairing.circom,library,True,False,18,0,0,0,0,8.762614011764526,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\pairing.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\pairing.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\ch.circom,library,True,False,1,0,0,0,0,0.2685577869415283,False,"    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\ch.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\ch.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\constants.circom,library,True,False,2,0,0,0,0,0.25540852546691895,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\constants.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\constants.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\main.circom,main,True,False,1,0,0,0,0,0.35480237007141113,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\main.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\main.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\maj.circom,library,True,False,1,0,0,0,0,0.2623586654663086,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\maj.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\maj.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\rotate.circom,library,True,False,1,0,0,0,0,0.2575693130493164,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\rotate.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\rotate.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\sha256.circom,library,True,False,1,0,0,0,0,0.39740729331970215,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sha256.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sha256.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\sha256compression.circom,library,True,False,1,0,0,0,0,0.37884974479675293,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sha256compression.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sha256compression.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\sha256compression_function.circom,library,False,False,0,0,0,0,0,0.265902042388916,True,
+telepathy,telepathy\circuits\circuits\sha256\sha256_2.circom,library,True,False,1,0,0,0,0,0.379225492477417,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sha256_2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sha256_2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\shift.circom,library,True,False,1,0,0,0,0,0.2575087547302246,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\shift.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\shift.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\sigma.circom,library,True,False,2,0,0,0,0,0.2803690433502197,False,"    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sigma.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sigma.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\sigmaplus.circom,library,True,False,1,0,0,0,0,0.2903025150299072,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sigmaplus.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sigmaplus.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\t1.circom,library,True,False,1,0,0,0,0,0.2932465076446533,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\t1.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\t1.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\t2.circom,library,True,False,1,0,0,0,0,0.30105018615722656,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\t2.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\t2.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"
+telepathy,telepathy\circuits\circuits\sha256\xor3.circom,library,True,False,1,0,0,0,0,0.26245641708374023,False,"    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\xor3.circom --mode all --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\xor3.circom --mode all --leak-threshold 8 --min-leak-severity Low` (exit code: 1)"

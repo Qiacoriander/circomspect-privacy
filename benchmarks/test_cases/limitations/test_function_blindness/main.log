@@ -1,0 +1,48 @@
+circomspect: 从 main component 'Main' 开始分析，公开输入：[]
+warning: Output signal `out` is tainted by private inputs (taint level: PartialLeak), which may leak privacy.
+Tainted by: in
+Please check the associated `QuantifiedLeakage` (CS0021) warnings to identify the specific source of leakage.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\test_cases\limitations\test_function_blindness\main.circom:10:5
+   │
+10 │     signal output out;
+   │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: PartialLeak.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `in` has quantified information leakage (Severity: Low, L(x)=1 bits, H(x)=254 bits, T(x)=8 bits)
+  ┌─ \\?\D:\dev\circomspect\benchmarks\test_cases\limitations\test_function_blindness\main.circom:9:5
+  │
+9 │     signal input in;
+  │     ^^^^^^^^^^^^^^^ Signal `in` declared here: leaked 1 bits out of 254 bits entropy (threshold: 8 bits)
+  │
+  = This signal leaks 1 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: 2 issues found.
+warning: unused return value of `finish` that must be used
+   --> program_structure\src\intermediate_representation\ir.rs:112:9
+    |
+112 |         state.finish();
+    |         ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+112 |         let _ = state.finish();
+    |         +++++++
+
+warning: `circomspect-program-structure` (lib) generated 1 warning
+warning: function `constant_fold_expression` is never used
+   --> program_analysis\src\privacy_taint.rs:973:4
+    |
+973 | fn constant_fold_expression(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: `circomspect-program-analysis` (lib) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\test_cases\limitations\test_function_blindness\main.circom --mode main --leak-threshold 8 --min-leak-severity Low`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\test_cases\limitations\test_function_blindness\main.circom --mode main --leak-threshold 8 --min-leak-severity Low` (exit code: 1)

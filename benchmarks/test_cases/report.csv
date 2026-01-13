@@ -1,0 +1,3 @@
+project_name,file_path,mode,has_privacy_leak,has_quantified_partial_leak,leak_count,quantified_partial_leak_severity_counts,analysis_time,success,error_message
+test_project,test_project\leak.circom,main,True,True,1,"{'High': 0, 'Medium': 0, 'Low': 0, 'Critical': 1}",0.2818450927734375,True,
+test_project,test_project\safe.circom,main,True,False,1,"{'High': 0, 'Medium': 0, 'Low': 0, 'Critical': 0}",0.26204347610473633,True,

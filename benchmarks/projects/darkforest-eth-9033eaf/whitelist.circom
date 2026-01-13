@@ -1,5 +1,19 @@
 pragma circom 2.0.3;
 
-include "../libs/darkforest-eth-9033eaf/whitelist.circom";
+include "../circomlib/circuits/mimcsponge.circom";
 
-component main = Whitelist();
+template Whitelist() {
+  signal input key;
+  signal input recipient;
+  signal output hash;
+
+  component hasher = MiMCSponge(1, 220, 1);
+  hasher.ins[0] <== key;
+  hasher.k <== 0;
+  hash <== hasher.outs[0];
+
+  // Include the recipient in the circuit
+  // so tampering with it invalidates the SNARK
+  signal recipientSquared;
+  recipientSquared <== recipient * recipient;
+}

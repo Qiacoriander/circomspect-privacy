@@ -1,0 +1,98 @@
+
+================================================================================
+Circomspect 隐私泄露检测基准测试报告
+================================================================================
+
+【总体统计】
+  总分析文件数: 714
+  模式分布: Main=338, Library=376
+  运行状况: 成功=714, 失败=0
+  总用时: 1256.85 秒
+  有隐私泄露风险的文件数: 262 (36.7%)
+  含可量化部分泄露问题(Quantified Partial Leak)的文件数: 96
+  有隐私泄露风险的信号总数: 999
+  可量化部分泄露(Quantified Partial Leak)严重程度分布: High=0, Medium=35, Low=57, Critical=253
+
+【按项目统计】
+  - libs: 454 文件, 有隐私泄露风险的文件数: 251, 有隐私泄露风险的信号总数: 981 (含可量化部分泄露问题的文件: 95, High: 0, Medium: 34, Low: 54, Critical: 253)
+  - circom-ml: 12 文件, 有隐私泄露风险的文件数: 5, 有隐私泄露风险的信号总数: 5
+  - internal: 7 文件, 有隐私泄露风险的文件数: 3, 有隐私泄露风险的信号总数: 4
+  - semaphore-0f0fc95: 1 文件, 有隐私泄露风险的文件数: 1, 有隐私泄露风险的信号总数: 1
+  - zk-group-sigs-1337689-fixed: 3 文件, 有隐私泄露风险的文件数: 1, 有隐私泄露风险的信号总数: 1
+  - zk-SQL-4c3626d: 6 文件, 有隐私泄露风险的文件数: 1, 有隐私泄露风险的信号总数: 7 (含可量化部分泄露问题的文件: 1, High: 0, Medium: 1, Low: 3, Critical: 0)
+  - aes-circom: 8 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - circom-ecdsa: 16 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - circom-matrix: 12 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - circom-pairing: 2 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - circomlib-cff5ab6: 67 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - darkforest-eth-9033eaf: 9 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - ed25519-099d19c: 27 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - hermez-network-9a696e3-fixed: 11 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - hydra-2010a65: 3 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - iden3-core-56a08f9: 28 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - keccak256-circom-af3e898: 14 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+  - maci-9b1b1a6-fixed: 34 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0
+
+【存在隐私泄露的文件详情 (前30)】
+  1. circom-ml\mnist_convnet_test.circom
+     项目: circom-ml | 模式: main
+  2. circom-ml\mnist_poly_test.circom
+     项目: circom-ml | 模式: main
+  3. circom-ml\mnist_test.circom
+     项目: circom-ml | 模式: main
+  4. circom-ml\model1_test.circom
+     项目: circom-ml | 模式: main
+  5. circom-ml\ReLU_test.circom
+     项目: circom-ml | 模式: main
+  6. internal\ArrayXOR@telepathy@n=4.circom
+     项目: internal | 模式: main
+  7. internal\DivModN@veridise@n=13.circom
+     项目: internal | 模式: main
+  8. internal\Reward@veridise.circom
+     项目: internal | 模式: main
+  9. libs\darkforest-eth-9033eaf\biomebase.circom
+     项目: libs | 模式: library
+  10. libs\darkforest-eth-9033eaf\CalculateTotal.circom
+     项目: libs | 模式: library
+  11. libs\darkforest-eth-9033eaf\init.circom
+     项目: libs | 模式: library
+  12. libs\darkforest-eth-9033eaf\move.circom
+     项目: libs | 模式: library
+  13. libs\darkforest-eth-9033eaf\perlin.circom
+     项目: libs | 模式: library
+  14. libs\darkforest-eth-9033eaf\QuinSelector.circom
+     项目: libs | 模式: library
+  15. libs\darkforest-eth-9033eaf\reveal.circom
+     项目: libs | 模式: library
+  16. libs\darkforest-eth-9033eaf\whitelist.circom
+     项目: libs | 模式: library
+  17. libs\ed25519-099d19c-fixed\batchverify.circom
+     项目: libs | 模式: library
+  18. libs\ed25519-099d19c-fixed\binadd.circom
+     项目: libs | 模式: library
+  19. libs\ed25519-099d19c-fixed\binmul.circom
+     项目: libs | 模式: library
+  20. libs\ed25519-099d19c-fixed\binsub.circom
+     项目: libs | 模式: library
+  21. libs\ed25519-099d19c-fixed\chunkedadd.circom
+     项目: libs | 模式: library
+  22. libs\ed25519-099d19c-fixed\chunkedmul.circom
+     项目: libs | 模式: library
+  23. libs\ed25519-099d19c-fixed\chunkedsub.circom
+     项目: libs | 模式: library
+  24. libs\ed25519-099d19c-fixed\chunkify.circom
+     项目: libs | 模式: library
+  25. libs\ed25519-099d19c-fixed\lt.circom
+     项目: libs | 模式: library
+  26. libs\ed25519-099d19c-fixed\modulus.circom
+     项目: libs | 模式: library
+  27. libs\keccak256-circom-af3e898\keccak.circom
+     项目: libs | 模式: library
+  28. libs\keccak256-circom-af3e898\permutations.circom
+     项目: libs | 模式: library
+  29. libs\keccak256-circom-af3e898\utils.circom
+     项目: libs | 模式: library
+  30. libs\maci-9b1b1a6-fixed\decrypt.circom
+     项目: libs | 模式: library
+
+================================================================================

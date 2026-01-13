@@ -1,0 +1,93 @@
+
+================================================================================
+Circomspect 隐私泄露检测基准测试报告
+================================================================================
+
+【总体统计】
+  总分析文件数: 454
+  模式分布: Main=116, Library=338
+  运行状况: 成功=155, 失败=299
+  总用时: 873.34 秒
+  有隐私泄露风险的文件数: 250 (55.1%)
+  含可量化部分泄露问题(Quantified Partial Leak)的文件数: 95
+  有隐私泄露风险的信号总数: 977 ( 可量化的部分泄露按级别计数——Low: 52, Medium: 34, High: 0, Critical: 255)
+
+【按项目统计】
+  - circomlib: 104 文件, 有隐私泄露风险的文件数: 60（含可量化部分泄露问题的文件: 22）, 有隐私泄露风险的信号总数: 143 ( 可量化的部分泄露按级别计数——Low: 9, Medium: 0, High: 0, Critical: 28)
+  - circomlib-ml: 65 文件, 有隐私泄露风险的文件数: 40（含可量化部分泄露问题的文件: 10）, 有隐私泄露风险的信号总数: 84 ( 可量化的部分泄露按级别计数——Low: 6, Medium: 0, High: 0, Critical: 16)
+  - telepathy: 57 文件, 有隐私泄露风险的文件数: 36（含可量化部分泄露问题的文件: 12）, 有隐私泄露风险的信号总数: 194 ( 可量化的部分泄露按级别计数——Low: 4, Medium: 12, High: 0, Critical: 42)
+  - ed25519-099d19c-fixed: 29 文件, 有隐私泄露风险的文件数: 21（含可量化部分泄露问题的文件: 2）, 有隐私泄露风险的信号总数: 36 ( 可量化的部分泄露按级别计数——Low: 1, Medium: 3, High: 0, Critical: 0)
+  - circom-pairing: 63 文件, 有隐私泄露风险的文件数: 20（含可量化部分泄露问题的文件: 10）, 有隐私泄露风险的信号总数: 200 ( 可量化的部分泄露按级别计数——Low: 2, Medium: 15, High: 0, Critical: 37)
+  - circomlib-matrix: 26 文件, 有隐私泄露风险的文件数: 14, 有隐私泄露风险的信号总数: 14 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - aes-circom-0784f74: 20 文件, 有隐私泄露风险的文件数: 11（含可量化部分泄露问题的文件: 1）, 有隐私泄露风险的信号总数: 24 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 2)
+  - circom-ecdsa: 34 文件, 有隐私泄露风险的文件数: 11（含可量化部分泄露问题的文件: 2）, 有隐私泄露风险的信号总数: 66 ( 可量化的部分泄露按级别计数——Low: 2, Medium: 0, High: 0, Critical: 17)
+  - hermez-network-9a696e3-fixed: 15 文件, 有隐私泄露风险的文件数: 11（含可量化部分泄露问题的文件: 11）, 有隐私泄露风险的信号总数: 65 ( 可量化的部分泄露按级别计数——Low: 16, Medium: 3, High: 0, Critical: 25)
+  - maci-9b1b1a6-fixed: 14 文件, 有隐私泄露风险的文件数: 10（含可量化部分泄露问题的文件: 6）, 有隐私泄露风险的信号总数: 33 ( 可量化的部分泄露按级别计数——Low: 12, Medium: 0, High: 0, Critical: 12)
+  - darkforest-eth-9033eaf: 9 文件, 有隐私泄露风险的文件数: 8（含可量化部分泄露问题的文件: 6）, 有隐私泄露风险的信号总数: 38 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 21)
+  - iden3-core-56a08f9: 12 文件, 有隐私泄露风险的文件数: 4（含可量化部分泄露问题的文件: 11）, 有隐私泄露风险的信号总数: 53 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 1, High: 0, Critical: 50)
+  - keccak256-circom-af3e898: 3 文件, 有隐私泄露风险的文件数: 3, 有隐私泄露风险的信号总数: 21 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - hydra-2010a65: 3 文件, 有隐私泄露风险的文件数: 1（含可量化部分泄露问题的文件: 2）, 有隐私泄露风险的信号总数: 6 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 5)
+
+【存在隐私泄露的文件详情 (前30)】
+  1. aes-circom-0784f74\circuits\aes_256_ctr.circom
+     项目: aes-circom-0784f74 | 模式: library
+  2. aes-circom-0784f74\circuits\aes_256_encrypt.circom
+     项目: aes-circom-0784f74 | 模式: library
+  3. aes-circom-0784f74\circuits\aes_256_key_expansion.circom
+     项目: aes-circom-0784f74 | 模式: library
+  4. aes-circom-0784f74\circuits\aes_emulation.circom
+     项目: aes-circom-0784f74 | 模式: library
+  5. aes-circom-0784f74\circuits\gcm_siv_dec_2_keys.circom
+     项目: aes-circom-0784f74 | 模式: library
+  6. aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom
+     项目: aes-circom-0784f74 | 模式: library
+  7. aes-circom-0784f74\circuits\gfmul_int.circom
+     项目: aes-circom-0784f74 | 模式: library
+  8. aes-circom-0784f74\circuits\helper_functions.circom
+     项目: aes-circom-0784f74 | 模式: library
+  9. aes-circom-0784f74\circuits\mul.circom
+     项目: aes-circom-0784f74 | 模式: library
+  10. aes-circom-0784f74\circuits\polyval.circom
+     项目: aes-circom-0784f74 | 模式: library
+  11. aes-circom-0784f74\circuits\vclmul_emulator.circom
+     项目: aes-circom-0784f74 | 模式: library
+  12. circom-ecdsa\circuits\bigint.circom
+     项目: circom-ecdsa | 模式: library
+  13. circom-ecdsa\circuits\bigint_4x64_mult.circom
+     项目: circom-ecdsa | 模式: library
+  14. circom-ecdsa\circuits\ecdsa.circom
+     项目: circom-ecdsa | 模式: library
+  15. circom-ecdsa\circuits\eth_addr.circom
+     项目: circom-ecdsa | 模式: library
+  16. circom-ecdsa\circuits\secp256k1.circom
+     项目: circom-ecdsa | 模式: library
+  17. circom-ecdsa\circuits\secp256k1_utils.circom
+     项目: circom-ecdsa | 模式: library
+  18. circom-ecdsa\scripts\groupsig\groupsig.circom
+     项目: circom-ecdsa | 模式: library
+  19. circom-ecdsa\circuits\vocdoni-keccak\keccak.circom
+     项目: circom-ecdsa | 模式: library
+  20. circom-ecdsa\circuits\vocdoni-keccak\permutations.circom
+     项目: circom-ecdsa | 模式: library
+  21. circom-ecdsa\circuits\vocdoni-keccak\utils.circom
+     项目: circom-ecdsa | 模式: library
+  22. circom-ecdsa\circuits\zk-identity\eth.circom
+     项目: circom-ecdsa | 模式: library
+  23. circom-pairing\circuits\bigint.circom
+     项目: circom-pairing | 模式: library
+  24. circom-pairing\circuits\bls12_381_hash_to_G2.circom
+     项目: circom-pairing | 模式: library
+  25. circom-pairing\circuits\bls_signature.circom
+     项目: circom-pairing | 模式: library
+  26. circom-pairing\circuits\curve.circom
+     项目: circom-pairing | 模式: library
+  27. circom-pairing\circuits\curve_fp2.circom
+     项目: circom-pairing | 模式: library
+  28. circom-pairing\circuits\extra_curve.circom
+     项目: circom-pairing | 模式: library
+  29. circom-pairing\circuits\extra_field_circuits.circom
+     项目: circom-pairing | 模式: library
+  30. circom-pairing\circuits\final_exp.circom
+     项目: circom-pairing | 模式: library
+
+================================================================================

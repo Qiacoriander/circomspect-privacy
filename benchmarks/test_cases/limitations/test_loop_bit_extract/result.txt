@@ -1,0 +1,97 @@
+
+================================================================================
+Circomspect 隐私泄露检测基准测试报告
+================================================================================
+
+【总体统计】
+  总分析文件数: 714
+  模式分布: Main=714, Library=0
+  运行状况: 成功=714, 失败=0
+  总用时: 1051.76 秒
+  有隐私泄露风险的文件数: 35 (4.9%)
+  含可量化部分泄露问题(Quantified Partial Leak)的文件数: 14
+  有隐私泄露风险的信号总数: 53 ( 可量化的部分泄露按级别计数——Low: 3, Medium: 0, High: 0, Critical: 20)
+
+【按项目统计】
+  - libs: 454 文件, 有隐私泄露风险的文件数: 27（含可量化部分泄露问题的文件: 14）, 有隐私泄露风险的信号总数: 44 ( 可量化的部分泄露按级别计数——Low: 3, Medium: 0, High: 0, Critical: 20)
+  - circom-ml: 12 文件, 有隐私泄露风险的文件数: 5, 有隐私泄露风险的信号总数: 5 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - internal: 7 文件, 有隐私泄露风险的文件数: 3, 有隐私泄露风险的信号总数: 4 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - aes-circom: 8 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - circom-ecdsa: 16 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - circom-matrix: 12 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - circom-pairing: 2 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - circomlib-cff5ab6: 67 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - darkforest-eth-9033eaf: 9 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - ed25519-099d19c: 27 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - hermez-network-9a696e3-fixed: 11 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - hydra-2010a65: 3 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - iden3-core-56a08f9: 28 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - keccak256-circom-af3e898: 14 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - maci-9b1b1a6-fixed: 34 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - semaphore-0f0fc95: 1 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - zk-group-sigs-1337689-fixed: 3 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+  - zk-SQL-4c3626d: 6 文件, 有隐私泄露风险的文件数: 0, 有隐私泄露风险的信号总数: 0 ( 可量化的部分泄露按级别计数——Low: 0, Medium: 0, High: 0, Critical: 0)
+
+【存在隐私泄露的文件详情 (前30)】
+  1. circom-ml\mnist_convnet_test.circom
+     项目: circom-ml | 模式: main
+  2. circom-ml\mnist_poly_test.circom
+     项目: circom-ml | 模式: main
+  3. circom-ml\mnist_test.circom
+     项目: circom-ml | 模式: main
+  4. circom-ml\model1_test.circom
+     项目: circom-ml | 模式: main
+  5. circom-ml\ReLU_test.circom
+     项目: circom-ml | 模式: main
+  6. internal\ArrayXOR@telepathy@n=4.circom
+     项目: internal | 模式: main
+  7. internal\DivModN@veridise@n=13.circom
+     项目: internal | 模式: main
+  8. internal\Reward@veridise.circom
+     项目: internal | 模式: main
+  9. libs\telepathy\sdk\src\circuits\poseidon_sync_committee.circom
+     项目: libs | 模式: main
+  10. libs\telepathy\circuits\test\circuits\test_sha_bytes_constraint_cost.circom
+     项目: libs | 模式: main
+  11. libs\telepathy\circuits\test\circuits\test_template_assert_valid_signed_header.circom
+     项目: libs | 模式: main
+  12. libs\telepathy\circuits\circuits\sha256\main.circom
+     项目: libs | 模式: main
+  13. libs\circomlib-ml\test\circuits\encrypted_mnist_latest_test.circom
+     项目: libs | 模式: main
+  14. libs\circomlib-ml\test\circuits\mnist_convnet_test.circom
+     项目: libs | 模式: main
+  15. libs\circomlib-ml\test\circuits\mnist_latest_precision_test.circom
+     项目: libs | 模式: main
+  16. libs\circomlib-ml\test\circuits\mnist_latest_test.circom
+     项目: libs | 模式: main
+  17. libs\circomlib-ml\test\circuits\mnist_test.circom
+     项目: libs | 模式: main
+  18. libs\circomlib-ml\test\circuits\model1_test.circom
+     项目: libs | 模式: main
+  19. libs\circomlib-ml\test\circuits\ReLU_test.circom
+     项目: libs | 模式: main
+  20. libs\circomlib\test\circuits\binsub_test.circom
+     项目: libs | 模式: main
+  21. libs\circomlib\test\circuits\escalarmulany_test.circom
+     项目: libs | 模式: main
+  22. libs\circomlib\test\circuits\escalarmulfix_test.circom
+     项目: libs | 模式: main
+  23. libs\circomlib\test\circuits\escalarmulw4table_test.circom
+     项目: libs | 模式: main
+  24. libs\circomlib\test\circuits\escalarmulw4table_test3.circom
+     项目: libs | 模式: main
+  25. libs\circomlib\test\circuits\escalarmul_min_test.circom
+     项目: libs | 模式: main
+  26. libs\circomlib\test\circuits\escalarmul_test.circom
+     项目: libs | 模式: main
+  27. libs\circomlib\test\circuits\escalarmul_test_min.circom
+     项目: libs | 模式: main
+  28. libs\circomlib\test\circuits\mux1_1.circom
+     项目: libs | 模式: main
+  29. libs\circomlib\test\circuits\mux2_1.circom
+     项目: libs | 模式: main
+  30. libs\circomlib\test\circuits\mux3_1.circom
+     项目: libs | 模式: main
+
+================================================================================
