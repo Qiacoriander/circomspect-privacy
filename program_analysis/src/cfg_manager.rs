@@ -258,3 +258,141 @@ impl Default for CfgManager {
         Self::new()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use program_structure::cfg::Cfg;
+    use program_structure::ir::{Expression, Meta};
+    use parser::parse_definition;
+    use program_structure::report::ReportCollection;
+    use program_structure::constants::Curve;
+    use program_structure::control_flow_graph::IntoCfg;
+
+    fn create_cfg_from_source(src: &str) -> Cfg {
+        let mut reports = ReportCollection::new();
+        parse_definition(src)
+            .expect("Failed to parse definition")
+            .into_cfg(&Curve::default(), &mut reports)
+            .expect("Failed to convert to CFG")
+    }
+
+    fn create_dummy_cfg(name: &str) -> Cfg {
+        create_cfg_from_source(&format!("template {}() {{ }}", name))
+    }
+
+    #[test]
+    fn test_add_and_get_template() {
+        let mut manager = CfgManager::new();
+        let cfg = create_dummy_cfg("TemplateA");
+        manager.add_template_cfg("TemplateA".to_string(), cfg);
+
+        assert!(manager.has_template("TemplateA"));
+        assert!(!manager.has_template("TemplateB"));
+        assert!(manager.get_template_cfg("TemplateA").is_some());
+    }
+
+    #[test]
+    fn test_link_call_to_template() {
+        let mut manager = CfgManager::new();
+        
+        // Create target template
+        let target_cfg = create_dummy_cfg("Target");
+        manager.add_template_cfg("Target".to_string(), target_cfg);
+
+        let mut expr_to_link = Expression::Call {
+            meta: Meta::default(),
+            name: "Target".to_string(),
+            args: vec![],
+            target_cfg: None,
+        };
+        
+        manager.link_expression_calls(&mut expr_to_link);
+
+        if let Expression::Call { target_cfg, .. } = expr_to_link {
+            assert!(target_cfg.is_some(), "Target CFG should be linked");
+            // Verify it links to "Target"
+            let weak = target_cfg.unwrap();
+            let strong = weak.upgrade().expect("Should be able to upgrade");
+            assert_eq!(strong.borrow().name(), "Target");
+        } else {
+            panic!("Expression changed type!");
+        }
+    }
+
+    #[test]
+    fn test_link_call_to_function() {
+        let mut manager = CfgManager::new();
+        
+        // Create target function
+        let target_cfg = create_dummy_cfg("my_func");
+        manager.add_function_cfg("my_func".to_string(), target_cfg);
+
+        let mut expr_to_link = Expression::Call {
+            meta: Meta::default(),
+            name: "my_func".to_string(),
+            args: vec![],
+            target_cfg: None,
+        };
+        
+        manager.link_expression_calls(&mut expr_to_link);
+
+        if let Expression::Call { target_cfg, .. } = expr_to_link {
+            assert!(target_cfg.is_some(), "Function CFG should be linked");
+            let weak = target_cfg.unwrap();
+            let strong = weak.upgrade().expect("Should be able to upgrade");
+            assert_eq!(strong.borrow().name(), "my_func");
+        } else {
+            panic!("Expression changed type!");
+        }
+    }
+
+    #[test]
+    fn test_component_dependency_linking() {
+        let mut manager = CfgManager::new();
+        
+        // 1. Create Template C
+        manager.add_template_cfg("C".to_string(), create_dummy_cfg("C"));
+
+        // 2. Create Template B which instantiates C: `component c = C();`
+        // Note: In Circom syntax for parser, we need a valid component instantiation.
+        // `template B() { component c = C(); }` produces a declaration and an assignment/call.
+        // The parser logic transforms `component c = C()` into a Call expression in the initialization.
+        let source_b = "template B() { component c = C(); }";
+        manager.add_template_cfg("B".to_string(), create_cfg_from_source(source_b));
+        
+        // 3. Trigger full linking
+        manager.link_call_references();
+        
+        // 4. Verify that B's CFG contains a linked call to C
+        let b_cfg_ref = manager.get_template_cfg("B").expect("B should exist");
+        let b_cfg_rc = b_cfg_ref.upgrade().expect("B should be valid");
+        let b_cfg = b_cfg_rc.borrow();
+        
+        let mut found_linked_call = false;
+        
+        // Iterate through all basic blocks and statements in B
+        for block in b_cfg.iter() {
+            for stmt in block.iter() {
+                // We are looking for an Expression::Call inside the statements.
+                // Instantiation `component c = C()` results in a `Substitution` statement
+                // with AssignOp::AssignLocalOrComponent.
+                use program_structure::ir::{Statement, AssignOp};
+                if let Statement::Substitution { op, rhe, .. } = stmt {
+                     if matches!(op, AssignOp::AssignLocalOrComponent) {
+                         if let Expression::Call { name, target_cfg, .. } = rhe {
+                             if name == "C" {
+                                 assert!(target_cfg.is_some(), "Call to C should be linked");
+                                 let target = target_cfg.as_ref().unwrap().upgrade().unwrap();
+                                 assert_eq!(target.borrow().name(), "C");
+                                 found_linked_call = true;
+                             }
+                         }
+                     }
+                }
+            }
+        }
+        
+        assert!(found_linked_call, "Did not find a linked call to C in B's CFG");
+    }
+}
