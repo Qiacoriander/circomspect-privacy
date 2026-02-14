@@ -5,6 +5,29 @@
 
 为了安全起见（避免漏报），分析器在这种情况下会采取**保守策略**，假设该操作可能泄露了信号的全部熵（通常为 254 bits）。这导致了大量的**误报 (False Positives)**，将低风险的精确位提取误报为高危的全量泄露。
 
+## 支持的位运算模式 (Supported Bit Patterns)
+
+### 基础模式: 右移与掩码 `(in >> i) & mask`
+*   **模式**: `(secret >> shift) & constant_mask`
+*   **支持场景**:
+    - 字面量移位: `(in >> 10) & 1` ✅
+    - 局部常量移位: `var s = 5; (in >> s) & 1` ✅
+    - 循环变量移位: `for (var i = 0; i < 8; i++) { (in >> i) & 1 }` ✅
+*   **量化方式**: 基于掩码的 popcount（1 的位数）
+
+### 扩展模式: 动态位掩码 `(in & (1 << i))`
+*   **模式**: `secret & (1 << shift)` 或 `(1 << shift) & secret`
+*   **支持场景**:
+    - 常量移位: `(in & (1 << 5))` ✅
+    - 循环变量移位: `for (var i = 0; i < 8; i++) { (in & (1 << i)) }` ✅
+*   **量化方式**: 每次提取 1 bit
+*   **测试文件**: [`test_mask_shift.circom`](./test_mask_shift.circom)
+
+### 其他位运算
+*   **位异或 (XOR)**: `(in ^ (1 << i))` - 测试文件: [`test_bit_xor.circom`](./test_bit_xor.circom)
+*   **位或 (OR)**: `(in | (1 << i))` - 测试文件: [`test_bit_or.circom`](./test_bit_or.circom)
+*   **注意**: 当前实现主要针对 BitAnd 进行优化。XOR 和 OR 的模式识别可能需要进一步扩展。
+
 ## 测试用例结果
 
 运行 `main.circom` 测试文件，包含四种典型场景：
@@ -31,16 +54,22 @@
 
 ### Case 4: 嵌套循环与表达式 (Nested Loop & Expression)
 *   **代码**: `for (i...) { for (j...) { ... (in >> (i*2+j)) ... } }`
-*   **预期**: 泄露 4 bits。
-*   **实际**: ✅ **Leaked 254 bits** (Critical Severity) - **符合预期逻辑**。
+*   **实际**: 🔴 **Failed (High Severity)**
 *   **状态**: [已确认] 这种涉及多变量的复杂算术表达式超出了简单静态分析的能力范围。分析器正确地将其归类为 "Variable Bit Extraction (unknown pattern)" 并报告最大熵泄露。这是合理的保守行为。
 
 ### Case 5: 变量做循环边界 (Constant Loop Bound)
 *   **代码**: `var n = 8; for (var i = 0; i < n; i++) { ... (in >> i) & 1 ... }`
 *   **预期**: 泄露 8 bits。
-*   **实际**: 🔴 **Failed (Critical Severity)**.
+*   **实际**: 🔴 **Failed (High Severity)** - 由于无法解析循环边界，作为保守默认值回退到 Maximum Entropy 泄露。在新的报告逻辑下，这通常会被标记为 High 或 Critical。
 *   **问题**: `detect_loop_variable_bound` 目前仅支持直接的数字字面量。
 *   **尝试修复**: 尝试引入常量传播上下文 (`env.constants`) 在分析阶段解析变量 `n`。但由于 Circomspect 的 IR 中局部变量声明与赋值语句的模式匹配存在困难（Initial Scan 未能捕获 `var n = 8` 的赋值操作），导致无法在隐私分析 pass 中建立准确的常量映射。目前仍作为已知限制保留。
+
+### Case 6: 动态位掩码 (Dynamic Bit Mask) 🆕
+*   **代码**: `for (var i = 0; i < 8; i++) { sum += (in & (1 << i)); }`
+*   **预期**: 泄露 8 bits。
+*   **实际**: ✅ **Leaked 8 bits** (High Severity)。
+*   **状态**: [已解决] 通过扩展 `BitAnd` 分支的模式匹配逻辑，识别 `(1 << shift)` 形式的动态掩码。
+*   **测试文件**: [`test_mask_shift.circom`](./test_mask_shift.circom)
 
 ## 机制说明 (Implementation Insights)
 
@@ -51,6 +80,12 @@
 3.  **逐位记录**: 在每次模拟迭代中，生成一个独立的 `LeakageOp::BitExtract { bit_index: i }`。
 4.  这种方式的优点是能精确记录“哪一位”被泄露了，而不仅仅是“泄露了多少位”。
 
+### 动态位掩码识别机制 🆕
+针对 `(secret & (1 << shift))` 模式：
+1.  **模式检测**: 在 `BitAnd` 运算符的分析分支中，检查操作数是否匹配 `(1 << expr)` 模式。
+2.  **方向无关**: 支持 `secret & mask` 和 `mask & secret` 两种顺序。
+3.  **循环分析**: 对于循环变量 `shift`，调用 `detect_loop_variable_bound` 获取边界。
+4.  **泄露记录**: 与基础模式相同，采用逐位记录策略。
 
 ## 根因分析
 1.  **缺乏常量传播**: 原有的分析pass在CFG构建后直接运行，未进行常量传播。**现已在隐私分析中集成局部常量传播**，解决了 Case 2。
@@ -60,3 +95,4 @@
 ## 下一步改进建议
 1.  **实现全局常量传播 Pass**: 虽然已实现局部传播，但独立的优化 Pass 能进一步提高整个编译管线的精度。
 2.  **符号执行 (Symbolic Execution)**: 对于更复杂的表达式（如 Case 4），未来可引入符号执行来计算位移量的精确取值集合，以替代目前的最大熵回退机制。
+3.  **扩展位运算支持**: 将动态位掩码的识别逻辑扩展到 `BitXor`、`BitOr` 等其他位运算符。

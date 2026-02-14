@@ -68,8 +68,8 @@ class AnalysisResult:
     project_name: str
     file_path: str
     mode: str  # 'main' 或 'library' (对应 rust 的 'all')
-    has_privacy_leak: bool  # 是否存在隐私泄露（output signal被污染）
-    has_quantified_partial_leak: bool  # 是否存在可量化的部分隐私泄露 (Quantified Partial Leak)
+    has_output_taint: bool  # 是否存在隐私泄露（output signal被污染）
+    has_quantified_leak: bool  # 是否存在可量化的部分隐私泄露 (Quantified Partial Leak)
     leak_count: int  # 泄露发生的总次数（基于警告数量）
     severity_low: int
     severity_medium: int
@@ -177,50 +177,99 @@ class CircomspectBenchmark:
         ]
         has_quantified_partial_leak = any(re.search(pattern, clean_output, re.IGNORECASE) for pattern in quantified_leak_patterns)
         
-        # 提取严重程度统计
-        # Pattern: warning[CS0021]: ... (Severity: High, ...)
-        severity_pattern = r'Severity:\s*(High|Medium|Low|Critical)'
-        severities = re.findall(severity_pattern, clean_output, re.IGNORECASE)
-        quantified_partial_leak_severity_counts = {
-            'Low': 0, 'Medium': 0, 'High': 0, 'Critical': 0
+            
+        # ==========================================================
+        # 统计逻辑：基于输入信号的最严重泄露 (Signal-Based Max Severity)
+        # ==========================================================
+        # 设计原则：一个信号可能通过多条路径泄露（如bitify.circom的in信号
+        # 同时有Low/High/Critical三种泄露），我们只记录该信号的最严重泄露级别。
+        # 这样统计的是"有多少个信号泄露到了X级别"，而不是"发生了多少次X级别泄露"。
+        #
+        # 例如: signal `in` 有 Low(1 bit) + High(253 bits) + Critical(254 bits)
+        # 统计结果: Critical=1 (而不是 Low=1, High=1, Critical=1)
+        # ==========================================================
+        
+        # 定义严重程度权重
+        severity_weight = {
+            'Low': 1,
+            'Medium': 2,
+            'High': 3,
+            'Critical': 4
         }
-        for s in severities:
-            s_cap = s.capitalize()
-            if s_cap in quantified_partial_leak_severity_counts:
-                quantified_partial_leak_severity_counts[s_cap] += 1
+        
+        # 存储每个输入信号的最大严重程度权重 (signal_name -> max_weight)
+        input_severities: Dict[str, int] = defaultdict(int)
+        
+        # 1. 解析 CS0021 (Quantified Leakage)
+        # 格式: Private signal `name` has quantified information leakage (Severity: High, ...)
+        cs0021_pattern = r"Private signal `(.*?)` has quantified information leakage \(Severity: (.*?),"
+        for match in re.finditer(cs0021_pattern, clean_output, re.IGNORECASE):
+            name = match.group(1)
+            sev_str = match.group(2).strip().capitalize()
+            weight = severity_weight.get(sev_str, 0)
+            
+            # 只保留该信号的最大严重程度
+            if weight > input_severities[name]:
+                input_severities[name] = weight
+                
+        # 2. 解析 CS0019 (Output Taint Provenance)
+        # 格式: warning: Output signal `out` is tainted by private inputs (leak level: Critical), ...
+        #       Tainted by: a, b
+        # 只处理 Critical 级别，因为其他级别应该已经在 CS0021 中统计
+        
+        cs0019_block_pattern = r"Output signal `.*?` is tainted by private inputs \(leak level: (.*?)\).*?\n.*?Tainted by:\s*([^\n]*)"
+        for match in re.finditer(cs0019_block_pattern, clean_output, re.IGNORECASE | re.DOTALL):
+            level_str = match.group(1).strip()
+            sources_str = match.group(2).strip()
+            
+            # 只处理 Critical 级别的 Output Taint
+            # PartialLeak 级别的 Output Taint 不应该覆盖 CS0021 计算出的 High/Medium/Low
+            if level_str.lower() == "critical":
+                sources = [s.strip() for s in sources_str.split(',')]
+                for src in sources:
+                    if src:
+                        # Critical (weight=4) 会覆盖任何较低级别
+                        input_severities[src] = 4
+                        
+        # 3. 统计最终结果：按严重程度分类计数
+        severity_low = 0
+        severity_medium = 0
+        severity_high = 0
+        severity_critical = 0
+        
+        for weight in input_severities.values():
+            if weight == 1:
+                severity_low += 1
+            elif weight == 2:
+                severity_medium += 1
+            elif weight == 3:
+                severity_high += 1
+            elif weight >= 4:
+                severity_critical += 1
+                
+        # 总泄露计数 (唯一信号数)
+        total_leak_count = len(input_severities)
+        
+        # 兼容旧字段
+        has_privacy_leak = severity_critical > 0
+        has_quantified_partial_leak = total_leak_count > 0
 
-        # 统计具体的泄露警告数量
-        # 注意：某些情况下（如 main 模式）输出可能不带 [CSxxxx]，所以使用内容匹配更稳健
-        warning_patterns = [
-            r'warning(?:\[CS0019\])?: Output signal',  # Output signal is tainted
-            r'warning(?:\[CS0021\])?: Private signal', # Quantified information leakage
-            # r'warning(?:\[CS0020\])?: Constraint contains tainted', # Deprecated: Too noisy (internal constraints)
-        ]
-        
-        # 统计具体的泄露警告数量
-        # 为避免双重统计 (例如: 1个Input发生PartialLeak导致1个Output变脏，会同时触发CS0019和CS0021)，
-        # 我们采用 max(CS0019数量, CS0021数量) 的策略来估算"风险信号总数"。
-        # - Fan-in (多Input -> 单Output): CS0021 > CS0019 -> 取 CS0021 (多个秘密被泄露)
-        # - Fan-out (单Input -> 多Output): CS0019 > CS0021 -> 取 CS0019 (多个出口在泄露)
-        # - 1-to-1 Partial: CS0019 == CS0021 == 1 -> 取 1 (去重)
-        
-        count_cs0019 = len(re.findall(warning_patterns[0], clean_output, re.IGNORECASE))
-        count_cs0021 = len(re.findall(warning_patterns[1], clean_output, re.IGNORECASE))
-        
-        total_leak_count = max(count_cs0019, count_cs0021)
-        
-        # 兼容性兜底：如果 regex 检测到泄露但 count 为 0
-        if (has_privacy_leak or has_quantified_partial_leak) and total_leak_count == 0:
-            total_leak_count = 1
-
+        # 兼容性兜底：如果没有解析到任何量化信息，但检测到旧式泄露警告
+        if total_leak_count == 0:
+            old_privacy_leak = any(re.search(pattern, clean_output, re.IGNORECASE) for pattern in privacy_leak_patterns)
+            if old_privacy_leak:
+                has_privacy_leak = True
+                severity_critical = 1
+                total_leak_count = 1
+                
         return {
-            'has_privacy_leak': has_privacy_leak,
-            'has_quantified_partial_leak': has_quantified_partial_leak,
+            'has_output_taint': has_privacy_leak,
+            'has_quantified_leak': has_quantified_partial_leak,
             'leak_count': total_leak_count,
-            'severity_low': quantified_partial_leak_severity_counts['Low'],
-            'severity_medium': quantified_partial_leak_severity_counts['Medium'],
-            'severity_high': quantified_partial_leak_severity_counts['High'],
-            'severity_critical': quantified_partial_leak_severity_counts['Critical']
+            'severity_low': severity_low,
+            'severity_medium': severity_medium,
+            'severity_high': severity_high,
+            'severity_critical': severity_critical
         }
     
     def run_analysis(self, file_path: Path, mode: str, project_name: str) -> AnalysisResult:
@@ -287,8 +336,8 @@ class CircomspectBenchmark:
                 project_name=project_name,
                 file_path=str(file_path.relative_to(self.benchmark_dir)),
                 mode=mode,
-                has_privacy_leak=detection_result['has_privacy_leak'],
-                has_quantified_partial_leak=detection_result['has_quantified_partial_leak'],
+                has_output_taint=detection_result['has_output_taint'],
+                has_quantified_leak=detection_result['has_quantified_leak'],
                 leak_count=detection_result['leak_count'],
                 severity_low=detection_result['severity_low'],
                 severity_medium=detection_result['severity_medium'],
@@ -304,8 +353,8 @@ class CircomspectBenchmark:
                 project_name=project_name,
                 file_path=str(file_path.relative_to(self.benchmark_dir)),
                 mode=mode,
-                has_privacy_leak=False,
-                has_quantified_partial_leak=False,
+                has_output_taint=False,
+                has_quantified_leak=False,
                 leak_count=0,
                 severity_low=0,
                 severity_medium=0,
@@ -320,8 +369,8 @@ class CircomspectBenchmark:
                 project_name=project_name,
                 file_path=str(file_path.relative_to(self.benchmark_dir)),
                 mode=mode,
-                has_privacy_leak=False,
-                has_quantified_partial_leak=False,
+                has_output_taint=False,
+                has_quantified_leak=False,
                 leak_count=0,
                 severity_low=0,
                 severity_medium=0,
@@ -386,11 +435,11 @@ class CircomspectBenchmark:
                 
                 if self.verbose:
                     if result.success:
-                        leak_status = "有隐私泄露" if result.has_privacy_leak else "无隐私泄露"
+                        leak_status = "有隐私泄露" if result.has_output_taint else "无隐私泄露"
                         print(f"    [{current_mode}] {leak_status} (用时: {result.analysis_time:.2f}秒)")
                 else:
                     # 更新进度条
-                    leaking_files_count = sum(1 for r in results if r.project_name == project_name and r.has_privacy_leak)
+                    leaking_files_count = sum(1 for r in results if r.project_name == project_name and (r.has_output_taint or r.has_quantified_leak))
                     total_leak_instances = sum(r.leak_count for r in results if r.project_name == project_name)
                     progress_bar.suffix = f"完成 (风险文件: {leaking_files_count}, 风险信号: {total_leak_instances})"
                     progress_bar.print_progress(i + 1)
@@ -465,8 +514,8 @@ class CircomspectBenchmark:
         total_time = sum(r.analysis_time for r in results)
         
         # 隐私泄露统计
-        privacy_leaks = [r for r in results if r.has_privacy_leak]
-        quantified_partial_leaks = [r for r in results if r.has_quantified_partial_leak]
+        privacy_leaks = [r for r in results if r.has_output_taint]
+        quantified_partial_leaks = [r for r in results if r.has_quantified_leak]
         
         files_with_privacy_leak = len(privacy_leaks)
         files_with_quantified_partial_leak = len(quantified_partial_leaks)
@@ -477,10 +526,8 @@ class CircomspectBenchmark:
         lines.append(f"  运行状况: 成功={successful}, 失败={failed}")
         lines.append(f"  总用时: {total_time:.2f} 秒")
         
-        unique_issues_total = sum(1 for r in results if r.has_privacy_leak or r.has_quantified_partial_leak)
-        lines.append(f"  存在输出污点(隐私信号可能直接泄露)的文件数: {files_with_privacy_leak}")
-        lines.append(f"  存在量化隐私泄露的文件数: {files_with_quantified_partial_leak}")
-        lines.append(f"  总风险文件数(去重): {unique_issues_total} ({unique_issues_total/total_files*100:.1f}%)")
+        unique_issues_total = sum(1 for r in results if r.has_output_taint or r.has_quantified_leak)
+        lines.append(f"  存在隐私泄露的文件数: {unique_issues_total} ({unique_issues_total/total_files*100:.1f}%)")
         
         total_leak_instances = sum(r.leak_count for r in results)
         total_severity = {'Low': 0, 'Medium': 0, 'High': 0, 'Critical': 0}
@@ -490,7 +537,7 @@ class CircomspectBenchmark:
             total_severity['High'] += r.severity_high
             total_severity['Critical'] += r.severity_critical
 
-        lines.append(f"  风险信号总数: {total_leak_instances} ( 可量化的部分泄露统计——Low: {total_severity['Low']}, Medium: {total_severity['Medium']}, High: {total_severity['High']}, Critical: {total_severity['Critical']})")
+        lines.append(f"  风险信号总数: {total_leak_instances} (Low: {total_severity['Low']}, Medium: {total_severity['Medium']}, High: {total_severity['High']}, Critical(Tainted): {total_severity['Critical']})")
             
         # 按项目统计
         lines.append("\n【按项目统计】")
@@ -509,9 +556,9 @@ class CircomspectBenchmark:
             stats = project_stats[result.project_name]
             stats['files'] += 1
             stats['total_leak_count'] += result.leak_count
-            if result.has_privacy_leak:
+            if result.has_output_taint:
                 stats['privacy_leak_files'] += 1
-            if result.has_quantified_partial_leak:
+            if result.has_quantified_leak:
                 stats['quantified_partial_leak_files'] += 1
         
         # 按隐私泄露文件数排序
@@ -530,10 +577,10 @@ class CircomspectBenchmark:
                 # 计算两者的并集（去重后的风险文件数）
                 # 注意：由于 project_stats 只是简单的计数器，没有保存文件集合，这里只能展示独立统计
                 # 若要准确计算并集，需要在遍历 results 时记录
-                unique_issues_count = sum(1 for r in results if r.project_name == project_name and (r.has_privacy_leak or r.has_quantified_partial_leak))
+                unique_issues_count = sum(1 for r in results if r.project_name == project_name and (r.has_output_taint or r.has_quantified_leak))
                 
-                leak_info = f"存在输出信号直接污点（Tainted）的文件: {stats['privacy_leak_files']}, 存在量化隐私泄露的文件: {stats['quantified_partial_leak_files']}, 总风险文件数(去重): {unique_issues_count}"
-                leak_info += f", 风险信号总数: {stats['total_leak_count']} ( 可量化隐私泄露——Low: {sev_low}, Medium: {sev_medium}, High: {sev_high}, Critical: {sev_critical})"
+                leak_info = f"存在隐私泄露的文件数: {unique_issues_count}"
+                leak_info += f", 风险信号总数: {stats['total_leak_count']} (Low: {sev_low}, Medium: {sev_medium}, High: {sev_high}, Critical: {sev_critical})"
                 
                 lines.append(f"  - {project_name}: {stats['files']} 文件, {leak_info}")
         
@@ -541,7 +588,7 @@ class CircomspectBenchmark:
         lines.append("\n【存在隐私泄露的文件详情 (风险最高前30)】")
         
         # 筛选出所有有问题的文件
-        all_leaking_files = [r for r in results if r.has_privacy_leak or r.has_quantified_partial_leak]
+        all_leaking_files = [r for r in results if r.has_output_taint or r.has_quantified_leak]
         
         # 排序：按严重程度 Crit > High > Medium > Low > 总数 降序排列
         all_leaking_files.sort(
