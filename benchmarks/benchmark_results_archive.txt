@@ -1,0 +1,122 @@
+
+================================================================================
+Circomspect 隐私泄露检测基准测试报告
+================================================================================
+
+【总体统计】
+  总分析文件数: 454
+  模式分布: Main=116, Library=338
+  运行状况: 成功=446, 失败=8
+  总用时: 881.69 秒
+  存在隐私泄露的文件数: 255 (56.2%)
+  风险信号总数: 556 (Low: 34, Medium: 22, High: 0, Critical(Tainted): 500)
+
+【按项目统计】
+  - circomlib: 104 文件, 存在隐私泄露的文件数: 59, 风险信号总数: 122 (Low: 5, Medium: 0, High: 0, Critical: 117)
+  - circomlib-ml: 65 文件, 存在隐私泄露的文件数: 40, 风险信号总数: 67 (Low: 2, Medium: 0, High: 0, Critical: 65)
+  - telepathy: 57 文件, 存在隐私泄露的文件数: 32, 风险信号总数: 65 (Low: 0, Medium: 8, High: 0, Critical: 57)
+  - circom-pairing: 63 文件, 存在隐私泄露的文件数: 20, 风险信号总数: 53 (Low: 0, Medium: 9, High: 0, Critical: 44)
+  - ed25519-099d19c-fixed: 29 文件, 存在隐私泄露的文件数: 19, 风险信号总数: 24 (Low: 0, Medium: 1, High: 0, Critical: 23)
+  - circomlib-matrix: 26 文件, 存在隐私泄露的文件数: 14, 风险信号总数: 14 (Low: 0, Medium: 0, High: 0, Critical: 14)
+  - hermez-network-9a696e3-fixed: 15 文件, 存在隐私泄露的文件数: 12, 风险信号总数: 74 (Low: 15, Medium: 3, High: 0, Critical: 56)
+  - aes-circom-0784f74: 20 文件, 存在隐私泄露的文件数: 11, 风险信号总数: 11 (Low: 0, Medium: 0, High: 0, Critical: 11)
+  - iden3-core-56a08f9: 12 文件, 存在隐私泄露的文件数: 11, 风险信号总数: 43 (Low: 0, Medium: 1, High: 0, Critical: 42)
+  - maci-9b1b1a6-fixed: 14 文件, 存在隐私泄露的文件数: 11, 风险信号总数: 28 (Low: 11, Medium: 0, High: 0, Critical: 17)
+  - circom-ecdsa: 34 文件, 存在隐私泄露的文件数: 11, 风险信号总数: 16 (Low: 1, Medium: 0, High: 0, Critical: 15)
+  - darkforest-eth-9033eaf: 9 文件, 存在隐私泄露的文件数: 9, 风险信号总数: 30 (Low: 0, Medium: 0, High: 0, Critical: 30)
+  - hydra-2010a65: 3 文件, 存在隐私泄露的文件数: 3, 风险信号总数: 6 (Low: 0, Medium: 0, High: 0, Critical: 6)
+  - keccak256-circom-af3e898: 3 文件, 存在隐私泄露的文件数: 3, 风险信号总数: 3 (Low: 0, Medium: 0, High: 0, Critical: 3)
+
+【存在隐私泄露的文件详情 (风险最高前30)】
+  1. hermez-network-9a696e3-fixed\src\rollup-tx.circom
+     项目: hermez-network-9a696e3-fixed | 模式: library
+     严重程度: Crit=14, High=0, Med=3, Low=6 (总信号: 23)
+  2. hermez-network-9a696e3-fixed\src\decode-tx.circom
+     项目: hermez-network-9a696e3-fixed | 模式: library
+     严重程度: Crit=10, High=0, Med=0, Low=0 (总信号: 10)
+  3. circomlib\circuits\smt\smtprocessorsm.circom
+     项目: circomlib | 模式: library
+     严重程度: Crit=9, High=0, Med=0, Low=0 (总信号: 9)
+  4. hermez-network-9a696e3-fixed\src\balance-updater.circom
+     项目: hermez-network-9a696e3-fixed | 模式: library
+     严重程度: Crit=9, High=0, Med=0, Low=0 (总信号: 9)
+  5. circomlib\circuits\smt\smtverifiersm.circom
+     项目: circomlib | 模式: library
+     严重程度: Crit=8, High=0, Med=0, Low=0 (总信号: 8)
+  6. iden3-core-56a08f9\query\credentialAtomicQuerySig.circom
+     项目: iden3-core-56a08f9 | 模式: library
+     严重程度: Crit=8, High=0, Med=0, Low=0 (总信号: 8)
+  7. circomlib\circuits\babyjub.circom
+     项目: circomlib | 模式: library
+     严重程度: Crit=7, High=0, Med=0, Low=0 (总信号: 7)
+  8. circomlib-ml\circuits\circomlib\babyjub.circom
+     项目: circomlib-ml | 模式: library
+     严重程度: Crit=7, High=0, Med=0, Low=0 (总信号: 7)
+  9. darkforest-eth-9033eaf\move.circom
+     项目: darkforest-eth-9033eaf | 模式: library
+     严重程度: Crit=7, High=0, Med=0, Low=0 (总信号: 7)
+  10. hermez-network-9a696e3-fixed\src\hash-inputs.circom
+     项目: hermez-network-9a696e3-fixed | 模式: library
+     严重程度: Crit=7, High=0, Med=0, Low=0 (总信号: 7)
+  11. iden3-core-56a08f9\query\credentialAtomicQueryMTPWithRelay.circom
+     项目: iden3-core-56a08f9 | 模式: library
+     严重程度: Crit=7, High=0, Med=0, Low=0 (总信号: 7)
+  12. maci-9b1b1a6-fixed\updateStateTree.circom
+     项目: maci-9b1b1a6-fixed | 模式: library
+     严重程度: Crit=6, High=0, Med=0, Low=9 (总信号: 15)
+  13. hermez-network-9a696e3-fixed\src\fee-tx.circom
+     项目: hermez-network-9a696e3-fixed | 模式: library
+     严重程度: Crit=6, High=0, Med=0, Low=1 (总信号: 7)
+  14. circom-ecdsa\circuits\bigint.circom
+     项目: circom-ecdsa | 模式: library
+     严重程度: Crit=6, High=0, Med=0, Low=0 (总信号: 6)
+  15. circom-pairing\circuits\bigint.circom
+     项目: circom-pairing | 模式: library
+     严重程度: Crit=6, High=0, Med=0, Low=0 (总信号: 6)
+  16. circomlib\circuits\smt\smtprocessor.circom
+     项目: circomlib | 模式: library
+     严重程度: Crit=6, High=0, Med=0, Low=0 (总信号: 6)
+  17. darkforest-eth-9033eaf\perlin.circom
+     项目: darkforest-eth-9033eaf | 模式: library
+     严重程度: Crit=6, High=0, Med=0, Low=0 (总信号: 6)
+  18. iden3-core-56a08f9\query\credentialAtomicQueryMTP.circom
+     项目: iden3-core-56a08f9 | 模式: library
+     严重程度: Crit=6, High=0, Med=0, Low=0 (总信号: 6)
+  19. telepathy\circuits\circuits\pairing\bigint.circom
+     项目: telepathy | 模式: library
+     严重程度: Crit=6, High=0, Med=0, Low=0 (总信号: 6)
+  20. circomlib-ml\test\circuits\encrypted_mnist_latest_test.circom
+     项目: circomlib-ml | 模式: main
+     严重程度: Crit=5, High=0, Med=0, Low=0 (总信号: 5)
+  21. iden3-core-56a08f9\stateTransition.circom
+     项目: iden3-core-56a08f9 | 模式: library
+     严重程度: Crit=4, High=0, Med=1, Low=0 (总信号: 5)
+  22. circom-pairing\circuits\bls12_381_hash_to_G2.circom
+     项目: circom-pairing | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+  23. circom-pairing\circuits\extra_field_circuits.circom
+     项目: circom-pairing | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+  24. circomlib\circuits\escalarmul.circom
+     项目: circomlib | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+  25. circomlib\circuits\escalarmulfix.circom
+     项目: circomlib | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+  26. circomlib\circuits\smt\smtprocessorlevel.circom
+     项目: circomlib | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+  27. circomlib-ml\circuits\circomlib\escalarmulfix.circom
+     项目: circomlib-ml | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+  28. darkforest-eth-9033eaf\init.circom
+     项目: darkforest-eth-9033eaf | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+  29. darkforest-eth-9033eaf\reveal.circom
+     项目: darkforest-eth-9033eaf | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+  30. ed25519-099d19c-fixed\binadd.circom
+     项目: ed25519-099d19c-fixed | 模式: library
+     严重程度: Crit=4, High=0, Med=0, Low=0 (总信号: 4)
+
+================================================================================
