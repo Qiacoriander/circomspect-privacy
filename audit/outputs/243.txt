@@ -1,0 +1,352 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.32s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'SplitThreeFn'
+circomspect: analyzing function 'long_sub'
+circomspect: analyzing function 'mod_exp'
+circomspect: analyzing function 'long_scalar_mult'
+circomspect: analyzing function 'log_ceil'
+circomspect: analyzing function 'short_div'
+circomspect: analyzing function 'prod'
+circomspect: analyzing function 'prod2D'
+circomspect: analyzing function 'mod_inv'
+circomspect: analyzing function 'long_add_unequal'
+circomspect: analyzing function 'long_add'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'signed_long_to_short'
+circomspect: analyzing function 'min'
+circomspect: analyzing function 'long_is_zero'
+circomspect: analyzing function 'long_sub_mod'
+circomspect: analyzing function 'SplitFn'
+circomspect: analyzing function 'max'
+circomspect: analyzing function 'long_add4'
+circomspect: analyzing function 'long_div'
+circomspect: analyzing function 'long_add_mod'
+circomspect: analyzing function 'long_div2'
+circomspect: analyzing function 'long_gt'
+circomspect: analyzing function 'short_div_norm'
+circomspect: analyzing function 'prod_mod'
+circomspect: analyzing template 'AND'
+circomspect: analyzing template 'MultiAND'
+circomspect: analyzing template 'SplitThree'
+circomspect: analyzing template 'Split'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'LongToShortNoEndCarry'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'FpAdd'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: a, b
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:13:5
+   │
+13 │     signal output out[k];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:36:5
+   │
+36 │     sub.out[k] === 0;
+   │     ^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: sub
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `b` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:12:5
+   │
+12 │     signal input b[k];
+   │     ^^^^^^^^^^^^^^^^^ Signal `b` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `a` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:11:5
+   │
+11 │     signal input a[k];
+   │     ^^^^^^^^^^^^^^^^^ Signal `a` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'CheckCarryModP'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'SignedCheckCarryModToZero'
+warning: Output signal `X` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:198:5
+    │
+198 │     signal output X[m];
+    │     ^^^^^^^^^^^^^^^^^^ The output signal `X` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:206:9
+    │
+206 │         X[i] <-- Xvar[0][i];
+    │         ^^^^^^^^^^^^^^^^^^^ The assigned signal `X[i]` is not constrained here.
+207 │         X_range_checks[i] = Num2Bits(n+1);
+208 │         X_range_checks[i].in <== X[i] + (1<<n); // X[i] should be between [-2^n, 2^n)
+    │         -------------------------------------- The signal `X[i]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'BigSubModP'
+circomspect: analyzing template 'SignedFpCarryModP'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:153:5
+    │
+153 │     signal output out[k];
+    │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `X` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:152:5
+    │
+152 │     signal output X[m];
+    │     ^^^^^^^^^^^^^^^^^^ The output signal `X` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:163:9
+    │
+163 │         out[i] <-- Xvar[1][i];
+    │         ^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[i]` is not constrained here.
+164 │         range_checks[i] = Num2Bits(n); 
+165 │         range_checks[i].in <== out[i];
+    │         ----------------------------- The signal `out[i]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:172:9
+    │
+172 │         X[i] <-- Xvar[0][i];
+    │         ^^^^^^^^^^^^^^^^^^^ The assigned signal `X[i]` is not constrained here.
+173 │         X_range_checks[i] = Num2Bits(n+1);
+174 │         X_range_checks[i].in <== X[i] + (1<<n); // X[i] should be between [-2^n, 2^n)
+    │         -------------------------------------- The signal `X[i]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+circomspect: analyzing template 'OR'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'BigIsZero'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'BigMult'
+circomspect: analyzing template 'BigModInv'
+circomspect: analyzing template 'BigMod2'
+circomspect: analyzing template 'FpNegate'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: a, b
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:73:5
+   │
+73 │     signal output out[k];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:83:5
+   │
+83 │     neg.underflow === 0; // constrain in <= p
+   │     ^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: neg
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `in` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:72:5
+   │
+72 │     signal input in[k];
+   │     ^^^^^^^^^^^^^^^^^^ Signal `in` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'NOT'
+circomspect: analyzing template 'BigAddModP'
+circomspect: analyzing template 'BigMultModP'
+circomspect: analyzing template 'ModSum'
+circomspect: analyzing template 'NAND'
+circomspect: analyzing template 'BigSub'
+circomspect: analyzing template 'BigAdd'
+circomspect: analyzing template 'FpIsEqual'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:267:5
+    │
+267 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:277:9
+    │
+277 │         lt[i].out === 1;
+    │         ^^^^^^^^^^^^^^^^ This constraint involves tainted variables: lt
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'BigMultShortLong2D'
+circomspect: analyzing template 'FpSubtract'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: a, b
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:48:5
+   │
+48 │     signal output out[k];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `b` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:47:5
+   │
+47 │     signal input b[k];
+   │     ^^^^^^^^^^^^^^^^^ Signal `b` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'PrimeReduce'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'BigLessThan'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'CheckCarryToZero'
+circomspect: analyzing template 'BigMultShortLongUnequal'
+circomspect: analyzing template 'ModSub'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'BigMultShortLong2DUnequal'
+circomspect: analyzing template 'XOR'
+circomspect: analyzing template 'FpIsZero'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:250:5
+    │
+250 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:261:5
+    │
+261 │     lt.out === 1;
+    │     ^^^^^^^^^^^^^ This constraint involves tainted variables: lt
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+circomspect: analyzing template 'ModProd'
+circomspect: analyzing template 'ModSumThree'
+circomspect: analyzing template 'ModSumFour'
+circomspect: analyzing template 'NOR'
+circomspect: analyzing template 'BigMod'
+circomspect: analyzing template 'ModSubThree'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'FpSgn0'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:228:5
+    │
+228 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:236:5
+    │
+236 │     lt.out === 1;
+    │     ^^^^^^^^^^^^^ This constraint involves tainted variables: lt
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:244:5
+    │
+244 │     out * (1 - out) === 0;
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: out, out
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:245:5
+    │
+245 │     in[0] === 2 * div + out;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: in, div, out
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:243:5
+    │
+243 │     div <-- q; 
+    │     ^^^^^^^^^ The assigned signal `div` is not constrained here.
+244 │     out * (1 - out) === 0;
+245 │     in[0] === 2 * div + out;
+    │     ------------------------ The signal `div` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:241:5
+    │
+241 │     out <-- r;
+    │     ^^^^^^^^^ The assigned signal `out` is not constrained here.
+    ·
+244 │     out * (1 - out) === 0;
+    │     ---------------------- The signal `out` is constrained here.
+245 │     in[0] === 2 * div + out;
+    │     ------------------------ The signal `out` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+circomspect: analyzing template 'BigIsEqual'
+circomspect: analyzing template 'BigMultShortLong'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'FpMultiply'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/pairing/fp.circom:92:5
+   │
+92 │     signal output out[k];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'GreaterThan'
+circomspect: 26 issues found.
+
+----------------------------------------
+STDERR:

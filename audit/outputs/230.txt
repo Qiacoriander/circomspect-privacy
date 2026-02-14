@@ -1,0 +1,116 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/ssz.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.19s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'bsigma0'
+circomspect: analyzing function 'rrot'
+circomspect: analyzing function 'ssigma1'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'sha256K'
+circomspect: analyzing function 'ChT'
+circomspect: analyzing function 'ssigma0'
+circomspect: analyzing function 'MajT'
+circomspect: analyzing function 'bsigma1'
+circomspect: analyzing function 'sha256compression'
+circomspect: analyzing template 'Sha256compression'
+circomspect: analyzing template 'T2'
+circomspect: analyzing template 'SSZPhase0BeaconBlockHeader'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/ssz.circom:106:5
+    │
+106 │     signal output out[32];
+    │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'SmallSigma'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'Sha256Bytes'
+circomspect: analyzing template 'K'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'Maj_t'
+circomspect: analyzing template 'H'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'T1'
+circomspect: analyzing template 'SigmaPlus'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'SSZRestoreMerkleRoot'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/ssz.circom:154:5
+    │
+154 │     signal output out[32];
+    │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'Ch_t'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'Sha256BytesOutputBits'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'SSZPhase0SigningRoot'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/ssz.circom:134:5
+    │
+134 │     signal output out[32];
+    │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'BigSigma'
+circomspect: analyzing template 'Xor3'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'RotR'
+circomspect: analyzing template 'Sha256'
+circomspect: analyzing template 'SSZLayer'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/ssz.circom:12:5
+   │
+12 │     signal output out[numBytes\ 2];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'SSZPhase0SyncCommittee'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/ssz.circom:61:5
+   │
+61 │     signal output out[OUT_SIZE];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'SSZArray'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/ssz.circom:36:5
+   │
+36 │     signal output out[32];
+   │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'ShR'
+circomspect: 6 issues found.
+
+----------------------------------------
+STDERR:

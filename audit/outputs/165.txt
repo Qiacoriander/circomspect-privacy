@@ -1,0 +1,152 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.02s
+----------------------------------------
+STDOUT:
+circomspect: analyzing template 'fulladder'
+warning: Output signal `val` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: bit1, bit2, carry
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:93:5
+   │
+93 │     signal output val;
+   │     ^^^^^^^^^^^^^^^^^ The output signal `val` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `carry_out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: bit1, bit2, carry
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:94:5
+   │
+94 │     signal output carry_out;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^ The output signal `carry_out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:97:5
+   │
+97 │     val * (val - 1) === 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: val, val
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:99:5
+   │
+99 │     carry_out * (carry_out - 1) === 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: carry_out, carry_out
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:96:5
+   │
+96 │     val <-- (bit1 + bit2 + carry) % 2;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `val` is not constrained here.
+97 │     val * (val - 1) === 0;
+   │     ---------------------- The signal `val` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:98:5
+   │
+98 │     carry_out <-- (bit1 + bit2 + carry) \ 2;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `carry_out` is not constrained here.
+99 │     carry_out * (carry_out - 1) === 0;
+   │     ---------------------------------- The signal `carry_out` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+circomspect: analyzing template 'BinAdd'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+  ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:5:5
+  │
+5 │     signal output out[nBits+1];
+  │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+  │
+  = Consider using cryptographic primitives like hashing or commitments to protect private information.
+    To ignore this type of result, use `--allow CS0019`.
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'onlycarry'
+warning: Output signal `val` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: bit, carry
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:106:5
+    │
+106 │     signal output val;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `val` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `carry_out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: bit, carry
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:107:5
+    │
+107 │     signal output carry_out;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ The output signal `carry_out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:110:5
+    │
+110 │     val * (val - 1) === 0;
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: val, val
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:112:5
+    │
+112 │     carry * (carry - 1) === 0;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: carry, carry
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:111:5
+    │
+111 │     carry_out <-- (bit + carry) \ 2;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `carry_out` is not constrained here.
+    │
+    = Consider if it is possible to rewrite the statement using `<==` instead.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:109:5
+    │
+109 │     val <-- (bit + carry) % 2;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `val` is not constrained here.
+110 │     val * (val - 1) === 0;
+    │     ---------------------- The signal `val` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+circomspect: analyzing template 'BinAddIrregular'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/ed25519-099d19c-fixed/binadd.circom:51:5
+   │
+51 │     signal output out[mBits+1];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: 14 issues found.
+
+----------------------------------------
+STDERR:

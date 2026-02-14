@@ -1,0 +1,64 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/rq-tx-verifier.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.06s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'nbits'
+circomspect: analyzing template 'Mux3'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'MultiMux3'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'RqTxVerifier'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/rq-tx-verifier.circom:91:5
+   │
+91 │     muxTxCompressedDataV2.out === rqTxCompressedDataV2;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: muxTxCompressedDataV2, rqTxCompressedDataV2
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/rq-tx-verifier.circom:92:5
+   │
+92 │     muxToEthAddr.out === rqToEthAddr;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: muxToEthAddr, rqToEthAddr
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/rq-tx-verifier.circom:93:5
+   │
+93 │     muxToBjjAy.out === rqToBjjAy;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: muxToBjjAy, rqToBjjAy
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `rqTxOffset` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/rq-tx-verifier.circom:33:5
+   │
+33 │     signal input rqTxOffset;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^ Signal `rqTxOffset` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: 4 issues found.
+
+----------------------------------------
+STDERR:

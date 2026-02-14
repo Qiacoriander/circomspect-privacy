@@ -1,0 +1,21 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifierlevel.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.00s
+----------------------------------------
+STDOUT:
+circomspect: analyzing template 'SMTVerifierLevel'
+warning: Output signal `root` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: new1leaf, st_inew
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifierlevel.circom:48:5
+   │
+48 │     signal output root;
+   │     ^^^^^^^^^^^^^^^^^^ The output signal `root` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: 1 issue found.
+
+----------------------------------------
+STDERR:

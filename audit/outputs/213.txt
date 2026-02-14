@@ -1,0 +1,127 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/maci-9b1b1a6-fixed/batchUpdateStateTree.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 3.51s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'POSEIDON_M'
+circomspect: analyzing function 'sqrt'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'POSEIDON_P'
+circomspect: analyzing function 'POSEIDON_S'
+circomspect: analyzing function 'POSEIDON_C'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'LeafExists'
+circomspect: analyzing template 'CalculateTotal'
+circomspect: analyzing template 'BabyPbk'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'QuinCheckRoot'
+circomspect: analyzing template 'EscalarMulAny'
+circomspect: analyzing template 'CheckValidUpdate'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'MiMCSponge'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'Bits2Point_Strict'
+circomspect: analyzing template 'Poseidon'
+circomspect: analyzing template 'MultiMux1'
+circomspect: analyzing template 'Bits2Point'
+circomspect: analyzing template 'MontgomeryDouble'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'QuinLeafExists'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'Edwards2Montgomery'
+circomspect: analyzing template 'SegmentMulFix'
+circomspect: analyzing template 'BabyCheck'
+circomspect: analyzing template 'BatchUpdateStateTree'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/maci-9b1b1a6-fixed/batchUpdateStateTree.circom:52:5
+   │
+52 │     msg_tree_index_checker.out === 1;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: msg_tree_index_checker
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/maci-9b1b1a6-fixed/batchUpdateStateTree.circom:155:9
+    │
+155 │         new_state_tree[i].root === state_tree_root[i + 1];
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: new_state_tree, state_tree_root
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/maci-9b1b1a6-fixed/batchUpdateStateTree.circom:157:5
+    │
+157 │     new_state_tree[batch_size - 1].root === random_leaf_root;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: new_state_tree, random_leaf_root
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `msg_tree_batch_end_index` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/maci-9b1b1a6-fixed/batchUpdateStateTree.circom:41:5
+   │
+41 │     signal input msg_tree_batch_end_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Signal `msg_tree_batch_end_index` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'Mux3'
+circomspect: analyzing template 'BabyDbl'
+circomspect: analyzing template 'Mux2'
+circomspect: analyzing template 'QuinTreeInclusionProof'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'Splicer'
+circomspect: analyzing template 'Sigma'
+circomspect: analyzing template 'Ark'
+circomspect: analyzing template 'UpdateStateTree'
+circomspect: analyzing template 'Point2Bits_Strict'
+circomspect: analyzing template 'Mix'
+circomspect: analyzing template 'Multiplexor2'
+circomspect: analyzing template 'PoseidonHashT3'
+circomspect: analyzing template 'Ecdh'
+circomspect: analyzing template 'EscalarMulFix'
+circomspect: analyzing template 'PublicKey'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'MultiMux3'
+circomspect: analyzing template 'VerifySignature7'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'MontgomeryAdd'
+circomspect: analyzing template 'SegmentMulAny'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'HashLeftRight'
+circomspect: analyzing template 'BabyAdd'
+circomspect: analyzing template 'CheckRoot'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'MiMC7'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'Mux1'
+circomspect: analyzing template 'PerformChecksBeforeUpdate'
+circomspect: analyzing template 'MiMCFeistel'
+circomspect: analyzing template 'QuinGeneratePathIndices'
+circomspect: analyzing template 'WindowMulFix'
+circomspect: analyzing template 'MultiMux2'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'MultiMiMC7'
+circomspect: analyzing template 'Hasher11'
+circomspect: analyzing template 'BitElementMulAny'
+circomspect: analyzing template 'MerkleTreeInclusionProof'
+circomspect: analyzing template 'MixS'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'Decrypt'
+circomspect: analyzing template 'PoseidonEx'
+circomspect: analyzing template 'Hasher5'
+circomspect: analyzing template 'EdDSAPoseidonVerifier_patched'
+circomspect: analyzing template 'MixLast'
+circomspect: analyzing template 'QuinSelector'
+circomspect: analyzing template 'Montgomery2Edwards'
+circomspect: analyzing template 'PoseidonHashT6'
+circomspect: analyzing template 'Point2Bits'
+circomspect: analyzing template 'ValidateIndices'
+circomspect: 4 issues found.
+
+----------------------------------------
+STDERR:

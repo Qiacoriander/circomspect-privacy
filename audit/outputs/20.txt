@@ -1,0 +1,102 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circom-ecdsa/circuits/vocdoni-keccak/permutations.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.32s
+----------------------------------------
+STDOUT:
+circomspect: analyzing template 'Theta'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circom-ecdsa/circuits/vocdoni-keccak/permutations.circom:40:5
+   │
+40 │     signal output out[25*64];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'NAND'
+circomspect: analyzing template 'OR'
+circomspect: analyzing template 'XorArraySingle'
+circomspect: analyzing template 'stepChi'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circom-ecdsa/circuits/vocdoni-keccak/permutations.circom:539:5
+    │
+539 │     signal output out[64];
+    │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'Xor5'
+circomspect: analyzing template 'XorArray'
+circomspect: analyzing template 'NOT'
+circomspect: analyzing template 'Iota'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circom-ecdsa/circuits/vocdoni-keccak/permutations.circom:779:5
+    │
+779 │     signal output out[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'stepRhoPi'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circom-ecdsa/circuits/vocdoni-keccak/permutations.circom:355:5
+    │
+355 │     signal output out[64];
+    │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'OrArray'
+circomspect: analyzing template 'ShR'
+circomspect: analyzing template 'AndArray'
+circomspect: analyzing template 'RC'
+circomspect: analyzing template 'AND'
+circomspect: analyzing template 'NOR'
+circomspect: analyzing template 'ShL'
+circomspect: analyzing template 'MultiAND'
+circomspect: analyzing template 'RhoPi'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circom-ecdsa/circuits/vocdoni-keccak/permutations.circom:377:5
+    │
+377 │     signal output out[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'XOR'
+circomspect: analyzing template 'Xor3'
+circomspect: analyzing template 'D'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circom-ecdsa/circuits/vocdoni-keccak/permutations.circom:12:5
+   │
+12 │     signal output out[n];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'Chi'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circom-ecdsa/circuits/vocdoni-keccak/permutations.circom:566:5
+    │
+566 │     signal output out[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: 7 issues found.
+
+----------------------------------------
+STDERR:

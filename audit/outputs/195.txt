@@ -1,0 +1,71 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/lib/utils-bjj.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.04s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'sqrt'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'Point2Bits'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'Bits2Point_Strict'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'AySign2Ax'
+warning: Output signal `ax` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/lib/utils-bjj.circom:41:5
+   │
+41 │     signal output ax;
+   │     ^^^^^^^^^^^^^^^^ The output signal `ax` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `ay` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/lib/utils-bjj.circom:38:5
+   │
+38 │     signal input ay;
+   │     ^^^^^^^^^^^^^^^ Signal `ay` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'BitsCompressed2AySign'
+warning: Output signal `ay` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/lib/utils-bjj.circom:15:5
+   │
+15 │     signal output ay;
+   │     ^^^^^^^^^^^^^^^^ The output signal `ay` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `sign` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/lib/utils-bjj.circom:16:5
+   │
+16 │     signal output sign;
+   │     ^^^^^^^^^^^^^^^^^^ The output signal `sign` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'Point2Bits_Strict'
+circomspect: analyzing template 'Bits2Point'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: 4 issues found.
+
+----------------------------------------
+STDERR:

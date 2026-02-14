@@ -1,0 +1,42 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/poseidon.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 3.09s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'POSEIDON_S'
+circomspect: analyzing function 'POSEIDON_P'
+circomspect: analyzing function 'POSEIDON_C'
+circomspect: analyzing function 'POSEIDON_M'
+circomspect: analyzing template 'MixS'
+circomspect: analyzing template 'PoseidonFieldArray'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/poseidon.circom:27:5
+   │
+27 │     signal output out;
+   │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'PoseidonG1Array'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/poseidon.circom:12:5
+   │
+12 │     signal output out;
+   │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'MixLast'
+circomspect: analyzing template 'Poseidon'
+circomspect: analyzing template 'PoseidonEx'
+circomspect: analyzing template 'Mix'
+circomspect: analyzing template 'Sigma'
+circomspect: analyzing template 'Ark'
+circomspect: 2 issues found.
+
+----------------------------------------
+STDERR:

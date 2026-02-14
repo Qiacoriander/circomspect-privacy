@@ -1,0 +1,65 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifiersm.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.00s
+----------------------------------------
+STDOUT:
+circomspect: analyzing template 'SMTVerifierSM'
+warning: Output signal `st_inew` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: fnc, levIns, prev_top
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifiersm.circom:77:5
+   │
+77 │     signal output st_inew;
+   │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `st_inew` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `st_i0` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: is0, levIns, prev_top
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifiersm.circom:75:5
+   │
+75 │     signal output st_i0;
+   │     ^^^^^^^^^^^^^^^^^^^ The output signal `st_i0` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `st_na` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: prev_i0, prev_inew, prev_iold, prev_na
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifiersm.circom:78:5
+   │
+78 │     signal output st_na;
+   │     ^^^^^^^^^^^^^^^^^^^ The output signal `st_na` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `st_iold` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: fnc, is0, levIns, prev_top
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifiersm.circom:76:5
+   │
+76 │     signal output st_iold;
+   │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `st_iold` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `st_top` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: levIns, prev_top
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifiersm.circom:74:5
+   │
+74 │     signal output st_top;
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `st_top` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: 5 issues found.
+
+----------------------------------------
+STDERR:

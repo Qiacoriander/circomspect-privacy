@@ -1,0 +1,111 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.12s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'feeShiftTable'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'MultiMux4'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'ComputeFee'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'BalanceUpdater'
+warning: Output signal `newStBalanceSender` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: amount, loadAmount, nop, nullifyAmount, nullifyLoadAmount, oldStBalanceSender, onChain
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom:35:5
+   │
+35 │     signal output newStBalanceSender;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `newStBalanceSender` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `fee2Charge` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom:38:5
+   │
+38 │     signal output fee2Charge;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `fee2Charge` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `isAmountNullified` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: nullifyAmount
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom:39:5
+   │
+39 │     signal output isAmountNullified;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `isAmountNullified` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `isP2Nop` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom:37:5
+   │
+37 │     signal output isP2Nop;
+   │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `isP2Nop` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `newStBalanceReceiver` is tainted by private inputs (leak level: Critical), which may leak privacy.
+Tainted by: amount, nop, nullifyAmount, oldStBalanceReceiver
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom:36:5
+   │
+36 │     signal output newStBalanceReceiver;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `newStBalanceReceiver` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom:83:5
+   │
+83 │     (1 - underflowOk)*(1 - onChain) === 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: underflowOk, onChain
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `oldStBalanceSender` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom:25:5
+   │
+25 │     signal input oldStBalanceSender;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Signal `oldStBalanceSender` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `feeSelector` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hermez-network-9a696e3-fixed/src/balance-updater.circom:29:5
+   │
+29 │     signal input feeSelector;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ Signal `feeSelector` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'Mux256'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'Mux4'
+circomspect: 8 issues found.
+
+----------------------------------------
+STDERR:

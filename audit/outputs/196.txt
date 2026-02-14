@@ -1,0 +1,132 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 3.53s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'POSEIDON_P'
+circomspect: analyzing function 'POSEIDON_C'
+circomspect: analyzing function 'POSEIDON_S'
+circomspect: analyzing function 'POSEIDON_M'
+circomspect: analyzing template 'Edwards2Montgomery'
+circomspect: analyzing template 'VerifyMerklePath'
+circomspect: analyzing template 'Montgomery2Edwards'
+circomspect: analyzing template 'PositionSwitcher'
+circomspect: analyzing template 'Poseidon'
+circomspect: analyzing template 'BitElementMulAny'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'Sigma'
+circomspect: analyzing template 'SegmentMulAny'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'BabyDbl'
+circomspect: analyzing template 'MultiMux1'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'BabyAdd'
+circomspect: analyzing template 'WindowMulFix'
+circomspect: analyzing template 'EscalarMulFix'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'VerifyHydraCommitment'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'Mux1'
+circomspect: analyzing template 'EdDSAPoseidonVerifier'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'Ark'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'MixS'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'PoseidonEx'
+circomspect: analyzing template 'BabyCheck'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'EscalarMulAny'
+circomspect: analyzing template 'hydraS1'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom:109:3
+    │
+109 │   leq.out === 1;
+    │   ^^^^^^^^^^^^^^ This constraint involves tainted variables: leq
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom:111:3
+    │
+111 │   0 === (isStrict-1)*isStrict;
+    │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: isStrict, isStrict
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom:112:3
+    │
+112 │   sourceValue === sourceValue+((claimedValue-sourceValue)*isStrict);
+    │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: sourceValue, sourceValue, claimedValue, sourceValue, isStrict
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom:128:3
+    │
+128 │   userTicketHasher.out === userTicket;
+    │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: userTicketHasher, userTicket
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `sourceValue` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom:28:3
+   │
+28 │   signal input sourceValue;
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^ Signal `sourceValue` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `destinationCommitmentReceipt` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom:22:3
+   │
+22 │   signal input destinationCommitmentReceipt[3];
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Signal `destinationCommitmentReceipt` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `claimedValue` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom:37:3
+   │
+37 │   signal input claimedValue;
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^^ Signal `claimedValue` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `sourceCommitmentReceipt` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/hydra-2010a65/hydra-s1.circom:20:3
+   │
+20 │   signal input sourceCommitmentReceipt[3];
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Signal `sourceCommitmentReceipt` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'MultiMux3'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'Mix'
+circomspect: analyzing template 'MontgomeryDouble'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'BabyPbk'
+circomspect: analyzing template 'Mux3'
+circomspect: analyzing template 'Multiplexor2'
+circomspect: analyzing template 'SegmentMulFix'
+circomspect: analyzing template 'MixLast'
+circomspect: analyzing template 'MontgomeryAdd'
+circomspect: 8 issues found.
+
+----------------------------------------
+STDERR:

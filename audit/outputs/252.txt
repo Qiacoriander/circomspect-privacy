@@ -1,0 +1,58 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/sha256/sha256_2.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.14s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'ssigma1'
+circomspect: analyzing function 'bsigma1'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'ssigma0'
+circomspect: analyzing function 'ChT'
+circomspect: analyzing function 'sha256compression'
+circomspect: analyzing function 'sha256K'
+circomspect: analyzing function 'rrot'
+circomspect: analyzing function 'bsigma0'
+circomspect: analyzing function 'MajT'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'T1'
+circomspect: analyzing template 'SmallSigma'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'T2'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'Maj_t'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'H'
+circomspect: analyzing template 'BigSigma'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'ShR'
+circomspect: analyzing template 'Xor3'
+circomspect: analyzing template 'RotR'
+circomspect: analyzing template 'Ch_t'
+circomspect: analyzing template 'Sha256_2'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/sha256/sha256_2.circom:27:5
+   │
+27 │     signal output out;
+   │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'SigmaPlus'
+circomspect: analyzing template 'K'
+circomspect: analyzing template 'Sha256compression'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: 1 issue found.
+
+----------------------------------------
+STDERR:

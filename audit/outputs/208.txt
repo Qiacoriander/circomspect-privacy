@@ -1,0 +1,335 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 3.19s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'POSEIDON_P'
+circomspect: analyzing function 'POSEIDON_C'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'POSEIDON_M'
+circomspect: analyzing function 'POSEIDON_S'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'Mix'
+circomspect: analyzing template 'getSubjectLocation'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:278:5
+    │
+278 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'XOR'
+circomspect: analyzing template 'SegmentMulFix'
+circomspect: analyzing template 'BabyCheck'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'isUpdatable'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:300:9
+    │
+300 │         signal output out;
+    │         ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'verifyCredentialSchema'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:158:2
+    │
+158 │     claimSchema.schema === schema;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: claimSchema, schema
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `claim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:152:2
+    │
+152 │     signal input claim[8];
+    │     ^^^^^^^^^^^^^^^^^^^^^ Signal `claim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'verifyExpirationTime'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:256:5
+    │
+256 │     res.out === 1;
+    │     ^^^^^^^^^^^^^^ This constraint involves tainted variables: res
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `claim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:238:5
+    │
+238 │     signal input claim[8];
+    │     ^^^^^^^^^^^^^^^^^^^^^ Signal `claim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'MultiMux3'
+circomspect: analyzing template 'EdDSAPoseidonVerifier'
+circomspect: analyzing template 'getPubKeyFromClaim'
+warning: Output signal `Ay` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:210:5
+    │
+210 │     signal output Ay;
+    │     ^^^^^^^^^^^^^^^^ The output signal `Ay` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `Ax` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:209:5
+    │
+209 │     signal output Ax;
+    │     ^^^^^^^^^^^^^^^^ The output signal `Ax` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'getClaimHeader'
+warning: Output signal `claimType` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:44:2
+   │
+44 │     signal output claimType;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^ The output signal `claimType` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `claimFlags` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:45:2
+   │
+45 │     signal output claimFlags[32];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `claimFlags` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `claim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:42:2
+   │
+42 │     signal input claim[8];
+   │     ^^^^^^^^^^^^^^^^^^^^^ Signal `claim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'MontgomeryDouble'
+circomspect: analyzing template 'Montgomery2Edwards'
+circomspect: analyzing template 'getClaimHash'
+circomspect: analyzing template 'MixS'
+circomspect: analyzing template 'Sigma'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'MultiAND'
+circomspect: analyzing template 'Switcher'
+circomspect: analyzing template 'Ark'
+circomspect: analyzing template 'SMTVerifier'
+circomspect: analyzing template 'NAND'
+circomspect: analyzing template 'AND'
+circomspect: analyzing template 'SMTVerifierSM'
+circomspect: analyzing template 'checkDataSignatureWithPubKeyInClaim'
+warning: Private signal `signatureS` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:189:5
+    │
+189 │     signal input signatureS;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ Signal `signatureS` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'BabyAdd'
+circomspect: analyzing template 'MultiMux1'
+circomspect: analyzing template 'getClaimSchema'
+warning: Output signal `schema` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:66:2
+   │
+66 │     signal output schema;
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `schema` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `claim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:64:2
+   │
+64 │     signal input claim[8];
+   │     ^^^^^^^^^^^^^^^^^^^^^ Signal `claim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'Poseidon'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'OR'
+circomspect: analyzing template 'getClaimHiHv'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'MixLast'
+circomspect: analyzing template 'getValueByIndex'
+warning: Output signal `value` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:220:3
+    │
+220 │   signal output value; // value from the selected slot claim[index]
+    │   ^^^^^^^^^^^^^^^^^^^ The output signal `value` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `index` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:219:3
+    │
+219 │   signal input index;
+    │   ^^^^^^^^^^^^^^^^^^ Signal `index` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'BabyDbl'
+circomspect: analyzing template 'BabyPbk'
+circomspect: analyzing template 'verifyClaimSignature'
+warning: Private signal `sigS` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:166:2
+    │
+166 │     signal input sigS;
+    │     ^^^^^^^^^^^^^^^^^ Signal `sigS` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'Mux2'
+circomspect: analyzing template 'Mux1'
+circomspect: analyzing template 'Multiplexor2'
+circomspect: analyzing template 'MultiMux2'
+circomspect: analyzing template 'Mux3'
+circomspect: analyzing template 'verifyCredentialSubject'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:147:5
+    │
+147 │     subjectOtherIden.id === id;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: subjectOtherIden, id
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `claim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:138:2
+    │
+138 │     signal input claim[8];
+    │     ^^^^^^^^^^^^^^^^^^^^^ Signal `claim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'SMTLevIns'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'isExpirable'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:292:9
+    │
+292 │         signal output out;
+    │         ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'MontgomeryAdd'
+circomspect: analyzing template 'SegmentMulAny'
+circomspect: analyzing template 'NOT'
+circomspect: analyzing template 'SMTVerifierLevel'
+circomspect: analyzing template 'PoseidonEx'
+circomspect: analyzing template 'getClaimExpiration'
+warning: Output signal `expiration` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:263:2
+    │
+263 │     signal output expiration;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `expiration` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `claim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:261:2
+    │
+261 │     signal input claim[8];
+    │     ^^^^^^^^^^^^^^^^^^^^^ Signal `claim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'BitElementMulAny'
+circomspect: analyzing template 'getClaimSubjectOtherIden'
+warning: Output signal `id` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:13:2
+   │
+13 │     signal output id;
+   │     ^^^^^^^^^^^^^^^^ The output signal `id` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `claim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:12:2
+   │
+12 │     signal input claim[8];
+   │     ^^^^^^^^^^^^^^^^^^^^^ Signal `claim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'NOR'
+circomspect: analyzing template 'EscalarMulFix'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'SMTHash2'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'EscalarMulAny'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'Edwards2Montgomery'
+circomspect: analyzing template 'getClaimRevNonce'
+warning: Output signal `revNonce` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:83:2
+   │
+83 │     signal output revNonce;
+   │     ^^^^^^^^^^^^^^^^^^^^^^ The output signal `revNonce` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `claim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/claimUtils.circom:81:2
+   │
+81 │     signal input claim[8];
+   │     ^^^^^^^^^^^^^^^^^^^^^ Signal `claim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'SMTHash1'
+circomspect: analyzing template 'WindowMulFix'
+circomspect: 26 issues found.
+
+----------------------------------------
+STDERR:

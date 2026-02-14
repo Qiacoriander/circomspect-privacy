@@ -1,0 +1,58 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/sha256/sha256.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.15s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'ssigma0'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'rrot'
+circomspect: analyzing function 'sha256K'
+circomspect: analyzing function 'ssigma1'
+circomspect: analyzing function 'bsigma1'
+circomspect: analyzing function 'MajT'
+circomspect: analyzing function 'sha256compression'
+circomspect: analyzing function 'bsigma0'
+circomspect: analyzing function 'ChT'
+circomspect: analyzing template 'Sha256'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+  ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/telepathy/circuits/circuits/sha256/sha256.circom:8:5
+  │
+8 │     signal output out[256];
+  │     ^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+  │
+  = Consider using cryptographic primitives like hashing or commitments to protect private information.
+    To ignore this type of result, use `--allow CS0019`.
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'Maj_t'
+circomspect: analyzing template 'Xor3'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'Ch_t'
+circomspect: analyzing template 'RotR'
+circomspect: analyzing template 'SigmaPlus'
+circomspect: analyzing template 'SmallSigma'
+circomspect: analyzing template 'T2'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'H'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'K'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'BigSigma'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'T1'
+circomspect: analyzing template 'ShR'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'Sha256compression'
+circomspect: 1 issue found.
+
+----------------------------------------
+STDERR:

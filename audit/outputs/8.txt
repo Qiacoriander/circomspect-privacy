@@ -1,0 +1,182 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.07s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'nbits'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'BitwiseAnd'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:114:5
+    │
+114 │     signal output out[n];
+    │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'BitwiseRightShift'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:10:5
+   │
+10 │     signal output out[n];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'OR'
+circomspect: analyzing template 'IntLeftShift'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:56:5
+   │
+56 │     signal output out;
+   │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `in` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:55:5
+   │
+55 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ Signal `in` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'Typecast'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:180:5
+    │
+180 │     signal output out[out_size];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'SumMultiple'
+warning: Output signal `sum` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:221:5
+    │
+221 │     signal output sum;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `sum` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'BitwiseXor'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:73:5
+   │
+73 │     signal output out[n];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'AND'
+circomspect: analyzing template 'NOT'
+circomspect: analyzing template 'IndexSelector'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:236:5
+    │
+236 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'IntRightShift'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:24:5
+   │
+24 │     signal output out;
+   │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `in` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:23:5
+   │
+23 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ Signal `in` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'XOR'
+circomspect: analyzing template 'NOR'
+circomspect: analyzing template 'NAND'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'MultiAND'
+circomspect: analyzing template 'IntOr'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:153:5
+    │
+153 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'BitwiseLeftShift'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:41:5
+   │
+41 │     signal output out[n];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'IntXor'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:87:5
+   │
+87 │     signal output out;
+   │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'IntAnd'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/aes-circom-0784f74/circuits/helper_functions.circom:126:5
+    │
+126 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: 14 issues found.
+
+----------------------------------------
+STDERR:

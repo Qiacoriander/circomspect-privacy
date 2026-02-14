@@ -1,0 +1,95 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifier.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 3.28s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'POSEIDON_P'
+circomspect: analyzing function 'POSEIDON_M'
+circomspect: analyzing function 'POSEIDON_S'
+circomspect: analyzing function 'POSEIDON_C'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'PoseidonEx'
+circomspect: analyzing template 'Sigma'
+circomspect: analyzing template 'SMTVerifierSM'
+circomspect: analyzing template 'XOR'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'OR'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'SMTHash2'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'Poseidon'
+circomspect: analyzing template 'NAND'
+circomspect: analyzing template 'SMTLevIns'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'NOR'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'Ark'
+circomspect: analyzing template 'MultiAND'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'NOT'
+circomspect: analyzing template 'SMTHash1'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'MixLast'
+circomspect: analyzing template 'MixS'
+circomspect: analyzing template 'SMTVerifierLevel'
+circomspect: analyzing template 'AND'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'Mix'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'SMTVerifier'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifier.circom:92:5
+   │
+92 │     sm[nLevels-1].st_na + sm[nLevels-1].st_iold + sm[nLevels-1].st_inew + sm[nLevels-1].st_i0 === 1;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: sm, sm, sm, sm
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifier.circom:128:5
+    │
+128 │     keysOk.out === 0;
+    │     ^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: keysOk
+    │
+    = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `oldKey` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifier.circom:45:5
+   │
+45 │     signal input oldKey;
+   │     ^^^^^^^^^^^^^^^^^^^ Signal `oldKey` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `key` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifier.circom:48:5
+   │
+48 │     signal input key;
+   │     ^^^^^^^^^^^^^^^^ Signal `key` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `root` has quantified information leakage (Severity: Low, L(x)=1 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/smt/smtverifier.circom:43:5
+   │
+43 │     signal input root;
+   │     ^^^^^^^^^^^^^^^^^ Signal `root` declared here: leaked 1 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 1 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'Switcher'
+circomspect: 5 issues found.
+
+----------------------------------------
+STDERR:

@@ -1,0 +1,73 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/darkforest-eth-9033eaf/range_proof.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.03s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'nbits'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'RPTester'
+warning: Private signal `a` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/darkforest-eth-9033eaf/range_proof.circom:48:5
+   │
+48 │     signal input a;
+   │     ^^^^^^^^^^^^^^ Signal `a` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'MultiRangeProof'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'RangeProof'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/darkforest-eth-9033eaf/range_proof.circom:26:5
+   │
+26 │     lowerBound.out === 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: lowerBound
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/darkforest-eth-9033eaf/range_proof.circom:30:5
+   │
+30 │     upperBound.out === 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: upperBound
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `in` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/darkforest-eth-9033eaf/range_proof.circom:11:5
+   │
+11 │     signal input in; 
+   │     ^^^^^^^^^^^^^^^ Signal `in` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `max_abs_value` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/darkforest-eth-9033eaf/range_proof.circom:12:5
+   │
+12 │     signal input max_abs_value;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ Signal `max_abs_value` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'AliasCheck'
+circomspect: 5 issues found.
+
+----------------------------------------
+STDERR:

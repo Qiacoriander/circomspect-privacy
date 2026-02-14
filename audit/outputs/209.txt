@@ -1,0 +1,125 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/treeUtils.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 3.24s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'POSEIDON_S'
+circomspect: analyzing function 'POSEIDON_M'
+circomspect: analyzing function 'POSEIDON_P'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'POSEIDON_C'
+circomspect: analyzing template 'EscalarMulAny'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'XOR'
+circomspect: analyzing template 'SegmentMulFix'
+circomspect: analyzing template 'NOR'
+circomspect: analyzing template 'Mux3'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'Sigma'
+circomspect: analyzing template 'Switcher'
+circomspect: analyzing template 'VerifyAuthClaimAndSignature'
+circomspect: analyzing template 'SMTHash2'
+circomspect: analyzing template 'Poseidon'
+circomspect: analyzing template 'EscalarMulFix'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'NAND'
+circomspect: analyzing template 'checkClaimExists'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'SMTVerifierSM'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'SMTHash1'
+circomspect: analyzing template 'BabyDbl'
+circomspect: analyzing template 'WindowMulFix'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'checkClaimNotRevoked'
+circomspect: analyzing template 'PoseidonEx'
+circomspect: analyzing template 'Mix'
+circomspect: analyzing template 'MixS'
+circomspect: analyzing template 'BabyAdd'
+circomspect: analyzing template 'OR'
+circomspect: analyzing template 'SegmentMulAny'
+circomspect: analyzing template 'Multiplexor2'
+circomspect: analyzing template 'AND'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'MultiAND'
+circomspect: analyzing template 'SMTVerifier'
+circomspect: analyzing template 'MixLast'
+circomspect: analyzing template 'Montgomery2Edwards'
+circomspect: analyzing template 'Ark'
+circomspect: analyzing template 'EdDSAPoseidonVerifier'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'Edwards2Montgomery'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'cutId'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/treeUtils.circom:186:2
+    │
+186 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `in` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/treeUtils.circom:185:2
+    │
+185 │     signal input in;
+    │     ^^^^^^^^^^^^^^^ Signal `in` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'MontgomeryAdd'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'cutState'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/treeUtils.circom:200:2
+    │
+200 │     signal output out;
+    │     ^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Private signal `in` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/treeUtils.circom:199:2
+    │
+199 │     signal input in;
+    │     ^^^^^^^^^^^^^^^ Signal `in` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+    │
+    = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'Mux1'
+circomspect: analyzing template 'NOT'
+circomspect: analyzing template 'SMTLevIns'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'BabyCheck'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'checkIdenStateMatchesRoots'
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/utils/treeUtils.circom:83:2
+   │
+83 │     isProofValidIdenState.idenState === expectedState;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: isProofValidIdenState, expectedState
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+circomspect: analyzing template 'MontgomeryDouble'
+circomspect: analyzing template 'SMTVerifierLevel'
+circomspect: analyzing template 'verifyClaimIssuanceNonRev'
+circomspect: analyzing template 'BabyPbk'
+circomspect: analyzing template 'BitElementMulAny'
+circomspect: analyzing template 'MultiMux3'
+circomspect: analyzing template 'getIdenState'
+circomspect: analyzing template 'MultiMux1'
+circomspect: 5 issues found.
+
+----------------------------------------
+STDERR:

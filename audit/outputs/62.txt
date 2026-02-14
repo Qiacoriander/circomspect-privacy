@@ -1,0 +1,81 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/pedersen.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.12s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'nbits'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'Montgomery2Edwards'
+circomspect: analyzing template 'EscalarMulFix'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'BabyDbl'
+circomspect: analyzing template 'SegmentMulFix'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'BabyAdd'
+circomspect: analyzing template 'MontgomeryAdd'
+circomspect: analyzing template 'Pedersen'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/pedersen.circom:178:5
+    │
+178 │     signal output out[2];
+    │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'Window4'
+warning: Output signal `out8` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/pedersen.circom:29:5
+   │
+29 │     signal output out8[2];   // Returns 8*Base (To be linked)
+   │     ^^^^^^^^^^^^^^^^^^^^^ The output signal `out8` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/pedersen.circom:28:5
+   │
+28 │     signal output out[2];
+   │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+   │
+   = Consider using cryptographic primitives like hashing or commitments to protect private information.
+     To ignore this type of result, use `--allow CS0019`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'Edwards2Montgomery'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'MontgomeryDouble'
+circomspect: analyzing template 'Mux3'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'WindowMulFix'
+circomspect: analyzing template 'Segment'
+warning: Output signal `out` is tainted by private inputs (leak level: Critical), which may leak privacy.
+    ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/circuits/pedersen.circom:115:5
+    │
+115 │     signal output out[2];
+    │     ^^^^^^^^^^^^^^^^^^^^ The output signal `out` is declared here with taint level: Critical.
+    │
+    = Consider using cryptographic primitives like hashing or commitments to protect private information.
+      To ignore this type of result, use `--allow CS0019`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-output.
+
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'BabyCheck'
+circomspect: analyzing template 'BabyPbk'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'MultiMux3'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'BinSum'
+circomspect: 4 issues found.
+
+----------------------------------------
+STDERR:

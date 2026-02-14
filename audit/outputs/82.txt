@@ -1,0 +1,37 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/test/circuits/pointbits_loopback.circom --mode main --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 0.08s
+----------------------------------------
+STDOUT:
+circomspect: 从 main component 'Main' 开始分析，公开输入：[]
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/test/circuits/pointbits_loopback.circom:21:5
+   │
+21 │     b2p.out[0] === in[0];
+   │     ^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: b2p, in
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Constraint contains tainted variables, which may leak private information through the constraint system.
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/test/circuits/pointbits_loopback.circom:22:5
+   │
+22 │     b2p.out[1] === in[1];
+   │     ^^^^^^^^^^^^^^^^^^^^^ This constraint involves tainted variables: b2p, in
+   │
+   = Consider whether this constraint really needs to expose private information, or redesign the circuit logic.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#private-tainted-constraint.
+
+warning: Private signal `in` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+  ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/circomlib/test/circuits/pointbits_loopback.circom:7:5
+  │
+7 │     signal input in[2];
+  │     ^^^^^^^^^^^^^^^^^^ Signal `in` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+  │
+  = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: 3 issues found.
+
+----------------------------------------
+STDERR:

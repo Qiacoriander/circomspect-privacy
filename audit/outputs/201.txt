@@ -1,0 +1,116 @@
+Command: /Users/zhangwenzhe/Develop/circomspect/target/release/circomspect /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/idOwnershipBySignature.circom --mode all --leak-threshold 8 --min-leak-severity Low
+Exit Code: 1
+Duration: 3.26s
+----------------------------------------
+STDOUT:
+circomspect: analyzing function 'POSEIDON_S'
+circomspect: analyzing function 'nbits'
+circomspect: analyzing function 'POSEIDON_M'
+circomspect: analyzing function 'POSEIDON_P'
+circomspect: analyzing function 'POSEIDON_C'
+circomspect: analyzing template 'verifyClaimIssuanceNonRev'
+circomspect: analyzing template 'Edwards2Montgomery'
+circomspect: analyzing template 'verifyExpirationTime'
+circomspect: analyzing template 'PoseidonEx'
+circomspect: analyzing template 'IsZero'
+circomspect: analyzing template 'getClaimExpiration'
+circomspect: analyzing template 'verifyCredentialSubject'
+circomspect: analyzing template 'MultiAND'
+circomspect: analyzing template 'Bits2Num'
+circomspect: analyzing template 'Num2Bits_strict'
+circomspect: analyzing template 'checkIdenStateMatchesRoots'
+circomspect: analyzing template 'ForceEqualIfEnabled'
+circomspect: analyzing template 'checkClaimNotRevoked'
+circomspect: analyzing template 'getPubKeyFromClaim'
+circomspect: analyzing template 'Mux2'
+circomspect: analyzing template 'MultiMux1'
+circomspect: analyzing template 'Sigma'
+circomspect: analyzing template 'getClaimHash'
+circomspect: analyzing template 'SegmentMulAny'
+circomspect: analyzing template 'LessEqThan'
+circomspect: analyzing template 'SMTHash2'
+circomspect: analyzing template 'MontgomeryAdd'
+circomspect: analyzing template 'Bits2Num_strict'
+circomspect: analyzing template 'getIdenState'
+circomspect: analyzing template 'Ark'
+circomspect: analyzing template 'SMTHash1'
+circomspect: analyzing template 'EscalarMulAny'
+circomspect: analyzing template 'isExpirable'
+circomspect: analyzing template 'SMTVerifierLevel'
+circomspect: analyzing template 'getSubjectLocation'
+circomspect: analyzing template 'AliasCheck'
+circomspect: analyzing template 'SegmentMulFix'
+circomspect: analyzing template 'MontgomeryDouble'
+circomspect: analyzing template 'WindowMulFix'
+circomspect: analyzing template 'BabyPbk'
+circomspect: analyzing template 'BabyCheck'
+circomspect: analyzing template 'checkClaimExists'
+circomspect: analyzing template 'MultiMux3'
+circomspect: analyzing template 'isUpdatable'
+circomspect: analyzing template 'AND'
+circomspect: analyzing template 'MixS'
+circomspect: analyzing template 'SMTVerifierSM'
+circomspect: analyzing template 'getClaimHiHv'
+circomspect: analyzing template 'NOR'
+circomspect: analyzing template 'GreaterEqThan'
+circomspect: analyzing template 'VerifyAuthClaimAndSignature'
+circomspect: analyzing template 'NAND'
+circomspect: analyzing template 'BabyDbl'
+circomspect: analyzing template 'Mux3'
+circomspect: analyzing template 'verifyCredentialSchema'
+circomspect: analyzing template 'cutId'
+circomspect: analyzing template 'Num2BitsNeg'
+circomspect: analyzing template 'CompConstant'
+circomspect: analyzing template 'Mux1'
+circomspect: analyzing template 'getClaimHeader'
+circomspect: analyzing template 'Switcher'
+circomspect: analyzing template 'BinSum'
+circomspect: analyzing template 'BitElementMulAny'
+circomspect: analyzing template 'Multiplexor2'
+circomspect: analyzing template 'IsEqual'
+circomspect: analyzing template 'Mix'
+circomspect: analyzing template 'getClaimRevNonce'
+circomspect: analyzing template 'MultiMux2'
+circomspect: analyzing template 'getClaimSubjectOtherIden'
+circomspect: analyzing template 'GreaterThan'
+circomspect: analyzing template 'checkDataSignatureWithPubKeyInClaim'
+circomspect: analyzing template 'SMTLevIns'
+circomspect: analyzing template 'Num2Bits'
+circomspect: analyzing template 'cutState'
+circomspect: analyzing template 'EdDSAPoseidonVerifier'
+circomspect: analyzing template 'OR'
+circomspect: analyzing template 'IdOwnershipBySignature'
+warning: Private signal `userAuthClaim` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/idOwnershipBySignature.circom:19:2
+   │
+19 │     signal input userAuthClaim[8];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Signal `userAuthClaim` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+warning: Private signal `challengeSignatureS` has quantified information leakage (Severity: Critical, L(x)=254 bits, H(x)=254 bits, T(x)=8 bits)
+   ┌─ /Users/zhangwenzhe/Develop/circomspect/benchmarks/projects/iden3-core-56a08f9/idOwnershipBySignature.circom:32:2
+   │
+32 │     signal input challengeSignatureS;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Signal `challengeSignatureS` declared here: leaked 254 bits out of 254 bits entropy (threshold: 8 bits)
+   │
+   = This signal leaks 254 bits through operations like comparisons, bit extraction, or shifts. The threshold for concern is 8 bits (12.5% of entropy). Consider using cryptographic primitives to reduce information leakage.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#quantified-leakage.
+
+circomspect: analyzing template 'Montgomery2Edwards'
+circomspect: analyzing template 'BabyAdd'
+circomspect: analyzing template 'LessThan'
+circomspect: analyzing template 'getClaimSchema'
+circomspect: analyzing template 'verifyClaimSignature'
+circomspect: analyzing template 'NOT'
+circomspect: analyzing template 'XOR'
+circomspect: analyzing template 'MixLast'
+circomspect: analyzing template 'EscalarMulFix'
+circomspect: analyzing template 'getValueByIndex'
+circomspect: analyzing template 'SMTVerifier'
+circomspect: analyzing template 'Poseidon'
+circomspect: 2 issues found.
+
+----------------------------------------
+STDERR:
