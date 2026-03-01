@@ -1,0 +1,3 @@
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\test\circuits\test_bigadd_23.circom --mode all`

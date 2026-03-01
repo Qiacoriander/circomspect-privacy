@@ -1,0 +1,5 @@
+circomspect: analyzing function 'POSEIDON_C'
+circomspect: analyzing function 'POSEIDON_M'
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\poseidon_constants_old.circom --mode all`

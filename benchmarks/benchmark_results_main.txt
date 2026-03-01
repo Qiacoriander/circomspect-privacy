@@ -1,0 +1,81 @@
+
+================================================================================
+Circomspect 隐私泄露检测基准测试报告
+================================================================================
+
+【总体统计】
+  总分析文件数: 116
+  模式分布: Main=116, Library=0
+  运行状况: 成功=110, 失败=6
+  总用时: 1327.45 秒
+  存在隐私泄露的文件数: 19 (16.4%)
+  风险信号总数: 27 (FULL LEAK: 9, PARTIAL LEAK: 18)
+
+【按项目统计】
+  - circomlib: 47 文件, 泄露文件: 16, 风险信号: 20 (FULL LEAK: 4, PARTIAL LEAK: 16)
+  - circomlib-ml: 31 文件, 泄露文件: 3, 风险信号: 7 (FULL LEAK: 5, PARTIAL LEAK: 2)
+  - aes-circom-0784f74: 8 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - circom-pairing: 15 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - circomlib-matrix: 12 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - telepathy: 3 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+
+【存在隐私泄露的文件详情 (风险最高前30)】
+  1. circomlib-ml\test\circuits\encryptDecrypt_test.circom
+     项目: circomlib-ml | 模式: main
+     FULL LEAK: 3, PARTIAL LEAK: 1 (总信号: 4)
+  2. circomlib\test\circuits\escalarmulany_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 1 (总信号: 2)
+  3. circomlib-ml\test\circuits\encrypted_mnist_latest_test.circom
+     项目: circomlib-ml | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 1 (总信号: 2)
+  4. circomlib\test\circuits\escalarmulw4table_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  5. circomlib\test\circuits\escalarmulw4table_test3.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  6. circomlib\test\circuits\pointbits_loopback.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  7. circomlib-ml\test\circuits\ReLU_test.circom
+     项目: circomlib-ml | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  8. circomlib\test\circuits\binsub_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 2 (总信号: 2)
+  9. circomlib\test\circuits\sha256_2_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 2 (总信号: 2)
+  10. circomlib\test\circuits\sum_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 2 (总信号: 2)
+  11. circomlib\test\circuits\escalarmulfix_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  12. circomlib\test\circuits\escalarmul_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  13. circomlib\test\circuits\mux1_1.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  14. circomlib\test\circuits\mux2_1.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  15. circomlib\test\circuits\mux3_1.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  16. circomlib\test\circuits\mux4_1.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  17. circomlib\test\circuits\pedersen2_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  18. circomlib\test\circuits\pedersen_test.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  19. circomlib\circuits\sha256\main.circom
+     项目: circomlib | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+
+================================================================================

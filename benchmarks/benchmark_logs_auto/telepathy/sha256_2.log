@@ -1,0 +1,4 @@
+circomspect: analyzing template 'Sha256_2'
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sha256_2.circom --mode all`

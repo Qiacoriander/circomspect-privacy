@@ -1,0 +1,6 @@
+circomspect: analyzing template 'VerifyAuthentication'
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\authentication.circom --mode all`
+
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\authentication.circom --mode all` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)

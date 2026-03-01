@@ -1,0 +1,268 @@
+circomspect: analyzing template 'RC'
+circomspect: analyzing template 'Iota'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:781:5
+    │
+781 │     signal input in[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:781:5
+    │
+781 │     signal input in[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'RhoPi'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:357:5
+    │
+357 │     signal input a[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:379:5
+    │
+379 │     signal input in[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:357:5
+    │
+357 │     signal input a[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:379:5
+    │
+379 │     signal input in[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Theta'
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:14:5
+   │
+14 │     signal input b[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:13:5
+   │
+13 │     signal input a[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:42:5
+   │
+42 │     signal input in[25*64];
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:13:5
+   │
+13 │     signal input a[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:14:5
+   │
+14 │     signal input b[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:42:5
+   │
+42 │     signal input in[25*64];
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'D'
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:14:5
+   │
+14 │     signal input b[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:13:5
+   │
+13 │     signal input a[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:13:5
+   │
+13 │     signal input a[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:14:5
+   │
+14 │     signal input b[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'stepRhoPi'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:357:5
+    │
+357 │     signal input a[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:357:5
+    │
+357 │     signal input a[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'stepChi'
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:540:5
+    │
+540 │     signal input b[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `c` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:541:5
+    │
+541 │     signal input c[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:539:5
+    │
+539 │     signal input a[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:540:5
+    │
+540 │     signal input b[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:539:5
+    │
+539 │     signal input a[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `c` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:541:5
+    │
+541 │     signal input c[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Chi'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:539:5
+    │
+539 │     signal input a[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `c` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:541:5
+    │
+541 │     signal input c[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:540:5
+    │
+540 │     signal input b[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:568:5
+    │
+568 │     signal input in[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:540:5
+    │
+540 │     signal input b[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `c` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:541:5
+    │
+541 │     signal input c[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:539:5
+    │
+539 │     signal input a[64];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom:568:5
+    │
+568 │     signal input in[25*64];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 32 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\keccak256-circom-af3e898\permutations.circom --mode all` (exit code: 1)

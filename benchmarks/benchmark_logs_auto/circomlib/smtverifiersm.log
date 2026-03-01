@@ -1,0 +1,133 @@
+circomspect: analyzing template 'SMTVerifierSM'
+warning: Private Input `fnc` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:66:5
+   │
+66 │     signal input fnc;
+   │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_top` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:68:5
+   │
+68 │     signal input prev_top;
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_iold` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:70:5
+   │
+70 │     signal input prev_iold;
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_inew` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:71:5
+   │
+71 │     signal input prev_inew;
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `is0` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:64:5
+   │
+64 │     signal input is0;
+   │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_na` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:72:5
+   │
+72 │     signal input prev_na;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `levIns` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:65:5
+   │
+65 │     signal input levIns;
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_i0` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:69:5
+   │
+69 │     signal input prev_i0;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_i0` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:69:5
+   │
+69 │     signal input prev_i0;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `levIns` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:65:5
+   │
+65 │     signal input levIns;
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `is0` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:64:5
+   │
+64 │     signal input is0;
+   │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_top` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:68:5
+   │
+68 │     signal input prev_top;
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `fnc` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:66:5
+   │
+66 │     signal input fnc;
+   │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_na` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:72:5
+   │
+72 │     signal input prev_na;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_iold` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:70:5
+   │
+70 │     signal input prev_iold;
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prev_inew` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom:71:5
+   │
+71 │     signal input prev_inew;
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 16 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifiersm.circom --mode all` (exit code: 1)

@@ -1,0 +1,69 @@
+circomspect: analyzing template 'Query'
+warning: Private Input `value` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom:19:5
+   │
+19 │     signal input value[valueArraySize];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom:18:5
+   │
+18 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `operator` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom:20:5
+   │
+20 │     signal input operator;
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom:30:18
+   │
+30 │     lt.in[0] <== in;
+   │                  ^^ `in` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom:31:18
+   │
+31 │     lt.in[1] <== value[0];
+   │                  ^^^^^^^^ `value[0]` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Private Input `value` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom:19:5
+   │
+19 │     signal input value[valueArraySize];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `operator` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom:20:5
+   │
+20 │     signal input operator;
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom:18:5
+   │
+18 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 8 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\iden3-core-56a08f9\query\query.circom --mode all` (exit code: 1)

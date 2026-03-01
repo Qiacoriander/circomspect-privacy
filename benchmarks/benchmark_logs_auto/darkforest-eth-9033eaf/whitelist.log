@@ -1,0 +1,31 @@
+circomspect: analyzing template 'Whitelist'
+warning: Private Input `key` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\whitelist.circom:6:3
+  │
+6 │   signal input key;
+  │   ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\whitelist.circom:17:3
+   │
+17 │   signal recipientSquared;
+   │   ^^^^^^^^^^^^^^^^^^^^^^^ The intermediate signal `recipientSquared` is declared here.
+18 │   recipientSquared <== recipient * recipient;
+   │   ------------------------------------------ The intermediate signal `recipientSquared` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Private Input `key` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\whitelist.circom:6:3
+  │
+6 │   signal input key;
+  │   ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 3 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\whitelist.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\whitelist.circom --mode all` (exit code: 1)

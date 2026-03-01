@@ -1,0 +1,10 @@
+error: Failed to open file `../../circuits/simple_serialize.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_ssz_array_4.circom:3:1
+  │
+3 │ include "../../circuits/simple_serialize.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: 1 issue found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_ssz_array_4.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\test\circuits\test_ssz_array_4.circom --mode all` (exit code: 1)

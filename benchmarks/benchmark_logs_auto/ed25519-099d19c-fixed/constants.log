@@ -1,0 +1,5 @@
+circomspect: analyzing template 'K512'
+circomspect: analyzing template 'H512'
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\sha512-0562652\constants.circom --mode all`

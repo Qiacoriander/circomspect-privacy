@@ -1,0 +1,178 @@
+circomspect: analyzing template 'ChunkedAdd'
+warning: Private Input `psum` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:12:3
+   │
+12 │   signal psum[m];
+   │   ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `carry` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:13:3
+   │
+13 │   signal carry[numOutputs];
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:11:3
+   │
+11 │   signal input in[n][m];
+   │   ^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:39:5
+   │
+39 │     out[i] <-- (psum[i] + carry[i]) % power;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[i]` is not constrained here.
+40 │     carry[i + 1] <-- (psum[i] + carry[i]) \ power;
+41 │     psum[i] + carry[i] === carry[i + 1] * power + out[i];
+   │     ----------------------------------------------------- The signal `out[i]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:45:5
+   │
+45 │     out[i] <-- carry[i] % power;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[i]` is not constrained here.
+   │
+   = Consider if it is possible to rewrite the statement using `<==` instead.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:46:5
+   │
+46 │     carry[i + 1] <-- carry[i] \ power;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `carry[(i + 1)]` is not constrained here.
+   │
+   = Consider if it is possible to rewrite the statement using `<==` instead.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:40:5
+   │
+40 │     carry[i + 1] <-- (psum[i] + carry[i]) \ power;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `carry[(i + 1)]` is not constrained here.
+41 │     psum[i] + carry[i] === carry[i + 1] * power + out[i];
+   │     ----------------------------------------------------- The signal `carry[(i + 1)]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Private Input `psum` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:12:3
+   │
+12 │   signal psum[m];
+   │   ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:11:3
+   │
+11 │   signal input in[n][m];
+   │   ^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `carry` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:13:3
+   │
+13 │   signal carry[numOutputs];
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'ChunkedAdderIrregular'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:61:5
+   │
+61 │     signal input a[m];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:62:5
+   │
+62 │     signal input b[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `psum` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:63:5
+   │
+63 │     signal psum[m];
+   │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `carry` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:64:5
+   │
+64 │     signal carry[m + 1];
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:81:9
+   │
+81 │         carry[i + 1] <-- (psum[i] + carry[i]) \ power;
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `carry[(i + 1)]` is not constrained here.
+82 │         psum[i] + carry[i] === carry[i + 1] * power + sum[i];
+   │         ----------------------------------------------------- The signal `carry[(i + 1)]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:80:9
+   │
+80 │         sum[i] <-- (psum[i] + carry[i]) % power;
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `sum[i]` is not constrained here.
+81 │         carry[i + 1] <-- (psum[i] + carry[i]) \ power;
+82 │         psum[i] + carry[i] === carry[i + 1] * power + sum[i];
+   │         ----------------------------------------------------- The signal `sum[i]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:62:5
+   │
+62 │     signal input b[n];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `carry` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:64:5
+   │
+64 │     signal carry[m + 1];
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:61:5
+   │
+61 │     signal input a[m];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `psum` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom:63:5
+   │
+63 │     signal psum[m];
+   │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 20 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\chunkedadd.circom --mode all` (exit code: 1)

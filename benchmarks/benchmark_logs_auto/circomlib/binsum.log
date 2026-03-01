@@ -1,0 +1,17 @@
+circomspect: analyzing function 'nbits'
+circomspect: analyzing template 'BinSum'
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\binsum.circom:88:9
+   │
+88 │         out[k] <-- (lin >> k) & 1;
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[k]` is not constrained here.
+   ·
+91 │         out[k] * (out[k] - 1) === 0;
+   │         ---------------------------- The signal `out[k]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+circomspect: 1 issue found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\binsum.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\binsum.circom --mode all` (exit code: 1)

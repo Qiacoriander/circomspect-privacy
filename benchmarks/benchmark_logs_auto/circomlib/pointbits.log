@@ -1,0 +1,123 @@
+circomspect: analyzing function 'sqrt'
+circomspect: analyzing template 'Point2Bits'
+warning: The signals `out[256]` are not used by the template.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:131:5
+    │
+131 │     signal output out[256];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ These signals are unused and could be removed.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signals `in[2]` are not used by the template.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:130:5
+    │
+130 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ These signals are unused and could be removed.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+circomspect: analyzing template 'Point2Bits_Strict'
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:137:5
+    │
+137 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:142:22
+    │
+142 │     component n2bX = Num2Bits(254);
+    │                      ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:144:22
+    │
+144 │     component n2bY = Num2Bits(254);
+    │                      ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:137:5
+    │
+137 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Bits2Point'
+warning: The signals `in[256]` are not used by the template.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:74:5
+   │
+74 │     signal input in[256];
+   │     ^^^^^^^^^^^^^^^^^^^^ These signals are unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signals `out[2]` are not used by the template.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:75:5
+   │
+75 │     signal output out[2];
+   │     ^^^^^^^^^^^^^^^^^^^^ These signals are unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+circomspect: analyzing template 'Bits2Point_Strict'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:79:5
+   │
+79 │     signal input in[256];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:107:5
+    │
+107 │     out[0] <-- x;
+    │     ^^^^^^^^^^^^ The assigned signal `out[0]` is not constrained here.
+    ·
+110 │     babyCheck.x <== out[0];
+    │     ---------------------- The signal `out[0]` is constrained here.
+    ·
+114 │     n2bX.in <== out[0];
+    │     ------------------ The signal `out[0]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using `Bits2Num` to convert arrays to field elements may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:91:22
+   │
+91 │     component b2nY = Bits2Num(254);
+   │                      ^^^^^^^^^^^^^ Circomlib template `Bits2Num` instantiated here.
+   │
+   = Consider using `Bits2Num_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:113:22
+    │
+113 │     component n2bX = Num2Bits(254);
+    │                      ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom:79:5
+   │
+79 │     signal input in[256];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 13 issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\pointbits.circom --mode all` (exit code: 1)

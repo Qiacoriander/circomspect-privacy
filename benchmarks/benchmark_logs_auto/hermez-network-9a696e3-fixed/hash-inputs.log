@@ -1,0 +1,107 @@
+error: Failed to open file `../node_modules/circomlib/circuits/poseidon.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:1:1
+  │
+1 │ include "../node_modules/circomlib/circuits/poseidon.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `../node_modules/circomlib/circuits/sha256/sha256.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:2:1
+  │
+2 │ include "../node_modules/circomlib/circuits/sha256/sha256.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `../node_modules/circomlib/circuits/bitify.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:3:1
+  │
+3 │ include "../node_modules/circomlib/circuits/bitify.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: analyzing template 'HashInputs'
+warning: The value assigned to `paddingOldLastIdx` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:57:5
+   │
+57 │     var paddingOldLastIdx = 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingOldLastIdx` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `paddingOldLastIdx` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:59:9
+   │
+59 │         paddingOldLastIdx += n2bOldLastIdx.out[i];
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingOldLastIdx` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `paddingFeeTxsData` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:96:13
+   │
+96 │             paddingFeeTxsData += n2bFeeTxsData[i].out[j];
+   │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingFeeTxsData` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `paddingNewLastIdx` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:67:5
+   │
+67 │     var paddingNewLastIdx = 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingNewLastIdx` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `paddingFeeTxsData` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:94:9
+   │
+94 │         var paddingFeeTxsData = 0;
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingFeeTxsData` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `paddingNewLastIdx` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:69:9
+   │
+69 │         paddingNewLastIdx += n2bNewLastIdx.out[i];
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingNewLastIdx` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:74:33
+   │
+74 │     component n2bOldStateRoot = Num2Bits(256);
+   │                                 ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:78:33
+   │
+78 │     component n2bNewStateRoot = Num2Bits(256);
+   │                                 ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:82:32
+   │
+82 │     component n2bNewExitRoot = Num2Bits(256);
+   │                                ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Bits2Num` to convert arrays to field elements may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom:179:34
+    │
+179 │     component n2bHashInputsOut = Bits2Num(256);
+    │                                  ^^^^^^^^^^^^^ Circomlib template `Bits2Num` instantiated here.
+    │
+    = Consider using `Bits2Num_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+circomspect: 13 issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\hash-inputs.circom --mode all` (exit code: 1)

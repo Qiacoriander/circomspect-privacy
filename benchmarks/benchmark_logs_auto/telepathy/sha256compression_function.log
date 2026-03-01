@@ -1,0 +1,12 @@
+circomspect: analyzing function 'ssigma0'
+circomspect: analyzing function 'MajT'
+circomspect: analyzing function 'rrot'
+circomspect: analyzing function 'sha256K'
+circomspect: analyzing function 'sha256compression'
+circomspect: analyzing function 'ssigma1'
+circomspect: analyzing function 'ChT'
+circomspect: analyzing function 'bsigma0'
+circomspect: analyzing function 'bsigma1'
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\sha256compression_function.circom --mode all`

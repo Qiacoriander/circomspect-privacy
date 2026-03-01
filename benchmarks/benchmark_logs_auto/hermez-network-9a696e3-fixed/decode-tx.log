@@ -1,0 +1,128 @@
+error: Failed to open file `../node_modules/circomlib/circuits/poseidon.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:1:1
+  │
+1 │ include "../node_modules/circomlib/circuits/poseidon.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `../node_modules/circomlib/circuits/bitify.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:2:1
+  │
+2 │ include "../node_modules/circomlib/circuits/bitify.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `../node_modules/circomlib/circuits/mux1.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:3:1
+  │
+3 │ include "../node_modules/circomlib/circuits/mux1.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: analyzing template 'DecodeTx'
+warning: Private Input `inIdx` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:75:5
+   │
+75 │     signal input inIdx;
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `onChain` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:67:5
+   │
+67 │     signal input onChain;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `fromBjjCompressed` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:62:5
+   │
+62 │     signal input fromBjjCompressed[256];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `newAccount` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:68:5
+   │
+68 │     signal input newAccount;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: The value assigned to `paddingFrom` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:120:5
+    │
+120 │     var paddingFrom = 0;
+    │     ^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingFrom` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `paddingTo` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:133:5
+    │
+133 │     var paddingTo = 0;
+    │     ^^^^^^^^^^^^^^^^^ The value assigned to `paddingTo` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `paddingFrom` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:122:9
+    │
+122 │         paddingFrom += n2bData.out[48 + i];
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingFrom` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `paddingTo` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:135:9
+    │
+135 │         paddingTo += n2bData.out[96 + i];
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `paddingTo` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:229:31
+    │
+229 │     component n2bFinalToIdx = Num2Bits(nLevels);
+    │                               ^^^^^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Private Input `fromBjjCompressed` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:62:5
+   │
+62 │     signal input fromBjjCompressed[256];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `onChain` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:67:5
+   │
+67 │     signal input onChain;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `newAccount` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:68:5
+   │
+68 │     signal input newAccount;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `inIdx` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom:75:5
+   │
+75 │     signal input inIdx;
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 16 issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\decode-tx.circom --mode all` (exit code: 1)

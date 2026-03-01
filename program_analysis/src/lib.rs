@@ -7,7 +7,8 @@ extern crate num_bigint_dig as num_bigint;
 
 pub mod constraint_analysis;
 pub mod taint_analysis;
-pub mod privacy_taint;
+
+pub mod ccig;
 pub mod analysis_context;
 pub mod analysis_runner;
 pub mod cfg_manager;
@@ -39,13 +40,16 @@ type AnalysisPass = dyn Fn(&mut dyn AnalysisContext, &Cfg) -> ReportCollection;
 pub fn get_analysis_passes() -> Vec<Box<AnalysisPass>> {
     vec![
         // Privacy taint analysis (with leak detection and reports)
-        Box::new(|ctx, cfg| {
+        Box::new(|_, _| {
+            /* 
             privacy_taint::find_privacy_taint_leaks(
                 cfg,
                 Some(ctx),
                 ctx.leak_threshold(),
                 ctx.min_leak_severity(),
-            )
+            ) 
+            */
+            ReportCollection::new()
         }),
         // Intra-process analysis passes.进程内 分析器
         Box::new(|_, cfg| bitwise_complement::find_bitwise_complement(cfg)), // 分析按位取反操作(~x)可能导致的问题

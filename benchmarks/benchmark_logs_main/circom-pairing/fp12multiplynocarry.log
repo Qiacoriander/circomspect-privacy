@@ -1,0 +1,4 @@
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\scripts\fp12multiply\fp12multiplynocarry.circom --mode main`
+Error: Main component template 'Fp12MultiplyNoCarry' not found in CFG.

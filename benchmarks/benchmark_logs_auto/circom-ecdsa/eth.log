@@ -1,0 +1,62 @@
+error: Failed to open file `../../node_modules/circomlib/circuits/bitify.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom:5:1
+  │
+5 │ include "../../node_modules/circomlib/circuits/bitify.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: analyzing template 'PubkeyToAddress'
+warning: Private Input `reverse` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom:66:5
+   │
+66 │     signal reverse[512];
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `pubkeyBits` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom:59:5
+   │
+59 │     signal input pubkeyBits[512];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `reverse` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom:66:5
+   │
+66 │     signal reverse[512];
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `pubkeyBits` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom:59:5
+   │
+59 │     signal input pubkeyBits[512];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'FlattenPubkey'
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom:27:27
+   │
+27 │     chunks2BitsY[chunk] = Num2Bits(numBits);
+   │                           ^^^^^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom:40:27
+   │
+40 │     chunks2BitsX[chunk] = Num2Bits(numBits);
+   │                           ^^^^^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+circomspect: 7 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\zk-identity\eth.circom --mode all` (exit code: 1)

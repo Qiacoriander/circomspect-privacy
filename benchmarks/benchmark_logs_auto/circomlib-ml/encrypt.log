@@ -1,0 +1,72 @@
+circomspect: analyzing template 'Decrypt'
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom:63:3
+   │
+63 │   signal input message[2];
+   │   ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom:63:3
+   │
+63 │   signal input message[2];
+   │   ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Encrypt'
+warning: Private Input `plaintext` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom:29:3
+   │
+29 │   signal input plaintext;
+   │   ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `plaintext` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom:29:3
+   │
+29 │   signal input plaintext;
+   │   ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'EncryptBits'
+warning: Private Input `plaintext` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom:8:3
+  │
+8 │   signal input plaintext[N];
+  │   ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `plaintext` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom:8:3
+  │
+8 │   signal input plaintext[N];
+  │   ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'DecryptBits'
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom:47:3
+   │
+47 │   signal input message[N+1];
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom:47:3
+   │
+47 │   signal input message[N+1];
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 8 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\crypto\encrypt.circom --mode all` (exit code: 1)

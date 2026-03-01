@@ -1,0 +1,37 @@
+circomspect: analyzing template 'matElemSum'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemSum.circom:5:5
+  │
+5 │     signal input a[m][n];
+  │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `sum` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemSum.circom:8:5
+  │
+8 │     signal sum[m*n];
+  │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `sum` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemSum.circom:8:5
+  │
+8 │     signal sum[m*n];
+  │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemSum.circom:5:5
+  │
+5 │     signal input a[m][n];
+  │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 4 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemSum.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib-matrix\matElemSum.circom --mode all` (exit code: 1)

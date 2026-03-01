@@ -5,8 +5,6 @@ use program_structure::{
     cfg::Cfg,
 };
 
-use crate::privacy_taint::LeakSeverity;
-
 /// Errors returned by the analysis context.
 #[derive(Debug, Error)]
 pub enum AnalysisError {
@@ -56,11 +54,4 @@ pub trait AnalysisContext {
         file_id: &FileID,
         file_location: &FileLocation,
     ) -> Result<String, AnalysisError>;
-
-    fn leak_threshold(&self) -> usize {
-        8
-    }
-    fn min_leak_severity(&self) -> LeakSeverity {
-        LeakSeverity::High
-    }
 }

@@ -5,8 +5,6 @@ use clap::{CommandFactory, Parser};
 
 use program_analysis::config;
 use program_analysis::analysis_runner::AnalysisRunner;
-use program_analysis::privacy_taint::LeakSeverity;
-use std::str::FromStr;
 
 use program_structure::constants::Curve;
 use program_structure::file_definition::FileID;
@@ -51,13 +49,6 @@ struct Cli {
     #[clap(short = 'm', long = "mode", name = "MODE", default_value = "all")]
     analysis_mode: String,
 
-    /// Leakage threshold in bits for quantified analysis (CS0021)
-    #[clap(long = "leak-threshold", name = "BITS", default_value = "8")]
-    leak_threshold: usize,
-
-    /// Minimum leakage severity to trigger a WARNING (others will be INFO)
-    #[clap(long = "min-leak-severity", name = "SEVERITY", default_value = config::DEFAULT_MIN_LEAK_SEVERITY)]
-    min_leak_severity: String,
 }
 
 /// Styles the help output for the [`Cli`].
@@ -109,20 +100,10 @@ fn main() -> ExitCode {
         return ExitCode::FAILURE;
     }
 
-    let min_leak_severity = match LeakSeverity::from_str(&options.min_leak_severity) {
-        Ok(s) => s,
-        Err(e) => {
-            eprintln!("Error: {}", e);
-            return ExitCode::FAILURE;
-        }
-    };
-
     // Set up analysis runner.
     // 解析阶段
     let (mut runner, reports) = AnalysisRunner::new(options.curve)
         .with_libraries(&options.libraries)
-        .with_leak_threshold(options.leak_threshold)
-        .with_min_leak_severity(min_leak_severity)
         .with_files(&options.input_files); // 传入后，会调用parser执行解析
 
     // Set up writer and write reports to `stdout`.
@@ -146,15 +127,20 @@ fn main() -> ExitCode {
     // 3. 运行分析
     if analysis_mode == "main" {
         // 模式 2：从 main 开始递归分析
-        if let Some(main_info) = runner.main_component() {
-            if let Some(cfg_ref) = cfg_manager.get_template_cfg_ref(&main_info.template_name) {
+        if let Some(main_info) = runner.main_component().cloned() {
+            let template_name = main_info.template_name.clone();
+            let public_inputs = main_info.public_inputs.clone();
+            
+            if let Some(cfg_ref) = cfg_manager.get_template_cfg_ref(&template_name) {
                 let cfg = cfg_ref.borrow();
                 stdout_writer.write_message(&format!(
                     "从 main component '{}' 开始分析，公开输入：{:?}",
-                    main_info.template_name, main_info.public_inputs
+                    template_name, public_inputs
                 ));
 
                 // 运行隐私污点分析
+                // 运行隐私污点分析 (Old graph analysis disconnected)
+                /*
                 let mut reports =
                     program_analysis::privacy_taint::find_privacy_taint_leaks_for_main(
                         &cfg,
@@ -162,21 +148,25 @@ fn main() -> ExitCode {
                         options.leak_threshold,
                         min_leak_severity,
                     );
+                */
+                let mut reports = program_structure::report::ReportCollection::new();
 
-                // 运行其他分析 (如果有)
-                // 注意：这里手动调用其他 pass，因为 get_analysis_passes 需要 Context
-                reports.append(&mut program_analysis::bitwise_complement::find_bitwise_complement(
+                // 统一运行所有注册的分析 pass
+                for pass in program_analysis::get_analysis_passes() {
+                    reports.append(&mut pass(&mut runner, &cfg));
+                }
+                
+                // 单独运行支持公开输入的 CCIG 分析
+                reports.append(&mut program_analysis::ccig::CcigAnalyzer::run_ccig_leakage_inference(
                     &cfg,
-                ));
-                reports.append(&mut program_analysis::signal_assignments::find_signal_assignments(
-                    &cfg,
+                    &public_inputs,
                 ));
 
                 stdout_writer.write_reports(&reports, runner.file_library());
             } else {
                 eprintln!(
                     "Error: Main component template '{}' not found in CFG.",
-                    main_info.template_name
+                    template_name
                 );
             }
         } else {
@@ -188,40 +178,37 @@ fn main() -> ExitCode {
     } else {
         // 模式 1：分析所有模板
         // 先分析函数
-        for name in cfg_manager.function_names() {
-            if let Some(cfg_ref) = cfg_manager.get_function_cfg_ref(name) {
+        for name in runner.function_names(true) {
+            if let Some(cfg_ref) = cfg_manager.get_function_cfg_ref(&name) {
                 let cfg = cfg_ref.borrow();
                 stdout_writer.write_message(&format!("analyzing function '{name}'"));
                 // 函数通常只做基础检查，不做隐私分析（因为没有隐私输入定义）
-                let mut reports =
-                    program_analysis::bitwise_complement::find_bitwise_complement(&cfg);
-                reports.append(&mut program_analysis::signal_assignments::find_signal_assignments(
-                    &cfg,
-                ));
+                let mut reports = program_structure::report::ReportCollection::new();
+                for pass in program_analysis::get_analysis_passes() {
+                    reports.append(&mut pass(&mut runner, &cfg));
+                }
                 stdout_writer.write_reports(&reports, runner.file_library());
             }
         }
 
         // 再分析模板
-        for name in cfg_manager.template_names() {
-            if let Some(cfg_ref) = cfg_manager.get_template_cfg_ref(name) {
+        for name in runner.template_names(true) {
+            if let Some(cfg_ref) = cfg_manager.get_template_cfg_ref(&name) {
                 let cfg = cfg_ref.borrow();
                 stdout_writer.write_message(&format!("analyzing template '{name}'"));
 
-                // 运行隐私分析
-                let mut reports = program_analysis::privacy_taint::find_privacy_taint_leaks(
-                    &cfg,
-                    Some(&runner),
-                    options.leak_threshold,
-                    min_leak_severity,
-                );
+                // 运行隐私分析 (Old graph analysis disconnected)
+                let mut reports = program_structure::report::ReportCollection::new();
 
-                // 运行其他分析
-                reports.append(&mut program_analysis::bitwise_complement::find_bitwise_complement(
+                // 统一运行所有注册的分析 pass
+                for pass in program_analysis::get_analysis_passes() {
+                    reports.append(&mut pass(&mut runner, &cfg));
+                }
+                
+                // 运行 CCIG Leakage
+                reports.append(&mut program_analysis::ccig::CcigAnalyzer::run_ccig_leakage_inference(
                     &cfg,
-                ));
-                reports.append(&mut program_analysis::signal_assignments::find_signal_assignments(
-                    &cfg,
+                    &[],
                 ));
 
                 stdout_writer.write_reports(&reports, runner.file_library());

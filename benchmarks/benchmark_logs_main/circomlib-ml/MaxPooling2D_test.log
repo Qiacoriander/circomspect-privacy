@@ -1,0 +1,4 @@
+circomspect: 从 main component 'MaxPooling2D' 开始分析，公开输入：[]
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\MaxPooling2D_test.circom --mode main`

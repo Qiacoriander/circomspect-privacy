@@ -1,0 +1,2295 @@
+circomspect: analyzing template 'SingleScalePerlin'
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:443:5
+    │
+443 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scaledDistVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:396:5
+    │
+396 │     signal scaledDistVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:366:5
+    │
+366 │     signal input a[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:183:5
+    │
+183 │     signal topLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:214:5
+    │
+214 │     signal topLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:258:5
+    │
+258 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:368:5
+    │
+368 │     signal prod[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:133:5
+    │
+133 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `grads` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:384:5
+    │
+384 │     signal input grads[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `distVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:395:5
+    │
+395 │     signal distVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ret` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:401:5
+    │
+401 │     signal ret[4];
+    │     ^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:196:5
+    │
+196 │     signal bottomLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:385:5
+    │
+385 │     signal input coords[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:187:5
+    │
+187 │     signal topRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:367:5
+    │
+367 │     signal input b[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:205:5
+    │
+205 │     signal bottomRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:256:5
+    │
+256 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:163:5
+    │
+163 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `dividend` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:61:5
+   │
+61 │     signal input dividend; // -8
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:274:5
+    │
+274 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:255:5
+    │
+255 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:179:5
+    │
+179 │     signal bottomRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:134:5
+    │
+134 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:387:5
+    │
+387 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:175:5
+    │
+175 │     signal bottomLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `divisor` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:62:5
+   │
+62 │     signal input divisor; // 5
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:223:5
+    │
+223 │     signal topRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:164:5
+    │
+164 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:386:5
+    │
+386 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `SCALE` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:445:5
+    │
+445 │     signal input SCALE;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:133:5
+    │
+133 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:175:5
+    │
+175 │     signal bottomLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:134:5
+    │
+134 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:256:5
+    │
+256 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:368:5
+    │
+368 │     signal prod[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:366:5
+    │
+366 │     signal input a[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:255:5
+    │
+255 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `dividend` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:61:5
+   │
+61 │     signal input dividend; // -8
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:258:5
+    │
+258 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `divisor` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:62:5
+   │
+62 │     signal input divisor; // 5
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:183:5
+    │
+183 │     signal topLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:274:5
+    │
+274 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ret` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:401:5
+    │
+401 │     signal ret[4];
+    │     ^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:387:5
+    │
+387 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scaledDistVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:396:5
+    │
+396 │     signal scaledDistVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:163:5
+    │
+163 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:223:5
+    │
+223 │     signal topRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:164:5
+    │
+164 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:214:5
+    │
+214 │     signal topLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `grads` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:384:5
+    │
+384 │     signal input grads[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:443:5
+    │
+443 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:367:5
+    │
+367 │     signal input b[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:196:5
+    │
+196 │     signal bottomLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `distVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:395:5
+    │
+395 │     signal distVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:205:5
+    │
+205 │     signal bottomRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `SCALE` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:445:5
+    │
+445 │     signal input SCALE;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:187:5
+    │
+187 │     signal topRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:385:5
+    │
+385 │     signal input coords[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:179:5
+    │
+179 │     signal bottomRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:386:5
+    │
+386 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Modulo'
+warning: Private Input `dividend` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:61:5
+   │
+61 │     signal input dividend; // -8
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `divisor` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:62:5
+   │
+62 │     signal input divisor; // 5
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:79:5
+    │
+ 79 │     raw_remainder <-- abs_dividend % divisor;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `raw_remainder` is not constrained here.
+    ·
+ 94 │     raw_rem_is_zero.in <== raw_remainder;
+    │     ------------------------------------ The signal `raw_remainder` is constrained here.
+    ·
+108 │     remainder <==  raw_remainder * elsef + is_neg_remainder;
+    │     ------------------------------------------------------- The signal `raw_remainder` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:111:5
+    │
+111 │     quotient <-- (dividend - remainder) / divisor; // (-8 - 2) / 5 = -2.
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `quotient` is not constrained here.
+112 │ 
+113 │     dividend === divisor * quotient + remainder; // -8 = 5 * -2 + 2.
+    │     -------------------------------------------- The signal `quotient` is constrained here.
+    ·
+117 │     rp.in[1] <== quotient;
+    │     --------------------- The signal `quotient` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:82:5
+   │
+82 │     neg_remainder <-- divisor - raw_remainder;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `neg_remainder` is quadratic.
+   │
+   = Consider rewriting the statement using the constraint assignment operator `<==`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: In signal assignments containing division, the divisor needs to be constrained to be non-zero
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:111:43
+    │
+111 │     quotient <-- (dividend - remainder) / divisor; // (-8 - 2) / 5 = -2.
+    │                                           ^^^^^^^ The divisor `divisor` must be constrained to be non-zero.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:123:30
+    │
+123 │     remainderUpper.in[0] <== remainder;
+    │                              ^^^^^^^^^ `remainder` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:124:30
+    │
+124 │     remainderUpper.in[1] <== divisor;
+    │                              ^^^^^^^ `divisor` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `dividend` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:61:5
+   │
+61 │     signal input dividend; // -8
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `divisor` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:62:5
+   │
+62 │     signal input divisor; // 5
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'GetWeightBL'
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:289:5
+    │
+289 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:292:5
+    │
+292 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:290:5
+    │
+290 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:296:5
+    │
+296 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:303:5
+    │
+303 │     out <-- nominator / DENOMINATOR;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `out` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:292:5
+    │
+292 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:296:5
+    │
+296 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:290:5
+    │
+290 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:289:5
+    │
+289 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Dot'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:366:5
+    │
+366 │     signal input a[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:367:5
+    │
+367 │     signal input b[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:368:5
+    │
+368 │     signal prod[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:376:5
+    │
+376 │     out <-- sum / DENOMINATOR;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `out` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:366:5
+    │
+366 │     signal input a[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:367:5
+    │
+367 │     signal input b[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:368:5
+    │
+368 │     signal prod[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'RandomGradientAt'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:133:5
+    │
+133 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:133:5
+    │
+133 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Random'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:31:26
+   │
+31 │     component num2Bits = Num2Bits(254);
+   │                          ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'MultiScalePerlin'
+warning: Private Input `topRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:187:5
+    │
+187 │     signal topRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `distVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:395:5
+    │
+395 │     signal distVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:175:5
+    │
+175 │     signal bottomLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:183:5
+    │
+183 │     signal topLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:274:5
+    │
+274 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:256:5
+    │
+256 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:133:5
+    │
+133 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:214:5
+    │
+214 │     signal topLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `dividend` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:61:5
+   │
+61 │     signal input dividend; // -8
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scaledDistVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:396:5
+    │
+396 │     signal scaledDistVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:163:5
+    │
+163 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:367:5
+    │
+367 │     signal input b[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:134:5
+    │
+134 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `divisor` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:62:5
+   │
+62 │     signal input divisor; // 5
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:205:5
+    │
+205 │     signal bottomRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:179:5
+    │
+179 │     signal bottomRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:368:5
+    │
+368 │     signal prod[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:255:5
+    │
+255 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ret` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:401:5
+    │
+401 │     signal ret[4];
+    │     ^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:258:5
+    │
+258 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:385:5
+    │
+385 │     signal input coords[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `grads` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:384:5
+    │
+384 │     signal input grads[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:472:5
+    │
+472 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:223:5
+    │
+223 │     signal topRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:443:5
+    │
+443 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:196:5
+    │
+196 │     signal bottomLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:387:5
+    │
+387 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:366:5
+    │
+366 │     signal input a[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:386:5
+    │
+386 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `SCALE` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:445:5
+    │
+445 │     signal input SCALE;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:164:5
+    │
+164 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:514:5
+    │
+514 │     outDividedByCount <-- adder.out / 4;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `outDividedByCount` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:258:5
+    │
+258 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:205:5
+    │
+205 │     signal bottomRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:133:5
+    │
+133 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:256:5
+    │
+256 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:443:5
+    │
+443 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:367:5
+    │
+367 │     signal input b[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:175:5
+    │
+175 │     signal bottomLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:255:5
+    │
+255 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:183:5
+    │
+183 │     signal topLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:134:5
+    │
+134 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:274:5
+    │
+274 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:179:5
+    │
+179 │     signal bottomRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:386:5
+    │
+386 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:214:5
+    │
+214 │     signal topLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `divisor` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:62:5
+   │
+62 │     signal input divisor; // 5
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `dividend` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:61:5
+   │
+61 │     signal input dividend; // -8
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:223:5
+    │
+223 │     signal topRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:368:5
+    │
+368 │     signal prod[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:387:5
+    │
+387 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:163:5
+    │
+163 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:164:5
+    │
+164 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:366:5
+    │
+366 │     signal input a[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ret` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:401:5
+    │
+401 │     signal ret[4];
+    │     ^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `distVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:395:5
+    │
+395 │     signal distVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `SCALE` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:445:5
+    │
+445 │     signal input SCALE;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `grads` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:384:5
+    │
+384 │     signal input grads[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scaledDistVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:396:5
+    │
+396 │     signal scaledDistVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:196:5
+    │
+196 │     signal bottomLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:187:5
+    │
+187 │     signal topRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:385:5
+    │
+385 │     signal input coords[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:472:5
+    │
+472 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'GetWeight'
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:255:5
+    │
+255 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:258:5
+    │
+258 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:256:5
+    │
+256 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:274:5
+    │
+274 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:281:5
+    │
+281 │     out <-- nominator / DENOMINATOR;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `out` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:274:5
+    │
+274 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:258:5
+    │
+258 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:256:5
+    │
+256 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:255:5
+    │
+255 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'GetWeightTL'
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:330:5
+    │
+330 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:327:5
+    │
+327 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:328:5
+    │
+328 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:334:5
+    │
+334 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:341:5
+    │
+341 │     out <-- nominator / DENOMINATOR;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `out` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:330:5
+    │
+330 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:328:5
+    │
+328 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:327:5
+    │
+327 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:334:5
+    │
+334 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'GetWeightTR'
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:349:5
+    │
+349 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:347:5
+    │
+347 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:353:5
+    │
+353 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:346:5
+    │
+346 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:360:5
+    │
+360 │     out <-- nominator / DENOMINATOR;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `out` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:349:5
+    │
+349 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:353:5
+    │
+353 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:346:5
+    │
+346 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:347:5
+    │
+347 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'IsNegative'
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:42:26
+   │
+42 │     component num2Bits = Num2Bits(254);
+   │                          ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'GetCornersAndGradVectors'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:196:5
+    │
+196 │     signal bottomLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:175:5
+    │
+175 │     signal bottomLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:183:5
+    │
+183 │     signal topLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:134:5
+    │
+134 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:163:5
+    │
+163 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:164:5
+    │
+164 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:133:5
+    │
+133 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `divisor` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:62:5
+   │
+62 │     signal input divisor; // 5
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:223:5
+    │
+223 │     signal topRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:179:5
+    │
+179 │     signal bottomRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:205:5
+    │
+205 │     signal bottomRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:187:5
+    │
+187 │     signal topRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `dividend` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:61:5
+   │
+61 │     signal input dividend; // -8
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:214:5
+    │
+214 │     signal topLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:134:5
+    │
+134 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:20:5
+   │
+20 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:133:5
+    │
+133 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:175:5
+    │
+175 │     signal bottomLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:187:5
+    │
+187 │     signal topRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:179:5
+    │
+179 │     signal bottomRightCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:223:5
+    │
+223 │     signal topRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftCoords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:183:5
+    │
+183 │     signal topLeftCoords[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `topLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:214:5
+    │
+214 │     signal topLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:164:5
+    │
+164 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `divisor` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:62:5
+   │
+62 │     signal input divisor; // 5
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:39:5
+   │
+39 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `dividend` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:61:5
+   │
+61 │     signal input dividend; // -8
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomLeftGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:196:5
+    │
+196 │     signal bottomLeftGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:163:5
+    │
+163 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `bottomRightGrad` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:205:5
+    │
+205 │     signal bottomRightGrad[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'GetWeightBR'
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:308:5
+    │
+308 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:315:5
+    │
+315 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:311:5
+    │
+311 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:309:5
+    │
+309 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:322:5
+    │
+322 │     out <-- nominator / DENOMINATOR;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `out` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:309:5
+    │
+309 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:315:5
+    │
+315 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:311:5
+    │
+311 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:308:5
+    │
+308 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'PerlinValue'
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:255:5
+    │
+255 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:256:5
+    │
+256 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scaledDistVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:396:5
+    │
+396 │     signal scaledDistVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:366:5
+    │
+366 │     signal input a[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:258:5
+    │
+258 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ret` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:401:5
+    │
+401 │     signal ret[4];
+    │     ^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `distVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:395:5
+    │
+395 │     signal distVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:385:5
+    │
+385 │     signal input coords[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:368:5
+    │
+368 │     signal prod[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `grads` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:384:5
+    │
+384 │     signal input grads[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:274:5
+    │
+274 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:367:5
+    │
+367 │     signal input b[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:387:5
+    │
+387 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:386:5
+    │
+386 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:417:9
+    │
+417 │         getWeights[i].p[1] <-- p[1] / scale;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `getWeights[i].p[1]` is not constrained here.
+    │
+    = Consider if it is possible to rewrite the statement using `<==` instead.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:423:9
+    │
+423 │         scaledDistVec[i][1] <-- distVec[i][1] / scale;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `scaledDistVec[i][1]` is not constrained here.
+424 │         distVec[i][1] === scaledDistVec[i][1] * scale;
+    │         ---------------------------------------------- The signal `scaledDistVec[i][1]` is constrained here.
+    ·
+432 │         dots[i].b[1] <== scaledDistVec[i][1];
+    │         ------------------------------------ The signal `scaledDistVec[i][1]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:414:9
+    │
+414 │         getWeights[i].p[0] <-- p[0] / scale;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `getWeights[i].p[0]` is not constrained here.
+    │
+    = Consider if it is possible to rewrite the statement using `<==` instead.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:420:9
+    │
+420 │         scaledDistVec[i][0] <-- distVec[i][0] / scale;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `scaledDistVec[i][0]` is not constrained here.
+421 │         distVec[i][0] === scaledDistVec[i][0] * scale;
+    │         ---------------------------------------------- The signal `scaledDistVec[i][0]` is constrained here.
+    ·
+431 │         dots[i].b[0] <== scaledDistVec[i][0];
+    │         ------------------------------------ The signal `scaledDistVec[i][0]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:435:9
+    │
+435 │         ret[i] <-- retNominator[i] / DENOMINATOR;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `ret[i]` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:408:9
+    │
+408 │         getWeights[i].corner[0] <-- coords[i][0] / scale;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `getWeights[i].corner[0]` is not constrained here.
+    │
+    = Consider if it is possible to rewrite the statement using `<==` instead.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:411:9
+    │
+411 │         getWeights[i].corner[1] <-- coords[i][1] / scale;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `getWeights[i].corner[1]` is not constrained here.
+    │
+    = Consider if it is possible to rewrite the statement using `<==` instead.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: In signal assignments containing division, the divisor needs to be constrained to be non-zero
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:408:52
+    │
+408 │         getWeights[i].corner[0] <-- coords[i][0] / scale;
+    │                                                    ^^^^^ The divisor `scale` must be constrained to be non-zero.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division.
+
+warning: In signal assignments containing division, the divisor needs to be constrained to be non-zero
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:411:52
+    │
+411 │         getWeights[i].corner[1] <-- coords[i][1] / scale;
+    │                                                    ^^^^^ The divisor `scale` must be constrained to be non-zero.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division.
+
+warning: In signal assignments containing division, the divisor needs to be constrained to be non-zero
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:414:39
+    │
+414 │         getWeights[i].p[0] <-- p[0] / scale;
+    │                                       ^^^^^ The divisor `scale` must be constrained to be non-zero.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division.
+
+warning: In signal assignments containing division, the divisor needs to be constrained to be non-zero
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:417:39
+    │
+417 │         getWeights[i].p[1] <-- p[1] / scale;
+    │                                       ^^^^^ The divisor `scale` must be constrained to be non-zero.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division.
+
+warning: In signal assignments containing division, the divisor needs to be constrained to be non-zero
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:420:49
+    │
+420 │         scaledDistVec[i][0] <-- distVec[i][0] / scale;
+    │                                                 ^^^^^ The divisor `scale` must be constrained to be non-zero.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division.
+
+warning: In signal assignments containing division, the divisor needs to be constrained to be non-zero
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:423:49
+    │
+423 │         scaledDistVec[i][1] <-- distVec[i][1] / scale;
+    │                                                 ^^^^^ The divisor `scale` must be constrained to be non-zero.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division.
+
+warning: Private Input `scaledDistVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:396:5
+    │
+396 │     signal scaledDistVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `scale` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:386:5
+    │
+386 │     signal input scale;
+    │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:256:5
+    │
+256 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `diff` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:258:5
+    │
+258 │     signal diff[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `factor` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:274:5
+    │
+274 │     signal factor[2];
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:367:5
+    │
+367 │     signal input b[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `grads` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:384:5
+    │
+384 │     signal input grads[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `corner` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:255:5
+    │
+255 │     signal input corner[2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:368:5
+    │
+368 │     signal prod[2];
+    │     ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coords` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:385:5
+    │
+385 │     signal input coords[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:366:5
+    │
+366 │     signal input a[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:387:5
+    │
+387 │     signal input p[2];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ret` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:401:5
+    │
+401 │     signal ret[4];
+    │     ^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `distVec` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom:395:5
+    │
+395 │     signal distVec[4][2];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 280 issues found.
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\perlin.circom --mode all` (exit code: 1)

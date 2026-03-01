@@ -1,0 +1,133 @@
+circomspect: analyzing template 'Main'
+warning: Private Input `distMax` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:23:5
+   │
+23 │     signal input distMax;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `y1` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:19:5
+   │
+19 │     signal input y1;
+   │     ^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `y2` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:21:5
+   │
+21 │     signal input y2;
+   │     ^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `x2` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:20:5
+   │
+20 │     signal input x2;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `x1` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:18:5
+   │
+18 │     signal input x1;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `r` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:22:5
+   │
+22 │     signal input r;
+   │     ^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:53:21
+   │
+53 │     comp2.in[0] <== x2Sq + y2Sq;
+   │                     ^^^^^^^^^^^ `(x2Sq + y2Sq)` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:70:22
+   │
+70 │     ltDist.in[1] <== distMax * distMax + 1;
+   │                      ^^^^^^^^^^^^^^^^^^^^^ `((distMax * distMax) + 1)` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:69:22
+   │
+69 │     ltDist.in[0] <== firstDistSquare + secondDistSquare;
+   │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `(firstDistSquare + secondDistSquare)` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:54:21
+   │
+54 │     comp2.in[1] <== rSq;
+   │                     ^^^ `rSq` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Private Input `y2` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:21:5
+   │
+21 │     signal input y2;
+   │     ^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `x2` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:20:5
+   │
+20 │     signal input x2;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `distMax` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:23:5
+   │
+23 │     signal input distMax;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `r` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:22:5
+   │
+22 │     signal input r;
+   │     ^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `x1` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:18:5
+   │
+18 │     signal input x1;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `y1` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom:19:5
+   │
+19 │     signal input y1;
+   │     ^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 16 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\darkforest-eth-9033eaf\move.circom --mode all` (exit code: 1)

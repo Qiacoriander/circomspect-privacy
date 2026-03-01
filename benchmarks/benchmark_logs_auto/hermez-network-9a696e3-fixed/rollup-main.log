@@ -1,0 +1,10 @@
+error: Unrecognized token `input` found. Expected one of `,`, `;`, `<--`, `<==` or `[`.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-main.circom:105:20
+    │
+105 │     signal private input oldLastIdx;
+    │                    ^^^^^ This token is invalid or unexpected here.
+
+circomspect: 1 issue found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-main.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-main.circom --mode all` (exit code: 1)

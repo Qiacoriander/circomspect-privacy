@@ -1,0 +1,10 @@
+error: Unrecognized token `template` found. Expected one of `;`.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\withdraw.circom:21:1
+   │
+21 │ template Withdraw(nLevels) {
+   │ ^^^^^^^^ This token is invalid or unexpected here.
+
+circomspect: 1 issue found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\withdraw.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\withdraw.circom --mode all` (exit code: 1)

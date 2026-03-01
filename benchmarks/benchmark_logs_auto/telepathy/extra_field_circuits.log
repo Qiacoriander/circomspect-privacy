@@ -1,0 +1,598 @@
+circomspect: analyzing function 'prod3D'
+circomspect: analyzing function 'Fp2prod'
+circomspect: analyzing template 'Fp12MultiplyThree'
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:430:5
+    │
+430 │     signal input b[l][2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:429:5
+    │
+429 │     signal input a[l][2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `c` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:431:5
+    │
+431 │     signal input c[l][2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod_real` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:519:5
+    │
+519 │     signal prod_real[l][2][2 * k + 4];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod_imag` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:520:5
+    │
+520 │     signal prod_imag[l][2][2 * k + 4];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:527:13
+    │
+527 │             prod_real[i][0][j] <-- prod_real_temp[i][0][j];
+    │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `prod_real[i][0][j]` is not constrained here.
+    │
+    = Consider if it is possible to rewrite the statement using `<==` instead.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:531:17
+    │
+531 │                 prod_imag[i][1][j] <-- prod_imag_temp[i][1][j];
+    │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `prod_imag[i][1][j]` is not constrained here.
+    ·
+534 │                 prod_imag[i][1][j] <== 0;
+    │                 ------------------------ The signal `prod_imag[i][1][j]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:528:13
+    │
+528 │             prod_imag[i][0][j] <-- prod_imag_temp[i][0][j];
+    │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `prod_imag[i][0][j]` is not constrained here.
+    │
+    = Consider if it is possible to rewrite the statement using `<==` instead.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:530:17
+    │
+530 │                 prod_real[i][1][j] <-- prod_real_temp[i][1][j];
+    │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `prod_real[i][1][j]` is not constrained here.
+    ·
+533 │                 prod_real[i][1][j] <== 0;
+    │                 ------------------------ The signal `prod_real[i][1][j]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:549:45
+    │
+549 │                 out_range_checks[i][j][m] = Num2Bits(n);
+    │                                             ^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:569:41
+    │
+569 │             div_range_checks[i][0][j] = Num2Bits(n);
+    │                                         ^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:570:41
+    │
+570 │             div_range_checks[i][1][j] = Num2Bits(n);
+    │                                         ^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Private Input `prod_real` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:519:5
+    │
+519 │     signal prod_real[l][2][2 * k + 4];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `c` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:431:5
+    │
+431 │     signal input c[l][2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:429:5
+    │
+429 │     signal input a[l][2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:430:5
+    │
+430 │     signal input b[l][2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `prod_imag` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:520:5
+    │
+520 │     signal prod_imag[l][2][2 * k + 4];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Fp2Multiply1'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:81:5
+   │
+81 │     signal input a[2*l-1][k];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:112:5
+    │
+112 │     signal input b[l][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:111:5
+    │
+111 │     signal input a[l][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:111:5
+    │
+111 │     signal input a[l][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:81:5
+   │
+81 │     signal input a[2*l-1][k];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:112:5
+    │
+112 │     signal input b[l][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'PolynomialReduce'
+warning: Private Input `poly` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:40:5
+   │
+40 │     signal input poly[l];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a_out` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:64:5
+   │
+64 │     signal a_out[2*l-1];
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:39:5
+   │
+39 │     signal input a[2*l-1];
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `quotient` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:44:5
+   │
+44 │     signal quotient[l-1];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:52:9
+   │
+52 │         quotient[i] <-- residue[i+l];
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `quotient[i]` is not constrained here.
+   │
+   = Consider if it is possible to rewrite the statement using `<==` instead.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:69:9
+   │
+69 │         out[i] <-- residue[i];
+   │         ^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `out[i]` is quadratic.
+   │
+   = Consider rewriting the statement using the constraint assignment operator `<==`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:39:5
+   │
+39 │     signal input a[2*l-1];
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `poly` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:40:5
+   │
+40 │     signal input poly[l];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a_out` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:64:5
+   │
+64 │     signal a_out[2*l-1];
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `quotient` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:44:5
+   │
+44 │     signal quotient[l-1];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'FieldAdd2D'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:16:5
+   │
+16 │     signal input a[l][k];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:18:5
+   │
+18 │     signal input p[k];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:17:5
+   │
+17 │     signal input b[l][k];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:17:5
+   │
+17 │     signal input b[l][k];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:18:5
+   │
+18 │     signal input p[k];
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:16:5
+   │
+16 │     signal input a[l][k];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Fp2PolynomialReduce'
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:81:5
+   │
+81 │     signal input a[2*l-1][k];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: The variable `poly` is assigned a value, but this value is never read.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:82:5
+   │
+82 │     var poly[2] = [1, 0]; // x^2 + 1 = 0
+   │     ^^^^^^^^^^^^^^^^^^^^ The value assigned to `poly` here is never read.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:81:5
+   │
+81 │     signal input a[2*l-1][k];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Fp2multiply'
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:251:5
+    │
+251 │     signal input b[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:287:5
+    │
+287 │     signal input a[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:250:5
+    │
+250 │     signal input a[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:288:5
+    │
+288 │     signal input b[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `X` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:298:5
+    │
+298 │     signal X[2][k+2]; 
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:289:5
+    │
+289 │     signal input p[k];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:252:5
+    │
+252 │     signal input p[k];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:304:13
+    │
+304 │             out[eps][i] <-- Xvar[eps][1][i];
+    │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[eps][i]` is not constrained here.
+305 │             range_checks[eps][i] = Num2Bits(n);
+306 │             range_checks[eps][i].in <== out[eps][i];
+    │             --------------------------------------- The signal `out[eps][i]` is constrained here.
+307 │             
+308 │             lt[eps].a[i] <== out[eps][i];
+    │             ---------------------------- The signal `out[eps][i]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:314:13
+    │
+314 │             X[eps][i] <-- Xvar[eps][0][i];
+    │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `X[eps][i]` is not constrained here.
+315 │             X_range_checks[eps][i] = Num2Bits(n);
+316 │             X_range_checks[eps][i].in <== X[eps][i];
+    │             --------------------------------------- The signal `X[eps][i]` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:305:36
+    │
+305 │             range_checks[eps][i] = Num2Bits(n);
+    │                                    ^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:315:38
+    │
+315 │             X_range_checks[eps][i] = Num2Bits(n);
+    │                                      ^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+    │
+    = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:289:5
+    │
+289 │     signal input p[k];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `X` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:298:5
+    │
+298 │     signal X[2][k+2]; 
+    │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:287:5
+    │
+287 │     signal input a[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:288:5
+    │
+288 │     signal input b[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:250:5
+    │
+250 │     signal input a[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:251:5
+    │
+251 │     signal input b[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:252:5
+    │
+252 │     signal input p[k];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Fp2multiplyNoCarry'
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:251:5
+    │
+251 │     signal input b[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:252:5
+    │
+252 │     signal input p[k];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:250:5
+    │
+250 │     signal input a[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:250:5
+    │
+250 │     signal input a[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:252:5
+    │
+252 │     signal input p[k];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:251:5
+    │
+251 │     signal input b[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'Fp2Square'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:157:5
+    │
+157 │     signal input in[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:158:5
+    │
+158 │     signal input p[k];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `p` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:158:5
+    │
+158 │     signal input p[k];
+    │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom:157:5
+    │
+157 │     signal input in[2][k];
+    │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 70 issues found.
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\pairing\extra_field_circuits.circom --mode all` (exit code: 1)

@@ -1,0 +1,77 @@
+error: Failed to open file `../node_modules/circomlib/circuits/comparators.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:1:1
+  │
+1 │ include "../node_modules/circomlib/circuits/comparators.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `../node_modules/circomlib/circuits/mux2.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:2:1
+  │
+2 │ include "../node_modules/circomlib/circuits/mux2.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `../node_modules/circomlib/circuits/mux1.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:3:1
+  │
+3 │ include "../node_modules/circomlib/circuits/mux1.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `../node_modules/circomlib/circuits/poseidon.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:4:1
+  │
+4 │ include "../node_modules/circomlib/circuits/poseidon.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: analyzing template 'RollupTxStates'
+warning: Private Input `newAccount` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:65:5
+   │
+65 │     signal input newAccount;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `newExit` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:63:5
+   │
+63 │     signal input newExit;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `onChain` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:66:5
+   │
+66 │     signal input onChain;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `onChain` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:66:5
+   │
+66 │     signal input onChain;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `newExit` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:63:5
+   │
+63 │     signal input newExit;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `newAccount` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom:65:5
+   │
+65 │     signal input newAccount;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 10 issues found.
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\hermez-network-9a696e3-fixed\src\rollup-tx-states.circom --mode all` (exit code: 1)

@@ -1,0 +1,1126 @@
+circomspect: analyzing template 'PerformChecksBeforeUpdate'
+warning: Private Input `msg_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:83:5
+   │
+83 │     signal input msg_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_elements` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:94:5
+   │
+94 │     signal input vote_options_tree_path_elements[vote_options_tree_depth][VOTE_OPTION_TREE_PATH_ELEMENTS_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coordinator_public_key` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:79:5
+   │
+79 │     signal input coordinator_public_key[2];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:19:5
+   │
+19 │     signal input state_tree_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ecdh_private_key` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:78:5
+   │
+78 │     signal input ecdh_private_key;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:95:5
+   │
+95 │     signal input vote_options_tree_path_index[vote_options_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:16:5
+   │
+16 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:75:5
+   │
+75 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:85:5
+   │
+85 │     signal input msg_tree_path_index[message_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:88:5
+   │
+88 │     signal input state_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:76:5
+   │
+76 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:18:5
+   │
+18 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:90:5
+   │
+90 │     signal input state_tree_path_index[state_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:92:5
+   │
+92 │     signal input vote_options_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:17:5
+   │
+17 │     signal input vote_options_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:82:5
+   │
+82 │     signal input message[MESSAGE_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: `PerformChecksBeforeUpdate` takes too many parameters. This increases coupling and decreases readability.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:57:5
+   │  
+57 │ ╭     MESSAGE_LENGTH,
+58 │ │     MESSAGE_WITHOUT_SIGNATURE_LENGTH,
+59 │ │     message_tree_depth,
+60 │ │     STATE_TREE_DATA_LENGTH,
+   · │
+69 │ │     CMD_SIG_R8Y_IDX,
+70 │ │     CMD_SIG_S_IDX
+   │ ╰─────────────────^ This template takes too many parameters.
+   │  
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#overly-complex-function-or-template.
+
+warning: Private Input `ecdh_private_key` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:78:5
+   │
+78 │     signal input ecdh_private_key;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:17:5
+   │
+17 │     signal input vote_options_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:19:5
+   │
+19 │     signal input state_tree_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:95:5
+   │
+95 │     signal input vote_options_tree_path_index[vote_options_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:82:5
+   │
+82 │     signal input message[MESSAGE_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:76:5
+   │
+76 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coordinator_public_key` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:79:5
+   │
+79 │     signal input coordinator_public_key[2];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:85:5
+   │
+85 │     signal input msg_tree_path_index[message_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:75:5
+   │
+75 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:90:5
+   │
+90 │     signal input state_tree_path_index[state_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:16:5
+   │
+16 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:92:5
+   │
+92 │     signal input vote_options_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:83:5
+   │
+83 │     signal input msg_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_elements` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:94:5
+   │
+94 │     signal input vote_options_tree_path_elements[vote_options_tree_depth][VOTE_OPTION_TREE_PATH_ELEMENTS_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:18:5
+   │
+18 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:88:5
+   │
+88 │     signal input state_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'UpdateStateTree'
+warning: Private Input `state_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:88:5
+   │
+88 │     signal input state_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_state_leaf_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:36:5
+   │
+36 │     signal input valid_state_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_root` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:270:5
+    │
+270 │     signal input vote_options_tree_root;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `sufficient_voice_credits` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:34:5
+   │
+34 │     signal input sufficient_voice_credits;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ecdh_private_key` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:289:5
+    │
+289 │     signal input ecdh_private_key;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `new_state_tree_data` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:380:5
+    │
+380 │     signal new_state_tree_data[STATE_TREE_DATA_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:92:5
+   │
+92 │     signal input vote_options_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:18:5
+   │
+18 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_elements` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:94:5
+   │
+94 │     signal input vote_options_tree_path_elements[vote_options_tree_depth][VOTE_OPTION_TREE_PATH_ELEMENTS_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:286:5
+    │
+286 │     signal input state_tree_path_index[state_tree_depth];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_root` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:276:5
+    │
+276 │     signal input msg_tree_root;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_data_raw` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:281:5
+    │
+281 │     signal input state_tree_data_raw[STATE_TREE_DATA_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `correct_nonce` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:35:5
+   │
+35 │     signal input correct_nonce;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coordinator_public_key` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:79:5
+   │
+79 │     signal input coordinator_public_key[2];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_vote_options_leaf_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:38:5
+   │
+38 │     signal input valid_vote_options_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:16:5
+   │
+16 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:75:5
+   │
+75 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:272:5
+    │
+272 │     signal input vote_options_tree_path_index[vote_options_tree_depth];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:17:5
+   │
+17 │     signal input vote_options_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:85:5
+   │
+85 │     signal input msg_tree_path_index[message_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_leaf_raw` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:93:5
+   │
+93 │     signal input vote_options_leaf_raw;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:252:5
+    │
+252 │     signal input message[MESSAGE_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:273:5
+    │
+273 │     signal input vote_options_max_leaf_index;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `decrypted_command_out` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:293:5
+    │
+293 │     signal decrypted_command_out[MESSAGE_LENGTH - 1];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_root` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:284:5
+    │
+284 │     signal input state_tree_root;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:90:5
+   │
+90 │     signal input state_tree_path_index[state_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `new_state_tree_data` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:380:5
+    │
+380 │     signal new_state_tree_data[STATE_TREE_DATA_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:76:5
+   │
+76 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:82:5
+   │
+82 │     signal input message[MESSAGE_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_data_raw` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:87:5
+   │
+87 │     signal input state_tree_data_raw[STATE_TREE_DATA_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ecdh_private_key` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:78:5
+   │
+78 │     signal input ecdh_private_key;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:95:5
+   │
+95 │     signal input vote_options_tree_path_index[vote_options_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_signature` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:33:5
+   │
+33 │     signal input valid_signature;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_leaf_raw` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:269:5
+    │
+269 │     signal input vote_options_leaf_raw;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:278:5
+    │
+278 │     signal input msg_tree_path_index[message_tree_depth];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:19:5
+   │
+19 │     signal input state_tree_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:283:5
+    │
+283 │     signal input state_tree_max_leaf_index;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `user_vote_weight_lt` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:39:5
+   │
+39 │     signal input user_vote_weight_lt;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_state_leaf_index_2` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:37:5
+   │
+37 │     signal input valid_state_leaf_index_2;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_elements` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:271:5
+    │
+271 │     signal input vote_options_tree_path_elements[vote_options_tree_depth][VOTE_OPTION_TREE_PATH_ELEMENTS_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:83:5
+   │
+83 │     signal input msg_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: The variable `STATE_TREE_VOTE_OPTION_TREE_ROOT_IDX` is assigned a value, but this value is never read.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:258:5
+    │
+258 │     var STATE_TREE_VOTE_OPTION_TREE_ROOT_IDX = 2;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `STATE_TREE_VOTE_OPTION_TREE_ROOT_IDX` here is never read.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The variable `CMD_SALT_IDX` is assigned a value, but this value is never read.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:221:5
+    │
+221 │     var CMD_SALT_IDX = 6;
+    │     ^^^^^^^^^^^^^^^^^^^^ The value assigned to `CMD_SALT_IDX` here is never read.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: Private Input `vote_options_leaf_raw` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:93:5
+   │
+93 │     signal input vote_options_leaf_raw;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_state_leaf_index_2` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:37:5
+   │
+37 │     signal input valid_state_leaf_index_2;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_root` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:276:5
+    │
+276 │     signal input msg_tree_root;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:19:5
+   │
+19 │     signal input state_tree_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_root` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:270:5
+    │
+270 │     signal input vote_options_tree_root;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:92:5
+   │
+92 │     signal input vote_options_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:16:5
+   │
+16 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:283:5
+    │
+283 │     signal input state_tree_max_leaf_index;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:83:5
+   │
+83 │     signal input msg_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_root` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:284:5
+    │
+284 │     signal input state_tree_root;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_root` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:88:5
+   │
+88 │     signal input state_tree_root;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `coordinator_public_key` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:79:5
+   │
+79 │     signal input coordinator_public_key[2];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ecdh_private_key` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:78:5
+   │
+78 │     signal input ecdh_private_key;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:272:5
+    │
+272 │     signal input vote_options_tree_path_index[vote_options_tree_depth];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:76:5
+   │
+76 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `new_state_tree_data` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:380:5
+    │
+380 │     signal new_state_tree_data[STATE_TREE_DATA_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:286:5
+    │
+286 │     signal input state_tree_path_index[state_tree_depth];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:90:5
+   │
+90 │     signal input state_tree_path_index[state_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:252:5
+    │
+252 │     signal input message[MESSAGE_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:75:5
+   │
+75 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_elements` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:94:5
+   │
+94 │     signal input vote_options_tree_path_elements[vote_options_tree_depth][VOTE_OPTION_TREE_PATH_ELEMENTS_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_elements` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:271:5
+    │
+271 │     signal input vote_options_tree_path_elements[vote_options_tree_depth][VOTE_OPTION_TREE_PATH_ELEMENTS_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `sufficient_voice_credits` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:34:5
+   │
+34 │     signal input sufficient_voice_credits;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `message` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:82:5
+   │
+82 │     signal input message[MESSAGE_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:273:5
+    │
+273 │     signal input vote_options_max_leaf_index;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:95:5
+   │
+95 │     signal input vote_options_tree_path_index[vote_options_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:278:5
+    │
+278 │     signal input msg_tree_path_index[message_tree_depth];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:17:5
+   │
+17 │     signal input vote_options_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `new_state_tree_data` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:380:5
+    │
+380 │     signal new_state_tree_data[STATE_TREE_DATA_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `ecdh_private_key` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:289:5
+    │
+289 │     signal input ecdh_private_key;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_leaf_raw` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:269:5
+    │
+269 │     signal input vote_options_leaf_raw;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `msg_tree_path_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:85:5
+   │
+85 │     signal input msg_tree_path_index[message_tree_depth];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `user_vote_weight_lt` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:39:5
+   │
+39 │     signal input user_vote_weight_lt;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `decrypted_command_out` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:293:5
+    │
+293 │     signal decrypted_command_out[MESSAGE_LENGTH - 1];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_signature` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:33:5
+   │
+33 │     signal input valid_signature;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `correct_nonce` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:35:5
+   │
+35 │     signal input correct_nonce;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_data_raw` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:87:5
+   │
+87 │     signal input state_tree_data_raw[STATE_TREE_DATA_LENGTH];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_data_raw` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:281:5
+    │
+281 │     signal input state_tree_data_raw[STATE_TREE_DATA_LENGTH];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:18:5
+   │
+18 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_vote_options_leaf_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:38:5
+   │
+38 │     signal input valid_vote_options_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_state_leaf_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:36:5
+   │
+36 │     signal input valid_state_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'ValidateIndices'
+warning: Private Input `vote_options_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:17:5
+   │
+17 │     signal input vote_options_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:16:5
+   │
+16 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:19:5
+   │
+19 │     signal input state_tree_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:18:5
+   │
+18 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:17:5
+   │
+17 │     signal input vote_options_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `vote_options_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:16:5
+   │
+16 │     signal input vote_options_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaf_index` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:18:5
+   │
+18 │     signal input state_tree_max_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `state_tree_max_leaves` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:19:5
+   │
+19 │     signal input state_tree_max_leaves;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'CheckValidUpdate'
+warning: Private Input `sufficient_voice_credits` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:34:5
+   │
+34 │     signal input sufficient_voice_credits;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `correct_nonce` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:35:5
+   │
+35 │     signal input correct_nonce;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `user_vote_weight_lt` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:39:5
+   │
+39 │     signal input user_vote_weight_lt;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_state_leaf_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:36:5
+   │
+36 │     signal input valid_state_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_state_leaf_index_2` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:37:5
+   │
+37 │     signal input valid_state_leaf_index_2;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_vote_options_leaf_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:38:5
+   │
+38 │     signal input valid_vote_options_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_signature` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:33:5
+   │
+33 │     signal input valid_signature;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_state_leaf_index_2` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:37:5
+   │
+37 │     signal input valid_state_leaf_index_2;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_vote_options_leaf_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:38:5
+   │
+38 │     signal input valid_vote_options_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_signature` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:33:5
+   │
+33 │     signal input valid_signature;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `valid_state_leaf_index` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:36:5
+   │
+36 │     signal input valid_state_leaf_index;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `correct_nonce` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:35:5
+   │
+35 │     signal input correct_nonce;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `sufficient_voice_credits` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:34:5
+   │
+34 │     signal input sufficient_voice_credits;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `user_vote_weight_lt` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom:39:5
+   │
+39 │     signal input user_vote_weight_lt;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 139 issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\maci-9b1b1a6-fixed\updateStateTree.circom --mode all` (exit code: 1)

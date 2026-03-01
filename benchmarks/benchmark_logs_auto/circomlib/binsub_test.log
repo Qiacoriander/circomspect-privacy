@@ -1,0 +1,37 @@
+circomspect: 从 main component 'A' 开始分析，公开输入：[]
+warning: Private Input `b` has a PARTIAL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\binsub_test.circom:8:5
+  │
+8 │     signal input b;
+  │     ^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a PARTIAL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\binsub_test.circom:7:5
+  │
+7 │     signal input a; //private
+  │     ^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a PARTIAL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\binsub_test.circom:7:5
+  │
+7 │     signal input a; //private
+  │     ^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `b` has a PARTIAL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\binsub_test.circom:8:5
+  │
+8 │     signal input b;
+  │     ^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 4 issues found.
+    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\binsub_test.circom --mode main`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\binsub_test.circom --mode main` (exit code: 1)

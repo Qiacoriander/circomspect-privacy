@@ -89,9 +89,8 @@ pub enum ReportCode {
     UnderConstrainedSignal,
     UnusedOutputSignal,
     // Privacy taint analysis codes
-    PrivateTaintedOutput,
-    PrivateTaintedConstraint,
-    QuantifiedLeakage,
+
+    CcigLeak,
 }
 
 impl ReportCode {
@@ -184,9 +183,8 @@ impl ReportCode {
             Bn254SpecificCircuit => "CS0016",
             UnderConstrainedSignal => "CS0017",
             UnusedOutputSignal => "CS0018",
-            PrivateTaintedOutput => "CS0019",
-            PrivateTaintedConstraint => "CS0020",
-            QuantifiedLeakage => "CS0021",
+
+            CcigLeak => "CS0022",
         }
         .to_string()
     }
@@ -278,9 +276,8 @@ impl ReportCode {
             Bn254SpecificCircuit => "bn254-specific-circuit",
             UnderConstrainedSignal => "under-constrained-signal",
             UnusedOutputSignal => "unused-output-signal",
-            PrivateTaintedOutput => "private-tainted-output",
-            PrivateTaintedConstraint => "private-tainted-constraint",
-            QuantifiedLeakage => "quantified-leakage",
+
+            CcigLeak => "ccig-leak",
         }
         .to_string()
     }
@@ -305,9 +302,8 @@ impl ReportCode {
             Bn254SpecificCircuit => Some("bn254-specific-circuit"),
             UnderConstrainedSignal => Some("under-constrained-signal"),
             UnusedOutputSignal => Some("unused-output-signal"),
-            PrivateTaintedOutput => Some("private-tainted-output"),
-            PrivateTaintedConstraint => Some("private-tainted-constraint"),
-            QuantifiedLeakage => Some("quantified-leakage"),
+
+            CcigLeak => Some("ccig-leak"),
             // We only provide a URL for Circomspect specific issues.
             _ => None,
         }

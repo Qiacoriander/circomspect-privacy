@@ -1,0 +1,6 @@
+circomspect: analyzing template 'SMTVerifier'
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifier.circom --mode all`
+
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smtverifier.circom --mode all` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)

@@ -1,0 +1,4 @@
+circomspect: 从 main component 'Sha256' 开始分析，公开输入：[]
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\test\circuits\sha256_test448.circom --mode main`

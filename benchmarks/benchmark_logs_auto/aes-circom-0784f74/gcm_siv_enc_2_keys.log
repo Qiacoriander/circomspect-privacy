@@ -1,0 +1,35 @@
+error: Failed to open file `../node_modules/circomlib/circuits/sha256/sha256.circom`.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom:9:1
+  │
+9 │ include "../node_modules/circomlib/circuits/sha256/sha256.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: analyzing template 'GCM_SIV_ENC_2_Keys'
+warning: Private Input `K1` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom:17:5
+   │
+17 │     signal input K1[256];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: The value assigned to `T_masked[i][j]` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom:144:13
+    │
+144 │             T_masked[i][j] = T[i][j];
+    │             ^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `T_masked[i][j]` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: Private Input `K1` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom:17:5
+   │
+17 │     signal input K1[256];
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 4 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\gcm_siv_enc_2_keys.circom --mode all` (exit code: 1)

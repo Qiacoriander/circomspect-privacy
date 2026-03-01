@@ -1,0 +1,21 @@
+circomspect: 从 main component 'relu_test' 开始分析，公开输入：[]
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\ReLU_test.circom:6:5
+  │
+6 │     signal input in[3];
+  │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\ReLU_test.circom:6:5
+  │
+6 │     signal input in[3];
+  │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 2 issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\ReLU_test.circom --mode main`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\test\circuits\ReLU_test.circom --mode main` (exit code: 1)

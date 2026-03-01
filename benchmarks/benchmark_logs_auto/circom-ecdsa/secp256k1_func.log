@@ -1,0 +1,10 @@
+circomspect: analyzing function 'get_dummy_point'
+circomspect: analyzing function 'secp256k1_addunequal_func'
+circomspect: analyzing function 'get_secp256k1_prime'
+circomspect: analyzing function 'get_gy'
+circomspect: analyzing function 'get_secp256k1_order'
+circomspect: analyzing function 'get_gx'
+circomspect: analyzing function 'secp256k1_double_func'
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\circuits\secp256k1_func.circom --mode all`

@@ -1,0 +1,271 @@
+circomspect: analyzing template 'IsZero'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:25:5
+   │
+25 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:30:5
+   │
+30 │     inv <-- in!=0 ? 1/in : 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `inv` is not constrained here.
+31 │ 
+32 │     out <== -in*inv +1;
+   │     ------------------ The signal `inv` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:25:5
+   │
+25 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'LessThan'
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:91:5
+   │
+91 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:94:21
+   │
+94 │     component n2b = Num2Bits(n+1);
+   │                     ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:91:5
+   │
+91 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'LessEqThan'
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:91:5
+   │
+91 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:106:5
+    │
+106 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:111:18
+    │
+111 │     lt.in[0] <== in[0];
+    │                  ^^^^^ `in[0]` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:112:18
+    │
+112 │     lt.in[1] <== in[1]+1;
+    │                  ^^^^^^^ `(in[1] + 1)` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:91:5
+   │
+91 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:106:5
+    │
+106 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'ForceEqualIfEnabled'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:50:5
+   │
+50 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:25:5
+   │
+25 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:50:5
+   │
+50 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:25:5
+   │
+25 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'IsEqual'
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:25:5
+   │
+25 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:38:5
+   │
+38 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:38:5
+   │
+38 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:25:5
+   │
+25 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'GreaterThan'
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:91:5
+   │
+91 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:119:5
+    │
+119 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:125:18
+    │
+125 │     lt.in[1] <== in[0];
+    │                  ^^^^^ `in[0]` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:124:18
+    │
+124 │     lt.in[0] <== in[1];
+    │                  ^^^^^ `in[1]` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:91:5
+   │
+91 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:119:5
+    │
+119 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: analyzing template 'GreaterEqThan'
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:91:5
+   │
+91 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:132:5
+    │
+132 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:138:18
+    │
+138 │     lt.in[1] <== in[0]+1;
+    │                  ^^^^^^^ `(in[0] + 1)` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:137:18
+    │
+137 │     lt.in[0] <== in[1];
+    │                  ^^^^^ `in[1]` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:91:5
+   │
+91 │     signal input in[2];
+   │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in` has a PARTIAL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom:132:5
+    │
+132 │     signal input in[2];
+    │     ^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 32 issues found.
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom --mode all`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-ml\circuits\circomlib\comparators.circom --mode all` (exit code: 1)
