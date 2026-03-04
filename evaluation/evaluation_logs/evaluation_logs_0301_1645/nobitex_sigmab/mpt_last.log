@@ -1,0 +1,103 @@
+circomspect: 从 main component 'MptLast' 开始分析，公开输入：[]
+warning: Intermediate signals should typically occur in at least two separate constraints.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:108:5
+    │
+108 │     signal upperLayerLen;
+    │     ^^^^^^^^^^^^^^^^^^^^ The intermediate signal `upperLayerLen` is declared here.
+109 │     upperLayerLen <== 8 * upperLayerBytesLen;
+    │     ---------------------------------------- The intermediate signal `upperLayerLen` is constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Private Input `salt` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:66:5
+   │
+66 │     signal input salt;
+   │     ^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `address` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:10:5
+   │
+10 │     signal input address[20];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `balance` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:62:5
+   │
+62 │     signal input balance;
+   │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `keccak_input` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:15:5
+   │
+15 │     signal keccak_input[136 * 8];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `nonce` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:61:5
+   │
+61 │     signal input nonce;
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `hashed_address_bits` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:14:5
+   │
+14 │     signal hashed_address_bits[32 * 8];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `upperLayerBytes` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:96:5
+   │
+96 │     signal upperLayerBytes[maxPrefixLen + maxLowerLen];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `expected_prefix` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:89:5
+   │
+89 │     signal expected_prefix[security + 2];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `upperLayer` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:107:5
+    │
+107 │     signal upperLayer[maxBlocks * 136 * 8];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `lowerLayerPrefixLen` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:58:5
+   │
+58 │     signal input lowerLayerPrefixLen;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `hash_address` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom:84:5
+   │
+84 │     signal hash_address[32];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 12 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom --mode main`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\nobitex_sigmab\circuit\mpt_last.circom --mode main` (exit code: 1)

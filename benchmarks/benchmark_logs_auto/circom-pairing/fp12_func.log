@@ -1,8 +1,0 @@
-circomspect: analyzing function 'find_Fp12_sum'
-circomspect: analyzing function 'find_Fp12_diff'
-circomspect: analyzing function 'find_Fp12_inverse'
-circomspect: analyzing function 'find_Fp12_product'
-circomspect: analyzing function 'find_Fp6_inverse'
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.16s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\fp12_func.circom --mode all`

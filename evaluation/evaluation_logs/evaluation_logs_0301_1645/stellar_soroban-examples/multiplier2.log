@@ -1,0 +1,21 @@
+circomspect: 从 main component 'Multiplier2' 开始分析，公开输入：[]
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\stellar_soroban-examples\groth16_verifier\data\auxiliary\multiplier2.circom:9:4
+  │
+9 │    signal input b;  
+  │    ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `a` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\stellar_soroban-examples\groth16_verifier\data\auxiliary\multiplier2.circom:8:4
+  │
+8 │    signal input a;  
+  │    ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 2 issues found.
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\stellar_soroban-examples\groth16_verifier\data\auxiliary\multiplier2.circom --mode main`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\stellar_soroban-examples\groth16_verifier\data\auxiliary\multiplier2.circom --mode main` (exit code: 1)

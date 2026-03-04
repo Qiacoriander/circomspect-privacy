@@ -1,0 +1,4 @@
+circomspect: 从 main component 'Range' 开始分析，公开输入：[]
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\RareSkills_zero-knowledge-puzzles\Range\Range.circom --mode main`

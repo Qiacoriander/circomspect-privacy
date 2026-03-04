@@ -1,0 +1,13 @@
+circomspect: 从 main component 'ComplexCircuit' 开始分析，公开输入：[]
+warning: Private Input `b` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1000k-1000k.circom:9:5
+  │
+9 │     signal b[NUM_VARIABLES];
+  │     ^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 1 issue found.
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1000k-1000k.circom --mode main`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1000k-1000k.circom --mode main` (exit code: 1)

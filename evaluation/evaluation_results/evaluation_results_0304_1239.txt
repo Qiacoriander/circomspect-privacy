@@ -1,0 +1,75 @@
+
+================================================================================
+Circomspect 隐私泄露评估测试报告
+================================================================================
+
+【总体统计】
+  总分析文件数: 125
+  模式分布: Main=125, Library=0
+  运行状况: 成功=125, 失败=0
+  总用时: 46.61 秒
+  实际被作为 main 入口分析的文件数: 105
+    其中显式指定了 public 信号的占比: 0/105 (0.0%)
+  存在隐私泄露的文件数: 13 (10.4%)
+  风险信号总数: 13 (FULL LEAK: 13, PARTIAL LEAK: 0)
+
+【按项目统计】
+  - zkmopro_benchmark-app: 15 文件, 泄露文件: 9, 风险信号: 9 (FULL LEAK: 9, PARTIAL LEAK: 0)
+  - socathie_circomlib-ml: 40 文件, 泄露文件: 2, 风险信号: 2 (FULL LEAK: 2, PARTIAL LEAK: 0)
+  - busyapedao_zksafebox-contract: 5 文件, 泄露文件: 1, 风险信号: 1 (FULL LEAK: 1, PARTIAL LEAK: 0)
+  - nobitex_sigmab: 3 文件, 泄露文件: 1, 风险信号: 1 (FULL LEAK: 1, PARTIAL LEAK: 0)
+  - 0xPolygon_zkevm-proverjs: 1 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - dhananjaypai08_Zk-OS: 1 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - EkuboProtocol_privacy-pools: 1 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - factorgroup_nightmarket: 2 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - LFDT-Paladin_zeto: 14 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - Poseidon-ZKP_Applied-ZKP-Workshop: 2 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - privacy-ethereum_nova-ml: 2 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - RareSkills_zero-knowledge-puzzles: 25 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - stellar_soroban-examples: 3 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - succinctlabs_telepathy-circuits: 1 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - zero-savvy_burn-to-vote: 3 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - Zyra-V21_ZKUzumaki: 7 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+
+【存在隐私泄露的文件详情 (风险最高前30)】
+  1. busyapedao_zksafebox-contract\zk\main3.circom
+     项目: busyapedao_zksafebox-contract | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  2. nobitex_sigmab\circuit\mpt_path.circom
+     项目: nobitex_sigmab | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  3. socathie_circomlib-ml\test\circuits\mnist_test.circom
+     项目: socathie_circomlib-ml | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  4. socathie_circomlib-ml\test\circuits\model1_test.circom
+     项目: socathie_circomlib-ml | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  5. zkmopro_benchmark-app\witness\circuits\isZero\isZero.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  6. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1000k-1000k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  7. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-100k-100k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  8. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1200k-1200k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  9. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1600k-1600k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  10. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-200k-200k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  11. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-3200k-3200k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  12. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-400k-400k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  13. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-800k-800k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+
+================================================================================

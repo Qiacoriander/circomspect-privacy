@@ -1,6 +1,0 @@
-circomspect: analyzing template 'BatchVerify'
-    Finished `release` profile [optimized] target(s) in 0.14s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\batchverify.circom --mode all`
-
-thread 'main' has overflowed its stack
-error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\ed25519-099d19c-fixed\batchverify.circom --mode all` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)

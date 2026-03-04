@@ -1,3 +1,0 @@
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.14s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-ecdsa\test\circuits\test_secp256k1_add.circom --mode all`

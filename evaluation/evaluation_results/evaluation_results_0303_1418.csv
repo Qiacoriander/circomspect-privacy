@@ -1,0 +1,163 @@
+project_name,file_path,mode,has_main,public_inputs_count,full_leak_count,partial_leak_count,leak_count,analysis_time,success,error_message
+0xPolygon_zkevm-proverjs,0xPolygon_zkevm-proverjs\recursive\final.circom,main,False,-1,0,0,0,0.26388096809387207,True,
+busyapedao_zksafebox-contract,busyapedao_zksafebox-contract\zk\main.circom,main,True,0,0,0,0,0.2548789978027344,True,
+busyapedao_zksafebox-contract,busyapedao_zksafebox-contract\zk\main2.circom,main,True,0,0,0,0,0.2615060806274414,True,
+busyapedao_zksafebox-contract,busyapedao_zksafebox-contract\zk\main3.circom,main,True,0,1,0,1,2.4530997276306152,True,
+busyapedao_zksafebox-contract,busyapedao_zksafebox-contract\zk\circuits\main2.circom,main,True,0,0,0,0,2.450308322906494,True,
+busyapedao_zksafebox-contract,busyapedao_zksafebox-contract\zk\circuits\sha256\main.circom,main,True,0,0,0,0,0.43512749671936035,True,
+dhananjaypai08_Zk-OS,dhananjaypai08_Zk-OS\backend\Main.circom,main,True,0,0,0,0,0.2501566410064697,True,
+EkuboProtocol_privacy-pools,EkuboProtocol_privacy-pools\circuits\test.circom,main,True,0,0,0,0,2.55904221534729,True,
+factorgroup_nightmarket,factorgroup_nightmarket\circuits\util\perlin.circom,main,False,-1,0,0,0,0.28839802742004395,True,
+factorgroup_nightmarket,factorgroup_nightmarket\circuits\util\rangeProof.circom,main,False,-1,0,0,0,0.25013208389282227,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\check-positive.circom,main,False,-1,0,0,0,0.25547003746032715,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\check-sum.circom,main,False,-1,0,0,0,0.2571563720703125,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\keccak_bytes.circom,main,True,0,0,0,0,0.3262810707092285,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\kpke_enc.circom,main,False,-1,0,0,0,0.40337276458740234,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\mlkem.circom,main,True,0,0,0,0,0.3951914310455322,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\mlkem_g.circom,main,True,0,0,0,0,0.4119532108306885,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\pack_bytes.circom,main,True,0,0,0,0,0.26103997230529785,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\poseidon-ex.circom,main,False,-1,0,0,0,0.25693798065185547,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\poseidon.circom,main,False,-1,0,0,0,0.2595944404602051,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\pubkey.circom,main,False,-1,0,0,0,0.25856614112854004,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\sha3_256_bytes_800.circom,main,True,0,0,0,0,0.32261037826538086,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\sha3_512_bytes.circom,main,True,0,0,0,0,0.32189059257507324,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\sha3_bits.circom,main,True,0,0,0,0,0.3245656490325928,True,
+LFDT-Paladin_zeto,LFDT-Paladin_zeto\zkp\js\test\circuits\unpack_bytes.circom,main,True,0,0,0,0,0.26461005210876465,True,
+nobitex_sigmab,nobitex_sigmab\circuit\mpt_last.circom,main,True,0,0,0,0,0.6981697082519531,True,
+nobitex_sigmab,nobitex_sigmab\circuit\mpt_path.circom,main,True,0,1,0,1,0.5697410106658936,True,
+nobitex_sigmab,nobitex_sigmab\circuit\stealth_balance_addition.circom,main,True,0,0,0,0,0.27071523666381836,True,
+Poseidon-ZKP_Applied-ZKP-Workshop,Poseidon-ZKP_Applied-ZKP-Workshop\hello_zkp\simple_polynomial.circom,main,True,0,0,0,0,0.2575082778930664,True,
+Poseidon-ZKP_Applied-ZKP-Workshop,Poseidon-ZKP_Applied-ZKP-Workshop\zkDApp\circuits\group.circom,main,True,0,0,0,0,0.2614405155181885,True,
+privacy-ethereum_nova-ml,privacy-ethereum_nova-ml\src\merkle\merkleTreeUpdater.circom,main,False,-1,0,0,0,0.26182103157043457,True,
+privacy-ethereum_nova-ml,privacy-ethereum_nova-ml\src\sha256\main.circom,main,True,0,0,0,0,0.36862850189208984,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\Addition\Add.circom,main,True,0,0,0,0,0.2548220157623291,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\AllBinary\AllBinary.circom,main,True,0,0,0,0,0.2545478343963623,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\BinaryXY\BinaryXY.circom,main,True,0,0,0,0,0.2522287368774414,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\Equality\Equality.circom,main,True,0,0,0,0,0.24869728088378906,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\ForLoop\ForLoop.circom,main,True,0,0,0,0,0.25108981132507324,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\HasAtLeastOne\HasAtLeastOne.circom,main,True,0,0,0,0,0.2547440528869629,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\IncreasingDistance\IncreasingDistance.circom,main,True,0,0,0,0,0.2734813690185547,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\IntDiv\IntDiv.circom,main,True,0,0,0,0,0.25421667098999023,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\IntDivOut\IntDivOut.circom,main,True,0,0,0,0,0.2592020034790039,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\IntSqrt\IntSqrt.circom,main,True,0,0,0,0,0.2564115524291992,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\IntSqrtOut\IntSqrtOut.circom,main,True,0,0,0,0,0.2549867630004883,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\IsSorted\IsSorted.circom,main,True,0,0,0,0,0.25594377517700195,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\IsTribonacci\IsTribonacci.circom,main,True,0,0,0,0,0.2563788890838623,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\MultiAND\MultiAND.circom,main,True,0,0,0,0,0.25451135635375977,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\MultiANDNoOut\MultiANDNoOut.circom,main,True,0,0,0,0,0.2553534507751465,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\MultiOR\MultiOR.circom,main,True,0,0,0,0,0.258070707321167,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\MultiplyNoOut\MultiplyNoOut.circom,main,True,0,0,0,0,0.25525784492492676,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\NotEqual\NotEqual.circom,main,True,0,0,0,0,0.2539210319519043,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\Poseidon\Poseidon.circom,main,True,0,0,0,0,0.2508976459503174,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\Power\pow.circom,main,True,0,0,0,0,0.2625453472137451,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\QuadraticEquation\QuadraticEquation.circom,main,True,0,0,0,0,0.2567605972290039,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\Range\Range.circom,main,True,0,0,0,0,0.26359987258911133,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\Salt\Salt.circom,main,True,0,0,0,0,0.25868725776672363,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\Sudoku\Sudoku.circom,main,True,0,0,0,0,0.27347731590270996,True,
+RareSkills_zero-knowledge-puzzles,RareSkills_zero-knowledge-puzzles\Summation\Summation.circom,main,True,0,0,0,0,0.25417566299438477,True,
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\babyjubjub\m.circom,main,True,0,0,0,0,0.29436731338500977,True,
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\babyjubjub\m2.circom,main,True,0,0,0,0,6.410609722137451,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\babyjubjub\m2.circom --mode main` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\bigInt\m.circom,main,True,0,0,0,0,5.189512729644775,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\bigInt\m.circom --mode main` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\bigInt\m2.circom,main,True,0,0,0,0,5.018941879272461,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\bigInt\m2.circom --mode main` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\dstu\m.circom,main,True,0,0,0,0,0.3372340202331543,True,
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\ec\m.circom,main,False,-1,0,0,0,178.73067045211792,False,"     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\ec\m.circom --mode main`
+memory allocation of 188743680 bytes failed
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\ec\m.circom --mode main` (exit code: 0xc0000409, STATUS_STACK_BUFFER_OVERRUN)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\ec\m2.circom,main,False,-1,0,0,0,148.4090166091919,False,"     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\ec\m2.circom --mode main`
+memory allocation of 2036 bytes failed
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\ec\m2.circom --mode main` (exit code: 0xc0000409, STATUS_STACK_BUFFER_OVERRUN)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\eth\m.circom,main,True,0,0,0,0,9.188103437423706,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\eth\m.circom --mode main` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\float\m.circom,main,True,0,0,0,0,4.922306060791016,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\float\m.circom --mode main` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\float\m2.circom,main,True,0,0,0,0,5.0015950202941895,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\float\m2.circom --mode main` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\hasher\m.circom,main,True,0,0,0,0,3.413834810256958,True,
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\matrix\m.circom,main,True,0,0,0,0,0.5476489067077637,True,
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\signatures\m.circom,main,False,-1,0,0,0,174.167249917984,False,"     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\signatures\m.circom --mode main`
+memory allocation of 264765456 bytes failed
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\signatures\m.circom --mode main` (exit code: 0xc0000409, STATUS_STACK_BUFFER_OVERRUN)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\signatures\m2.circom,main,False,-1,0,0,0,137.32330346107483,False,"     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\signatures\m2.circom --mode main`
+memory allocation of 512 bytes failed
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\signatures\m2.circom --mode main` (exit code: 0xc0000409, STATUS_STACK_BUFFER_OVERRUN)"
+rarimo_passport-zk-circuits,rarimo_passport-zk-circuits\circuits\lib\circuits\sort\m.circom,main,True,0,0,0,0,6.7338433265686035,False,"
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\sort\m.circom --mode main` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)"
+socathie_circomlib-ml,socathie_circomlib-ml\circuits\DepthwiseConv2D.circom,main,False,-1,0,0,0,0.3547384738922119,True,
+socathie_circomlib-ml,socathie_circomlib-ml\circuits\PointwiseConv2D.circom,main,False,-1,0,0,0,0.37978434562683105,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\AveragePooling2D_stride_test.circom,main,True,0,0,0,0,0.3647158145904541,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\AveragePooling2D_test.circom,main,True,0,0,0,0,0.33978819847106934,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\BatchNormalization_test.circom,main,True,0,0,0,0,0.2841165065765381,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Conv1D_test.circom,main,True,0,0,0,0,0.33321619033813477,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Conv2Dsame_stride_test.circom,main,True,0,0,0,0,0.3772928714752197,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Conv2Dsame_test.circom,main,True,0,0,0,0,0.39386582374572754,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Conv2D_stride_test.circom,main,True,0,0,0,0,0.3415977954864502,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Conv2D_test.circom,main,True,0,0,0,0,0.3505411148071289,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\decryptMultiple_test.circom,main,True,0,0,0,0,0.309689998626709,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\decrypt_test.circom,main,True,0,0,0,0,0.30626368522644043,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Dense_test.circom,main,True,0,0,0,0,0.32270312309265137,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\DepthwiseConv2D_test.circom,main,True,0,0,0,0,0.34902453422546387,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\ecdh_test.circom,main,True,0,0,0,0,0.41858625411987305,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\encryptDecrypt_test.circom,main,True,0,0,0,0,0.42229270935058594,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\encrypted_mnist_latest_test.circom,main,True,0,0,0,0,0.6887402534484863,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\encryptMultiple_test.circom,main,True,0,0,0,0,0.2984001636505127,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\encrypt_test.circom,main,True,0,0,0,0,0.29402780532836914,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Flatten2D_test.circom,main,True,0,0,0,0,0.29488635063171387,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\GlobalAveragePooling2D_test.circom,main,True,0,0,0,0,0.3218824863433838,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\GlobalMaxPooling2D_test.circom,main,True,0,0,0,0,0.30954432487487793,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\IsNegative_test.circom,main,True,0,0,0,0,0.30445384979248047,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\IsPositive_test.circom,main,True,0,0,0,0,0.2952272891998291,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\LeakyReLU_test.circom,main,True,0,0,0,0,0.30934715270996094,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\MaxPooling2Dsame_stride_test.circom,main,True,0,0,0,0,0.34180688858032227,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\MaxPooling2Dsame_test.circom,main,True,0,0,0,0,0.3574564456939697,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\MaxPooling2D_stride_test.circom,main,True,0,0,0,0,0.32494020462036133,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\MaxPooling2D_test.circom,main,True,0,0,0,0,0.32810187339782715,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Max_test.circom,main,True,0,0,0,0,0.31922197341918945,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\mnist_test.circom,main,True,0,1,0,1,0.5570738315582275,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\model1_test.circom,main,True,0,1,0,1,0.33238768577575684,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\PointwiseConv2D_test.circom,main,True,0,0,0,0,0.3274416923522949,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\publicKey_test.circom,main,True,0,0,0,0,0.3922746181488037,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\ReLU_test.circom,main,True,0,0,0,0,0.3072812557220459,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\Reshape2D_test.circom,main,True,0,0,0,0,0.27828526496887207,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\SeparableConv2D_test.circom,main,True,0,0,0,0,0.35298967361450195,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\SumPooling2D_stride_test.circom,main,True,0,0,0,0,0.32192349433898926,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\SumPooling2D_test.circom,main,True,0,0,0,0,0.31919074058532715,True,
+socathie_circomlib-ml,socathie_circomlib-ml\test\circuits\UpSampling2D_test.circom,main,True,0,0,0,0,0.28198838233947754,True,
+stellar_soroban-examples,stellar_soroban-examples\privacy-pools\circuits\dummy.circom,main,True,0,0,0,0,1.0567355155944824,True,
+stellar_soroban-examples,stellar_soroban-examples\privacy-pools\circuits\test\test_commitment.circom,main,True,0,0,0,0,1.0590407848358154,True,
+stellar_soroban-examples,stellar_soroban-examples\groth16_verifier\data\auxiliary\multiplier2.circom,main,True,0,0,0,0,0.2822539806365967,True,
+succinctlabs_telepathy-circuits,succinctlabs_telepathy-circuits\circuits\sha256\main.circom,main,True,0,0,0,0,0.41513800621032715,True,
+zero-savvy_burn-to-vote,zero-savvy_burn-to-vote\circuits\merkleTree.circom,main,False,-1,0,0,0,0.2849118709564209,True,
+zero-savvy_burn-to-vote,zero-savvy_burn-to-vote\circuits\mpt.circom,main,False,-1,0,0,0,0.3755800724029541,True,
+zero-savvy_burn-to-vote,zero-savvy_burn-to-vote\circuits\rlp.circom,main,False,-1,0,0,0,0.335277795791626,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\witness\circuits\isZero\isZero.circom,main,True,0,1,0,1,0.28484630584716797,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\witness\circuits\keccak256\keccak256_256_test.circom,main,True,0,0,0,0,0.5677938461303711,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\witness\circuits\sha256_512\sha256_512.circom,main,False,-1,0,0,0,0.2834749221801758,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\templates\mopro-example-app\core\circuits\keccak256\keccak256_256_test.circom,main,True,0,0,0,0,0.5676171779632568,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-example-app\core\circuits\keccak256\keccak256_256_test.circom,main,True,0,0,0,0,0.5709524154663086,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1000k-1000k.circom,main,True,0,1,0,1,0.2864372730255127,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-100k-100k.circom,main,True,0,1,0,1,0.2846682071685791,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1200k-1200k.circom,main,True,0,1,0,1,0.2823357582092285,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1600k-1600k.circom,main,True,0,1,0,1,0.2913074493408203,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-200k-200k.circom,main,True,0,1,0,1,0.28396153450012207,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-3200k-3200k.circom,main,True,0,1,0,1,0.29530930519104004,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-400k-400k.circom,main,True,0,1,0,1,0.2783315181732178,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-800k-800k.circom,main,True,0,1,0,1,0.28412628173828125,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\keccak256\keccak256_256_test.circom,main,True,0,0,0,0,0.5556974411010742,True,
+zkmopro_benchmark-app,zkmopro_benchmark-app\mopro-core\examples\circom\sha256_512\sha256_512.circom,main,False,-1,0,0,0,0.2805333137512207,True,
+Zyra-V21_ZKUzumaki,Zyra-V21_ZKUzumaki\circuits\example.circom,main,True,0,0,0,0,0.28540539741516113,True,
+Zyra-V21_ZKUzumaki,Zyra-V21_ZKUzumaki\circuits\mixer_v05.circom,main,False,-1,0,0,0,0.2803804874420166,True,
+Zyra-V21_ZKUzumaki,Zyra-V21_ZKUzumaki\circuits\multiplier_fixed.circom,main,True,0,0,0,0,0.27530717849731445,True,
+Zyra-V21_ZKUzumaki,Zyra-V21_ZKUzumaki\circuits\simple.circom,main,False,-1,0,0,0,0.2715911865234375,True,
+Zyra-V21_ZKUzumaki,Zyra-V21_ZKUzumaki\circuits\simple_with_lib.circom,main,False,-1,0,0,0,0.2836449146270752,True,
+Zyra-V21_ZKUzumaki,Zyra-V21_ZKUzumaki\circuits\test_echo.circom,main,True,0,0,0,0,0.2691519260406494,True,
+Zyra-V21_ZKUzumaki,Zyra-V21_ZKUzumaki\circuits\test_simple.circom,main,True,0,0,0,0,0.2692835330963135,True,

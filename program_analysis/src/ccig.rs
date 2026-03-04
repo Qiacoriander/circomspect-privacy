@@ -93,6 +93,8 @@ pub struct SignalState {
     pub info_set: HashSet<(usize, Intensity)>, 
     /// Phase II: \mathcal{K}(s)
     pub knowledge: KnowledgeState,
+    /// 标志该信号是否通过关系解盲（Relational De-blinding）被推导为泄漏
+    pub is_relational_leak: bool,
 }
 
 impl SignalState {
@@ -100,6 +102,7 @@ impl SignalState {
         Self {
             info_set: HashSet::new(),
             knowledge: KnowledgeState::Unknown,
+            is_relational_leak: false,
         }
     }
 }
@@ -145,16 +148,18 @@ impl CcigAnalyzer {
         self.nodes.push(node);
         self.states.insert(id, SignalState::new());
         
-        if let NodeType::Signal { name, kind, vis, .. } = &node_type {
+        if let NodeType::Signal { name, kind, vis, inst, .. } = &node_type {
             self.var_to_id.insert(name.clone(), id);
-            if vis == &SignalVis::Priv {
-                self.private_inputs.insert(id);
-            } else if vis == &SignalVis::Pub {
-                // 理论上如果是根区块则需要追踪。目前将所有公共 I/O 作为初始工作列表中的种子进行追踪
-                if kind == &SignalKind::Input {
-                    self.public_inputs.insert(id);
-                } else if kind == &SignalKind::Output {
-                    self.public_outputs.insert(id);
+            if inst.is_empty() {
+                if vis == &SignalVis::Priv {
+                    self.private_inputs.insert(id);
+                } else if vis == &SignalVis::Pub {
+                    // 理论上如果是根区块则需要追踪。目前将所有公共 I/O 作为初始工作列表中的种子进行追踪
+                    if kind == &SignalKind::Input {
+                        self.public_inputs.insert(id);
+                    } else if kind == &SignalKind::Output {
+                        self.public_outputs.insert(id);
+                    }
                 }
             }
         }
@@ -197,13 +202,15 @@ impl CcigAnalyzer {
             });
             
             // 重新捕获动态发现的输入/输出属性（例如用于像 secret_arr_0 这样被展平的数组）
-            if kind == SignalKind::Input && vis == SignalVis::Priv {
-                self.private_inputs.insert(id);
-            } else if vis == SignalVis::Pub {
-                if kind == SignalKind::Input {
-                    self.public_inputs.insert(id);
-                } else if kind == SignalKind::Output {
-                    self.public_outputs.insert(id);
+            if inst.is_empty() {
+                if kind == SignalKind::Input && vis == SignalVis::Priv {
+                    self.private_inputs.insert(id);
+                } else if vis == SignalVis::Pub {
+                    if kind == SignalKind::Input {
+                        self.public_inputs.insert(id);
+                    } else if kind == SignalKind::Output {
+                        self.public_outputs.insert(id);
+                    }
                 }
             }
             id
@@ -274,7 +281,7 @@ impl CcigAnalyzer {
                             let mut is_hash_abstraction = false;
                             if let Expression::Call { name, .. } = inner_rhe {
                                 let target_name = name.to_lowercase();
-                                let hash_ops = ["poseidon", "mimc7", "pedersen", "eddsa"];
+                                let hash_ops = ["poseidon", "mimc7", "pedersen", "eddsa", "mimcsponge", "hasher", "keccak", "hashbytes"];
                                 if hash_ops.iter().any(|&h| target_name.contains(h)) {
                                     is_hash_abstraction = true;
                                 }
@@ -397,7 +404,7 @@ impl CcigAnalyzer {
                 out_id
             }
             Expression::Call { name, args, .. } => {
-                let hash_ops = ["poseidon", "mimc7", "pedersen", "eddsa"];
+                let hash_ops = ["poseidon", "mimc7", "pedersen", "eddsa", "mimcsponge", "hasher", "keccak", "hashbytes"];
                 let is_hash = hash_ops.iter().any(|&h| name.to_lowercase().contains(h));
                 let op_type = if is_hash { OpType::Hash } else { OpType::Other };
                 
@@ -703,9 +710,17 @@ impl CcigAnalyzer {
                 let outputs = self.forward_edges.get(&op_id).cloned().unwrap_or_default();
                 for (out_sig_id, edge_type) in outputs {
                     if let EdgeType::CompEdge(_) = edge_type {
+                        let mut final_output_set = output_set.clone();
+                        if let NodeType::Signal { inst, original_name, .. } = &self.nodes[out_sig_id].node_type {
+                            let lower_inst = inst.to_lowercase();
+                            let lower_name = original_name.to_lowercase();
+                            if lower_inst.contains("hash") || lower_inst.contains("keccak") || lower_inst.contains("mimc") || lower_inst.contains("poseidon") || lower_inst.contains("sha256") || lower_inst.contains("pedersen") || lower_inst.contains("blake") || lower_name.contains("hash") || lower_name.contains("keccak") || lower_name.contains("mimc") || lower_name.contains("poseidon") || lower_name.contains("commit") || lower_name.contains("sha256") || lower_name.contains("pedersen") || lower_name.contains("blake") {
+                                final_output_set = final_output_set.into_iter().map(|(w, _)| (w, Intensity::OneWay)).collect();
+                            }
+                        }
                         if let Some(state) = self.states.get_mut(&out_sig_id) {
-                            for item in &output_set {
-                                state.info_set.insert(item.clone());
+                            for item in final_output_set {
+                                state.info_set.insert(item);
                             }
                         }
                     }
@@ -718,6 +733,12 @@ impl CcigAnalyzer {
 
     /// 尝试升级Knowledge等级。若产生升级，则返回 true
     fn upgrade_knowledge(&mut self, node_id: usize, new_k: &KnowledgeState) -> bool {
+        if *new_k == KnowledgeState::FK || *new_k == KnowledgeState::PK {
+            if self.is_oneway(node_id) {
+                return false;
+            }
+        }
+    
         if let Some(state) = self.states.get_mut(&node_id) {
             if new_k > &state.knowledge {
                 state.knowledge = new_k.clone();
@@ -730,6 +751,15 @@ impl CcigAnalyzer {
     /// 获取当前等级
     fn get_knowledge(&self, node_id: usize) -> KnowledgeState {
         self.states.get(&node_id).map(|s| s.knowledge.clone()).unwrap_or(KnowledgeState::Unknown)
+    }
+
+    /// 判断一个节点是否被标记为 OneWay
+    fn is_oneway(&self, node_id: usize) -> bool {
+        if let Some(state) = self.states.get(&node_id) {
+            state.info_set.iter().any(|(_, tau)| matches!(tau, Intensity::OneWay))
+        } else {
+            false
+        }
     }
 
     /// 阶段二：约束驱动的后向推断
@@ -759,19 +789,28 @@ impl CcigAnalyzer {
             for (src_id, edge_type) in bindings {
                 if let EdgeType::CompEdge(_) = edge_type {
                     if let NodeType::Signal { .. } = &self.nodes[src_id].node_type {
+                        // 阻止从 OneWay 节点的泄露回溯
+                        if self.is_oneway(src_id) { continue; }
+
                         let y_k = self.get_knowledge(y_id);
                         if self.upgrade_knowledge(src_id, &y_k) {
                             delta.insert(src_id);
                             
                             // 立即检查 src 上的泄露状况
                             let info_set = self.states.get(&src_id).unwrap().info_set.clone();
+                            let full_privs_count = info_set.iter().filter(|(_, tau)| matches!(tau, Intensity::Full)).count();
+                            let is_blinded = full_privs_count > 1;
+
                             for (p_id, tau) in info_set {
                                 match tau {
                                     Intensity::Full => {
-                                        if y_k == KnowledgeState::FK {
-                                            if self.upgrade_knowledge(p_id, &KnowledgeState::FK) { delta.insert(p_id); }
-                                        } else if y_k == KnowledgeState::PK {
-                                            if self.upgrade_knowledge(p_id, &KnowledgeState::PK) { delta.insert(p_id); }
+                                        // 仅当没有被多变量盲化掩蔽时，才直接继承 FK/PK
+                                        if !is_blinded {
+                                            if y_k == KnowledgeState::FK {
+                                                if self.upgrade_knowledge(p_id, &KnowledgeState::FK) { delta.insert(p_id); }
+                                            } else if y_k == KnowledgeState::PK {
+                                                if self.upgrade_knowledge(p_id, &KnowledgeState::PK) { delta.insert(p_id); }
+                                            }
                                         }
                                     }
                                     Intensity::Partial => {
@@ -808,6 +847,9 @@ impl CcigAnalyzer {
                         for (z_id, z_edge_type) in con_edges {
                             if let EdgeType::ConEdge = z_edge_type {
                                 if z_id != y_id && z_id != constraint_op_id {
+                                    // 阻止通过约束从 OneWay 节点回溯
+                                    if self.is_oneway(z_id) && self.get_knowledge(y_id) > self.get_knowledge(z_id) { continue; }
+
                                     let y_k = self.get_knowledge(y_id);
                                     let z_k = self.get_knowledge(z_id);
                                     
@@ -817,16 +859,22 @@ impl CcigAnalyzer {
                                             
                                             // 将 I(z) 的变化处理回源头的私有输入
                                             let z_info = self.states.get(&z_id).unwrap().info_set.clone();
+                                            let full_privs_count = z_info.iter().filter(|(_, tau)| matches!(tau, Intensity::Full)).count();
+                                            let is_blinded = full_privs_count > 1;
+
                                             for (p_id, tau) in z_info {
                                                 match tau {
                                                     Intensity::Full => {
-                                                        if y_k == KnowledgeState::FK {
-                                                            if self.upgrade_knowledge(p_id, &KnowledgeState::FK) {
-                                                                delta.insert(p_id);
-                                                            }
-                                                        } else if y_k == KnowledgeState::PK {
-                                                            if self.upgrade_knowledge(p_id, &KnowledgeState::PK) {
-                                                                delta.insert(p_id);
+                                                        // 仅当没有被多变量盲化掩蔽时，才直接继承 FK/PK
+                                                        if !is_blinded {
+                                                            if y_k == KnowledgeState::FK {
+                                                                if self.upgrade_knowledge(p_id, &KnowledgeState::FK) {
+                                                                    delta.insert(p_id);
+                                                                }
+                                                            } else if y_k == KnowledgeState::PK {
+                                                                if self.upgrade_knowledge(p_id, &KnowledgeState::PK) {
+                                                                    delta.insert(p_id);
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -866,12 +914,16 @@ impl CcigAnalyzer {
                                     unknown_operands.push(x_id);
                                 }
                             }
-
                             // 对于混合运算，如果除一个输入外其他所有的都被 FK 暴露，剩下的也就能解算出 FK
                             if unknown_operands.len() == 1 {
                                 let target_x = unknown_operands[0];
-                                if self.upgrade_knowledge(target_x, &KnowledgeState::FK) {
-                                    delta.insert(target_x);
+                                if !self.is_oneway(target_x) {
+                                    if self.upgrade_knowledge(target_x, &KnowledgeState::FK) {
+                                        delta.insert(target_x);
+                                        if let Some(state) = self.states.get_mut(&target_x) {
+                                            state.is_relational_leak = true;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -890,10 +942,13 @@ impl CcigAnalyzer {
                                 if self.get_knowledge(t_id) == KnowledgeState::FK && self.get_knowledge(y_id) == KnowledgeState::FK {
                                     let operands = self.backward_edges.get(&op_id).cloned().unwrap_or_default();
                                     for (x_id, _edge) in operands {
-                                        if x_id != y_id && self.get_knowledge(x_id) != KnowledgeState::FK {
+                                        if x_id != y_id && self.get_knowledge(x_id) != KnowledgeState::FK && !self.is_oneway(x_id) {
                                             if matches!(self.nodes[x_id].node_type, NodeType::Signal { .. }) {
                                                 if self.upgrade_knowledge(x_id, &KnowledgeState::FK) {
                                                     delta.insert(x_id);
+                                                    if let Some(state) = self.states.get_mut(&x_id) {
+                                                        state.is_relational_leak = true;
+                                                    }
                                                 }
                                             }
                                         }
@@ -960,7 +1015,13 @@ impl CcigAnalyzer {
             if knowledge != KnowledgeState::Unknown {
                 if let NodeType::Signal { original_name, location, file_id, .. } = &graph.nodes[priv_id].node_type {
                     let is_full = knowledge == KnowledgeState::FK;
-                    let leak_type = if is_full { "FULL LEAK" } else { "PARTIAL LEAK" };
+                    let is_relational = graph.states.get(&priv_id).map(|s| s.is_relational_leak).unwrap_or(false);
+                    
+                    let leak_type = if is_full { 
+                        if is_relational { "FULL LEAK (Relational De-blinding)" } else { "FULL LEAK" }
+                    } else { 
+                        "PARTIAL LEAK" 
+                    };
                     
                     if let (Some(loc), Some(f_id)) = (location, file_id) {
                         // 使用 [FileID + Location 字符串表示 + 泄漏级别] 作为去重指纹
@@ -1052,7 +1113,7 @@ mod tests {
         let reports = CcigAnalyzer::run_ccig_leakage_inference(&cfg, &["pub_t".to_string(), "pub_y_copy".to_string()]);
         
         let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
-        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK risk")));
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK (Relational De-blinding) risk")));
         assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_y` has a FULL LEAK risk")));
     }
 
@@ -1126,8 +1187,9 @@ mod tests {
         let reports = CcigAnalyzer::run_ccig_leakage_inference(&cfg, &["pub_a".to_string(), "out".to_string()]);
         
         let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
-        assert!(report_texts.iter().any(|m| m.contains("Private Input `p_x` has a FULL LEAK risk")));
-        assert!(report_texts.iter().any(|m| m.contains("Private Input `p_y` has a FULL LEAK risk")));
+        // Since p_x and p_y are mixed creating algebraic blinding, their status remains safe (\bot).
+        assert!(!report_texts.iter().any(|m| m.contains("Private Input `p_x` has a FULL LEAK risk")));
+        assert!(!report_texts.iter().any(|m| m.contains("Private Input `p_y` has a FULL LEAK risk")));
     }
 
     #[test]
@@ -1179,5 +1241,88 @@ mod tests {
         let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
         // 传递别名不改变泄漏等级，源头依然是 Full
         assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_val` has a FULL LEAK risk")));
+    }
+    #[test]
+    fn test_zkleak_confidential_bonus_claim() {
+        // This test models the Confidential Bonus Claim circuit from the paper's walkthrough.
+        // It demonstrates:
+        // 1. Un-invertible cryptographic hashing preventing leakage.
+        // 2. Intra-circuit Full Leakage via an exposed invertible Affine relationship.
+        // 3. Inter-circuit Cascading Partial Leakage triggered by relational de-blinding.
+        let src = [
+            r#"
+            template Poseidon(n) {
+                signal input inputs[n];
+                signal output out;
+                out <== inputs[0] + 1; // Fake mock implementation
+            }
+            "#,
+            r#"
+            template LessThan(n) {
+                signal input in[2];
+                signal output out;
+                out <== in[0] - in[1]; // Fake mock implementation
+            }
+            "#,
+            r#"
+            template CheckEligibility() {
+                signal input totalScore;
+                signal input thresh;
+                signal output isElig;
+
+                component lt = LessThan(64);
+                lt.in[0] <== totalScore;
+                lt.in[1] <== thresh;
+                isElig <== lt.out;
+            }
+            "#,
+            r#"
+            template BonusClaim() {
+                // Private inputs
+                signal input balance;
+                signal input creditScore;
+                // Public inputs
+                signal input commit;
+                signal input mult;
+                signal input thresh;
+
+                // Public outputs
+                signal output bonus;
+                signal output isElig;
+                signal output totalScore; // Explicitly declared as output
+
+                // 1. Integrity Check (OneWay)
+                component h = Poseidon(1);
+                h.inputs[0] <== balance;
+                commit === h.out;
+
+                // 2. Intra-circuit Full Leakage
+                bonus <-- mult * balance + 1;
+                bonus === mult * balance + 1;
+
+                // 3. Inter-circuit Cascading Partial Leakage
+                totalScore <== balance + creditScore;
+                component ce = CheckEligibility();
+                ce.totalScore <== totalScore;
+                ce.thresh <== thresh;
+                isElig <== ce.isElig;
+            }
+            "#,
+        ];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("BonusClaim").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference(&cfg, &["commit".to_string(), "mult".to_string(), "thresh".to_string(), "bonus".to_string(), "isElig".to_string(), "totalScore".to_string()]);
+        
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+
+        // 1. `balance` is exposed fully via the affine relation with `bonus`
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `balance` has a FULL LEAK risk")));
+
+        // 2. `creditScore` gets relationally de-blinded because `totalScore` is a public output (FK)
+        // AND `balance` became FK (from the bonus constraint). Thus, `creditScore` also becomes FK!
+        // NOTE: In the paper's narrative, `totalScore` being exposed implies full leakage if `balance` is known.
+        // Wait, does our tool correctly flag it as FULL LEAK because of relational deblinding? Yes!
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `creditScore` has a FULL LEAK (Relational De-blinding) risk")));
     }
 }

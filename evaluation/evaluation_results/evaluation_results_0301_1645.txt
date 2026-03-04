@@ -1,0 +1,113 @@
+
+================================================================================
+Circomspect 隐私泄露评估测试报告
+================================================================================
+
+【总体统计】
+  总分析文件数: 140
+  模式分布: Main=140, Library=0
+  运行状况: 成功=129, 失败=11
+  总用时: 528.19 秒
+  存在隐私泄露的文件数: 26 (18.6%)
+  风险信号总数: 54 (FULL LEAK: 47, PARTIAL LEAK: 7)
+
+【按项目统计】
+  - zkmopro_benchmark-app: 15 文件, 泄露文件: 9, 风险信号: 9 (FULL LEAK: 9, PARTIAL LEAK: 0)
+  - socathie_circomlib-ml: 40 文件, 泄露文件: 6, 风险信号: 13 (FULL LEAK: 8, PARTIAL LEAK: 5)
+  - Zyra-V21_ZKUzumaki: 7 文件, 泄露文件: 4, 风险信号: 8 (FULL LEAK: 8, PARTIAL LEAK: 0)
+  - nobitex_sigmab: 3 文件, 泄露文件: 3, 风险信号: 16 (FULL LEAK: 14, PARTIAL LEAK: 2)
+  - busyapedao_zksafebox-contract: 5 文件, 泄露文件: 2, 风险信号: 2 (FULL LEAK: 2, PARTIAL LEAK: 0)
+  - Poseidon-ZKP_Applied-ZKP-Workshop: 2 文件, 泄露文件: 1, 风险信号: 4 (FULL LEAK: 4, PARTIAL LEAK: 0)
+  - stellar_soroban-examples: 3 文件, 泄露文件: 1, 风险信号: 2 (FULL LEAK: 2, PARTIAL LEAK: 0)
+  - 0xPolygon_zkevm-proverjs: 1 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - dhananjaypai08_Zk-OS: 1 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - EkuboProtocol_privacy-pools: 1 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - factorgroup_nightmarket: 2 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - LFDT-Paladin_zeto: 14 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - privacy-ethereum_nova-ml: 2 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - RareSkills_zero-knowledge-puzzles: 25 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - rarimo_passport-zk-circuits: 15 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - succinctlabs_telepathy-circuits: 1 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+  - zero-savvy_burn-to-vote: 3 文件, 泄露文件: 0, 风险信号: 0 (FULL LEAK: 0, PARTIAL LEAK: 0)
+
+【存在隐私泄露的文件详情 (风险最高前30)】
+  1. nobitex_sigmab\circuit\mpt_last.circom
+     项目: nobitex_sigmab | 模式: main
+     FULL LEAK: 9, PARTIAL LEAK: 2 (总信号: 11)
+  2. Poseidon-ZKP_Applied-ZKP-Workshop\hello_zkp\simple_polynomial.circom
+     项目: Poseidon-ZKP_Applied-ZKP-Workshop | 模式: main
+     FULL LEAK: 4, PARTIAL LEAK: 0 (总信号: 4)
+  3. socathie_circomlib-ml\test\circuits\encryptDecrypt_test.circom
+     项目: socathie_circomlib-ml | 模式: main
+     FULL LEAK: 3, PARTIAL LEAK: 1 (总信号: 4)
+  4. nobitex_sigmab\circuit\mpt_path.circom
+     项目: nobitex_sigmab | 模式: main
+     FULL LEAK: 3, PARTIAL LEAK: 0 (总信号: 3)
+  5. socathie_circomlib-ml\test\circuits\mnist_test.circom
+     项目: socathie_circomlib-ml | 模式: main
+     FULL LEAK: 3, PARTIAL LEAK: 0 (总信号: 3)
+  6. nobitex_sigmab\circuit\stealth_balance_addition.circom
+     项目: nobitex_sigmab | 模式: main
+     FULL LEAK: 2, PARTIAL LEAK: 0 (总信号: 2)
+  7. stellar_soroban-examples\groth16_verifier\data\auxiliary\multiplier2.circom
+     项目: stellar_soroban-examples | 模式: main
+     FULL LEAK: 2, PARTIAL LEAK: 0 (总信号: 2)
+  8. Zyra-V21_ZKUzumaki\circuits\example.circom
+     项目: Zyra-V21_ZKUzumaki | 模式: main
+     FULL LEAK: 2, PARTIAL LEAK: 0 (总信号: 2)
+  9. Zyra-V21_ZKUzumaki\circuits\multiplier_fixed.circom
+     项目: Zyra-V21_ZKUzumaki | 模式: main
+     FULL LEAK: 2, PARTIAL LEAK: 0 (总信号: 2)
+  10. Zyra-V21_ZKUzumaki\circuits\test_echo.circom
+     项目: Zyra-V21_ZKUzumaki | 模式: main
+     FULL LEAK: 2, PARTIAL LEAK: 0 (总信号: 2)
+  11. Zyra-V21_ZKUzumaki\circuits\test_simple.circom
+     项目: Zyra-V21_ZKUzumaki | 模式: main
+     FULL LEAK: 2, PARTIAL LEAK: 0 (总信号: 2)
+  12. socathie_circomlib-ml\test\circuits\encrypted_mnist_latest_test.circom
+     项目: socathie_circomlib-ml | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 1 (总信号: 2)
+  13. socathie_circomlib-ml\test\circuits\model1_test.circom
+     项目: socathie_circomlib-ml | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 1 (总信号: 2)
+  14. busyapedao_zksafebox-contract\zk\main3.circom
+     项目: busyapedao_zksafebox-contract | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  15. busyapedao_zksafebox-contract\zk\circuits\sha256\main.circom
+     项目: busyapedao_zksafebox-contract | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  16. zkmopro_benchmark-app\witness\circuits\isZero\isZero.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  17. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1000k-1000k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  18. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-100k-100k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  19. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1200k-1200k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  20. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-1600k-1600k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  21. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-200k-200k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  22. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-3200k-3200k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  23. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-400k-400k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  24. zkmopro_benchmark-app\mopro-core\examples\circom\complex-circuit\complex-circuit-800k-800k.circom
+     项目: zkmopro_benchmark-app | 模式: main
+     FULL LEAK: 1, PARTIAL LEAK: 0 (总信号: 1)
+  25. socathie_circomlib-ml\test\circuits\LeakyReLU_test.circom
+     项目: socathie_circomlib-ml | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+  26. socathie_circomlib-ml\test\circuits\ReLU_test.circom
+     项目: socathie_circomlib-ml | 模式: main
+     FULL LEAK: 0, PARTIAL LEAK: 1 (总信号: 1)
+
+================================================================================

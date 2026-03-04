@@ -1,0 +1,35 @@
+error: Failed to open file `sha256/sha256.circom`.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\0xPolygon_zkevm-proverjs\recursive\final.circom:18:1
+   │
+18 │ include "sha256/sha256.circom";
+   │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `bitify.circom`.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\0xPolygon_zkevm-proverjs\recursive\final.circom:19:1
+   │
+19 │ include "bitify.circom";
+   │ ^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `lessthangl.circom`.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\0xPolygon_zkevm-proverjs\recursive\final.circom:20:1
+   │
+20 │ include "lessthangl.circom";
+   │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `recursivef.verifier.circom`.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\0xPolygon_zkevm-proverjs\recursive\final.circom:21:1
+   │
+21 │ include "recursivef.verifier.circom";
+   │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: The template `Num2Bits` does not exist.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\0xPolygon_zkevm-proverjs\recursive\final.circom:108:39
+    │
+108 │     signal n2bAggregatorAddr[160] <== Num2Bits(160)(aggregatorAddr);
+    │                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Unknown template `Num2Bits` instantiated here.
+
+circomspect: 5 issues found.
+    Finished `release` profile [optimized] target(s) in 0.17s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\0xPolygon_zkevm-proverjs\recursive\final.circom --mode main`
+Error: Main component template 'Main' not found in CFG.
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\0xPolygon_zkevm-proverjs\recursive\final.circom --mode main` (exit code: 1)

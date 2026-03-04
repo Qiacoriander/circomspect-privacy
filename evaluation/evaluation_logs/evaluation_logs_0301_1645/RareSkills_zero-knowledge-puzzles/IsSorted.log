@@ -1,0 +1,19 @@
+error: Failed to open file `../node_modules/circomlib/circuits/comparators.circom`.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\RareSkills_zero-knowledge-puzzles\IsSorted\IsSorted.circom:2:1
+  │
+2 │ include "../node_modules/circomlib/circuits/comparators.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: 从 main component 'IsSorted' 开始分析，公开输入：[]
+warning: The signals `in[4]` are not used by the template.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\RareSkills_zero-knowledge-puzzles\IsSorted\IsSorted.circom:9:5
+  │
+9 │     signal input in[4];
+  │     ^^^^^^^^^^^^^^^^^^ These signals are unused and could be removed.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+circomspect: 2 issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\RareSkills_zero-knowledge-puzzles\IsSorted\IsSorted.circom --mode main`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\RareSkills_zero-knowledge-puzzles\IsSorted\IsSorted.circom --mode main` (exit code: 1)

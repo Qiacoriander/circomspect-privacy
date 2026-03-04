@@ -1,4 +1,0 @@
-circomspect: analyzing template 'trace'
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.14s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib-matrix\circuits\trace.circom --mode all`

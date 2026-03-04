@@ -1,5 +1,0 @@
-circomspect: analyzing function 'emulated_aesenc_enc_table'
-circomspect: analyzing function 'emulated_aesenc_rijndael_sbox'
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.13s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\aes-circom-0784f74\circuits\aes_emulation_tables.circom --mode all`

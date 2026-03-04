@@ -1,0 +1,11 @@
+circomspect: 从 main component 'BinaryXY' 开始分析，公开输入：[]
+warning: The signals `in[2]` are not constrained by the template.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\RareSkills_zero-knowledge-puzzles\BinaryXY\BinaryXY.circom:4:5
+  │
+4 │     signal input in[2];
+  │     ^^^^^^^^^^^^^^^^^^ These signals do not occur in a constraint.
+
+circomspect: 1 issue found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\RareSkills_zero-knowledge-puzzles\BinaryXY\BinaryXY.circom --mode main`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\RareSkills_zero-knowledge-puzzles\BinaryXY\BinaryXY.circom --mode main` (exit code: 1)

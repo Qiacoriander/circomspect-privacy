@@ -1,0 +1,4 @@
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\LFDT-Paladin_zeto\zkp\js\test\circuits\poseidon.circom --mode main`
+Error: Main component template 'TestPoseidon' not found in CFG.

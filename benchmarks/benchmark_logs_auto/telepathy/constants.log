@@ -1,5 +1,0 @@
-circomspect: analyzing template 'H'
-circomspect: analyzing template 'K'
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.15s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\telepathy\circuits\circuits\sha256\constants.circom --mode all`

@@ -1,9 +1,0 @@
-circomspect: analyzing function 'get_bn254_parameter'
-circomspect: analyzing function 'get_Fp12_frobenius'
-circomspect: analyzing function 'get_bn254_ate_loop_count'
-circomspect: analyzing function 'get_bn254_pseudo_binary_encoding'
-circomspect: analyzing function 'get_bn254_b'
-circomspect: analyzing function 'get_bn254_prime'
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.14s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\circuits\bn254\bn254_func.circom --mode all`

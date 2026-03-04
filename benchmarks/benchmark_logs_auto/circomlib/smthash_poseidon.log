@@ -1,5 +1,0 @@
-circomspect: analyzing template 'SMTHash1'
-circomspect: analyzing template 'SMTHash2'
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.14s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circomlib\circuits\smt\smthash_poseidon.circom --mode all`

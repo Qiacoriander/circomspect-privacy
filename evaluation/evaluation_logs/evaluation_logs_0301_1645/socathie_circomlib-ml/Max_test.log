@@ -1,0 +1,4 @@
+circomspect: 从 main component 'Max' 开始分析，公开输入：[]
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\socathie_circomlib-ml\test\circuits\Max_test.circom --mode main`

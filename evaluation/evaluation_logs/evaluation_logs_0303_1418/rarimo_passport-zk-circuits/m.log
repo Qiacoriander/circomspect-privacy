@@ -1,0 +1,6 @@
+circomspect: 从 main component 'NonSignalSort' 开始分析，公开输入：[]
+    Finished `release` profile [optimized] target(s) in 0.23s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\sort\m.circom --mode main`
+
+thread 'main' has overflowed its stack
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\sort\m.circom --mode main` (exit code: 0xc00000fd, STATUS_STACK_OVERFLOW)

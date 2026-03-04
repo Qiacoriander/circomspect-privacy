@@ -1,0 +1,5 @@
+circomspect: 错误：没有找到 main component。请确保输入文件包含一个 main component声明。
+circomspect: 如果你想分析库组件，请使用 --mode all 模式。
+circomspect: No issues found.
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\socathie_circomlib-ml\circuits\DepthwiseConv2D.circom --mode main`

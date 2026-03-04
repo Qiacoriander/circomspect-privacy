@@ -1,0 +1,13 @@
+circomspect: 从 main component 'Main' 开始分析，公开输入：[]
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\busyapedao_zksafebox-contract\zk\main3.circom:24:5
+   │
+24 │     signal input in[3];
+   │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 1 issue found.
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\busyapedao_zksafebox-contract\zk\main3.circom --mode main`
+error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\busyapedao_zksafebox-contract\zk\main3.circom --mode main` (exit code: 1)

@@ -1,4 +1,0 @@
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.14s
-     Running `target\release\circomspect.exe D:\dev\circomspect\benchmarks\projects\circom-pairing\scripts\linefunctionequal\linefunctionequal_35_11.circom --mode main`
-Error: Main component template 'LineFunctionEqual' not found in CFG.
