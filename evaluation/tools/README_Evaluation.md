@@ -75,7 +75,10 @@ python evaluation/tools/run_evaluation.py [选项]
   指定输出的汇总结果文件路径（CSV格式）。默认会自动生成带有时间戳的层级目录，例如 `evaluation/evaluation_results/evaluation_results_<月日_时分>.csv`。
 
 - `--outputs-dir OUTPUTS_DIR`
-  指定保存单个项目及文件详细分析日志的目录。默认分配在时间戳隔离目录下，例如 `evaluation/evaluation_logs/evaluation_logs_<月日_时分>`。
+  指定保存单个项目及文件详细分析日志的目录。默认分配在时间戳隔离目录下，例如 `evaluation/evaluation_logs/evaluation_logs_<月日_时分>`。此参数依赖 `--save-logs` 开启时才会有文件写入。
+
+- `--save-logs`
+  (可选) 是否将每个 circom 项目的底层完整执行报错及检测文本（`.log`）保存到磁盘。默认不开启以节省硬盘空间和提速。
 
 - `--circomspect CIRCOMSPECT`
   指定自定义的 circomspect 核心可执行文件路径。如果不指定，脚本会自动退回到执行 `cargo run --bin circomspect`。

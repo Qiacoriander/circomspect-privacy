@@ -1,4 +1,0 @@
-circomspect: 从 main component 'SHA3_256_bytes' 开始分析，公开输入：[]
-circomspect: No issues found.
-    Finished `release` profile [optimized] target(s) in 0.13s
-     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\LFDT-Paladin_zeto\zkp\js\test\circuits\sha3_256_bytes_800.circom --mode main`

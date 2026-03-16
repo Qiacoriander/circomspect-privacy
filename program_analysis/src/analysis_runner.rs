@@ -468,6 +468,12 @@ impl AnalysisContext for AnalysisRunner {
             })
         }
     }
+
+    fn main_public_inputs(&self) -> Vec<String> {
+        self.main_component()
+            .map(|info| info.public_inputs.clone())
+            .unwrap_or_default()
+    }
 }
 
 fn generate_cfg<Ast: IntoCfg>(

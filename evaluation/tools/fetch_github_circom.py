@@ -24,21 +24,48 @@ SEARCH_URL = f"https://api.github.com/search/code?q={SEARCH_QUERY}&sort=indexed"
 from pathlib import Path
 OUTPUT_DIR = str(Path(__file__).resolve().parent.parent / "evaluation_projects")
 
+# 需要跳过的仓库黑名单 
+BLACKLIST = {
+    "rarimo/passport-zk-circuits",
+    "andyguzmaneth/zkwebauthn-webauthn-circom",
+    "ArmanKolozyan/CCC-Check",
+    "jinan789/ScaleCirc",
+    "distributed/lab_circom-g4-grammar",
+    "doutv/circom-benchmark",
+    "htried/zkp-ldp",
+    "dangduongminhnhat/Circheck",
+    "doutv/circom-benchmark",
+    "dl-solarity/circom-lib",
+    "Veridise/circom-benchmarks",
+    "Kiligram/permissionless-zkBridge",
+    "whbjzzwjxq/ZKAP",
+    "whbjzzwjxq/ZKAP-bmk-telepathy",
+    "flyinglimao/zkenc-benchmark",
+    "TusimaNetwork/circom-pairing",
+    "ChainSafe/recursive-zk-bridge",
+    "yi-sun/circom-pairing",
+    "Oraisan/Oraisan-Circuit-Demo",
+    "chyanju/Picus",
+    "TusimaNetwork/circom-pairing",
+    "xBalbinus/circomference",
+    "ouromoros/zk-hackathon"
+}
+
 def main():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
         
-    # 限制下载的单个仓库最大大小为 500 MB (512000 KB)
-    MAX_REPO_SIZE_KB = 512000
+    # 限制下载的单个仓库最大大小为 300 MB (300000 KB)
+    MAX_REPO_SIZE_KB = 300000
     
     # 建立多页请求逻辑保证抓取足够多的项目
     page = 1
     count = 0
     downloaded_repos = set()
     
-    print(f"[*] 我们将尝试分页克隆前 50 个不重复且大小小于 {MAX_REPO_SIZE_KB/1024:.0f}MB 的完整项目作为评估样本。")
+    print(f"[*] 我们将尝试分页克隆前 500 个不重复且大小小于 {MAX_REPO_SIZE_KB/1024:.0f}MB 的完整项目作为评估样本。")
 
-    while count < 50:
+    while count < 500:
         paginated_url = f"{SEARCH_URL}&per_page=100&page={page}"
         print(f"[*] 正在请求第 {page} 页数据...")
         response = requests.get(paginated_url, headers=HEADERS)
@@ -57,11 +84,13 @@ def main():
             break
     
         for item in items:
-            if count >= 50:
+            if count >= 500:
                 break
             
             repo_full_name = item["repository"]["full_name"]
-            if repo_full_name in downloaded_repos:
+            if repo_full_name in downloaded_repos or repo_full_name in BLACKLIST:
+                if repo_full_name in BLACKLIST:
+                    print(f"    -> 🚫 跳过黑名单项目 {repo_full_name}")
                 continue
                 
             # 请求仓库详情以获取大小信息
@@ -91,7 +120,7 @@ def main():
             if os.path.exists(save_path) and os.path.isdir(save_path):
                 print(f"       ⚠️ 目录已存在: {save_path}，跳过克隆。")
                 downloaded_repos.add(repo_full_name)
-                count += 1
+                # 不增加 count，以确保本次运行能够真正拉取到 500 个新项目
                 continue
                 
             try:

@@ -1,4 +1,0 @@
-    Finished `release` profile [optimized] target(s) in 0.16s
-     Running `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\signatures\m2.circom --mode main`
-memory allocation of 66191376 bytes failed
-error: process didn't exit successfully: `target\release\circomspect.exe D:\dev\circomspect\evaluation\evaluation_projects\rarimo_passport-zk-circuits\circuits\lib\circuits\signatures\m2.circom --mode main` (exit code: 0xc0000409, STATUS_STACK_BUFFER_OVERRUN)

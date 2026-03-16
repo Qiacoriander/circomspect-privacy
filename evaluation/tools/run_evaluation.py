@@ -21,10 +21,11 @@ import json
 import csv
 import os
 import sys
+import signal
 import time
 from pathlib import Path
-from dataclasses import dataclass, asdict
-from typing import List, Dict, Optional
+from dataclasses import dataclass, asdict, fields
+from typing import List, Dict, Optional, Set
 from collections import defaultdict
 import re
 import datetime
@@ -68,6 +69,7 @@ class AnalysisResult:
     public_inputs_count: int # 该入口显式声明的 public 信号数量，-1表示无main
     full_leak_count: int   # FULL LEAK 的信号数
     partial_leak_count: int  # PARTIAL LEAK 的信号数
+    cascade_leak_count: int # 级联泄露 (Relational De-blinding) 的信号数
     leak_count: int  # 总泄露信号数 (full + partial)
     analysis_time: float  # 秒
     success: bool
@@ -77,7 +79,8 @@ class AnalysisResult:
 class CircomspectEvaluation:
     """Circomspect 评估测试执行器"""
     
-    def __init__(self, circomspect_path: Optional[str] = None, verbose: bool = False, outputs_dir: Optional[str] = None):
+    def __init__(self, circomspect_path: Optional[str] = None, verbose: bool = False, outputs_dir: Optional[str] = None, save_logs: bool = False,
+                 csv_output_path: Optional[Path] = None, resumed_projects: Optional[Set[str]] = None, max_files_per_project: int = 0):
         """
         初始化评估测试执行器
         
@@ -85,8 +88,23 @@ class CircomspectEvaluation:
             circomspect_path: circomspect 可执行文件路径，默认使用 cargo run
             verbose: 是否输出详细信息
             outputs_dir: 用于保存每个文件具体分析输出的目录路径
+            save_logs: 是否保存分析过程详细日志到 outputs_dir 中
+            csv_output_path: CSV 结果文件路径，用于增量写入
+            resumed_projects: 已完成的项目名称集合（断点续传时跳过）
+            max_files_per_project: 每个项目最多检测的文件数（0=不限制）
         """
         self.verbose = verbose
+        self.save_logs = save_logs
+        self.csv_output_path = csv_output_path
+        self.resumed_projects = resumed_projects or set()
+        self.max_files_per_project = max_files_per_project
+        
+        # 优雅中断标志
+        self._interrupted = False
+        self._interrupt_count = 0
+        self._current_process = None  # 当前正在运行的子进程引用
+        self._original_sigint = signal.getsignal(signal.SIGINT)
+        signal.signal(signal.SIGINT, self._handle_sigint)
         
         # 确定 circomspect 可执行文件路径
         if circomspect_path:
@@ -102,6 +120,64 @@ class CircomspectEvaluation:
         
         if self.outputs_dir:
             self.outputs_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 初始化 CSV 增量写入（写入 header）
+        self._csv_header_written = False
+        if self.csv_output_path and not self.resumed_projects:
+            # 全新运行：创建文件并写入 header
+            self._init_csv_header()
+    
+    def _handle_sigint(self, signum, frame):
+        """处理 Ctrl+C 信号：立即终止当前子进程，丢弃当前项目数据，保留已完成项目"""
+        self._interrupt_count += 1
+        if self._interrupt_count == 1:
+            self._interrupted = True
+            print("\n\n⚠️  收到中断信号，正在终止当前检测进程...")
+            print("   当前项目的数据将被丢弃，已完成项目的数据不受影响。")
+            print("   （再次按 Ctrl+C 可强制退出）")
+            # 立即杀死正在运行的子进程
+            if self._current_process and self._current_process.poll() is None:
+                try:
+                    self._current_process.kill()
+                except Exception:
+                    pass
+        else:
+            print("\n强制退出。")
+            signal.signal(signal.SIGINT, self._original_sigint)
+            sys.exit(1)
+    
+    def _init_csv_header(self):
+        """创建 CSV 文件并写入表头"""
+        if self.csv_output_path:
+            self.csv_output_path.parent.mkdir(parents=True, exist_ok=True)
+            fieldnames = [f.name for f in fields(AnalysisResult)]
+            with open(self.csv_output_path, 'w', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+            self._csv_header_written = True
+    
+    def _flush_project_results(self, project_results: List[AnalysisResult]):
+        """将一个项目的结果增量追加到 CSV 文件"""
+        if not self.csv_output_path or not project_results:
+            return
+        
+        fieldnames = [f.name for f in fields(AnalysisResult)]
+        
+        # 如果是 resume 模式且 header 尚未写入，检查文件是否已有内容
+        if not self._csv_header_written:
+            if not self.csv_output_path.exists() or self.csv_output_path.stat().st_size == 0:
+                with open(self.csv_output_path, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, fieldnames=fieldnames)
+                    writer.writeheader()
+            self._csv_header_written = True
+        
+        try:
+            with open(self.csv_output_path, 'a', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                for result in project_results:
+                    writer.writerow(asdict(result))
+        except Exception as e:
+            print(f"\n[警告] 增量写入 CSV 失败: {e}")
 
         
     def find_circom_files(self, project_path: Path) -> List[Path]:
@@ -116,8 +192,8 @@ class CircomspectEvaluation:
         """
         circom_files = []
         for file in project_path.rglob("*.circom"):
-            # 排除 node_modules 和其他常见的排除目录
-            if any(part.startswith('.') or part in ['node_modules', 'build', 'dist'] 
+            # 排除 node_modules, circomlib 和其他常见的排除目录
+            if any(part.startswith('.') or part in ['node_modules', 'circomlib', 'build', 'dist'] 
                    for part in file.parts):
                 continue
             circom_files.append(file)
@@ -191,12 +267,22 @@ class CircomspectEvaluation:
         # signal_name -> max_level
         input_levels: Dict[str, int] = defaultdict(int)
         
-        # 解析 CS0022 (PrivacyGraphLeak)
         cs0022_full_pattern = r"Private Input `(.*?)` has a FULL LEAK"
         for match in re.finditer(cs0022_full_pattern, clean_output, re.IGNORECASE):
             name = match.group(1)
-            if LEVEL_FULL > input_levels[name]:
-                input_levels[name] = LEVEL_FULL
+            # 排除带有 de-blinding 的，以免重复被计算两次到全泄漏逻辑里，我们会单独统计
+            if "(Relational De-blinding)" not in match.group(0):
+                if LEVEL_FULL > input_levels[name]:
+                    input_levels[name] = LEVEL_FULL
+        
+        # 统计级联泄漏 (Relational De-blinding)
+        cascade_levels: Dict[str, int] = defaultdict(int)
+        cs0022_cascade_pattern = r"Private Input `(.*?)` has a FULL LEAK \(Relational De-blinding\)"
+        for match in re.finditer(cs0022_cascade_pattern, clean_output, re.IGNORECASE):
+            name = match.group(1)
+            # 级联泄漏同样属于严重泄漏
+            input_levels[name] = LEVEL_FULL
+            cascade_levels[name] = 1
         
         cs0022_partial_pattern = r"Private Input `(.*?)` has a PARTIAL LEAK risk"
         for match in re.finditer(cs0022_partial_pattern, clean_output, re.IGNORECASE):
@@ -205,8 +291,11 @@ class CircomspectEvaluation:
                 input_levels[name] = LEVEL_PARTIAL
         
         # 统计
+        # Cascade本质上是FULL LEAK的一种，因此 FULL LEAK 的总数应当包含 cascade_levels
+        # 我们把它们加总，使得 FULL LEAK = 直接 FULL + 级联 FULL
         full_leak_count = sum(1 for v in input_levels.values() if v == LEVEL_FULL)
         partial_leak_count = sum(1 for v in input_levels.values() if v == LEVEL_PARTIAL)
+        cascade_leak_count = len(cascade_levels)
         total_leak_count = len(input_levels)
                 
         
@@ -215,6 +304,7 @@ class CircomspectEvaluation:
             'public_inputs_count': public_inputs_count,
             'full_leak_count': full_leak_count,
             'partial_leak_count': partial_leak_count,
+            'cascade_leak_count': cascade_leak_count,
             'leak_count': total_leak_count,
         }
     
@@ -245,22 +335,37 @@ class CircomspectEvaluation:
         start_time = time.time()
         
         try:
-            # 运行 circomspect
-            result = subprocess.run(
+            # 运行 circomspect（使用 Popen 以便支持中断时立即杀死）
+            proc = subprocess.Popen(
                 cmd,
                 cwd=self.root_dir,
-                capture_output=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True,
-                timeout=300  # 5分钟超时
             )
+            self._current_process = proc
+            try:
+                stdout, stderr = proc.communicate(timeout=120)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                proc.communicate()
+                raise
+            finally:
+                self._current_process = None
+            
+            # 如果在等待过程中被中断了，直接抛出异常
+            if self._interrupted:
+                raise InterruptedError("用户中断")
+            
+            result = subprocess.CompletedProcess(cmd, proc.returncode, stdout, stderr)
             
             analysis_time = time.time() - start_time
             
             # 合并 stdout 和 stderr
             output = result.stdout + result.stderr
             
-            # 如果指定了输出目录，则将详情写入日志文件
-            if self.outputs_dir:
+            # 如果指定了输出目录且开启了保存日志，则将详情写入日志文件
+            if self.outputs_dir and self.save_logs:
                 log_dir = self.outputs_dir / project_name
                 log_dir.mkdir(parents=True, exist_ok=True)
                 log_file = log_dir / f"{file_path.stem}.log"
@@ -293,6 +398,7 @@ class CircomspectEvaluation:
                 public_inputs_count=detection_result['public_inputs_count'],
                 full_leak_count=detection_result['full_leak_count'],
                 partial_leak_count=detection_result['partial_leak_count'],
+                cascade_leak_count=detection_result['cascade_leak_count'],
                 leak_count=detection_result['leak_count'],
                 analysis_time=analysis_time,
                 success=is_success,
@@ -308,10 +414,11 @@ class CircomspectEvaluation:
                 public_inputs_count=-1,
                 full_leak_count=0,
                 partial_leak_count=0,
+                cascade_leak_count=0,
                 leak_count=0,
-                analysis_time=300.0,
+                analysis_time=120.0,
                 success=False,
-                error_message="分析超时（>5分钟）"
+                error_message="分析超时（>2分钟）"
             )
         except Exception as e:
             return AnalysisResult(
@@ -322,6 +429,7 @@ class CircomspectEvaluation:
                 public_inputs_count=-1,
                 full_leak_count=0,
                 partial_leak_count=0,
+                cascade_leak_count=0,
                 leak_count=0,
                 analysis_time=time.time() - start_time,
                 success=False,
@@ -330,7 +438,7 @@ class CircomspectEvaluation:
     
     def run_evaluation(self, specified_mode: str = 'auto') -> List[AnalysisResult]:
         """
-        运行基准测试
+        运行基准测试（支持增量持久化、优雅中断、断点续传）
         
         Args:
             specified_mode: 指定的分析模式 ('auto', 'main-only', 'library-all')
@@ -341,24 +449,43 @@ class CircomspectEvaluation:
         results = []
         
         # 查找所有项目目录
-        project_dirs = [d for d in self.evaluation_dir.iterdir() 
-                       if d.is_dir() and not d.name.startswith('.')]
+        project_dirs = sorted([d for d in self.evaluation_dir.iterdir() 
+                       if d.is_dir() and not d.name.startswith('.')])
         
         if not project_dirs:
             print("警告：benchmarks 目录下没有找到任何项目")
             return results
         
-        print(f"找到 {len(project_dirs)} 个项目")
+        skipped_resume = len(self.resumed_projects)
+        total_projects = len(project_dirs)
+        if skipped_resume > 0:
+            print(f"找到 {total_projects} 个项目（其中 {skipped_resume} 个已有结果，将跳过）")
+        else:
+            print(f"找到 {total_projects} 个项目")
         
+        completed_count = 0
         for i, project_dir in enumerate(project_dirs, 1):
+            # 检查中断标志
+            if self._interrupted:
+                print(f"\n🛑 中断信号已接收，停止处理后续项目（已完成 {completed_count} 个项目）")
+                break
+            
             project_name = project_dir.name
+            
+            # 断点续传：跳过已完成的项目
+            if project_name in self.resumed_projects:
+                if self.verbose:
+                    print(f"  ⏭️  跳过已完成项目: {project_name}")
+                continue
+            
             print(f"\n{'='*60}")
-            print(f"项目 ({i}/{len(project_dirs)}): {project_name}")
+            print(f"项目 ({i}/{total_projects}): {project_name}")
             print(f"{'='*60}")
             
             # 查找所有 .circom 文件
             circom_files = self.find_circom_files(project_dir)
-            print(f"找到 {len(circom_files)} 个 .circom 文件")
+            original_count = len(circom_files)
+            print(f"找到 {original_count} 个 .circom 文件")
             
             if not circom_files:
                 print(f"  跳过项目 {project_name}：没有找到 .circom 文件")
@@ -370,18 +497,27 @@ class CircomspectEvaluation:
                 progress_bar = ProgressBar(total_tasks, prefix='进度:', suffix='完成', length=40)
                 progress_bar.print_progress(0)
             
+            # 当前项目的结果
+            project_results = []
+            
             # 对每个文件运行分析
-            for i, circom_file in enumerate(circom_files):
+            for j, circom_file in enumerate(circom_files):
+                # 检查中断标志：立即停止，丢弃当前项目数据
+                if self._interrupted:
+                    print(f"\n  🛑 中断信号：丢弃项目 {project_name} 的未完成数据")
+                    project_results.clear()
+                    break
+                
                 detected_mode = self.detect_mode(circom_file)
                 
                 # 模式1: 仅仅从 main 入口开始处理，没 main 的跳过
                 if specified_mode == 'main-only' and detected_mode != 'main':
                     if not self.verbose:
                         # 更新进度条
-                        leaking_files_count = sum(1 for r in results if r.project_name == project_name and r.leak_count > 0)
-                        total_leak_instances = sum(r.leak_count for r in results if r.project_name == project_name)
+                        leaking_files_count = sum(1 for r in project_results if r.leak_count > 0)
+                        total_leak_instances = sum(r.leak_count for r in project_results)
                         progress_bar.suffix = f"完成 (风险文件: {leaking_files_count}, 风险信号: {total_leak_instances})"
-                        progress_bar.print_progress(i + 1)
+                        progress_bar.print_progress(j + 1)
                     continue
                 
                 # 确定传递给底层引擎的具体模式
@@ -395,26 +531,47 @@ class CircomspectEvaluation:
                     # 模式3: auto - 有 main 即 main，没有即 library
                     current_mode = detected_mode
                 
-                result = self.run_analysis(circom_file, current_mode, project_name)
+                try:
+                    result = self.run_analysis(circom_file, current_mode, project_name)
+                except (InterruptedError, KeyboardInterrupt):
+                    # 被中断：丢弃当前项目所有数据
+                    print(f"\n  🛑 检测中断：丢弃项目 {project_name} 的全部数据")
+                    # 从全局 results 中移除该项目已有的结果
+                    results = [r for r in results if r.project_name != project_name]
+                    project_results.clear()
+                    break
+                
+                project_results.append(result)
                 results.append(result)
                 
                 if self.verbose:
                     if result.success:
                         leak_status = "有隐私泄露" if result.leak_count > 0 else "无隐私泄露"
-                        detail = f"FULL={result.full_leak_count}, PARTIAL={result.partial_leak_count}" if result.leak_count > 0 else ""
+                        # 格式优化：由于 CASCADE 属于 FULL 的一种特殊情况，因此在括号内注明即可
+                        cascade_info = f" (含 CASCADE={result.cascade_leak_count})" if result.cascade_leak_count > 0 else ""
+                        detail = f"FULL={result.full_leak_count}{cascade_info}, PARTIAL={result.partial_leak_count}" if result.leak_count > 0 else ""
                         print(f"    [{current_mode}] {leak_status} {detail} (用时: {result.analysis_time:.2f}秒)")
                 else:
                     # 更新进度条
-                    leaking_files_count = sum(1 for r in results if r.project_name == project_name and r.leak_count > 0)
-                    total_leak_instances = sum(r.leak_count for r in results if r.project_name == project_name)
+                    leaking_files_count = sum(1 for r in project_results if r.leak_count > 0)
+                    total_leak_instances = sum(r.leak_count for r in project_results)
                     progress_bar.suffix = f"完成 (风险文件: {leaking_files_count}, 风险信号: {total_leak_instances})"
-                    progress_bar.print_progress(i + 1)
+                    progress_bar.print_progress(j + 1)
+            
+            # ✅ 每完成一个项目，立即增量写入 CSV
+            if project_results:
+                self._flush_project_results(project_results)
+                completed_count += 1
+                print(f"  💾 项目 {project_name} 的 {len(project_results)} 条结果已保存")
+        
+        if self._interrupted:
+            print(f"\n📊 评估因中断而提前结束，共完成 {completed_count} 个项目的分析")
         
         return results
     
     def save_results(self, results: List[AnalysisResult], output_file: Path):
         """
-        保存结果到 CSV 文件
+        保存结果到 CSV 文件（注意：增量模式下结果已经在 run_evaluation 中逐项目写入了）
         
         Args:
             results: 分析结果列表
@@ -424,8 +581,13 @@ class CircomspectEvaluation:
             print("没有结果可保存")
             return
         
-        # Prepare data for CSV writing
-        fieldnames = asdict(results[0]).keys()
+        # 如果已经通过增量模式写入了，只需确认
+        if self.csv_output_path and self.csv_output_path == output_file:
+            print(f"\n结果已增量保存至: {output_file}")
+            return
+        
+        # 兜底：非增量模式下的完整写入
+        fieldnames = [f.name for f in fields(AnalysisResult)]
         csv_data = [asdict(result) for result in results]
 
         try:
@@ -436,7 +598,6 @@ class CircomspectEvaluation:
                     writer.writerow(data)
             print(f"\n结果已保存至: {output_file}")
         except PermissionError:
-            # 如果文件被占用（如被 Excel 打开），尝试保存到带有时间戳的新文件
             import datetime
             timestamp = datetime.datetime.now().strftime("%m%d_%H%M")
             fallback_file = Path(output_file).parent / f"evaluation_results_{timestamp}.csv"
@@ -498,7 +659,10 @@ class CircomspectEvaluation:
         total_leak_count = sum(r.leak_count for r in results)
         total_full = sum(r.full_leak_count for r in results)
         total_partial = sum(r.partial_leak_count for r in results)
-        lines.append(f"  风险信号总数: {total_leak_count} (FULL LEAK: {total_full}, PARTIAL LEAK: {total_partial})")
+        total_cascade = sum(r.cascade_leak_count for r in results)
+        
+        cascade_summary = f" (其中包含 CASCADE 级联泄露: {total_cascade})" if total_cascade > 0 else ""
+        lines.append(f"  风险信号总数: {total_leak_count} (FULL LEAK: {total_full}{cascade_summary}, PARTIAL LEAK: {total_partial})")
             
         # 按项目统计
         lines.append("\n【按项目统计】")
@@ -527,9 +691,11 @@ class CircomspectEvaluation:
             if stats['files'] > 0:
                 proj_full = sum(r.full_leak_count for r in results if r.project_name == project_name)
                 proj_partial = sum(r.partial_leak_count for r in results if r.project_name == project_name)
+                proj_cascade = sum(r.cascade_leak_count for r in results if r.project_name == project_name)
                 
+                cascade_str = f" [含 CASCADE: {proj_cascade}]" if proj_cascade > 0 else ""
                 leak_info = f"泄露文件: {stats['leak_files']}"
-                leak_info += f", 风险信号: {stats['total_leak_count']} (FULL LEAK: {proj_full}, PARTIAL LEAK: {proj_partial})"
+                leak_info += f", 风险信号: {stats['total_leak_count']} (FULL: {proj_full}{cascade_str}, PARTIAL: {proj_partial})"
                 
                 lines.append(f"  - {project_name}: {stats['files']} 文件, {leak_info}")
         
@@ -549,13 +715,29 @@ class CircomspectEvaluation:
             for i, r in enumerate(all_leaking_files[:30], 1):
                 lines.append(f"  {i}. {r.file_path}")
                 lines.append(f"     项目: {r.project_name} | 模式: {r.mode}")
-                lines.append(f"     FULL LEAK: {r.full_leak_count}, PARTIAL LEAK: {r.partial_leak_count} (总信号: {r.leak_count})")
+                cascade_str = f" (含 CASCADE: {r.cascade_leak_count})" if r.cascade_leak_count > 0 else ""
+                lines.append(f"     FULL: {r.full_leak_count}{cascade_str}, PARTIAL: {r.partial_leak_count} (总信号: {r.leak_count})")
         else:
             lines.append("  未检测到隐私泄露")
         
         lines.append("\n" + "="*80)
         
         return "\n".join(lines)
+
+
+def _load_resumed_projects(csv_path: Path) -> Set[str]:
+    """从已有的 CSV 文件中读取已完成的项目名称集合"""
+    completed = set()
+    if csv_path.exists() and csv_path.stat().st_size > 0:
+        try:
+            with open(csv_path, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    if 'project_name' in row:
+                        completed.add(row['project_name'])
+        except Exception as e:
+            print(f"[警告] 读取已有 CSV 文件失败: {e}，将从头开始")
+    return completed
 
 
 def main():
@@ -580,6 +762,12 @@ def main():
     script_dir = Path(__file__).resolve().parent
     default_output = script_dir.parent / 'evaluation_results' / f'evaluation_results_{timestamp_str}.csv'
     default_outputs_dir = script_dir.parent / 'evaluation_logs' / f'evaluation_logs_{timestamp_str}'
+    
+    parser.add_argument(
+        '--save-logs',
+        action='store_true',
+        help='是否保存具体的单个文件分析日志到 outputs-dir 中'
+    )
     
     parser.add_argument(
         '--output',
@@ -615,17 +803,46 @@ def main():
         help='指定要评估的项目集所在路径 (默认: evaluation/evaluation_projects)'
     )
     
+    parser.add_argument(
+        '--resume',
+        action='store_true',
+        help='断点续传：跳过 CSV 中已有结果的项目，从上次中断处继续'
+    )
+    
+    parser.add_argument(
+        '--max-files',
+        type=int,
+        default=200,
+        help='每个项目最多检测的 .circom 文件数量（默认 200，设为 0 表示不限制）'
+    )
+    
     args = parser.parse_args()
     
     # Ensure results directory exists
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
-    # 创建评估执行器
+    # 断点续传：读取已有结果
+    resumed_projects = set()
+    if args.resume:
+        if output_path.exists():
+            resumed_projects = _load_resumed_projects(output_path)
+            if resumed_projects:
+                print(f"🔄 断点续传模式：检测到 {len(resumed_projects)} 个已完成的项目，将跳过")
+            else:
+                print("🔄 断点续传模式：未找到已有结果，将从头开始")
+        else:
+            print("🔄 断点续传模式：指定的 CSV 文件不存在，将从头开始")
+    
+    # 创建 evaluation executor
     benchmark = CircomspectEvaluation(
         circomspect_path=args.circomspect,
         verbose=args.verbose,
-        outputs_dir=args.outputs_dir
+        outputs_dir=args.outputs_dir,
+        save_logs=args.save_logs,
+        csv_output_path=output_path,
+        resumed_projects=resumed_projects,
+        max_files_per_project=args.max_files
     )
 
     # 如果指定了 --projects-dir, 覆盖默认的 evaluation_dir
@@ -638,12 +855,13 @@ def main():
     print("开始隐私评估测试...")
     print(f"设定模式: {args.mode}")
     print(f"项目目录: {benchmark.evaluation_dir}")
+    if args.max_files > 0:
+        print(f"每项目文件上限: {args.max_files}")
     
     # 运行评估测试
     results = benchmark.run_evaluation(args.mode)
     
-    # 保存结果
-    output_path = Path(args.output)
+    # 保存结果（增量模式下此处仅确认）
     benchmark.save_results(results, output_path)
     
     # 生成并显示报告

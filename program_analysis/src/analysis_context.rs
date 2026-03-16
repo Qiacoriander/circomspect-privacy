@@ -54,4 +54,7 @@ pub trait AnalysisContext {
         file_id: &FileID,
         file_location: &FileLocation,
     ) -> Result<String, AnalysisError>;
+
+    /// Returns the list of public input names declared in the main component.
+    fn main_public_inputs(&self) -> Vec<String>;
 }
