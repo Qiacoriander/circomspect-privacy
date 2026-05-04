@@ -1,0 +1,13 @@
+{
+  "logs_dir": "D:/dev/circomspect/evaluation/evaluation_logs",
+  "projects_dir": "D:/dev/circomspect/evaluation/evaluation_projects",
+  "output_dir": "D:/dev/circomspect/evaluation/evaluation_sources_from_logs",
+  "missing_report": "D:/dev/circomspect/evaluation/evaluation_results/evaluation_sources_missing.csv",
+  "scanned_projects": 67,
+  "projects_with_copied_files": 63,
+  "logs_total": 181,
+  "copied_total": 155,
+  "missing_total": 26,
+  "ambiguous_total": 26,
+  "project_dir_missing_total": 2
+}

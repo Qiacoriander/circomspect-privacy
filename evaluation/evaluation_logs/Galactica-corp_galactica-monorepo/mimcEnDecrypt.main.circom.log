@@ -1,0 +1,25 @@
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Galactica-corp_galactica-monorepo\packages\zk-certificates\circuits\mains\mimcEnDecrypt.main.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'Main' 开始分析，公开输入：[]
+warning: Private Input `xL_in` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Galactica-corp_galactica-monorepo\packages\zk-certificates\circuits\mains\mimcEnDecrypt.main.circom:4:2
+  │
+4 │     signal input xL_in;
+  │     ^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `xR_in` has a FULL LEAK (Cascade, caused by `xR_in`) risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Galactica-corp_galactica-monorepo\packages\zk-certificates\circuits\mains\mimcEnDecrypt.main.circom:5:2
+  │
+5 │     signal input xR_in;
+  │     ^^^^^^^^^^^^^^^^^^ This private input leaks after fixpoint re-visitation. The propagated knowledge from `xR_in` triggered a cascading inference that exposed this signal.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 2 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Galactica-corp_galactica-monorepo\packages\zk-certificates\circuits\mains\mimcEnDecrypt.main.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.222s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\Galactica-corp_galactica-monorepo\packages\zk-certificates\circuits\mains\mimcEnDecrypt.main.circom --mode main --ccig-variant full

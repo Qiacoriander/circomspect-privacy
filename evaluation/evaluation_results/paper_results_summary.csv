@@ -1,0 +1,5 @@
+variant,reported_fd,reported_pd,tp_fd,tp_pd,fp_fd,fp_pd,fn_entries,precision,recall,affected_instances,metric_note
+full,197,28,190,25,7,3,0,0.9555555555555556,1.0,173,signal_level
+no-unroll-conservative,173,22,167,19,6,3,26,0.9538461538461539,0.8651162790697674,147,signal_level
+single-pass,192,27,185,24,7,3,2,0.954337899543379,0.9720930232558139,171,signal_level
+vanguard-lite,118,1295,81,0,37,0,83,0.6864406779661016,0.49390243902439024,84,CL_only

@@ -1,0 +1,27 @@
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\CleanPegasus_zero-knowledge-puzzles\Num2Bits\Num2Bits.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'Num2Bits' 开始分析，公开输入：[]
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\CleanPegasus_zero-knowledge-puzzles\Num2Bits\Num2Bits.circom:13:5
+   │
+13 │     out[i] <-- (num >> i) & 1;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[i]` is not constrained here.
+14 │     out[i] * (out[i] - 1) === 0;
+   │     ---------------------------- The signal `out[i]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Private Input `num` has a PARTIAL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\CleanPegasus_zero-knowledge-puzzles\Num2Bits\Num2Bits.circom:6:3
+  │
+6 │   signal input num;
+  │   ^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 2 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\CleanPegasus_zero-knowledge-puzzles\Num2Bits\Num2Bits.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.212s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\CleanPegasus_zero-knowledge-puzzles\Num2Bits\Num2Bits.circom --mode main --ccig-variant full

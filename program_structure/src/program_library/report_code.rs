@@ -303,7 +303,7 @@ impl ReportCode {
             UnderConstrainedSignal => Some("under-constrained-signal"),
             UnusedOutputSignal => Some("unused-output-signal"),
 
-            CcigLeak => Some("ccig-leak"),
+            CcigLeak => return Some(DOC_URL.to_string()),
             // We only provide a URL for Circomspect specific issues.
             _ => None,
         }

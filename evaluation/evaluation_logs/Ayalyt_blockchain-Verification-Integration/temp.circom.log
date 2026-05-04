@@ -1,0 +1,108 @@
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'RVmKCKrfBTev' 开始分析，公开输入：[]
+warning: The variable `Xe7elffcb16R` is assigned a value, but this value is never read.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:154:1
+    │
+154 │ Xe7elffcb16R *= JN8gnITiHbwL[get_one() * 4][get_one() * 1];
+    │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `Xe7elffcb16R` here is never read.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The parameter `wmYwwR6s8dIG` is never read.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:139:23
+    │
+139 │ template RVmKCKrfBTev(JN8gnITiHbwL, wmYwwR6s8dIG, nKEJp7WdPptD) {
+    │                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The parameter `wmYwwR6s8dIG` is never used in `RVmKCKrfBTev`.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The value assigned to `Xe7elffcb16R` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:153:5
+    │
+153 │     Xe7elffcb16R =(JN8gnITiHbwL[get_one() * 3][get_one() * 2] >> nKEJp7WdPptD[get_one() * 0]);
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `Xe7elffcb16R` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The parameter `nKEJp7WdPptD` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:139:23
+    │
+139 │ template RVmKCKrfBTev(JN8gnITiHbwL, wmYwwR6s8dIG, nKEJp7WdPptD) {
+    │                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The parameter `nKEJp7WdPptD` does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The variable `YRbduwBFtMKG` is assigned a value, but this value is never read.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:150:5
+    │
+150 │     var YRbduwBFtMKG = 21;
+    │     ^^^^^^^^^^^^^^^^^^^^^ The value assigned to `YRbduwBFtMKG` here is never read.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The parameter `JN8gnITiHbwL` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:139:23
+    │
+139 │ template RVmKCKrfBTev(JN8gnITiHbwL, wmYwwR6s8dIG, nKEJp7WdPptD) {
+    │                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The parameter `JN8gnITiHbwL` does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The signal `wM4Hc2hB1S46` is not used by the template.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:146:5
+    │
+146 │     signal wM4Hc2hB1S46;
+    │     ^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signal `J790afGGR1KL` is not used by the template.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:145:5
+    │
+145 │     signal J790afGGR1KL;
+    │     ^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:146:5
+    │
+146 │     signal wM4Hc2hB1S46;
+    │     ^^^^^^^^^^^^^^^^^^^ The intermediate signal `wM4Hc2hB1S46` is declared here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:145:5
+    │
+145 │     signal J790afGGR1KL;
+    │     ^^^^^^^^^^^^^^^^^^^ The intermediate signal `J790afGGR1KL` is declared here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:147:5
+    │
+147 │     signal CsX1GFymZbMT[1][1][1];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The intermediate signal array `CsX1GFymZbMT` is declared here.
+    ·
+156 │ CsX1GFymZbMT[get_one() * 0][get_one() * 0][get_one() * 0] <== iqdMHQtSS9cU;
+    │ -------------------------------------------------------------------------- The intermediate signals in `CsX1GFymZbMT` are constrained here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Private Input `iqdMHQtSS9cU` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom:140:5
+    │
+140 │     signal input iqdMHQtSS9cU;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 12 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.305s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\1\temp.circom --mode main --ccig-variant full

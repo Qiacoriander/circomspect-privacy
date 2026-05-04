@@ -1,0 +1,196 @@
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'nf0jPugYZl1I' 开始分析，公开输入：[]
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:225:5
+    │
+225 │     YOKD7N8ElVIL.pGnxH5qlzsoi[get_one() * 0][get_one() * 0] <-- 67 * AV2mnvjiqlBM;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `YOKD7N8ElVIL.pGnxH5qlzsoi[(get_one() * 0)][(get_one() * 0)]` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:226:5
+    │
+226 │     YOKD7N8ElVIL.lRHuJ0hgo5p1[get_one() * 0] <-- ((UYhZ4uKSfaJP - UYhZ4uKSfaJP) - UYhZ4uKSfaJP);
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `YOKD7N8ElVIL.lRHuJ0hgo5p1[(get_one() * 0)]` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:223:5
+    │
+223 │     YOKD7N8ElVIL.IQxE7xD8MjLo <-- (s2dkhvIOv5qX[get_one() * 0][get_one() * 0] * 76 - AV2mnvjiqlBM);
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `YOKD7N8ElVIL.IQxE7xD8MjLo` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:227:5
+    │
+227 │     YOKD7N8ElVIL.UEvmiZNdwlwR[get_one() * 0][get_one() * 0][get_one() * 0] <-- UYhZ4uKSfaJP * 54;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `YOKD7N8ElVIL.UEvmiZNdwlwR[(get_one() * 0)][(get_one() * 0)][(get_one() * 0)]` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:224:5
+    │
+224 │     YOKD7N8ElVIL.QT0spNrHYgP2[get_one() * 0][get_one() * 0] <-- 12 *((vQ2tvWaVqEFT[get_one() * 0] - UYhZ4uKSfaJP) + s2dkhvIOv5qX[get_one() * 0][get_one() * 0]);
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `YOKD7N8ElVIL.QT0spNrHYgP2[(get_one() * 0)][(get_one() * 0)]` is quadratic.
+    │
+    = Consider rewriting the statement using the constraint assignment operator `<==`.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: The variable `Vacrbtg4KLE7` is assigned a value, but this value is never read.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:214:9
+    │
+214 │         Vacrbtg4KLE7 =((((kedY6VsfV2WBxxP([105, 57, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 59, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]], [18], [[57, 100, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 87, 87], [QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 46, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 78], [QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 56, 58], [98, 16, 103, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 74], [25, 93, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 3, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]]]) != 11) && (wLbg7N4Di6Ts[get_one() * 1] <= 2)) != (QR0NvuxtdpSJ[get_one() * 1][get_one() * 2] != 86)) <= vQ2tvWaVqEFT[get_one() * 0])?(QR0NvuxtdpSJ[get_one() * 1][get_one() * 0] * s2dkhvIOv5qX[get_one() * 0][get_one() * 0]):(~AV2mnvjiqlBM) + 0 & 0;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `Vacrbtg4KLE7` here is never read.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The variable `Vacrbtg4KLE7` is assigned a value, but this value is never read.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:212:9
+    │
+212 │         Vacrbtg4KLE7 *= (((wLbg7N4Di6Ts[get_one() * 1] == QR0NvuxtdpSJ[get_one() * 1][get_one() * 3]) || (bQGzVmUkMWjFDjY([[5, 2, 110, 52, 46], [106, 35, 74, 33, 48]]) < 8)) || (QR0NvuxtdpSJ[get_one() * 2][get_one() * 0] || 33))?QR0NvuxtdpSJ[get_one() * 0][get_one() * 3]:(vQ2tvWaVqEFT[get_one() * 0] & eDoJ95CdJGsJ);
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `Vacrbtg4KLE7` here is never read.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The parameter `wLbg7N4Di6Ts` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:196:23
+    │
+196 │ template nf0jPugYZl1I(QR0NvuxtdpSJ, wLbg7N4Di6Ts) {
+    │                       ^^^^^^^^^^^^^^^^^^^^^^^^^^ The parameter `wLbg7N4Di6Ts` does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The parameter `QR0NvuxtdpSJ` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:196:23
+    │
+196 │ template nf0jPugYZl1I(QR0NvuxtdpSJ, wLbg7N4Di6Ts) {
+    │                       ^^^^^^^^^^^^^^^^^^^^^^^^^^ The parameter `QR0NvuxtdpSJ` does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `Vacrbtg4KLE7` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:215:9
+    │
+215 │         Vacrbtg4KLE7 =(wLbg7N4Di6Ts[get_one() * 4] * QR0NvuxtdpSJ[get_one() * 1][get_one() * 0]) + 0 ^ 0;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `Vacrbtg4KLE7` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `YOKD7N8ElVIL.UEvmiZNdwlwR[(get_one() * 0)][(get_one() * 0)][(get_one() * 0)]` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:227:5
+    │
+227 │     YOKD7N8ElVIL.UEvmiZNdwlwR[get_one() * 0][get_one() * 0][get_one() * 0] <-- UYhZ4uKSfaJP * 54;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `YOKD7N8ElVIL.UEvmiZNdwlwR[(get_one() * 0)][(get_one() * 0)][(get_one() * 0)]` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `Vacrbtg4KLE7` is not used in witness or constraint generation.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:216:9
+    │
+216 │         Vacrbtg4KLE7 **= (kedY6VsfV2WBxxP([105, 57, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 59, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]], [18], [[57, 100, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 87, 87], [QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 46, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 78], [QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 56, 58], [98, 16, 103, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 74], [25, 93, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 3, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]]]) + oP4wIfwuy0a5Vw8([[wLbg7N4Di6Ts[get_one() * 4], 82], [QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]]], [[27], [101]], [[80, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]], [wLbg7N4Di6Ts[get_one() * 4], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]], [QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]], [QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 100]], [QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], 54, QR0NvuxtdpSJ[get_one() * 2][get_one() * 3], wLbg7N4Di6Ts[get_one() * 4]], [wLbg7N4Di6Ts[get_one() * 4], QR0NvuxtdpSJ[get_one() * 2][get_one() * 3]]));
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `Vacrbtg4KLE7` here does not influence witness or constraint generation.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The variable `Vacrbtg4KLE7` is assigned a value, but this value is never read.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:213:9
+    │
+213 │         Vacrbtg4KLE7 =(h2OYcSc3qaRftXk([98, 21, 32])) ^ 1 ^ 1;
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `Vacrbtg4KLE7` here is never read.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signals `e1qmIkmLMWC8[1]` are not used by the template.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:207:5
+    │
+207 │     signal e1qmIkmLMWC8[1];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ These signals are unused and could be removed.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signals `vQ2tvWaVqEFT[1]` are not constrained by the template.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:197:5
+    │
+197 │     signal input vQ2tvWaVqEFT[1];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ These signals do not occur in a constraint.
+
+warning: The signal `onLvHsEIx0xW` is not used by the template.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:205:5
+    │
+205 │     signal onLvHsEIx0xW;
+    │     ^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signal `NMvygk5SSt75` is not used by the template.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:206:5
+    │
+206 │     signal NMvygk5SSt75;
+    │     ^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:207:5
+    │
+207 │     signal e1qmIkmLMWC8[1];
+    │     ^^^^^^^^^^^^^^^^^^^^^^ The intermediate signal array `e1qmIkmLMWC8` is declared here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:205:5
+    │
+205 │     signal onLvHsEIx0xW;
+    │     ^^^^^^^^^^^^^^^^^^^ The intermediate signal `onLvHsEIx0xW` is declared here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:206:5
+    │
+206 │     signal NMvygk5SSt75;
+    │     ^^^^^^^^^^^^^^^^^^^ The intermediate signal `NMvygk5SSt75` is declared here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Private Input `s2dkhvIOv5qX` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:200:5
+    │
+200 │     signal input s2dkhvIOv5qX[1][1];
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `AV2mnvjiqlBM` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:198:5
+    │
+198 │     signal input AV2mnvjiqlBM;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `UYhZ4uKSfaJP` has a FULL LEAK risk mapped to public outputs.
+    ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom:199:5
+    │
+199 │     signal input UYhZ4uKSfaJP;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 23 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.530s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\Ayalyt_blockchain-Verification-Integration\compiler-testing\workspace\temp\2\temp.circom --mode main --ccig-variant full

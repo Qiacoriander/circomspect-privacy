@@ -1,0 +1,3 @@
+only_variant,project_name,file_path,mode,leak_count,full_leak_count,partial_leak_count,cascade_leak_count,present_full,present_single_pass
+full,santacroce-tech_zkgame,santacroce-tech_zkgame\circuits\timeCraft.circom,main,1,1,0,1,True,True
+full,santacroce-tech_zkgame,santacroce-tech_zkgame\circuits\timeReward.circom,main,1,1,0,1,True,True

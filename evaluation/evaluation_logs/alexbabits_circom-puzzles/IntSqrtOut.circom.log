@@ -1,0 +1,53 @@
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\alexbabits_circom-puzzles\IntSqrtOut\IntSqrtOut.circom --mode main --ccig-variant full`
+error: Failed to open file `../node_modules/circomlib/circuits/comparators.circom`.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\alexbabits_circom-puzzles\IntSqrtOut\IntSqrtOut.circom:2:1
+  │
+2 │ include "../node_modules/circomlib/circuits/comparators.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: 从 main component 'IntSqrtOut' 开始分析，公开输入：[]
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\alexbabits_circom-puzzles\IntSqrtOut\IntSqrtOut.circom:41:5
+   │
+41 │     out <-- intSqrtFloor(in); // `in` is our X we want to solve for.
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out` is not constrained here.
+   ·
+45 │     lt.in[0] <== (out - 1) * (out - 1);
+   │     ---------------------------------- The signal `out` is constrained here.
+   ·
+50 │     gt.in[0] <== (out + 1) * (out + 1);
+   │     ---------------------------------- The signal `out` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\alexbabits_circom-puzzles\IntSqrtOut\IntSqrtOut.circom:45:18
+   │
+45 │     lt.in[0] <== (out - 1) * (out - 1);
+   │                  ^^^^^^^^^^^^^^^^^^^^^ `((out - 1) * (out - 1))` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\alexbabits_circom-puzzles\IntSqrtOut\IntSqrtOut.circom:46:18
+   │
+46 │     lt.in[1] <== in;
+   │                  ^^ `in` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\alexbabits_circom-puzzles\IntSqrtOut\IntSqrtOut.circom:38:5
+   │
+38 │     signal input in;
+   │     ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 5 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\alexbabits_circom-puzzles\IntSqrtOut\IntSqrtOut.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.211s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\alexbabits_circom-puzzles\IntSqrtOut\IntSqrtOut.circom --mode main --ccig-variant full

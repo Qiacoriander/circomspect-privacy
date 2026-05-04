@@ -1,0 +1,3 @@
+project_name,reason,expected_projects_dir
+evaluation_logs_0323_0027,project_dir_missing,D:\dev\circomspect\evaluation\evaluation_projects\evaluation_logs_0323_0027
+evaluation_logs_0324_0030,project_dir_missing,D:\dev\circomspect\evaluation\evaluation_projects\evaluation_logs_0324_0030

@@ -1,0 +1,41 @@
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\MAKMED1337_ZKP-circom\circuits\merkleTree\buildMerkleTree.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'BuildMerkleTree' 开始分析，公开输入：[]
+warning: The value assigned to `h` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\MAKMED1337_ZKP-circom\circuits\merkleTree\buildMerkleTree.circom:47:13
+   │
+47 │             h++;
+   │             ^^^ The value assigned to `h` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `h` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\MAKMED1337_ZKP-circom\circuits\merkleTree\buildMerkleTree.circom:53:13
+   │
+53 │             h++;
+   │             ^^^ The value assigned to `h` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `h` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\MAKMED1337_ZKP-circom\circuits\merkleTree\buildMerkleTree.circom:38:5
+   │
+38 │     var k = 0, h = 0;
+   │     ^^^^^^^^^^^^^^^^ The value assigned to `h` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: Private Input `leaves` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\MAKMED1337_ZKP-circom\circuits\merkleTree\buildMerkleTree.circom:16:5
+   │
+16 │     signal input leaves[totalLeaves];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 4 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\MAKMED1337_ZKP-circom\circuits\merkleTree\buildMerkleTree.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.220s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\MAKMED1337_ZKP-circom\circuits\merkleTree\buildMerkleTree.circom --mode main --ccig-variant full

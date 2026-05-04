@@ -1,0 +1,45 @@
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\frederickemerson_Lumina\zk-circuits\origin_proof.circom --mode main --ccig-variant full`
+error: Failed to open file `../node_modules/circomlib/circuits/comparators.circom`.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\frederickemerson_Lumina\zk-circuits\origin_proof.circom:23:1
+   │
+23 │ include "../node_modules/circomlib/circuits/comparators.circom";
+   │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+error: Failed to open file `../node_modules/circomlib/circuits/sha256/sha256.circom`.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\frederickemerson_Lumina\zk-circuits\origin_proof.circom:24:1
+   │
+24 │ include "../node_modules/circomlib/circuits/sha256/sha256.circom";
+   │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: 从 main component 'OriginProof' 开始分析，公开输入：[]
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\frederickemerson_Lumina\zk-circuits\origin_proof.circom:58:31
+   │
+58 │     timestamp_check.in[1] <== private_timestamp;
+   │                               ^^^^^^^^^^^^^^^^^ `private_timestamp` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\frederickemerson_Lumina\zk-circuits\origin_proof.circom:57:31
+   │
+57 │     timestamp_check.in[0] <== year_2025_start;
+   │                               ^^^^^^^^^^^^^^^ `year_2025_start` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Private Input `private_timestamp` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\frederickemerson_Lumina\zk-circuits\origin_proof.circom:32:5
+   │
+32 │     signal input private_timestamp;        // Exact timestamp (private, only for minimal year check)
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 5 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\frederickemerson_Lumina\zk-circuits\origin_proof.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.214s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\frederickemerson_Lumina\zk-circuits\origin_proof.circom --mode main --ccig-variant full

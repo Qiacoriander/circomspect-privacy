@@ -1,0 +1,27 @@
+pragma circom 2.1.1;
+
+include "offchain/credentialAtomicQueryV3OffChain.circom";
+
+/*
+ public output signals:
+ userID - user profile id
+ merklized - `1` if claim is merklized
+ issuerState - equals to issuerAuthState for sig, and to issuerClaimIdenState for mtp
+ nullifier - sybil resistant user identifier for session id
+ linkID - linked proof identifier
+*/
+component main{public [requestID,
+                       issuerID,
+                       issuerClaimNonRevState,
+                       claimSchema,
+                       slotIndex,
+                       claimPathKey,
+                       operator,
+                       value,
+                       valueArraySize,
+                       timestamp, 
+                       isRevocationChecked,
+                       proofType,
+                       verifierID,
+                       nullifierSessionID
+                       ]} = credentialAtomicQueryV3OffChain(16, 16, 64); // issuerLevels, claimLevels, maxValueArraySize

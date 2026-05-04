@@ -1,0 +1,6 @@
+variant,total_items,success_items,failed_items,leak_items,total_leak_signals,total_full_leaks,total_partial_leaks,total_cascade_leaks,total_analysis_time
+full,2373,2344,29,173,225,197,28,7,1445.5848801136017
+no-unroll-conservative,2373,2365,8,147,195,173,22,4,895.2623634338379
+no-unroll-aggressive,2373,2365,8,248,306,281,25,6,892.0433983802795
+single-pass,2373,2344,29,171,219,192,27,0,1508.0728816986084
+vanguard-lite,2373,2365,8,583,1295,118,1295,0,868.8874456882477

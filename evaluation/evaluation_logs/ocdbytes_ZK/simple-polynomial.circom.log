@@ -1,0 +1,44 @@
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\ocdbytes_ZK\Circom\circuits\simple-polynomial.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'Main' 开始分析，公开输入：[]
+warning: Using the signal assignment operator `<--` is not necessary here.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\ocdbytes_ZK\Circom\circuits\simple-polynomial.circom:11:3
+   │
+11 │   out <-- x_cubed - x + 7;
+   │   ^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `out` is quadratic.
+   │
+   = Consider rewriting the statement using the constraint assignment operator `<==`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\ocdbytes_ZK\Circom\circuits\simple-polynomial.circom:9:3
+  │
+9 │   x_squared <-- x * x;
+  │   ^^^^^^^^^^^^^^^^^^^ The expression assigned to `x_squared` is quadratic.
+  │
+  = Consider rewriting the statement using the constraint assignment operator `<==`.
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Using the signal assignment operator `<--` is not necessary here.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\ocdbytes_ZK\Circom\circuits\simple-polynomial.circom:10:3
+   │
+10 │   x_cubed <-- x_squared * x;
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^^ The expression assigned to `x_cubed` is quadratic.
+   │
+   = Consider rewriting the statement using the constraint assignment operator `<==`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+
+warning: Private Input `x` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\ocdbytes_ZK\Circom\circuits\simple-polynomial.circom:4:3
+  │
+4 │   signal input x;
+  │   ^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 4 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\ocdbytes_ZK\Circom\circuits\simple-polynomial.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.212s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\ocdbytes_ZK\Circom\circuits\simple-polynomial.circom --mode main --ccig-variant full

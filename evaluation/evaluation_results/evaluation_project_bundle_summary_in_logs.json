@@ -1,0 +1,15 @@
+{
+  "logs_dir": "D:\\dev\\circomspect\\evaluation\\evaluation_logs",
+  "projects_dir": "D:\\dev\\circomspect\\evaluation\\evaluation_projects",
+  "missing_report": "D:\\dev\\circomspect\\evaluation\\evaluation_results\\evaluation_project_bundle_missing_in_logs.csv",
+  "copy_error_report": "D:\\dev\\circomspect\\evaluation\\evaluation_results\\evaluation_project_bundle_copy_errors.csv",
+  "scanned_projects": 67,
+  "matched_projects": 65,
+  "missing_projects": 2,
+  "deleted_circom_before_copy": 0,
+  "copied_files": 34915,
+  "created_dirs": 7383,
+  "copy_errors": 0,
+  "log_files_after_copy": 200,
+  "circom_files_after_copy": 2256
+}

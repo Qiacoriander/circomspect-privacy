@@ -1,0 +1,27 @@
+    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\frederickemerson_Lumina\zk-circuits\kyc_proof.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'KYCProof' 开始分析，公开输入：[]
+warning: Intermediate signals should typically occur in at least two separate constraints.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\frederickemerson_Lumina\zk-circuits\kyc_proof.circom:37:5
+   │
+37 │     signal age_diff;
+   │     ^^^^^^^^^^^^^^^ The intermediate signal `age_diff` is declared here.
+38 │     age_diff <== age - 18;
+   │     --------------------- The intermediate signal `age_diff` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Private Input `sanctions_check` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\frederickemerson_Lumina\zk-circuits\kyc_proof.circom:23:5
+   │
+23 │     signal input sanctions_check;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 2 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\frederickemerson_Lumina\zk-circuits\kyc_proof.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.230s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\frederickemerson_Lumina\zk-circuits\kyc_proof.circom --mode main --ccig-variant full

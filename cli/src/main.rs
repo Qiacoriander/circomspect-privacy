@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 use std::path::PathBuf;
 use std::process::ExitCode;
-use clap::{CommandFactory, Parser};
+use clap::{CommandFactory, Parser, ValueEnum};
 
 use program_analysis::config;
 use program_analysis::analysis_runner::AnalysisRunner;
@@ -49,6 +49,20 @@ struct Cli {
     #[clap(short = 'm', long = "mode", name = "MODE", default_value = "all")]
     analysis_mode: String,
 
+    #[clap(long = "ccig-variant", value_name = "VARIANT")]
+    ccig_variant: Option<CcigVariantArg>,
+
+}
+
+#[derive(Clone, Debug, ValueEnum)]
+#[value(rename_all = "kebab-case")]
+enum CcigVariantArg {
+    Full,
+    NoUnroll,
+    NoUnrollConservative,
+    NoUnrollAggressive,
+    SinglePass,
+    VanguardLite,
 }
 
 /// Styles the help output for the [`Cli`].
@@ -79,6 +93,17 @@ fn filter_by_id(report: &Report, allow_list: &[String]) -> bool {
     !allow_list.contains(&report.id())
 }
 
+fn to_ccig_variant(variant: Option<CcigVariantArg>) -> program_analysis::ccig::CcigVariant {
+    match variant {
+        Some(CcigVariantArg::NoUnrollConservative) => program_analysis::ccig::CcigVariant::NoUnrollConservative,
+        Some(CcigVariantArg::NoUnrollAggressive) => program_analysis::ccig::CcigVariant::NoUnrollAggressive,
+        Some(CcigVariantArg::NoUnroll) => program_analysis::ccig::CcigVariant::NoUnrollConservative,
+        Some(CcigVariantArg::SinglePass) => program_analysis::ccig::CcigVariant::SinglePass,
+        Some(CcigVariantArg::VanguardLite) => program_analysis::ccig::CcigVariant::VanguardLite,
+        _ => program_analysis::ccig::CcigVariant::Full,
+    }
+}
+
 fn main() -> ExitCode {
     // Initialize logger and options.
     pretty_env_logger::init();
@@ -99,6 +124,9 @@ fn main() -> ExitCode {
         );
         return ExitCode::FAILURE;
     }
+    let ccig_config = program_analysis::ccig::CcigRunConfig {
+        variant: to_ccig_variant(options.ccig_variant.clone()),
+    };
 
     // Set up analysis runner.
     // 解析阶段
@@ -152,14 +180,15 @@ fn main() -> ExitCode {
                 let mut reports = program_structure::report::ReportCollection::new();
 
                 // 统一运行所有注册的分析 pass
-                for pass in program_analysis::get_analysis_passes() {
-                    reports.append(&mut pass(&mut runner, &cfg));
-                }
+                // for pass in program_analysis::get_analysis_passes() {
+                //     reports.append(&mut pass(&mut runner, &cfg));
+                // }
                 
                 // 单独运行支持公开输入的 CCIG 分析
-                reports.append(&mut program_analysis::ccig::CcigAnalyzer::run_ccig_leakage_inference(
+                reports.append(&mut program_analysis::ccig::CcigAnalyzer::run_ccig_leakage_inference_with_config(
                     &cfg,
                     &public_inputs,
+                    ccig_config,
                 ));
 
                 stdout_writer.write_reports(&reports, runner.file_library());
@@ -206,9 +235,10 @@ fn main() -> ExitCode {
                 }
                 
                 // 运行 CCIG Leakage
-                reports.append(&mut program_analysis::ccig::CcigAnalyzer::run_ccig_leakage_inference(
+                reports.append(&mut program_analysis::ccig::CcigAnalyzer::run_ccig_leakage_inference_with_config(
                     &cfg,
                     &[],
+                    ccig_config,
                 ));
 
                 stdout_writer.write_reports(&reports, runner.file_library());

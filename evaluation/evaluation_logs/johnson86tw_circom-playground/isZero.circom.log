@@ -1,0 +1,31 @@
+    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\johnson86tw_circom-playground\basic\isZero.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'IsZero' 开始分析，公开输入：[]
+warning: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\johnson86tw_circom-playground\basic\isZero.circom:9:2
+   │
+ 9 │     inv <-- in != 0 ? 1 / in : 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `inv` is not constrained here.
+   ·
+13 │     out <== inv * -in + 1;
+   │     --------------------- The signal `inv` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\johnson86tw_circom-playground\basic\isZero.circom:8:2
+   │
+ 8 │     signal inv;
+   │     ^^^^^^^^^^ The intermediate signal `inv` is declared here.
+   ·
+13 │     out <== inv * -in + 1;
+   │     --------------------- The intermediate signal `inv` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+circomspect: 2 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\johnson86tw_circom-playground\basic\isZero.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.226s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\johnson86tw_circom-playground\basic\isZero.circom --mode main --ccig-variant full

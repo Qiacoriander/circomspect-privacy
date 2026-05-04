@@ -69,18 +69,20 @@ class AnalysisResult:
     public_inputs_count: int # 该入口显式声明的 public 信号数量，-1表示无main
     full_leak_count: int   # FULL LEAK 的信号数
     partial_leak_count: int  # PARTIAL LEAK 的信号数
-    cascade_leak_count: int # 级联泄露 (Relational De-blinding) 的信号数
+    cascade_leak_count: int # 级联泄露（由 delta 重入节点触发）的信号数
     leak_count: int  # 总泄露信号数 (full + partial)
     analysis_time: float  # 秒
     success: bool
     error_message: Optional[str] = None
+    variant: str = "full"
 
 
 class CircomspectEvaluation:
     """Circomspect 评估测试执行器"""
     
     def __init__(self, circomspect_path: Optional[str] = None, verbose: bool = False, outputs_dir: Optional[str] = None, save_logs: bool = False,
-                 csv_output_path: Optional[Path] = None, resumed_projects: Optional[Set[str]] = None, max_files_per_project: int = 0):
+                 csv_output_path: Optional[Path] = None, resumed_projects: Optional[Set[str]] = None, max_files_per_project: int = 0,
+                 variant: str = "full"):
         """
         初始化评估测试执行器
         
@@ -98,6 +100,7 @@ class CircomspectEvaluation:
         self.csv_output_path = csv_output_path
         self.resumed_projects = resumed_projects or set()
         self.max_files_per_project = max_files_per_project
+        self.variant = self._normalize_variant(variant)
         
         # 优雅中断标志
         self._interrupted = False
@@ -126,6 +129,12 @@ class CircomspectEvaluation:
         if self.csv_output_path and not self.resumed_projects:
             # 全新运行：创建文件并写入 header
             self._init_csv_header()
+
+    @staticmethod
+    def _normalize_variant(variant: str) -> str:
+        if variant == "no-unroll":
+            return "no-unroll-conservative"
+        return variant
     
     def _handle_sigint(self, signum, frame):
         """处理 Ctrl+C 信号：立即终止当前子进程，丢弃当前项目数据，保留已完成项目"""
@@ -255,48 +264,84 @@ class CircomspectEvaluation:
                 public_inputs_count = len(pub_str.split(','))
 
         # ==========================================================
-        # 统计逻辑：基于输入信号的最严重泄露 (Signal-Based Max Level)
+        # 统计逻辑
+        # - 非 vanguard-lite：保持历史口径（同一私有输入取最严重级别）
+        # - vanguard-lite：支持 FULL/PARTIAL 并存计数，leak_count 按并集去重
         # ==========================================================
-        # 一个信号可能同时出现 FULL LEAK 和 PARTIAL LEAK 报告，
-        # 我们只记录该信号的最严重泄露级别 (FULL > PARTIAL)。
-        # ==========================================================
-        
-        LEVEL_PARTIAL = 1
-        LEVEL_FULL = 2
-        
-        # signal_name -> max_level
-        input_levels: Dict[str, int] = defaultdict(int)
-        
-        cs0022_full_pattern = r"Private Input `(.*?)` has a FULL LEAK"
-        for match in re.finditer(cs0022_full_pattern, clean_output, re.IGNORECASE):
-            name = match.group(1)
-            # 排除带有 de-blinding 的，以免重复被计算两次到全泄漏逻辑里，我们会单独统计
-            if "(Relational De-blinding)" not in match.group(0):
-                if LEVEL_FULL > input_levels[name]:
+        cs0022_cascade_pattern = r"Private Input `(.*?)` has a (FULL|PARTIAL) LEAK \(Cascade(?:, caused by `.*?`)?\)"
+
+        if self.variant != "vanguard-lite":
+            LEVEL_PARTIAL = 1
+            LEVEL_FULL = 2
+            input_levels: Dict[str, int] = defaultdict(int)
+            cascade_levels: Dict[str, int] = defaultdict(int)
+
+            cs0022_full_pattern = r"Private Input `(.*?)` has a FULL LEAK"
+            for match in re.finditer(cs0022_full_pattern, clean_output, re.IGNORECASE):
+                name = match.group(1)
+                if "(Relational De-blinding)" not in match.group(0):
+                    if LEVEL_FULL > input_levels[name]:
+                        input_levels[name] = LEVEL_FULL
+
+            for match in re.finditer(cs0022_cascade_pattern, clean_output, re.IGNORECASE):
+                name = match.group(1)
+                leak_level = match.group(2).upper()
+                if leak_level == "FULL":
                     input_levels[name] = LEVEL_FULL
-        
-        # 统计级联泄漏 (Relational De-blinding)
-        cascade_levels: Dict[str, int] = defaultdict(int)
-        cs0022_cascade_pattern = r"Private Input `(.*?)` has a FULL LEAK \(Relational De-blinding\)"
-        for match in re.finditer(cs0022_cascade_pattern, clean_output, re.IGNORECASE):
-            name = match.group(1)
-            # 级联泄漏同样属于严重泄漏
-            input_levels[name] = LEVEL_FULL
-            cascade_levels[name] = 1
-        
-        cs0022_partial_pattern = r"Private Input `(.*?)` has a PARTIAL LEAK risk"
-        for match in re.finditer(cs0022_partial_pattern, clean_output, re.IGNORECASE):
-            name = match.group(1)
-            if LEVEL_PARTIAL > input_levels[name]:
-                input_levels[name] = LEVEL_PARTIAL
-        
-        # 统计
-        # Cascade本质上是FULL LEAK的一种，因此 FULL LEAK 的总数应当包含 cascade_levels
-        # 我们把它们加总，使得 FULL LEAK = 直接 FULL + 级联 FULL
-        full_leak_count = sum(1 for v in input_levels.values() if v == LEVEL_FULL)
-        partial_leak_count = sum(1 for v in input_levels.values() if v == LEVEL_PARTIAL)
-        cascade_leak_count = len(cascade_levels)
-        total_leak_count = len(input_levels)
+                elif LEVEL_PARTIAL > input_levels[name]:
+                    input_levels[name] = LEVEL_PARTIAL
+                cascade_levels[name] = 1
+
+            cs0022_partial_pattern = r"Private Input `(.*?)` has a PARTIAL LEAK risk"
+            for match in re.finditer(cs0022_partial_pattern, clean_output, re.IGNORECASE):
+                name = match.group(1)
+                if LEVEL_PARTIAL > input_levels[name]:
+                    input_levels[name] = LEVEL_PARTIAL
+
+            full_leak_count = sum(1 for v in input_levels.values() if v == LEVEL_FULL)
+            partial_leak_count = sum(1 for v in input_levels.values() if v == LEVEL_PARTIAL)
+            cascade_leak_count = len(cascade_levels)
+            total_leak_count = len(input_levels)
+        else:
+            full_signals: Set[str] = set()
+            partial_signals: Set[str] = set()
+            cascade_signals: Set[str] = set()
+
+            cs0022_full_pattern = r"Private Input `(.*?)` has a FULL LEAK"
+            for match in re.finditer(cs0022_full_pattern, clean_output, re.IGNORECASE):
+                name = match.group(1)
+                if "(Relational De-blinding)" not in match.group(0):
+                    full_signals.add(name)
+
+            for match in re.finditer(cs0022_cascade_pattern, clean_output, re.IGNORECASE):
+                name = match.group(1)
+                leak_level = match.group(2).upper()
+                if leak_level == "FULL":
+                    full_signals.add(name)
+                else:
+                    partial_signals.add(name)
+                cascade_signals.add(name)
+
+            cs0022_partial_pattern = r"Private Input `(.*?)` has a PARTIAL LEAK risk"
+            for match in re.finditer(cs0022_partial_pattern, clean_output, re.IGNORECASE):
+                partial_signals.add(match.group(1))
+
+            cs0022_constraint_suspect_pattern = r"Private Input `(.*?)` has a CONSTRAINT LEAK SUSPECT risk"
+            for match in re.finditer(cs0022_constraint_suspect_pattern, clean_output, re.IGNORECASE):
+                full_signals.add(match.group(1))
+
+            cs0022_dataflow_suspect_pattern = r"Private Input `(.*?)` has a DATAFLOW LEAK SUSPECT risk"
+            for match in re.finditer(cs0022_dataflow_suspect_pattern, clean_output, re.IGNORECASE):
+                partial_signals.add(match.group(1))
+
+            cs0022_legacy_suspect_pattern = r"Private Input `(.*?)` has a LEAK SUSPECT risk"
+            for match in re.finditer(cs0022_legacy_suspect_pattern, clean_output, re.IGNORECASE):
+                partial_signals.add(match.group(1))
+
+            full_leak_count = len(full_signals)
+            partial_leak_count = len(partial_signals)
+            cascade_leak_count = len(cascade_signals)
+            total_leak_count = len(full_signals | partial_signals)
                 
         
         return {
@@ -329,7 +374,8 @@ class CircomspectEvaluation:
         # 构建命令
         cmd = self.circomspect_cmd + [
             str(file_path), 
-            "--mode", rust_mode
+            "--mode", rust_mode,
+            "--ccig-variant", self.variant
         ]
         
         start_time = time.time()
@@ -402,7 +448,8 @@ class CircomspectEvaluation:
                 leak_count=detection_result['leak_count'],
                 analysis_time=analysis_time,
                 success=is_success,
-                error_message=error_msg
+                error_message=error_msg,
+                variant=self.variant
             )
             
         except subprocess.TimeoutExpired:
@@ -418,7 +465,8 @@ class CircomspectEvaluation:
                 leak_count=0,
                 analysis_time=120.0,
                 success=False,
-                error_message="分析超时（>2分钟）"
+                error_message="分析超时（>2分钟）",
+                variant=self.variant
             )
         except Exception as e:
             return AnalysisResult(
@@ -433,7 +481,8 @@ class CircomspectEvaluation:
                 leak_count=0,
                 analysis_time=time.time() - start_time,
                 success=False,
-                error_message=str(e)
+                error_message=str(e),
+                variant=self.variant
             )
     
     def run_evaluation(self, specified_mode: str = 'auto') -> List[AnalysisResult]:
@@ -755,6 +804,13 @@ def main():
              '  auto:        有 main 的从 main 进入，其余的视作 library 处理\\n'
              '  library-all: 不管有无 main，强行将所有文件视为 library（检查每个中间组件）'
     )
+
+    parser.add_argument(
+        '--variant',
+        choices=['full', 'no-unroll', 'no-unroll-conservative', 'no-unroll-aggressive', 'single-pass', 'vanguard-lite'],
+        default='full',
+        help='CCIG 分析变体，默认 full；no-unroll 兼容映射到 no-unroll-conservative'
+    )
     
     timestamp_str = datetime.datetime.now().strftime("%m%d_%H%M")
 
@@ -842,7 +898,8 @@ def main():
         save_logs=args.save_logs,
         csv_output_path=output_path,
         resumed_projects=resumed_projects,
-        max_files_per_project=args.max_files
+        max_files_per_project=args.max_files,
+        variant=args.variant
     )
 
     # 如果指定了 --projects-dir, 覆盖默认的 evaluation_dir
@@ -854,6 +911,7 @@ def main():
     
     print("开始隐私评估测试...")
     print(f"设定模式: {args.mode}")
+    print(f"设定变体: {args.variant}")
     print(f"项目目录: {benchmark.evaluation_dir}")
     if args.max_files > 0:
         print(f"每项目文件上限: {args.max_files}")

@@ -1,0 +1,17 @@
+    Finished `release` profile [optimized] target(s) in 0.17s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\elohcrypto_zk-hybrid-rollup\circuits\batch.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'Batch' 开始分析，公开输入：[]
+warning: Private Input `batchId` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\elohcrypto_zk-hybrid-rollup\circuits\batch.circom:8:5
+  │
+8 │     signal input batchId; // Batch identifier
+  │     ^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 1 issue found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\elohcrypto_zk-hybrid-rollup\circuits\batch.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.267s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\elohcrypto_zk-hybrid-rollup\circuits\batch.circom --mode main --ccig-variant full

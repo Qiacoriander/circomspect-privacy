@@ -1,13 +1,8 @@
-# Circomspect 评估测试指南
-
-这份指南及附加的代码文件旨在帮助您**评估 `circomspect` 当前针对包含 `component main` 与 `public` 信号电路的隐私泄漏检测效果**。因为此工具的重点是跟踪信号的传播、量化信息的泄露量（例如位级别的不确定性 AR 追踪），测试真实场景的数据将极大地验证此前逻辑修改的有效性。
-
-
-## 如何使用样本进行评估？
+## 使用
 
 ### 1. 尝试分析基础测试代码
 
-您可以使用 `circomspect` 命令行直接调用这些具有明确入参的电路文件：
+可以使用 `circomspect` 命令行直接调用这些具有明确入参的电路文件：
 
 ```bash
 # 在 circomspect 项目根目录下执行
@@ -68,6 +63,16 @@ python evaluation/tools/run_evaluation.py [选项]
   - **`auto`**：混合模式。有 main 函数的文件从 main 进入分析，没有 main 函数的文件其余视作 library 处理，独立输出分析结果。
   - **`library-all`**：不管有无 main 函数，强行将所有文件均视为 library（即检查其中的每个中间组件、模板），适用于极度严苛的全面组件排查。
 
+- `--variant {full,no-unroll,no-unroll-conservative,no-unroll-aggressive,single-pass,vanguard-lite}`
+  指定 CCIG 分析变体：
+  - **`full` (默认)**：完整能力，包含子电路展开与阶段二不动点迭代推理。
+  - **`no-unroll`**：兼容别名，等价于 `no-unroll-conservative`。
+  - **`no-unroll-conservative`**：禁用未知子电路展开，黑盒仅保留来源痕迹并降级传播。
+  - **`no-unroll-aggressive`**：禁用未知子电路展开，但黑盒保留来源传播强度（已知哈希/circomlib 降级规则仍生效）。
+  - **`single-pass`**：阶段二仅执行单轮传播，不进行工作列表不动点迭代。
+  - **`vanguard-lite`**：面向论文对比的轻量基线，仅做单电路边界内的泄露嫌疑判定，并对哈希类路径做 OneWay 降级/豁免。
+  - **兼容性说明**：不传 `--variant` 时默认即 `full`，因此旧命令可直接复用。
+
 - `--projects-dir PROJECTS_DIR`
   指定要评估的项目集所在路径。默认指向同级的 `evaluation/evaluation_projects` 目录。
 
@@ -85,3 +90,70 @@ python evaluation/tools/run_evaluation.py [选项]
 
 - `-v, --verbose`
   启用详细输出模式（将底层分析器的分析日志即时回显到控制台）。
+
+### 4. 五变体评估与对比报告流程（含 no-unroll 双分支 + VanguardLite）
+
+建议对同一批项目分别运行四次评估，再使用 `compare_variants.py` 统一生成差异报告。
+
+#### 第一步：分别运行五种变体
+
+```powershell
+# full（可省略 --variant，默认就是 full）
+python evaluation/tools/run_evaluation.py --mode main-only --variant full --output evaluation/evaluation_results/full.csv
+
+# no-unroll-conservative（旧 no-unroll 别名默认映射到该分支）
+python evaluation/tools/run_evaluation.py --mode main-only --variant no-unroll-conservative --output evaluation/evaluation_results/no_unroll_conservative.csv
+
+# no-unroll-aggressive
+python evaluation/tools/run_evaluation.py --mode main-only --variant no-unroll-aggressive --output evaluation/evaluation_results/no_unroll_aggressive.csv
+
+# single-pass
+python evaluation/tools/run_evaluation.py --mode main-only --variant single-pass --output evaluation/evaluation_results/single_pass.csv
+
+# vanguard-lite
+python evaluation/tools/run_evaluation.py --mode main-only --variant vanguard-lite --output evaluation/evaluation_results/vanguard_lite.csv
+```
+
+如果您需要验证旧命令兼容性，可以直接运行不带 `--variant` 的命令：
+
+```powershell
+python evaluation/tools/run_evaluation.py --mode main-only --output evaluation/evaluation_results/legacy_default.csv
+```
+
+该命令会在输出 CSV 的 `variant` 列写入 `full`，与显式 `--variant full` 行为一致。
+
+#### 第二步：使用 compare_variants.py 生成对比报告
+
+```powershell
+python evaluation/tools/compare_variants.py `
+  --full evaluation/evaluation_results/full.csv `
+  --no-unroll-conservative evaluation/evaluation_results/no_unroll_conservative.csv `
+  --no-unroll-aggressive evaluation/evaluation_results/no_unroll_aggressive.csv `
+  --single-pass evaluation/evaluation_results/single_pass.csv `
+  --vanguard-lite evaluation/evaluation_results/vanguard_lite.csv `
+  --output-prefix task6_compare
+```
+
+脚本会在 `evaluation/evaluation_results` 下生成 4 份文件：
+- `<前缀>_report.md`：可直接阅读的多变体对比报告（可含 VanguardLite）
+- `<前缀>_summary.csv`：每个变体的汇总统计
+- `<前缀>_differences.csv`：逐项差异明细
+- `<前缀>_exclusive_findings.csv`：仅单变体发现项
+
+### 5. 论文对比建议流程（full vs vanguard-lite）
+
+若目标是论文中的基线对比，可最小化为二变体流程：
+
+```powershell
+python evaluation/tools/compare_variants.py `
+  --full evaluation/evaluation_results/full.csv `
+  --vanguard-lite evaluation/evaluation_results/vanguard_lite.csv `
+  --output-prefix paper_full_vs_vanguard
+```
+
+
+### 6. VanguardLite 规则与限制说明
+
+VanguardLite 的定位、规则、限制与完整命令集见：
+
+- `evaluation/tools/VANGUARD_LITE_BASELINE.md`

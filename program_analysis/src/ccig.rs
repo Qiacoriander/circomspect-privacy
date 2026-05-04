@@ -4,6 +4,27 @@ use program_structure::file_definition::{FileLocation, FileID};
 use program_structure::report::{Report, ReportCollection};
 use program_structure::report_code::ReportCode;
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum CcigVariant {
+    Full,
+    NoUnroll,
+    NoUnrollConservative,
+    NoUnrollAggressive,
+    SinglePass,
+    VanguardLite,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct CcigRunConfig {
+    pub variant: CcigVariant,
+}
+
+impl Default for CcigRunConfig {
+    fn default() -> Self {
+        Self { variant: CcigVariant::Full }
+    }
+}
+
 /// 泄露强类型描述
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Intensity {
@@ -36,34 +57,37 @@ pub enum SignalVis {
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub enum OpType {
     AddSub,      // 混淆与线性映射
-    Mul,         // 混淆与线性映射
+    Mul,         // 混淆与代数混合（非线性）
     BitExtract,  // 降级为 Partial
     Hash,        // 单向阻断，降级为 OneWay
     Select,      // 多输入依赖
     Compare,     // 比较类，输出布尔值，降级为 Partial
     LogicGate,   // 逻辑门，输出布尔值，降级为 Partial
+    BlackBoxConservative,
+    BlackBoxAggressive,
     Other,       // 保守处理
 }
 
-/// 图节点分类定义
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub enum NodeType {
-    /// 信号节点 (V_S)
+    // 信号节点 V_S
     Signal {
-        name: VariableName,
-        original_name: String, // 保留 AST 原生声明名（如 a，而非 a_0_ANY）供用户日志使用
-        kind: SignalKind,
-        vis: SignalVis,
-        inst: String, // 实例化上下文域
-        location: Option<FileLocation>,
-        file_id: Option<FileID>,
+        name: VariableName,             // 规范化后的作用域变量名（用于图内唯一定位与索引）。
+        original_name: String,          // AST 原生声明名（如 `a`，而非 `a_0_ANY`），用于日志与用户可读报告。
+        kind: SignalKind,               // 信号类别：输入 / 输出 / 中间。
+        vis: SignalVis,                 // 可见性：公开 / 私有。
+        inst: String,                   // 实例化上下文前缀，用于区分组件展开后的同名信号。
+        location: Option<FileLocation>, // 语法节点文件位置，用于最终告警定位。
+        file_id: Option<FileID>,        // 源文件 ID，与 `location` 共同定位源码位置。
     },
-    /// 运算节点 (V_O)
+    // 运算节点 V_O
     Op {
-        op_type: OpType,
-        // (可选)保留抽取出来的 params 详情信息
+        op_type: OpType,                // 运算语义类别，决定阶段传播时的强度传递规则。
     },
-    /// 约束节点 (===, 关联在 V_S)
+    /// 约束节点。
+    ///
+    /// 主要用于表示 `===` 等值关系，通过 `ConEdge` 把相关信号连通，
+    /// 使阶段二可沿等式约束执行双向知识传播。
     Constraint,
 }
 
@@ -97,6 +121,14 @@ pub struct SignalState {
     pub knowledge: KnowledgeState,
     /// 标志该信号是否通过关系解盲（Relational De-blinding）被推导为泄漏
     pub is_relational_leak: bool,
+    pub is_cascade_leak: bool,
+    pub cascade_cause: Option<usize>,
+}
+
+#[derive(Clone, Debug, Default)]
+struct ComponentPortHints {
+    input_bases: HashSet<String>,
+    output_bases: HashSet<String>,
 }
 
 impl SignalState {
@@ -105,6 +137,8 @@ impl SignalState {
             info_set: HashSet::new(),
             knowledge: KnowledgeState::Unknown,
             is_relational_leak: false,
+            is_cascade_leak: false,
+            cascade_cause: None,
         }
     }
 }
@@ -129,6 +163,8 @@ pub struct CcigAnalyzer {
     pub public_outputs: HashSet<usize>,
     pub public_inputs: HashSet<usize>,
     pub abstracted_ops: HashMap<String, usize>,
+    component_port_hints: HashMap<String, ComponentPortHints>,
+    pub variant: CcigVariant,
 }
 
 impl CcigAnalyzer {
@@ -143,6 +179,8 @@ impl CcigAnalyzer {
             public_inputs: HashSet::new(),
             public_outputs: HashSet::new(),
             abstracted_ops: HashMap::new(),
+            component_port_hints: HashMap::new(),
+            variant: CcigVariant::Full,
         }
     }
 
@@ -221,6 +259,47 @@ impl CcigAnalyzer {
         }
     }
 
+    fn known_call_op_type(name: &str) -> Option<OpType> {
+        let target_name = name.to_lowercase();
+        let hash_ops = ["poseidon", "mimc7", "pedersen", "eddsa", "mimcsponge", "hasher", "keccak", "hashbytes"];
+        let compare_ops = ["lessthan", "greaterthan", "lesseqthan", "greatereqthan", "iszero", "isequal"];
+        let logic_ops = ["and", "or", "xor", "not", "nand", "nor"];
+
+        if hash_ops.iter().any(|&h| target_name.contains(h)) {
+            Some(OpType::Hash)
+        } else if compare_ops.iter().any(|&c| target_name.contains(c)) {
+            Some(OpType::Compare)
+        } else if logic_ops.iter().any(|&l| target_name == l || target_name == format!("{}gate", l)) {
+            Some(OpType::LogicGate)
+        } else {
+            None
+        }
+    }
+
+    fn is_hash_like_text(text: &str) -> bool {
+        let lower = text.to_lowercase();
+        lower.contains("hash")
+            || lower.contains("keccak")
+            || lower.contains("mimc")
+            || lower.contains("poseidon")
+            || lower.contains("sha256")
+            || lower.contains("pedersen")
+            || lower.contains("blake")
+            || lower.contains("commit")
+    }
+
+    fn is_hash_like_signal(inst: &str, original_name: &str) -> bool {
+        Self::is_hash_like_text(inst) || Self::is_hash_like_text(original_name)
+    }
+
+    fn no_unroll_blackbox_op_type(&self) -> OpType {
+        match self.variant {
+            CcigVariant::NoUnrollConservative | CcigVariant::NoUnroll => OpType::BlackBoxConservative,
+            CcigVariant::NoUnrollAggressive => OpType::BlackBoxAggressive,
+            _ => OpType::BlackBoxAggressive,
+        }
+    }
+
     pub fn build_from_cfg(&mut self, cfg: &program_structure::cfg::Cfg, prefix: &str) {
         use program_structure::ir::{Statement, Expression, VariableType, AccessType, SignalType};
 
@@ -281,42 +360,101 @@ impl CcigAnalyzer {
                             }
                         }
 
-                        if let Expression::Call { target_cfg, .. } = inner_rhe {
-                            let mut is_abstraction = false;
-                            let mut op_kind = OpType::Other;
-                            if let Expression::Call { name, .. } = inner_rhe {
-                                let target_name = name.to_lowercase();
-                                let hash_ops = ["poseidon", "mimc7", "pedersen", "eddsa", "mimcsponge", "hasher", "keccak", "hashbytes"];
-                                let compare_ops = ["lessthan", "greaterthan", "lesseqthan", "greatereqthan", "iszero", "isequal"];
-                                let logic_ops = ["and", "or", "xor", "not", "nand", "nor"];
-                                
-                                if hash_ops.iter().any(|&h| target_name.contains(h)) {
-                                    is_abstraction = true;
-                                    op_kind = OpType::Hash;
-                                } else if compare_ops.iter().any(|&c| target_name.contains(c)) {
-                                    is_abstraction = true;
-                                    op_kind = OpType::Compare;
-                                } else if logic_ops.iter().any(|&l| target_name == l || target_name == format!("{}gate", l)) {
-                                    is_abstraction = true;
-                                    op_kind = OpType::LogicGate;
-                                }
-                            }
-
-                            if is_abstraction {
+                        if let Expression::Call { name, target_cfg, .. } = inner_rhe {
+                            if let Some(op_kind) = Self::known_call_op_type(name) {
                                 let abstract_op = self.add_node(NodeType::Op { op_type: op_kind });
                                 self.abstracted_ops.insert(scoped_lhs_name.name().clone(), abstract_op);
-                            } else if let Some(weak_cfg) = target_cfg.as_ref() {
-                                if let Some(target_rc) = weak_cfg.upgrade() {
-                                    // 递归构建模板
-                                    self.build_from_cfg(&target_rc.borrow(), &full_lhs_name);
-                                }
                             } else {
-                                if let Expression::Call { target_cfg, .. } = inner_rhe {
-                                    if let Some(weak_cfg) = target_cfg {
+                                let should_unroll = matches!(self.variant, CcigVariant::Full | CcigVariant::SinglePass);
+                                if should_unroll {
+                                    if let Some(weak_cfg) = target_cfg.as_ref() {
                                         if let Some(target_rc) = weak_cfg.upgrade() {
-                                            self.build_from_cfg(&target_rc.borrow(), &full_lhs_name);
+                                            let target_cfg = target_rc.borrow();
+                                            self.build_from_cfg(&target_cfg, &full_lhs_name);
+
+                                            if matches!(target_cfg.definition_type(), program_structure::cfg::DefinitionType::Function) {
+                                                let lhs_id = self.get_or_create_var_node(&scoped_lhs_name, var.name(), lhs_kind.clone(), lhs_vis.clone(), prefix, lhs_loc.clone(), lhs_file);
+                                                for block in target_cfg.iter() {
+                                                    for stmt in block.iter() {
+                                                        if let program_structure::ir::Statement::Return { value, .. } = stmt {
+                                                            let return_id = self.process_expression(value, &target_cfg, &full_lhs_name);
+                                                            self.add_comp_edge(return_id, lhs_id, 0);
+                                                            let con_id = self.add_node(NodeType::Constraint);
+                                                            self.add_con_edge(lhs_id, con_id);
+                                                            self.add_con_edge(return_id, con_id);
+                                                        }
+                                                    }
+                                                }
+                                                self.connect_substitution_summary_edge(
+                                                    &scoped_lhs_name,
+                                                    var.name(),
+                                                    lhs_kind.clone(),
+                                                    lhs_vis.clone(),
+                                                    prefix,
+                                                    lhs_loc.clone(),
+                                                    lhs_file,
+                                                    inner_rhe,
+                                                    cfg,
+                                                );
+                                            }
+                                        } else {
+                                            self.connect_substitution_summary_edge(
+                                                &scoped_lhs_name,
+                                                var.name(),
+                                                lhs_kind.clone(),
+                                                lhs_vis.clone(),
+                                                prefix,
+                                                lhs_loc.clone(),
+                                                lhs_file,
+                                                inner_rhe,
+                                                cfg,
+                                            );
+                                        }
+                                    } else {
+                                        self.connect_substitution_summary_edge(
+                                            &scoped_lhs_name,
+                                            var.name(),
+                                            lhs_kind.clone(),
+                                            lhs_vis.clone(),
+                                            prefix,
+                                            lhs_loc.clone(),
+                                            lhs_file,
+                                            inner_rhe,
+                                            cfg,
+                                        );
+                                    }
+                                } else {
+                                    let blackbox_op_type = self.no_unroll_blackbox_op_type();
+                                    let mut register_component_ports = false;
+                                    let mut component_port_hints = None;
+                                    if let Expression::Call { target_cfg, .. } = inner_rhe {
+                                        if let Some(weak_cfg) = target_cfg.as_ref() {
+                                            if let Some(target_rc) = weak_cfg.upgrade() {
+                                                let target_cfg = target_rc.borrow();
+                                                register_component_ports = matches!(
+                                                    target_cfg.definition_type(),
+                                                    program_structure::cfg::DefinitionType::Template
+                                                );
+                                                if register_component_ports {
+                                                    component_port_hints = Some(Self::extract_component_port_hints(&target_cfg));
+                                                }
+                                            }
                                         }
                                     }
+                                    self.connect_blackbox_summary_edge(
+                                        &scoped_lhs_name,
+                                        var.name(),
+                                        lhs_kind,
+                                        lhs_vis,
+                                        prefix,
+                                        lhs_loc,
+                                        lhs_file,
+                                        inner_rhe,
+                                        cfg,
+                                        blackbox_op_type,
+                                        register_component_ports,
+                                        component_port_hints,
+                                    );
                                 }
                             }
                         } else {
@@ -347,12 +485,62 @@ impl CcigAnalyzer {
         for (comp_name, op_id) in ops {
             let mut inputs_to_wire = Vec::new();
             let mut outputs_to_wire = Vec::new();
+            let hints = self.component_port_hints.get(&comp_name).cloned().unwrap_or_default();
+            let comp_prefix = format!("{}_", comp_name);
             for (var_name, &sig_id) in &self.var_to_id {
                 let name_str = var_name.name();
-                if name_str.starts_with(&format!("{}_in", comp_name)) || name_str.starts_with(&format!("{}_inputs", comp_name)) {
-                    inputs_to_wire.push(sig_id);
-                } else if name_str.starts_with(&format!("{}_out", comp_name)) {
+                if !name_str.starts_with(&comp_prefix) {
+                    continue;
+                }
+
+                let mut is_output = hints.output_bases.iter().any(|base| {
+                    let p = format!("{}_{}", comp_name, base);
+                    name_str == p.as_str() || name_str.starts_with(&(p + "_"))
+                });
+                let mut is_input = hints.input_bases.iter().any(|base| {
+                    let p = format!("{}_{}", comp_name, base);
+                    name_str == p.as_str() || name_str.starts_with(&(p + "_"))
+                });
+
+                if !is_output && !is_input && name_str.starts_with(&format!("{}_out", comp_name)) {
+                    is_output = true;
+                }
+
+                if !is_output && !is_input {
+                    let outgoing_to_external = self.forward_edges.get(&sig_id).cloned().unwrap_or_default().iter().any(|(to_id, edge_type)| {
+                        if !matches!(edge_type, EdgeType::CompEdge(_)) {
+                            return false;
+                        }
+                        if let NodeType::Signal { name, .. } = &self.nodes[*to_id].node_type {
+                            !name.name().starts_with(&comp_prefix)
+                        } else {
+                            false
+                        }
+                    });
+                    let incoming_from_external = self.backward_edges.get(&sig_id).cloned().unwrap_or_default().iter().any(|(from_id, edge_type)| {
+                        if !matches!(edge_type, EdgeType::CompEdge(_)) {
+                            return false;
+                        }
+                        if let NodeType::Signal { name, .. } = &self.nodes[*from_id].node_type {
+                            !name.name().starts_with(&comp_prefix)
+                        } else {
+                            false
+                        }
+                    });
+
+                    if outgoing_to_external && !incoming_from_external {
+                        is_output = true;
+                    } else if incoming_from_external && !outgoing_to_external {
+                        is_input = true;
+                    }
+                }
+
+                if is_output {
                     outputs_to_wire.push((sig_id, name_str.clone()));
+                } else if is_input {
+                    inputs_to_wire.push(sig_id);
+                } else {
+                    inputs_to_wire.push(sig_id);
                 }
             }
             
@@ -377,6 +565,126 @@ impl CcigAnalyzer {
                 self.add_con_edge(sig_id, con_id);
             }
         }
+    }
+
+    fn connect_substitution_summary_edge(
+        &mut self,
+        scoped_lhs_name: &VariableName,
+        lhs_original_name: &str,
+        lhs_kind: SignalKind,
+        lhs_vis: SignalVis,
+        prefix: &str,
+        lhs_loc: Option<FileLocation>,
+        lhs_file: Option<FileID>,
+        rhs_expr: &program_structure::ir::Expression,
+        cfg: &program_structure::cfg::Cfg,
+    ) {
+        let lhs_id = self.get_or_create_var_node(
+            scoped_lhs_name,
+            lhs_original_name,
+            lhs_kind,
+            lhs_vis,
+            prefix,
+            lhs_loc,
+            lhs_file,
+        );
+        let rhs_id = self.process_expression(rhs_expr, cfg, prefix);
+        self.add_comp_edge(rhs_id, lhs_id, 0);
+        let con_id = self.add_node(NodeType::Constraint);
+        self.add_con_edge(lhs_id, con_id);
+        self.add_con_edge(rhs_id, con_id);
+    }
+
+    fn connect_blackbox_summary_edge(
+        &mut self,
+        scoped_lhs_name: &VariableName,
+        lhs_original_name: &str,
+        lhs_kind: SignalKind,
+        lhs_vis: SignalVis,
+        prefix: &str,
+        lhs_loc: Option<FileLocation>,
+        lhs_file: Option<FileID>,
+        rhs_expr: &program_structure::ir::Expression,
+        cfg: &program_structure::cfg::Cfg,
+        blackbox_op_type: OpType,
+        register_component_ports: bool,
+        component_port_hints: Option<ComponentPortHints>,
+    ) {
+        use program_structure::ir::Expression;
+
+        if let Expression::Call { args, .. } = rhs_expr {
+            let lhs_id = self.get_or_create_var_node(
+                scoped_lhs_name,
+                lhs_original_name,
+                lhs_kind,
+                lhs_vis,
+                prefix,
+                lhs_loc,
+                lhs_file,
+            );
+
+            let op_id = self.add_node(NodeType::Op { op_type: blackbox_op_type });
+            if register_component_ports {
+                self.abstracted_ops.insert(scoped_lhs_name.name().clone(), op_id);
+                if let Some(hints) = component_port_hints {
+                    self.component_port_hints.insert(scoped_lhs_name.name().clone(), hints);
+                }
+            }
+            for (idx, arg) in args.iter().enumerate() {
+                let arg_id = self.process_expression(arg, cfg, prefix);
+                self.add_comp_edge(arg_id, op_id, idx);
+            }
+
+            let out_id = self.add_node(NodeType::Signal {
+                name: VariableName::from_string("anonymous_out"),
+                original_name: "anonymous_out".to_string(),
+                kind: SignalKind::Internal,
+                vis: SignalVis::Pub,
+                inst: prefix.to_string(),
+                location: None,
+                file_id: None,
+            });
+            self.add_comp_edge(op_id, out_id, 0);
+            self.add_comp_edge(out_id, lhs_id, 0);
+
+            let con_id = self.add_node(NodeType::Constraint);
+            self.add_con_edge(lhs_id, con_id);
+            self.add_con_edge(out_id, con_id);
+            return;
+        }
+
+        self.connect_substitution_summary_edge(
+            scoped_lhs_name,
+            lhs_original_name,
+            lhs_kind,
+            lhs_vis,
+            prefix,
+            lhs_loc,
+            lhs_file,
+            rhs_expr,
+            cfg,
+        );
+    }
+
+    fn extract_component_port_hints(cfg: &program_structure::cfg::Cfg) -> ComponentPortHints {
+        use program_structure::ir::{SignalType, VariableType};
+
+        let mut hints = ComponentPortHints::default();
+        for (_, decl) in cfg.declarations().iter() {
+            if let VariableType::Signal(sig_type, _, _) = decl.variable_type() {
+                let base = decl.variable_name().name().to_string();
+                match sig_type {
+                    SignalType::Input => {
+                        hints.input_bases.insert(base);
+                    }
+                    SignalType::Output => {
+                        hints.output_bases.insert(base);
+                    }
+                    _ => {}
+                }
+            }
+        }
+        hints
     }
 
     fn process_expression(&mut self, expr: &program_structure::ir::Expression, cfg: &program_structure::cfg::Cfg, prefix: &str) -> usize {
@@ -406,6 +714,12 @@ impl CcigAnalyzer {
                 let op_type = match infix_op {
                     ExpressionInfixOpcode::Mul | ExpressionInfixOpcode::Div => OpType::Mul,
                     ExpressionInfixOpcode::Add | ExpressionInfixOpcode::Sub => OpType::AddSub,
+                    ExpressionInfixOpcode::Eq
+                    | ExpressionInfixOpcode::NotEq
+                    | ExpressionInfixOpcode::Lesser
+                    | ExpressionInfixOpcode::Greater
+                    | ExpressionInfixOpcode::LesserEq
+                    | ExpressionInfixOpcode::GreaterEq => OpType::Compare,
                     ExpressionInfixOpcode::BitAnd | ExpressionInfixOpcode::ShiftR | ExpressionInfixOpcode::BitOr | ExpressionInfixOpcode::BitXor | ExpressionInfixOpcode::ShiftL => OpType::BitExtract,
                     _ => OpType::Other,
                 };
@@ -448,20 +762,7 @@ impl CcigAnalyzer {
                 out_id
             }
             Expression::Call { name, args, .. } => {
-                let target_name = name.to_lowercase();
-                let hash_ops = ["poseidon", "mimc7", "pedersen", "eddsa", "mimcsponge", "hasher", "keccak", "hashbytes"];
-                let compare_ops = ["lessthan", "greaterthan", "lesseqthan", "greatereqthan", "iszero", "isequal"];
-                let logic_ops = ["and", "or", "xor", "not", "nand", "nor"];
-                
-                let op_type = if hash_ops.iter().any(|&h| target_name.contains(h)) {
-                    OpType::Hash
-                } else if compare_ops.iter().any(|&c| target_name.contains(c)) {
-                    OpType::Compare
-                } else if logic_ops.iter().any(|&l| target_name == l || target_name == format!("{}gate", l)) {
-                    OpType::LogicGate
-                } else {
-                    OpType::Other
-                };
+                let op_type = Self::known_call_op_type(name).unwrap_or(OpType::Other);
                 
                 let op_id = self.add_node(NodeType::Op { op_type });
                 for (i, arg) in args.iter().enumerate() {
@@ -686,7 +987,7 @@ impl CcigAnalyzer {
 
         // Step 2：按 OpType 施加强度变换
         match op_type {
-            OpType::AddSub | OpType::Mul | OpType::Select | OpType::Other => {
+            OpType::AddSub | OpType::Mul | OpType::Select | OpType::Other | OpType::BlackBoxAggressive => {
                 // Full / Mixing / Selector：强度不变，直接透传
                 combined
             }
@@ -700,7 +1001,7 @@ impl CcigAnalyzer {
                     (w, new_tau)
                 }).collect()
             }
-            OpType::Hash => {
+            OpType::Hash | OpType::BlackBoxConservative => {
                 // OneWay：所有来源统一降级，单向阻断
                 combined.into_iter().map(|(w, _)| (w, Intensity::OneWay)).collect()
             }
@@ -805,7 +1106,7 @@ impl CcigAnalyzer {
                         if let NodeType::Signal { inst, original_name, .. } = &self.nodes[out_sig_id].node_type {
                             let lower_inst = inst.to_lowercase();
                             let lower_name = original_name.to_lowercase();
-                            if lower_inst.contains("hash") || lower_inst.contains("keccak") || lower_inst.contains("mimc") || lower_inst.contains("poseidon") || lower_inst.contains("sha256") || lower_inst.contains("pedersen") || lower_inst.contains("blake") || lower_name.contains("hash") || lower_name.contains("keccak") || lower_name.contains("mimc") || lower_name.contains("poseidon") || lower_name.contains("commit") || lower_name.contains("sha256") || lower_name.contains("pedersen") || lower_name.contains("blake") {
+                            if Self::is_hash_like_signal(&lower_inst, &lower_name) {
                                 final_output_set = final_output_set.into_iter().map(|(w, _)| (w, Intensity::OneWay)).collect();
                             }
                         }
@@ -814,13 +1115,12 @@ impl CcigAnalyzer {
                                 state.info_set.insert(item);
                             }
                         }
-                        println!("DEBUG: Phase 1 output for sig_id {} from op_id {} (type: {:?}): {:?}", out_sig_id, op_id, op_type, final_output_set);
                     }
                 }
             }
         }
         
-        // 最后再过一遍，确保捕获到尾部的赋值操作
+        propagate_signals(&mut self.states, &self.nodes, &self.backward_edges, &self.forward_edges);
     }
 
     /// 尝试升级Knowledge等级。若产生升级，则返回 true
@@ -833,56 +1133,117 @@ impl CcigAnalyzer {
         }
         false
     }
+
+    fn is_meaningful_cascade_cause_signal(&self, node_id: usize, target_id: usize) -> bool {
+        if node_id == target_id {
+            return false;
+        }
+        match &self.nodes[node_id].node_type {
+            NodeType::Signal { original_name, .. } => {
+                !original_name.starts_with("anonymous_out")
+            }
+            _ => false,
+        }
+    }
+
+    fn select_cascade_cause(&self, source_id: usize, target_id: usize) -> Option<usize> {
+        if self.is_meaningful_cascade_cause_signal(source_id, target_id) {
+            return Some(source_id);
+        }
+
+        let mut fk_private_candidates: Vec<usize> = Vec::new();
+        let mut private_candidates: Vec<usize> = Vec::new();
+
+        if let Some(source_state) = self.states.get(&source_id) {
+            for (priv_id, _) in &source_state.info_set {
+                if *priv_id == target_id || !self.private_inputs.contains(priv_id) {
+                    continue;
+                }
+                private_candidates.push(*priv_id);
+                if self.get_knowledge(*priv_id) == KnowledgeState::FK {
+                    fk_private_candidates.push(*priv_id);
+                }
+            }
+        }
+
+        fk_private_candidates.sort_unstable();
+        fk_private_candidates.dedup();
+        if let Some(chosen) = fk_private_candidates.first() {
+            return Some(*chosen);
+        }
+
+        private_candidates.sort_unstable();
+        private_candidates.dedup();
+        private_candidates.first().copied()
+    }
+
+    fn mark_cascade_private_if_needed(&mut self, target_id: usize, source_id: usize, source_from_delta: bool) {
+        if !source_from_delta || target_id == source_id || !self.private_inputs.contains(&target_id) {
+            return;
+        }
+        let selected_cause = self.select_cascade_cause(source_id, target_id);
+        if let Some(state) = self.states.get_mut(&target_id) {
+            state.is_cascade_leak = true;
+            if state.cascade_cause.is_none() {
+                state.cascade_cause = selected_cause.or(Some(source_id));
+            }
+        }
+    }
+
+    fn upgrade_with_source(
+        &mut self,
+        target_id: usize,
+        new_k: &KnowledgeState,
+        source_id: usize,
+        source_from_delta: bool,
+    ) -> bool {
+        let upgraded = self.upgrade_knowledge(target_id, new_k);
+        if upgraded {
+            self.mark_cascade_private_if_needed(target_id, source_id, source_from_delta);
+        }
+        upgraded
+    }
     
     /// 获取当前等级
     fn get_knowledge(&self, node_id: usize) -> KnowledgeState {
         self.states.get(&node_id).map(|s| s.knowledge.clone()).unwrap_or(KnowledgeState::Unknown)
     }
 
-    /// 判断一个节点是否被标记为 OneWay
-    fn is_oneway(&self, node_id: usize) -> bool {
-        if let Some(state) = self.states.get(&node_id) {
-            state.info_set.iter().any(|(_, tau)| matches!(tau, Intensity::OneWay))
-        } else {
-            false
-        }
-    }
-
-    /// 阶段二：约束驱动的后向推断
-    pub fn phase_2_backward_inference(&mut self) {
-        let mut worklist: VecDeque<usize> = VecDeque::new();
-        let mut broadcasted_fk = HashSet::new();
+    fn seed_phase_2_sources(&mut self) -> Vec<usize> {
+        let mut seeded = Vec::new();
 
         let pub_in = self.public_inputs.iter().copied().collect::<Vec<_>>();
         for id in pub_in {
             if self.upgrade_knowledge(id, &KnowledgeState::FK) {
-                worklist.push_back(id);
-            }
-        }
-        
-        let pub_out = self.public_outputs.iter().copied().collect::<Vec<_>>();
-        for id in pub_out {
-            if self.upgrade_knowledge(id, &KnowledgeState::FK) {
-                worklist.push_back(id);
+                seeded.push(id);
             }
         }
 
-        while let Some(y_id) = worklist.pop_front() {
-            let y_k = self.get_knowledge(y_id);
-            let mut delta = HashSet::new();
-            
-            // 0. 规则引入：当一个隐私数据变得 FK 后，图中全量更新它的 OneWay 为 Full，并重新唤醒包含它的下游节点进行解盲
-            if y_k == KnowledgeState::FK && self.private_inputs.contains(&y_id) {
-                if broadcasted_fk.insert(y_id) {
-                    let mut to_enqueue = Vec::new();
-                    for (&node_id, state) in self.states.iter_mut() {
-                        let mut needs_recheck = false;
+        let pub_out = self.public_outputs.iter().copied().collect::<Vec<_>>();
+        for id in pub_out {
+            if self.upgrade_knowledge(id, &KnowledgeState::FK) {
+                seeded.push(id);
+            }
+        }
+
+        seeded.sort_unstable();
+        seeded
+    }
+
+    fn phase_2_propagate_from_node(&mut self, y_id: usize, source_from_delta: bool, broadcasted_fk: &mut HashSet<usize>) -> HashSet<usize> {
+        let y_k = self.get_knowledge(y_id);
+        let mut delta = HashSet::new();
+        
+        if y_k == KnowledgeState::FK && self.private_inputs.contains(&y_id) {
+            if broadcasted_fk.insert(y_id) {
+                let mut to_enqueue = Vec::new();
+                for (&node_id, state) in self.states.iter_mut() {
+                    let mut needs_recheck = false;
                     if state.info_set.contains(&(y_id, Intensity::OneWay)) {
                         state.info_set.remove(&(y_id, Intensity::OneWay));
                         state.info_set.insert((y_id, Intensity::Full));
                         needs_recheck = true;
                     } else if state.info_set.iter().any(|(p, _)| *p == y_id) {
-                        // 即使不是 OneWay，只要包含这个刚刚变成 FK 的隐私输入，也有可能借此解盲其他变量
                         needs_recheck = true;
                     }
                     if needs_recheck {
@@ -890,152 +1251,137 @@ impl CcigAnalyzer {
                     }
                 }
                 for n in to_enqueue {
-                    // Only re-enqueue if the node itself has some knowledge to deduce from
                     if self.get_knowledge(n) != KnowledgeState::Unknown {
                         delta.insert(n);
                     }
                 }
             }
-            }
+        }
 
-            // 直接根据自身的 I(y) 集合进行泄露推断
-            if y_k != KnowledgeState::Unknown {
-                let info_set = self.states.get(&y_id).unwrap().info_set.clone();
-                let mut unknown_privs = Vec::new();
-                for (p_id, tau) in &info_set {
-                    if self.get_knowledge(*p_id) != KnowledgeState::FK {
-                        unknown_privs.push((*p_id, tau.clone()));
-                    }
+        if y_k != KnowledgeState::Unknown {
+            let info_set = self.states.get(&y_id).unwrap().info_set.clone();
+            let mut unknown_privs = Vec::new();
+            for (p_id, tau) in &info_set {
+                if self.get_knowledge(*p_id) != KnowledgeState::FK {
+                    unknown_privs.push((*p_id, tau.clone()));
                 }
-                
-                let is_blinded = unknown_privs.len() > 1;
-                
-                for (p_id, tau) in &info_set {
-                    if self.get_knowledge(*p_id) == KnowledgeState::FK { continue; }
-                    match tau {
-                        Intensity::Full => {
-                            if !is_blinded {
-                                if y_k == KnowledgeState::FK {
-                                    if self.upgrade_knowledge(*p_id, &KnowledgeState::FK) { delta.insert(*p_id); }
-                                } else if y_k == KnowledgeState::PK {
-                                    if self.upgrade_knowledge(*p_id, &KnowledgeState::PK) { delta.insert(*p_id); }
-                                }
+            }
+            
+            let is_blinded = unknown_privs.len() > 1;
+            
+            for (p_id, tau) in &info_set {
+                if self.get_knowledge(*p_id) == KnowledgeState::FK { continue; }
+                match tau {
+                    Intensity::Full => {
+                        if !is_blinded {
+                            if y_k == KnowledgeState::FK {
+                                if self.upgrade_with_source(*p_id, &KnowledgeState::FK, y_id, source_from_delta) { delta.insert(*p_id); }
+                            } else if y_k == KnowledgeState::PK {
+                                if self.upgrade_with_source(*p_id, &KnowledgeState::PK, y_id, source_from_delta) { delta.insert(*p_id); }
                             }
                         }
-                        Intensity::Partial => {
-                            if !is_blinded {
-                                if self.upgrade_knowledge(*p_id, &KnowledgeState::PK) { delta.insert(*p_id); }
-                            }
+                    }
+                    Intensity::Partial => {
+                        if !is_blinded {
+                            if self.upgrade_with_source(*p_id, &KnowledgeState::PK, y_id, source_from_delta) { delta.insert(*p_id); }
                         }
-                        Intensity::OneWay => {}
                     }
+                    Intensity::OneWay => {}
                 }
             }
+        }
 
-            // 1. 沿着纯粹的赋值操作 y <== src 向后传播 
-            // 如果 y 是 FK，则 src 也变为 FK
-            let bindings = self.backward_edges.get(&y_id).cloned().unwrap_or_default();
-            for (src_id, edge_type) in bindings {
-                if let EdgeType::CompEdge(_) = edge_type {
-                    if let NodeType::Signal { .. } = &self.nodes[src_id].node_type {
-                            let y_k = self.get_knowledge(y_id);
-                            if self.upgrade_knowledge(src_id, &y_k) {
-                                delta.insert(src_id);
-                            }
-                    }
-                }
-            }
-
-            // 同时也沿着纯粹的赋值操作 tgt <== y 向前传播
-            // 如果 y 是 FK，则 tgt 也变为 FK
-            let out_bindings = self.forward_edges.get(&y_id).cloned().unwrap_or_default();
-            for (tgt_id, edge_type) in out_bindings {
-                if let EdgeType::CompEdge(_) = edge_type {
-                    if let NodeType::Signal { .. } = &self.nodes[tgt_id].node_type {
+        let bindings = self.backward_edges.get(&y_id).cloned().unwrap_or_default();
+        for (src_id, edge_type) in bindings {
+            if let EdgeType::CompEdge(_) = edge_type {
+                if let NodeType::Signal { .. } = &self.nodes[src_id].node_type {
                         let y_k = self.get_knowledge(y_id);
-                        if self.upgrade_knowledge(tgt_id, &y_k) {
-                            delta.insert(tgt_id);
+                        if self.upgrade_with_source(src_id, &y_k, y_id, source_from_delta) {
+                            delta.insert(src_id);
                         }
+                }
+            }
+        }
+
+        let out_bindings = self.forward_edges.get(&y_id).cloned().unwrap_or_default();
+        for (tgt_id, edge_type) in out_bindings {
+            if let EdgeType::CompEdge(_) = edge_type {
+                if let NodeType::Signal { .. } = &self.nodes[tgt_id].node_type {
+                    let y_k = self.get_knowledge(y_id);
+                    if self.upgrade_with_source(tgt_id, &y_k, y_id, source_from_delta) {
+                        delta.insert(tgt_id);
                     }
                 }
             }
+        }
 
-            // 约束推断 1：等式约束 (===) 传播
-            // 查找 y 参与的所有约束
-            let all_y_edges = self.forward_edges.get(&y_id).cloned().unwrap_or_default();
-            for (constraint_op_id, edge_type) in all_y_edges.clone() {
-                    if let EdgeType::ConEdge = edge_type {
-                        let con_edges = self.forward_edges.get(&constraint_op_id).cloned().unwrap_or_default();
-                        for (z_id, z_edge_type) in con_edges {
-                            if let EdgeType::ConEdge = z_edge_type {
-                                if z_id != y_id && z_id != constraint_op_id {
-                                    let y_k = self.get_knowledge(y_id);
-                                    let z_k = self.get_knowledge(z_id);
-                                    
-                                    if y_k > z_k { 
-                                        if self.upgrade_knowledge(z_id, &y_k) {
-                                            delta.insert(z_id);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-            }
-
-            // InferConstraint 2: Relational De-blinding Logic (代数解盲连锁突围)
-            // 查找 y 作为产出端的节点
-            let y_backward_edges = self.backward_edges.get(&y_id).cloned().unwrap_or_default();
-            for (op_id, edge_type) in y_backward_edges {
-                if let EdgeType::CompEdge(_) = edge_type {
-                    if let NodeType::Op { op_type: OpType::AddSub } = &self.nodes[op_id].node_type {
-                        // 如果 y 是一个 AddSub 运算的产物 (t = x1 + x2)
-                        // 若 y (t) 是 FK
-                        if self.get_knowledge(y_id) == KnowledgeState::FK {
-                            let operands = self.backward_edges.get(&op_id).cloned().unwrap_or_default();
-                            let mut fk_operands = Vec::new();
-                            let mut unknown_operands = Vec::new();
-                            
-                            for (x_id, _edge) in operands {
-                                if self.get_knowledge(x_id) == KnowledgeState::FK {
-                                    fk_operands.push(x_id);
-                                } else {
-                                    unknown_operands.push(x_id);
-                                }
-                            }
-                            // 对于混合运算，如果除一个输入外其他所有的都被 FK 暴露，剩下的也就能解算出 FK
-                            if unknown_operands.len() == 1 {
-                                let target_x = unknown_operands[0];
-                                if self.upgrade_knowledge(target_x, &KnowledgeState::FK) {
-                                    delta.insert(target_x);
-                                    if let Some(state) = self.states.get_mut(&target_x) {
-                                        state.is_relational_leak = true;
+        let all_y_edges = self.forward_edges.get(&y_id).cloned().unwrap_or_default();
+        for (constraint_op_id, edge_type) in all_y_edges.clone() {
+                if let EdgeType::ConEdge = edge_type {
+                    let con_edges = self.forward_edges.get(&constraint_op_id).cloned().unwrap_or_default();
+                    for (z_id, z_edge_type) in con_edges {
+                        if let EdgeType::ConEdge = z_edge_type {
+                            if z_id != y_id && z_id != constraint_op_id {
+                                let y_k = self.get_knowledge(y_id);
+                                let z_k = self.get_knowledge(z_id);
+                                
+                                if y_k > z_k { 
+                                    if self.upgrade_with_source(z_id, &y_k, y_id, source_from_delta) {
+                                        delta.insert(z_id);
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
+        }
 
-            // 另外也检查 y 作为输入操作数的情况
-            let y_forward_edges = self.forward_edges.get(&y_id).cloned().unwrap_or_default();
-            for (op_id, edge_type) in y_forward_edges {
-                if let EdgeType::CompEdge(_) = edge_type {
-                    if let NodeType::Op { op_type: OpType::AddSub } = &self.nodes[op_id].node_type {
-                        let op_out_edges = self.forward_edges.get(&op_id).cloned().unwrap_or_default();
-                        for (t_id, out_edge_type) in op_out_edges {
-                            if let EdgeType::CompEdge(_) = out_edge_type {
-                                if self.get_knowledge(t_id) == KnowledgeState::FK && self.get_knowledge(y_id) == KnowledgeState::FK {
-                                    let operands = self.backward_edges.get(&op_id).cloned().unwrap_or_default();
-                                    for (x_id, _edge) in operands {
-                                        if x_id != y_id && self.get_knowledge(x_id) != KnowledgeState::FK {
-                                            if matches!(self.nodes[x_id].node_type, NodeType::Signal { .. }) {
-                                                if self.upgrade_knowledge(x_id, &KnowledgeState::FK) {
-                                                    delta.insert(x_id);
-                                                    if let Some(state) = self.states.get_mut(&x_id) {
-                                                        state.is_relational_leak = true;
-                                                    }
+        let y_backward_edges = self.backward_edges.get(&y_id).cloned().unwrap_or_default();
+        for (op_id, edge_type) in y_backward_edges {
+            if let EdgeType::CompEdge(_) = edge_type {
+                if let NodeType::Op { op_type: OpType::AddSub } = &self.nodes[op_id].node_type {
+                    if self.get_knowledge(y_id) == KnowledgeState::FK {
+                        let operands = self.backward_edges.get(&op_id).cloned().unwrap_or_default();
+                        let mut fk_operands = Vec::new();
+                        let mut unknown_operands = Vec::new();
+                        
+                        for (x_id, _edge) in operands {
+                            if self.get_knowledge(x_id) == KnowledgeState::FK {
+                                fk_operands.push(x_id);
+                            } else {
+                                unknown_operands.push(x_id);
+                            }
+                        }
+                        if unknown_operands.len() == 1 {
+                            let target_x = unknown_operands[0];
+                            if self.upgrade_with_source(target_x, &KnowledgeState::FK, y_id, source_from_delta) {
+                                delta.insert(target_x);
+                                if let Some(state) = self.states.get_mut(&target_x) {
+                                    state.is_relational_leak = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        let y_forward_edges = self.forward_edges.get(&y_id).cloned().unwrap_or_default();
+        for (op_id, edge_type) in y_forward_edges {
+            if let EdgeType::CompEdge(_) = edge_type {
+                if let NodeType::Op { op_type: OpType::AddSub } = &self.nodes[op_id].node_type {
+                    let op_out_edges = self.forward_edges.get(&op_id).cloned().unwrap_or_default();
+                    for (t_id, out_edge_type) in op_out_edges {
+                        if let EdgeType::CompEdge(_) = out_edge_type {
+                            if self.get_knowledge(t_id) == KnowledgeState::FK && self.get_knowledge(y_id) == KnowledgeState::FK {
+                                let operands = self.backward_edges.get(&op_id).cloned().unwrap_or_default();
+                                for (x_id, _edge) in operands {
+                                    if x_id != y_id && self.get_knowledge(x_id) != KnowledgeState::FK {
+                                        if matches!(self.nodes[x_id].node_type, NodeType::Signal { .. }) {
+                                            if self.upgrade_with_source(x_id, &KnowledgeState::FK, y_id, source_from_delta) {
+                                                delta.insert(x_id);
+                                                if let Some(state) = self.states.get_mut(&x_id) {
+                                                    state.is_relational_leak = true;
                                                 }
                                             }
                                         }
@@ -1046,19 +1392,238 @@ impl CcigAnalyzer {
                     }
                 }
             }
+        }
 
-            // 将影响波及到的 delta 重新压回队列
+        delta
+    }
+
+    /// 阶段二：约束驱动的后向推断
+    pub fn phase_2_backward_inference(&mut self) {
+        let mut worklist: VecDeque<(usize, bool)> = self.seed_phase_2_sources().into_iter().map(|id| (id, false)).collect();
+        let mut broadcasted_fk = HashSet::new();
+
+        while let Some((y_id, source_from_delta)) = worklist.pop_front() {
+            let delta = self.phase_2_propagate_from_node(y_id, source_from_delta, &mut broadcasted_fk);
+
             for d in delta {
-                // 如果已经在 queue 中避免过量，其实 VecDeque 压多次也没关系，因为 upgrade_knowledge 是幂等和单调递增的
-                worklist.push_back(d);
+                worklist.push_back((d, true));
             }
         }
     }
 
+    pub fn phase_2_backward_inference_single_pass(&mut self) {
+        let mut broadcasted_fk = HashSet::new();
+
+        for y_id in self.seed_phase_2_sources() {
+            self.phase_2_propagate_from_node(y_id, false, &mut broadcasted_fk);
+        }
+    }
+
+    fn post_process_cascade_labels(&mut self) {
+        let mut public_nodes = self.public_inputs.iter().copied().collect::<Vec<_>>();
+        public_nodes.extend(self.public_outputs.iter().copied());
+        public_nodes.sort_unstable();
+        public_nodes.dedup();
+
+        let mut fk_private_inputs = self
+            .private_inputs
+            .iter()
+            .copied()
+            .filter(|id| self.get_knowledge(*id) == KnowledgeState::FK)
+            .collect::<Vec<_>>();
+        fk_private_inputs.sort_unstable();
+        fk_private_inputs.dedup();
+
+        let private_ids = self.private_inputs.iter().copied().collect::<Vec<_>>();
+        for target_id in private_ids {
+            if self.get_knowledge(target_id) != KnowledgeState::PK {
+                continue;
+            }
+            if self
+                .states
+                .get(&target_id)
+                .map(|s| s.is_cascade_leak)
+                .unwrap_or(false)
+            {
+                continue;
+            }
+
+            let mut chosen_cause = None;
+            for cause_id in &fk_private_inputs {
+                if *cause_id == target_id {
+                    continue;
+                }
+
+                let shares_public_observation = public_nodes.iter().any(|pub_id| {
+                    self.states
+                        .get(pub_id)
+                        .map(|state| {
+                            let has_target = state
+                                .info_set
+                                .iter()
+                                .any(|(p, tau)| *p == target_id && *tau != Intensity::OneWay);
+                            let has_cause = state
+                                .info_set
+                                .iter()
+                                .any(|(p, tau)| *p == *cause_id && *tau != Intensity::OneWay);
+                            has_target && has_cause
+                        })
+                        .unwrap_or(false)
+                });
+
+                if shares_public_observation {
+                    chosen_cause = Some(*cause_id);
+                    break;
+                }
+            }
+
+            if let Some(cause_id) = chosen_cause {
+                if let Some(state) = self.states.get_mut(&target_id) {
+                    state.is_cascade_leak = true;
+                    if state.cascade_cause.is_none() {
+                        state.cascade_cause = Some(cause_id);
+                    }
+                }
+            }
+        }
+    }
+
+    fn build_vanguard_lite_reports(&self) -> ReportCollection {
+        let mut reports = ReportCollection::new();
+        let mut suspect_by_private: HashMap<usize, (bool, bool, Intensity)> = HashMap::new();
+        let mut public_nodes = self.public_inputs.iter().copied().collect::<HashSet<_>>();
+        public_nodes.extend(self.public_outputs.iter().copied());
+
+        let mut mark_suspect = |priv_id: usize, tau: &Intensity, is_constraint: bool, is_dataflow: bool| {
+            if !self.private_inputs.contains(&priv_id) || matches!(tau, Intensity::OneWay) {
+                return;
+            }
+            let entry = suspect_by_private
+                .entry(priv_id)
+                .or_insert((false, false, Intensity::Partial));
+            if is_constraint {
+                entry.0 = true;
+            }
+            if is_dataflow {
+                entry.1 = true;
+            }
+            if tau > &entry.2 {
+                entry.2 = tau.clone();
+            }
+        };
+
+        for &priv_id in &self.private_inputs {
+            let con_neighbors = self.forward_edges.get(&priv_id).cloned().unwrap_or_default();
+            for (constraint_id, edge_type) in con_neighbors {
+                if !matches!(edge_type, EdgeType::ConEdge) {
+                    continue;
+                }
+                if !matches!(self.nodes[constraint_id].node_type, NodeType::Constraint) {
+                    continue;
+                }
+                let bounded = self.forward_edges.get(&constraint_id).cloned().unwrap_or_default();
+                for (sig_id, con_edge_type) in bounded {
+                    if !matches!(con_edge_type, EdgeType::ConEdge) || sig_id == priv_id {
+                        continue;
+                    }
+                    if public_nodes.contains(&sig_id) {
+                        mark_suspect(priv_id, &Intensity::Full, true, false);
+                        if let Some(state) = self.states.get(&sig_id) {
+                            for (src_priv_id, tau) in &state.info_set {
+                                if *src_priv_id == priv_id {
+                                    mark_suspect(priv_id, tau, true, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for public_id in &self.public_outputs {
+            if let Some(state) = self.states.get(public_id) {
+                for (priv_id, tau) in &state.info_set {
+                    mark_suspect(*priv_id, tau, false, true);
+                }
+            }
+        }
+
+        let mut reported_locations = HashSet::new();
+        for (priv_id, (has_constraint, has_dataflow, intensity)) in suspect_by_private {
+            if let NodeType::Signal {
+                original_name,
+                location,
+                file_id,
+                ..
+            } = &self.nodes[priv_id].node_type
+            {
+                let mut leak_types = Vec::new();
+                if has_constraint {
+                    leak_types.push("CONSTRAINT LEAK SUSPECT");
+                }
+                if has_dataflow {
+                    leak_types.push("DATAFLOW LEAK SUSPECT");
+                }
+
+                for leak_type in leak_types {
+                    let rationale = if leak_type == "CONSTRAINT LEAK SUSPECT" {
+                        if intensity == Intensity::Full {
+                            String::from("This private input is suspected to leak via direct public constraint coupling under VanguardLite single-circuit analysis.")
+                        } else {
+                            String::from("This private input is suspected to partially leak via public constraint coupling under VanguardLite single-circuit analysis.")
+                        }
+                    } else if intensity == Intensity::Full {
+                        String::from("This private input is suspected to leak via direct witness/dataflow propagation to public outputs under VanguardLite single-circuit analysis.")
+                    } else {
+                        String::from("This private input is suspected to partially leak via witness/dataflow propagation to public outputs under VanguardLite single-circuit analysis.")
+                    };
+
+                    if let (Some(loc), Some(f_id)) = (location, file_id) {
+                        let loc_fingerprint = format!("{:?}_{:?}_{}", f_id, loc, leak_type);
+                        if reported_locations.insert(loc_fingerprint) {
+                            let mut report = Report::warning(
+                                format!("Private Input `{}` has a {} risk mapped to public signals.", original_name, leak_type),
+                                ReportCode::CcigLeak
+                            );
+                            report.add_primary(loc.clone(), *f_id, rationale);
+                            reports.push(report);
+                        }
+                    } else {
+                        let report = Report::warning(
+                            format!("Private Input `{}` has a {} risk mapped to public signals.", original_name, leak_type),
+                            ReportCode::CcigLeak
+                        );
+                        reports.push(report);
+                    }
+                }
+            }
+        }
+
+        reports
+    }
+
     /// 整体分析的入口函数
     pub fn run_ccig_leakage_inference(cfg: &program_structure::cfg::Cfg, public_inputs: &[String]) -> ReportCollection {
+        Self::run_ccig_leakage_inference_with_config(cfg, public_inputs, CcigRunConfig::default())
+    }
+
+    pub fn run_ccig_leakage_inference_with_config(
+        cfg: &program_structure::cfg::Cfg,
+        public_inputs: &[String],
+        config: CcigRunConfig,
+    ) -> ReportCollection {
         let mut reports = ReportCollection::new();
         let mut graph = CcigAnalyzer::new();
+        graph.variant = config.variant;
+
+        match config.variant {
+            CcigVariant::Full => {}
+            CcigVariant::NoUnroll => {}
+            CcigVariant::NoUnrollConservative => {}
+            CcigVariant::NoUnrollAggressive => {}
+            CcigVariant::SinglePass => {}
+            CcigVariant::VanguardLite => {}
+        }
         
         graph.build_from_cfg(cfg, "");
         
@@ -1075,9 +1640,6 @@ impl CcigAnalyzer {
                         *vis = SignalVis::Pub;
                         graph.private_inputs.remove(&node.id);
                         graph.public_inputs.insert(node.id);
-                    } else {
-                        // Debug: Why it didn't match
-                        println!("DEBUG: Did not match public input: name={:?}, original_name={:?}, public_input_names={:?}", name, original_name, public_input_names);
                     }
                 }
             }
@@ -1094,8 +1656,16 @@ impl CcigAnalyzer {
         // 运行阶段一
         graph.phase_1_forward_information();
 
+        if graph.variant == CcigVariant::VanguardLite {
+            return graph.build_vanguard_lite_reports();
+        }
+
         // 运行阶段二
-        graph.phase_2_backward_inference();
+        match graph.variant {
+            CcigVariant::SinglePass => graph.phase_2_backward_inference_single_pass(),
+            _ => graph.phase_2_backward_inference(),
+        }
+        graph.post_process_cascade_labels();
 
         // 生成报告并按物理位置去重 (防止多维数组的无数个底层元素由于统一溯源到同一个父级语法块而导致刷屏)
         let mut reported_locations = std::collections::HashSet::new();
@@ -1105,26 +1675,51 @@ impl CcigAnalyzer {
             if knowledge != KnowledgeState::Unknown {
                 if let NodeType::Signal { original_name, location, file_id, .. } = &graph.nodes[priv_id].node_type {
                     let is_full = knowledge == KnowledgeState::FK;
-                    let is_relational = graph.states.get(&priv_id).map(|s| s.is_relational_leak).unwrap_or(false);
-                    
-                    let leak_type = if is_full { 
-                        if is_relational { "FULL LEAK (Relational De-blinding)" } else { "FULL LEAK" }
-                    } else { 
-                        "PARTIAL LEAK" 
+                    let (is_relational, is_cascade, cascade_cause) = graph.states.get(&priv_id)
+                        .map(|s| (s.is_relational_leak, s.is_cascade_leak, s.cascade_cause))
+                        .unwrap_or((false, false, None));
+                    let cascade_cause_name = cascade_cause.and_then(|id| match &graph.nodes[id].node_type {
+                        NodeType::Signal { original_name, .. } => Some(original_name.clone()),
+                        _ => None,
+                    });
+                    let leak_type = if is_full {
+                        if is_cascade {
+                            if let Some(cause) = &cascade_cause_name {
+                                format!("FULL LEAK (Cascade, caused by `{}`)", cause)
+                            } else {
+                                String::from("FULL LEAK (Cascade)")
+                            }
+                        } else if is_relational {
+                            String::from("FULL LEAK (Relational De-blinding)")
+                        } else {
+                            String::from("FULL LEAK")
+                        }
+                    } else if is_cascade {
+                        if let Some(cause) = &cascade_cause_name {
+                            format!("PARTIAL LEAK (Cascade, caused by `{}`)", cause)
+                        } else {
+                            String::from("PARTIAL LEAK (Cascade)")
+                        }
+                    } else {
+                        String::from("PARTIAL LEAK")
                     };
                     
                     if let (Some(loc), Some(f_id)) = (location, file_id) {
-                        // 使用 [FileID + Location 字符串表示 + 泄漏级别] 作为去重指纹
                         let loc_fingerprint = format!("{:?}_{:?}_{}", f_id, loc, leak_type);
                         
-                        // 只有首次遇到的指纹才生成报告
                         if reported_locations.insert(loc_fingerprint) {
                             let mut report = Report::warning(
                                 format!("Private Input `{}` has a {} risk mapped to public outputs.", original_name, leak_type),
                                 ReportCode::CcigLeak
                             );
                             
-                            let rationale = if is_full {
+                            let rationale = if is_cascade {
+                                if let Some(cause) = cascade_cause_name {
+                                    format!("This private input is exposed through cascading disclosure. The disclosure of `{}` triggered additional inference that exposed this signal.", cause)
+                                } else {
+                                    String::from("This private input is exposed through cascading disclosure triggered by additional inference.")
+                                }
+                            } else if is_full {
                                 String::from("This private input completely leaks its exact value via deterministic relation constraints.")
                             } else {
                                 String::from("This private input partially leaks its value, severely restricting its plausible entropy domain.")
@@ -1152,11 +1747,6 @@ impl CcigAnalyzer {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use program_structure::cfg::Cfg;
-    use program_structure::report::ReportCollection;
-    use program_structure::constants::Curve;
-    use program_structure::control_flow_graph::IntoCfg;
-    use parser::parse_definition;
 
     #[test]
     fn test_ccig_construction_and_phases() {
@@ -1203,8 +1793,204 @@ mod tests {
         let reports = CcigAnalyzer::run_ccig_leakage_inference(&cfg, &["pub_t".to_string(), "pub_y_copy".to_string()]);
         
         let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
-        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK (Relational De-blinding) risk")));
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK (Cascade")), "Found: {:?}", report_texts);
+        assert!(report_texts.iter().any(|m| m.contains("caused by `secret_y`")), "Found: {:?}", report_texts);
         assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_y` has a FULL LEAK risk")));
+    }
+
+    #[test]
+    fn test_regression_natural_public_leak_is_not_marked_as_cascade() {
+        let src = [r#"
+            template NaturalPublicLeak() {
+                signal input secret_y;
+                signal output pub_y;
+                pub_y <== secret_y;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("NaturalPublicLeak").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference(&cfg, &["pub_y".to_string()]);
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_y` has a FULL LEAK risk")), "Found: {:?}", report_texts);
+        assert!(!report_texts.iter().any(|m| m.contains("Private Input `secret_y` has a FULL LEAK (Cascade")), "Found: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_regression_delta_reentry_marks_cascade_with_cause() {
+        let src = [r#"
+            template DeltaCascade() {
+                signal input secret_x;
+                signal input secret_y;
+                signal output pub_sum;
+                signal output pub_y;
+
+                pub_sum <== secret_x + secret_y;
+                pub_y <== secret_y;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("DeltaCascade").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference(&cfg, &["pub_sum".to_string(), "pub_y".to_string()]);
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK (Cascade")), "Found: {:?}", report_texts);
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK (Cascade") && m.contains("caused by `secret_y`")), "Found: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_single_pass_variant_detects_direct_full_leak() {
+        let src = [r#"
+            template DirectLeak() {
+                signal input secret_x;
+                signal output pub_out;
+                pub_out <== secret_x;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("DirectLeak").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_out".to_string()],
+            CcigRunConfig { variant: CcigVariant::SinglePass },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK risk")));
+    }
+
+    #[test]
+    fn test_single_pass_variant_relational_chain_less_precise_than_full() {
+        let src = [r#"
+            template RelationalChain() {
+                signal input secret_x;
+                signal input secret_y;
+                signal output pub_t;
+                signal output pub_y_copy;
+
+                pub_t <== secret_x + secret_y;
+                pub_y_copy <== secret_y;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("RelationalChain").unwrap();
+
+        let full_reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_t".to_string(), "pub_y_copy".to_string()],
+            CcigRunConfig { variant: CcigVariant::Full },
+        );
+        let single_pass_reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_t".to_string(), "pub_y_copy".to_string()],
+            CcigRunConfig { variant: CcigVariant::SinglePass },
+        );
+
+        let full_texts: Vec<String> = full_reports.into_iter().map(|r| r.message().to_string()).collect();
+        let single_pass_texts: Vec<String> = single_pass_reports.into_iter().map(|r| r.message().to_string()).collect();
+
+        assert!(full_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK")), "full reports: {:?}", full_texts);
+        assert!(!single_pass_texts.iter().any(|m| m.contains("Private Input `secret_x` has a FULL LEAK")), "single-pass reports: {:?}", single_pass_texts);
+        assert!(single_pass_texts.iter().any(|m| m.contains("Private Input `secret_y` has a FULL LEAK risk")), "single-pass reports: {:?}", single_pass_texts);
+    }
+
+    #[test]
+    fn test_vanguard_lite_detects_direct_leak_as_suspect() {
+        let src = [r#"
+            template DirectLeak() {
+                signal input secret_x;
+                signal output pub_out;
+                pub_out <== secret_x;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("DirectLeak").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_out".to_string()],
+            CcigRunConfig { variant: CcigVariant::VanguardLite },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a DATAFLOW LEAK SUSPECT risk")), "reports: {:?}", report_texts);
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a CONSTRAINT LEAK SUSPECT risk")), "reports: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_vanguard_lite_detects_constraint_suspect_from_public_input_coupling() {
+        let src = [r#"
+            template ConstraintCoupling() {
+                signal input pub_in;
+                signal input secret_x;
+                pub_in === secret_x;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("ConstraintCoupling").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_in".to_string()],
+            CcigRunConfig { variant: CcigVariant::VanguardLite },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a CONSTRAINT LEAK SUSPECT risk")), "reports: {:?}", report_texts);
+        assert!(!report_texts.iter().any(|m| m.contains("Private Input `secret_x` has a DATAFLOW LEAK SUSPECT risk")), "reports: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_vanguard_lite_hash_path_is_exempted() {
+        let src = [r#"
+            template SafeHash() {
+                signal input secret_x;
+                signal output pub_hash;
+                pub_hash <== poseidon(secret_x);
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("SafeHash").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_hash".to_string()],
+            CcigRunConfig { variant: CcigVariant::VanguardLite },
+        );
+
+        assert!(reports.is_empty());
+    }
+
+    #[test]
+    fn test_vanguard_lite_reports_suspects_without_full_relational_label() {
+        let src = [r#"
+            template RelationalChain() {
+                signal input secret_x;
+                signal input secret_y;
+                signal output pub_t;
+                signal output pub_y_copy;
+
+                pub_t <== secret_x + secret_y;
+                pub_y_copy <== secret_y;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("RelationalChain").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_t".to_string(), "pub_y_copy".to_string()],
+            CcigRunConfig { variant: CcigVariant::VanguardLite },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_y`") && m.contains("LEAK SUSPECT risk")), "reports: {:?}", report_texts);
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret_x`") && m.contains("LEAK SUSPECT risk")), "reports: {:?}", report_texts);
+        assert!(!report_texts.iter().any(|m| m.contains("FULL LEAK (Relational De-blinding)")), "reports: {:?}", report_texts);
     }
 
     #[test]
@@ -1256,6 +2042,285 @@ mod tests {
         
         let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
         assert!(report_texts.iter().any(|m| m.contains("Private Input `private_x` has a FULL LEAK risk")));
+    }
+
+    #[test]
+    fn test_no_unroll_conservative_unknown_template_call_blocks_leakage() {
+        let src = [
+            r#"
+            template Sub() {
+                signal input in1;
+                signal output out;
+                out <== in1;
+            }
+            "#,
+            r#"
+            template Main() {
+                signal input private_x;
+                signal output pub_y;
+                component sub = Sub();
+                sub.in1 <== private_x;
+                pub_y <== sub.out;
+            }
+            "#
+        ];
+
+        let mut runner = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        runner.generate_all_cfgs();
+        let cfg_manager = runner.link_all_cfg_references();
+
+        let cfg_ref = cfg_manager.get_template_cfg_ref("Main").unwrap();
+        let cfg = cfg_ref.borrow();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_y".to_string()],
+            CcigRunConfig { variant: CcigVariant::NoUnrollConservative },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.is_empty(), "conservative reports: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_no_unroll_aggressive_unknown_template_call_propagates_full_source() {
+        let src = [
+            r#"
+            template Sub() {
+                signal input in1;
+                signal output out;
+                out <== in1;
+            }
+            "#,
+            r#"
+            template Main() {
+                signal input private_x;
+                signal output pub_y;
+                component sub = Sub();
+                sub.in1 <== private_x;
+                pub_y <== sub.out;
+            }
+            "#
+        ];
+
+        let mut runner = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        runner.generate_all_cfgs();
+        let cfg_manager = runner.link_all_cfg_references();
+
+        let cfg_ref = cfg_manager.get_template_cfg_ref("Main").unwrap();
+        let cfg = cfg_ref.borrow();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_y".to_string()],
+            CcigRunConfig { variant: CcigVariant::NoUnrollAggressive },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `private_x` has a FULL LEAK risk")));
+    }
+
+    #[test]
+    fn test_no_unroll_alias_keeps_conservative_default() {
+        let src = [
+            r#"
+            template Sub() {
+                signal input in1;
+                signal output out;
+                out <== in1;
+            }
+            "#,
+            r#"
+            template Main() {
+                signal input private_x;
+                signal output pub_y;
+                component sub = Sub();
+                sub.in1 <== private_x;
+                pub_y <== sub.out;
+            }
+            "#
+        ];
+
+        let mut runner = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        runner.generate_all_cfgs();
+        let cfg_manager = runner.link_all_cfg_references();
+
+        let cfg_ref = cfg_manager.get_template_cfg_ref("Main").unwrap();
+        let cfg = cfg_ref.borrow();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_y".to_string()],
+            CcigRunConfig { variant: CcigVariant::NoUnroll },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.is_empty(), "no-unroll alias reports: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_full_function_call_links_return_to_lhs() {
+        let src = [
+            r#"
+            function passthrough(v) {
+                var t = v;
+                return t;
+            }
+            "#,
+            r#"
+            template Main() {
+                signal input secret;
+                signal output pub_out;
+                signal output aux;
+
+                pub_out <== passthrough(secret);
+                aux <== pub_out;
+            }
+            "#,
+        ];
+
+        let mut runner = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        runner.generate_all_cfgs();
+        let cfg_manager = runner.link_all_cfg_references();
+        let cfg_ref = cfg_manager.get_template_cfg_ref("Main").unwrap();
+        let cfg = cfg_ref.borrow();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["pub_out".to_string(), "aux".to_string()],
+            CcigRunConfig { variant: CcigVariant::Full },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret` has a FULL LEAK risk")), "reports: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_no_unroll_known_template_abstraction_still_works() {
+        let src = [
+            r#"
+            template LessThan(n) {
+                signal input in[2];
+                signal output out;
+                out <== in[0] - in[1];
+            }
+            "#,
+            r#"
+            template IsValid() {
+                signal input secret;
+                signal input public_threshold;
+                signal output isValid;
+
+                component lt = LessThan(64);
+                lt.in[0] <== secret;
+                lt.in[1] <== public_threshold;
+                isValid <== lt.out;
+            }
+            "#,
+        ];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("IsValid").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["isValid".to_string(), "public_threshold".to_string()],
+            CcigRunConfig { variant: CcigVariant::NoUnroll },
+        );
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret` has a PARTIAL LEAK risk")));
+    }
+
+    #[test]
+    fn test_risk2_variants_regression_matrix() {
+        let src = [
+            r#"
+            template WeightSum(n) {
+                signal input ai[n];
+                signal input ri[n];
+                signal output out;
+
+                signal wsum[n];
+                wsum[0] <== ai[0] * ri[0];
+                for (var i = 1; i < n; i++) {
+                    wsum[i] <== wsum[i - 1] + ai[i] * ri[i];
+                }
+                out <== wsum[n - 1];
+            }
+            "#,
+            r#"
+            template Risk2(n) {
+                signal input t;
+                signal input ai[n];
+                signal input ri[n];
+                signal output fin;
+
+                var alpha = 5;
+                component sum = WeightSum(n);
+                sum.ai <== ai;
+                sum.ri <== ri;
+                fin <== alpha * sum.out / t;
+            }
+            "#,
+        ];
+
+        let mut runner = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        runner.generate_all_cfgs();
+        let cfg_manager = runner.link_all_cfg_references();
+        let cfg_ref = cfg_manager.get_template_cfg_ref("Risk2").unwrap();
+        let cfg = cfg_ref.borrow();
+
+        let full_reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["fin".to_string()],
+            CcigRunConfig { variant: CcigVariant::Full },
+        );
+        let conservative_reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["fin".to_string()],
+            CcigRunConfig { variant: CcigVariant::NoUnrollConservative },
+        );
+        let aggressive_reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["fin".to_string()],
+            CcigRunConfig { variant: CcigVariant::NoUnrollAggressive },
+        );
+        let single_pass_reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["fin".to_string()],
+            CcigRunConfig { variant: CcigVariant::SinglePass },
+        );
+        let vanguard_reports = CcigAnalyzer::run_ccig_leakage_inference_with_config(
+            &cfg,
+            &["fin".to_string()],
+            CcigRunConfig { variant: CcigVariant::VanguardLite },
+        );
+
+        let full_texts: Vec<String> = full_reports.into_iter().map(|r| r.message().to_string()).collect();
+        let conservative_texts: Vec<String> = conservative_reports.into_iter().map(|r| r.message().to_string()).collect();
+        let aggressive_texts: Vec<String> = aggressive_reports.into_iter().map(|r| r.message().to_string()).collect();
+        let single_pass_texts: Vec<String> = single_pass_reports.into_iter().map(|r| r.message().to_string()).collect();
+        let vanguard_texts: Vec<String> = vanguard_reports.into_iter().map(|r| r.message().to_string()).collect();
+
+        assert!(full_texts.is_empty(), "full reports: {:?}", full_texts);
+        assert!(conservative_texts.is_empty(), "conservative reports: {:?}", conservative_texts);
+        assert!(
+            aggressive_texts.iter().any(|m| m.contains("Private Input `t` has a FULL LEAK risk")),
+            "aggressive reports: {:?}",
+            aggressive_texts
+        );
+        assert!(single_pass_texts.is_empty(), "single-pass reports: {:?}", single_pass_texts);
+        assert!(
+            vanguard_texts.iter().any(|m| m.contains("Private Input `t` has a DATAFLOW LEAK SUSPECT risk")),
+            "vanguard-lite reports: {:?}",
+            vanguard_texts
+        );
+        assert!(
+            conservative_texts.iter().all(|m| !m.contains("`ai`") && !m.contains("`ri`")),
+            "conservative reports: {:?}",
+            conservative_texts
+        );
+        assert!(
+            aggressive_texts.iter().all(|m| !m.contains("`ai`") && !m.contains("`ri`")),
+            "aggressive reports: {:?}",
+            aggressive_texts
+        );
     }
 
     #[test]
@@ -1413,7 +2478,7 @@ mod tests {
         // AND `balance` became FK (from the bonus constraint). Thus, `creditScore` also becomes FK!
         // NOTE: In the paper's narrative, `totalScore` being exposed implies full leakage if `balance` is known.
         // Wait, does our tool correctly flag it as FULL LEAK because of relational deblinding? Yes!
-        assert!(report_texts.iter().any(|m| m.contains("Private Input `creditScore` has a FULL LEAK (Relational De-blinding) risk")));
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `creditScore` has a FULL LEAK")), "Found: {:?}", report_texts);
     }
 
     #[test]
@@ -1488,6 +2553,54 @@ mod tests {
         // `secret` should NOT be blinded since the other operand is a public input (FK).
         // It should be upgraded to PK.
         assert!(report_texts.iter().any(|m| m.contains("Private Input `secret` has a PARTIAL LEAK risk")), "Found: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_infix_not_eq_does_not_trigger_full_deblinding_chain() {
+        let src = [r#"
+            template Biolock() {
+                signal input entropy;
+                signal input salt;
+                signal output uniquenessFlag;
+                signal output saltedEntropy;
+
+                uniquenessFlag <== entropy != 0;
+                saltedEntropy <== entropy + salt;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("Biolock").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference(&cfg, &["uniquenessFlag".to_string(), "saltedEntropy".to_string()]);
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `entropy` has a PARTIAL LEAK risk")), "reports: {:?}", report_texts);
+        assert!(!report_texts.iter().any(|m| m.contains("Private Input `entropy` has a FULL LEAK risk")), "reports: {:?}", report_texts);
+        assert!(!report_texts.iter().any(|m| m.contains("Private Input `salt` has a FULL LEAK risk")), "reports: {:?}", report_texts);
+    }
+
+    #[test]
+    fn test_infix_compare_family_is_partial() {
+        let src = [r#"
+            template CompareFamily() {
+                signal input secret;
+                signal output out_lt;
+                signal output out_gt;
+                signal output out_eq;
+
+                out_lt <== secret < 7;
+                out_gt <== secret > 3;
+                out_eq <== secret == 5;
+            }
+        "#];
+
+        let mut context = crate::analysis_runner::AnalysisRunner::new(program_structure::constants::Curve::Goldilocks).with_src(&src);
+        let cfg = context.take_template("CompareFamily").unwrap();
+        let reports = CcigAnalyzer::run_ccig_leakage_inference(&cfg, &["out_lt".to_string(), "out_gt".to_string(), "out_eq".to_string()]);
+
+        let report_texts: Vec<String> = reports.into_iter().map(|r| r.message().to_string()).collect();
+        assert!(report_texts.iter().any(|m| m.contains("Private Input `secret` has a PARTIAL LEAK risk")), "reports: {:?}", report_texts);
+        assert!(!report_texts.iter().any(|m| m.contains("Private Input `secret` has a FULL LEAK risk")), "reports: {:?}", report_texts);
     }
 
     #[test]

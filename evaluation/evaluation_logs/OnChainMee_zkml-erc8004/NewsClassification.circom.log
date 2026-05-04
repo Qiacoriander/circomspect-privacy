@@ -1,0 +1,76 @@
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'NewsClassification' 开始分析，公开输入：[]
+warning: The signal `sentimentScore` is not used by the template.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom:21:5
+   │
+21 │     signal sentimentScore;
+   │     ^^^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom:43:26
+   │
+43 │     isNegative.in[1] <== 0;
+   │                          ^ `0` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom:58:25
+   │
+58 │     confCheck.in[0] <== confidenceScore;
+   │                         ^^^^^^^^^^^^^^^ `confidenceScore` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom:59:25
+   │
+59 │     confCheck.in[1] <== 100;
+   │                         ^^^ `100` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom:42:26
+   │
+42 │     isNegative.in[0] <== feature1;
+   │                          ^^^^^^^^ `feature1` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom:23:5
+   │
+23 │     signal featureSum;
+   │     ^^^^^^^^^^^^^^^^^ The intermediate signal `featureSum` is declared here.
+   ·
+26 │     featureSum <== feature1 + feature2 + feature3;
+   │     --------------------------------------------- The intermediate signal `featureSum` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Intermediate signals should typically occur in at least two separate constraints.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom:21:5
+   │
+21 │     signal sentimentScore;
+   │     ^^^^^^^^^^^^^^^^^^^^^ The intermediate signal `sentimentScore` is declared here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+
+warning: Private Input `feature1` has a PARTIAL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom:11:5
+   │
+11 │     signal input feature1;  // Sentiment score (-1 to 1)
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input partially leaks its value, severely restricting its plausible entropy domain.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 8 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.214s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\OnChainMee_zkml-erc8004\news-service\circuits\NewsClassification.circom --mode main --ccig-variant full

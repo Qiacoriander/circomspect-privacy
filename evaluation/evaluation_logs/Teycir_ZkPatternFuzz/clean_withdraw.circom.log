@@ -1,0 +1,31 @@
+    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Teycir_ZkPatternFuzz\tests\ground_truth\chains\clean_deposit_withdraw\clean_withdraw.circom --mode main --ccig-variant full`
+error: Failed to open file `../../../../node_modules/circomlib/circuits/poseidon.circom`.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Teycir_ZkPatternFuzz\tests\ground_truth\chains\clean_deposit_withdraw\clean_withdraw.circom:6:1
+  │
+6 │ include "../../../../node_modules/circomlib/circuits/poseidon.circom";
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File included here.
+
+circomspect: 从 main component 'CleanWithdraw' 开始分析，公开输入：[]
+warning: Private Input `nullifierIn` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Teycir_ZkPatternFuzz\tests\ground_truth\chains\clean_deposit_withdraw\clean_withdraw.circom:11:5
+   │
+11 │     signal input nullifierIn;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `amount` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Teycir_ZkPatternFuzz\tests\ground_truth\chains\clean_deposit_withdraw\clean_withdraw.circom:10:5
+   │
+10 │     signal input amount;
+   │     ^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 3 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Teycir_ZkPatternFuzz\tests\ground_truth\chains\clean_deposit_withdraw\clean_withdraw.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.228s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\Teycir_ZkPatternFuzz\tests\ground_truth\chains\clean_deposit_withdraw\clean_withdraw.circom --mode main --ccig-variant full

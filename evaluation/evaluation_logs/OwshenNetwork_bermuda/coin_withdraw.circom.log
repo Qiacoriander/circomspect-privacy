@@ -1,0 +1,25 @@
+    Finished `release` profile [optimized] target(s) in 0.14s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\OwshenNetwork_bermuda\contracts\circuits\coin_withdraw.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'CoinWithdraw' 开始分析，公开输入：[]
+warning: Private Input `user_latest_values_commitment_head` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OwshenNetwork_bermuda\contracts\circuits\coin_withdraw.circom:16:5
+   │
+16 │     signal input user_latest_values_commitment_head;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `user_checkpoint_head` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\OwshenNetwork_bermuda\contracts\circuits\coin_withdraw.circom:15:5
+   │
+15 │     signal input user_checkpoint_head;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 2 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\OwshenNetwork_bermuda\contracts\circuits\coin_withdraw.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.517s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\OwshenNetwork_bermuda\contracts\circuits\coin_withdraw.circom --mode main --ccig-variant full

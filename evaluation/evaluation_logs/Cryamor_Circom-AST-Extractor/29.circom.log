@@ -1,0 +1,153 @@
+    Finished `release` profile [optimized] target(s) in 0.16s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'A' 开始分析，公开输入：[]
+warning: The value assigned to `k` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:31:14
+   │
+31 │         for (var k=0; j<10; k+=2)
+   │              ^^^^^^^ The value assigned to `k` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The variable `p` is assigned a value, but this value is never read.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:18:5
+   │
+18 │     var o,p=2;
+   │     ^^^^^^^^^ The value assigned to `p` here is never read.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The variable `p` is assigned a value, but this value is never read.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:22:5
+   │
+22 │     p=1;
+   │     ^^^ The value assigned to `p` here is never read.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The variable `i` is assigned a value, but this value is never read.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:17:5
+   │
+17 │     var i=1;
+   │     ^^^^^^^ The value assigned to `i` here is never read.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The parameter `y` is never read.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:3:12
+  │
+3 │ template A(x,y,z) 
+  │            ^^^^^ The parameter `y` is never used in `A`.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The variable `o` is assigned a value, but this value is never read.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:55:13
+   │
+55 │             o-=i;
+   │             ^^^^ The value assigned to `o` here is never read.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The value assigned to `k` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:47:18
+   │
+47 │             for (var k=0; j<10; k+=2)
+   │                  ^^^^^^^ The value assigned to `k` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The parameter `z` is never read.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:3:12
+  │
+3 │ template A(x,y,z) 
+  │            ^^^^^ The parameter `z` is never used in `A`.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The value assigned to `k` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:47:33
+   │
+47 │             for (var k=0; j<10; k+=2)
+   │                                 ^^^^ The value assigned to `k` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The parameter `x` is never read.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:3:12
+  │
+3 │ template A(x,y,z) 
+  │            ^^^^^ The parameter `x` is never used in `A`.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The value assigned to `k` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:31:29
+   │
+31 │         for (var k=0; j<10; k+=2)
+   │                             ^^^^ The value assigned to `k` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: Constant branching statement condition found.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:24:9
+   │
+24 │     if (i>o)
+   │         ^^^ This condition is always true.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#constant-branch-condition.
+
+warning: Constant branching statement condition found.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:40:13
+   │
+40 │         if (i>o)
+   │             ^^^ This condition is always true.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#constant-branch-condition.
+
+warning: Private Input `in1` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:5:5
+  │
+5 │     signal input in1;
+  │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in3` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:7:5
+  │
+7 │     signal input in3;
+  │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in5` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:9:5
+  │
+9 │     signal input in5;
+  │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in4` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:8:5
+  │
+8 │     signal input in4;
+  │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `in2` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom:6:5
+  │
+6 │     signal input in2;
+  │     ^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 18 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.270s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\Cryamor_Circom-AST-Extractor\testcase\29.circom --mode main --ccig-variant full

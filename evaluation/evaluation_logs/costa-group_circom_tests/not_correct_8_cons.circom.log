@@ -1,0 +1,25 @@
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\costa-group_circom_tests\test_known_unknown\fails\not_correct_8_cons\not_correct_8_cons.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'Prueba' 开始分析，公开输入：[]
+warning: The parameter `n` is never read.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\costa-group_circom_tests\test_known_unknown\fails\not_correct_8_cons\not_correct_8_cons.circom:1:17
+  │
+1 │ template Prueba(n){
+  │                 ^ The parameter `n` is never used in `Prueba`.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\costa-group_circom_tests\test_known_unknown\fails\not_correct_8_cons\not_correct_8_cons.circom:3:4
+  │
+3 │    signal input in;
+  │    ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 2 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\costa-group_circom_tests\test_known_unknown\fails\not_correct_8_cons\not_correct_8_cons.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.204s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\costa-group_circom_tests\test_known_unknown\fails\not_correct_8_cons\not_correct_8_cons.circom --mode main --ccig-variant full

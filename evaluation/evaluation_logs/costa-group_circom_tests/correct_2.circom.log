@@ -1,0 +1,41 @@
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\costa-group_circom_tests\test_known_unknown\test_constraints\correct_2\correct_2.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'Prueba' 开始分析，公开输入：[]
+warning: The value assigned to `x` is not used in witness or constraint generation.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\costa-group_circom_tests\test_known_unknown\test_constraints\correct_2\correct_2.circom:9:4
+  │
+9 │    var x = 0;
+  │    ^^^^^^^^^ The value assigned to `x` here does not influence witness or constraint generation.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: The value assigned to `x` is not used in witness or constraint generation.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\costa-group_circom_tests\test_known_unknown\test_constraints\correct_2\correct_2.circom:13:7
+   │
+13 │       x = 1;
+   │       ^^^^^ The value assigned to `x` here does not influence witness or constraint generation.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment.
+
+warning: Constant branching statement condition found.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\costa-group_circom_tests\test_known_unknown\test_constraints\correct_2\correct_2.circom:16:8
+   │
+16 │    if (y == 1){
+   │        ^^^^^^ This condition is always false.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#constant-branch-condition.
+
+warning: Private Input `in` has a FULL LEAK risk mapped to public outputs.
+  ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\costa-group_circom_tests\test_known_unknown\test_constraints\correct_2\correct_2.circom:6:4
+  │
+6 │    signal input in;
+  │    ^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+  │
+  = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 4 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\costa-group_circom_tests\test_known_unknown\test_constraints\correct_2\correct_2.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.206s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\costa-group_circom_tests\test_known_unknown\test_constraints\correct_2\correct_2.circom --mode main --ccig-variant full

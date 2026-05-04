@@ -1,0 +1,41 @@
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Ronnieraj37_ETH-villa\core\circuits\private_swap.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'PrivateSwap' 开始分析，公开输入：[]
+warning: Private Input `amount_in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ronnieraj37_ETH-villa\core\circuits\private_swap.circom:28:5
+   │
+28 │     signal input amount_in;        // Amount to sell
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `token_in` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ronnieraj37_ETH-villa\core\circuits\private_swap.circom:26:5
+   │
+26 │     signal input token_in;         // Token to sell (as felt)
+   │     ^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `min_amount_out` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ronnieraj37_ETH-villa\core\circuits\private_swap.circom:29:5
+   │
+29 │     signal input min_amount_out;   // Minimum to receive
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+warning: Private Input `token_out` has a FULL LEAK risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\Ronnieraj37_ETH-villa\core\circuits\private_swap.circom:27:5
+   │
+27 │     signal input token_out;        // Token to buy (as felt)
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This private input completely leaks its exact value via deterministic relation constraints.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 4 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\Ronnieraj37_ETH-villa\core\circuits\private_swap.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=2.557s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\Ronnieraj37_ETH-villa\core\circuits\private_swap.circom --mode main --ccig-variant full

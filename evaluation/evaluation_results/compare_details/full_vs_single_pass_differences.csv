@@ -1,0 +1,10 @@
+project_name,file_path,mode,present_full,success_full,leak_full,full_leak_full,partial_leak_full,cascade_leak_full,present_single_pass,success_single_pass,leak_single_pass,full_leak_single_pass,partial_leak_single_pass,cascade_leak_single_pass,difference_reason,task4_category
+Ayalyt_blockchain-Verification-Integration,Ayalyt_blockchain-Verification-Integration\Compiler-Verification\benchmarks\tests\Com_Arg.circom,main,True,True,2,2,0,1,True,True,1,1,0,0,leak_count_mismatch,n/a
+CleanPegasus_zero-knowledge-puzzles,CleanPegasus_zero-knowledge-puzzles\StatefulComputation\StatefulComputation.circom,main,True,True,1,1,0,1,True,True,1,1,0,0,leak_count_mismatch,n/a
+Galactica-corp_galactica-monorepo,Galactica-corp_galactica-monorepo\packages\zk-certificates\circuits\mains\mimcEnDecrypt.main.circom,main,True,True,2,2,0,1,True,True,1,1,0,0,leak_count_mismatch,n/a
+Lightency-io_GreenTrust,Lightency-io_GreenTrust\ZKP\equal.circom,main,True,True,2,1,1,1,True,True,1,1,0,0,leak_count_mismatch,n/a
+Teycir_ZkPatternFuzz,Teycir_ZkPatternFuzz\tests\ground_truth\chains\mode123_smoke\mode123_chain_step0.circom,main,True,True,2,2,0,1,True,True,1,1,0,0,leak_count_mismatch,n/a
+namnc_circom-2-arithc,namnc_circom-2-arithc\tests\circuits\integration\infixOps.circom,main,True,True,6,6,0,3,True,True,4,3,1,0,leak_count_mismatch,n/a
+santacroce-tech_zkgame,santacroce-tech_zkgame\circuits\timeCraft.circom,main,True,True,1,1,0,1,True,True,0,0,0,0,leak_count_mismatch,n/a
+santacroce-tech_zkgame,santacroce-tech_zkgame\circuits\timeReward.circom,main,True,True,1,1,0,1,True,True,0,0,0,0,leak_count_mismatch,n/a
+victoirefem_bp_final,victoirefem_bp_final\circom-2-arithc\tests\circuits\integration\infixOps.circom,main,True,True,6,6,0,3,True,True,4,3,1,0,leak_count_mismatch,n/a

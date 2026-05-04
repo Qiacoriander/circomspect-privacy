@@ -1,0 +1,89 @@
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom --mode main --ccig-variant full`
+circomspect: 从 main component 'TimeCraftProof' 开始分析，公开输入：[]
+warning: The variable `MAX_MATERIALS` is assigned a value, but this value is never read.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:43:5
+   │
+43 │     var MAX_MATERIALS = 8;
+   │     ^^^^^^^^^^^^^^^^^^^^^ The value assigned to `MAX_MATERIALS` here is never read.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The variable `ITERATIONS_PER_SECOND` is assigned a value, but this value is never read.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:39:5
+   │
+39 │     var ITERATIONS_PER_SECOND = 278;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The value assigned to `ITERATIONS_PER_SECOND` here is never read.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signal `vdfOutput` is not used by the template.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:25:5
+   │
+25 │     signal input vdfOutput;
+   │     ^^^^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signal `requiredVDFIterations` is not used by the template.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:32:5
+   │
+32 │     signal input requiredVDFIterations;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signal `vdfProof` is not used by the template.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:33:5
+   │
+33 │     signal input vdfProof;
+   │     ^^^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signals `materialQuantities[8]` are not used by the template.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:21:5
+   │
+21 │     signal input materialQuantities[8];
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ These signals are unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signal `outputItemType` is not used by the template.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:22:5
+   │
+22 │     signal input outputItemType;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signal `outputItemQuantity` is not used by the template.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:23:5
+   │
+23 │     signal input outputItemQuantity;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This signal is unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: The signals `requiredMaterials[8]` are not used by the template.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:20:5
+   │
+20 │     signal input requiredMaterials[8]; // Maximum 8 materials per recipe
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ These signals are unused and could be removed.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+
+warning: Private Input `newStateCommitment` has a FULL LEAK (Cascade, caused by `newStateHasher`) risk mapped to public outputs.
+   ┌─ \\?\D:\dev\circomspect\evaluation\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom:30:5
+   │
+30 │     signal input newStateCommitment;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This private input leaks after fixpoint re-visitation. The propagated knowledge from `newStateHasher` triggered a cascading inference that exposed this signal.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#ccig-leak.
+
+circomspect: 10 issues found.
+error: process didn't exit successfully: `D:\dev\circomspect\target\release\circomspect.exe ..\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom --mode main --ccig-variant full` (exit code: 1)
+
+
+[meta] return_code=1 elapsed=0.225s
+[meta] cmd=cargo run --release --bin circomspect -- ..\evaluation_projects\santacroce-tech_zkgame\circuits\timeCraft.circom --mode main --ccig-variant full

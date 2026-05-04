@@ -2,5 +2,5 @@
 /target
 .qoder
 .idea
-temp_docs
-test_fixtures
+.trae
+/evaluation/evaluation_projects_archive
